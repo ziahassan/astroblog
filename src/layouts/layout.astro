@@ -1,0 +1,19 @@
+---
+const { title = "Page Title" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-gray-900 max-w-5xl mx-auto px-4 py-8 font-sans">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold">{title}</h1>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
