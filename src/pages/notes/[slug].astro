@@ -1,0 +1,51 @@
+---
+import "/src/styles/global.css";
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map(note => ({
+    params: { slug: note.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const allNotes = await getCollection('notes');
+
+// Find the current note
+const note = allNotes.find(n => n.slug === slug);
+
+if (!note) {
+  throw new Error(`Note "${slug}" not found`);
+}
+
+// Render content
+const { Content } = await note.render();
+const data = note.data;
+
+// Build backlinks
+const backlinks = allNotes.filter(n => {
+  const raw = n.body; // full source text of the note
+  return raw.includes(`[[${slug}]]`);
+});
+---
+
+<article class="prose prose-neutral mx-auto mt-12 px-4">
+  <h1>{data?.title ?? "Untitled"}</h1>
+  <Content />
+
+  {backlinks.length > 0 && (
+    <section class="mt-10 border-t pt-6">
+      <h2>Linked from</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        {backlinks.map(linkingNote => (
+          <li>
+            <a class="text-blue-700 hover:underline" href={`/notes/${linkingNote.slug}`}>
+              {linkingNote.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</article>

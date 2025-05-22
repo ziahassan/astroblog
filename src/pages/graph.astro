@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import { generateNoteGraph } from '../lib/generateGraph';
+
+const notes = await getCollection('notes');
+const graphData = generateNoteGraph(notes);
+const graphJson = JSON.stringify(graphData).replace(/</g, '\\u003c');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Graph View</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+      }
+
+      #graph {
+        width: 100%;
+        height: 100vh;
+        background: #ffffff;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 1rem;
+        text-align: center;
+        background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Graph View</h1>
+    <svg id="graph"></svg>
+
+    <script>
+     window.__GRAPH_DATA__ = JSON.parse(`${graphJson}`);
+    </script>
+
+    <script type="module">
+      import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+      const data = window.__GRAPH_DATA__;
+
+      console.log("GRAPH DATA", data);
+
+      const width = window.innerWidth;
+      const height = window.innerHeight - 60;
+
+      const svg = d3.select("#graph")
+        .attr("width", width)
+        .attr("height", height);
+
+      const simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).id(d => d.id).distance(120))
+        .force("charge", d3.forceManyBody().strength(-200))
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
+      const link = svg.append("g")
+        .attr("stroke", "#ccc")
+        .selectAll("line")
+        .data(data.links)
+        .join("line")
+        .attr("stroke-width", 1.5);
+
+      const node = svg.append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(data.nodes)
+        .join("circle")
+        .attr("r", 8)
+        .attr("fill", "#1e40af")
+        .call(drag(simulation));
+
+      node.append("title").text(d => d.title);
+
+      node.on("click", (event, d) => {
+        window.location.href = `/notes/${d.id}`;
+      });
+
+      simulation.on("tick", () => {
+        link
+          .attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
+
+        node
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y);
+      });
+
+      function drag(simulation) {
+        function dragstarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+          d.fx = event.x;
+          d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+
+        return d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended);
+      }
+    </script>
+  </body>
+</html>
