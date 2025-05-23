@@ -1,17 +1,24 @@
 ---
-const { title = "Page Title" } = Astro.props;
+import '../styles/global.css';
+const { title = "Untitled" } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="bg-white text-gray-900 max-w-5xl mx-auto px-4 py-8 font-sans">
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold">{title}</h1>
+  <body class="bg-white text-gray-900 font-sans max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8 border-b pb-4">
+      <nav class="flex gap-4 text-sm font-medium text-blue-700">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/now" class="hover:underline">Now</a>
+        <a href="/notes" class="hover:underline">Notes</a>
+        <a href="/essays" class="hover:underline">Essays</a>
+      </nav>
     </header>
+
     <main>
       <slot />
     </main>
