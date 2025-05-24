@@ -1,0 +1,161 @@
+---
+// src/pages/essays/[slug].astro
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const essays = await getCollection('essays', ({ data }) => {
+    return data.draft !== true; // Only build published essays
+  });
+  return essays.map(essay => ({ params: { slug: essay.slug } }));
+}
+
+const { slug } = Astro.params;
+const allEssays = await getCollection('essays', ({ data }) => data.draft !== true);
+
+// Find the essay
+const essay = allEssays.find(e => e.slug === slug);
+if (!essay) {
+  throw new Error(`Essay "${slug}" not found`);
+}
+
+const { Content } = await essay.render();
+const { data } = essay;
+
+// Get related essays (same tags)
+const relatedEssays = allEssays
+  .filter(e => e.slug !== slug)
+  .filter(e => e.data.tags?.some(tag => data.tags?.includes(tag)))
+  .slice(0, 3);
+---
+
+<Layout title={data.title}>
+  <!-- Main Article Content -->
+  <article class="max-w-4xl mx-auto">
+    
+    <!-- Article Header -->
+    <header class="mb-12 pb-8 border-b border-gray-200">
+      <h1 class="text-5xl font-light text-gray-800 mb-6 leading-tight">{data.title}</h1>
+      
+      <!-- Metadata -->
+      <div class="flex flex-wrap items-center gap-6 text-gray-600">
+        <time class="font-mono text-sm">
+          {new Date(data.publishDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+        
+        {data.tags && data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {data.tags.map(tag => (
+              <span class="px-3 py-1 bg-blue-50 text-blue-600 text-sm rounded-md font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+    
+    <!-- Article Body -->
+    <div class="prose prose-xl prose-gray max-w-none leading-relaxed">
+      <Content />
+    </div>
+    
+    <!-- Related Essays -->
+    {relatedEssays.length > 0 && (
+      <section class="mt-16 pt-8 border-t border-gray-200">
+        <h2 class="text-2xl font-light text-gray-800 mb-6">Related Essays</h2>
+        <div class="grid gap-4">
+          {relatedEssays.map(related => (
+            <div key={related.slug} class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">
+                <a href={`/essays/${related.slug}`} class="hover:text-blue-600 transition-colors">
+                  {related.data.title}
+                </a>
+              </h3>
+              {related.data.description && (
+                <p class="text-sm text-gray-600 mb-2">{related.data.description}</p>
+              )}
+              <time class="text-xs text-gray-500 font-mono">
+                {new Date(related.data.publishDate).toLocaleDateString()}
+              </time>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+    
+    <!-- Back to Essays -->
+    <div class="mt-12 pt-6 border-t border-gray-200">
+      <a 
+        href="/essays" 
+        class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium"
+      >
+        ← Back to all essays
+      </a>
+    </div>
+    
+  </article>
+</Layout>
+
+<style>
+  /* Enhanced prose styling for essays */
+  .prose {
+    @apply text-gray-700;
+  }
+  
+  .prose h2 {
+    @apply text-3xl font-light text-gray-800 mt-12 mb-6 border-b border-gray-200 pb-3;
+  }
+  
+  .prose h3 {
+    @apply text-2xl font-medium text-gray-800 mt-10 mb-4;
+  }
+  
+  .prose h4 {
+    @apply text-xl font-medium text-gray-800 mt-8 mb-3;
+  }
+  
+  .prose p {
+    @apply mb-6 leading-relaxed;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-6 space-y-2;
+  }
+  
+  .prose li {
+    @apply leading-relaxed;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-blue-200 pl-6 italic text-gray-600 my-8 bg-blue-50 py-4 rounded-r-lg;
+  }
+  
+  .prose strong {
+    @apply text-gray-800 font-semibold;
+  }
+  
+  .prose em {
+    @apply text-gray-600;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 p-6 rounded-lg overflow-x-auto my-8;
+  }
+  
+  .prose a {
+    @apply text-blue-600 hover:text-blue-800 font-medium transition-colors;
+  }
+  
+  .prose hr {
+    @apply border-gray-200 my-12;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+// src/pages/now.astro
+import Layout from '../layouts/layout.astro';
+---
+
+<Layout title="Now">
+  <div class="max-w-3xl mx-auto">
+    
+    <header class="mb-12 text-center border-b border-gray-200 pb-8">
+      <h1 class="text-4xl font-light text-gray-800 mb-4">What I'm doing now</h1>
+    </header>
+
+    <div class="prose prose-lg prose-gray max-w-none">
+      <ul class="space-y-3 text-gray-700">
+        <li>PhD student at Johns Hopkins studying the impact of AI on education</li>
+        <li>Coursework: linear models, data workflow, machine learning, multilevel models</li>
+        <li>Researching personal relevance, AI in education, motivation, personal knowledge management in schools</li>
+        <li>EdTech consultant/AI curriculum developer/keynote speaker</li>
+        <li>Writer/Podcaster/YouTuber</li>
+        <li>Musician</li>
+      </ul>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .prose ul {
+    @apply list-disc ml-6;
+  }
+  
+  .prose li {
+    @apply leading-relaxed mb-2;
+  }
+</style>
