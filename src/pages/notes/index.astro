@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+const notes = await getCollection('notes');
+const sorted = notes.sort((a, b) => b.slug.localeCompare(a.slug));
+const random = notes[Math.floor(Math.random() * notes.length)];
+---
+
+<Layout title="Notes">
+  <section class="space-y-6 text-center">
+    <h1 class="text-3xl font-bold">Explore My Notes</h1>
+
+    <!-- Search Bar -->
+    <div class="max-w-md mx-auto">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search notes..."
+        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+      />
+    </div>
+
+    <!-- Surprise Me Button -->
+    <div>
+      <a href={`/notes/${random.slug}`}>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4">
+          🎲 Surprise Me
+        </button>
+      </a>
+    </div>
+
+    <!-- Search Results -->
+    <div id="search-results" class="max-w-xl mx-auto text-left mt-6 hidden space-y-2"></div>
+
+    <!-- Notes List -->
+    <ul class="max-w-xl mx-auto text-left space-y-1 mt-6">
+      {sorted.map(note => (
+        <li key={note.slug}>
+          <a href={`/notes/${note.slug}`} class="text-blue-600 hover:underline">
+            {note.data.title || note.slug}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Inject notes data -->
+  <script type="application/json" id="notes-data">
+    <Astro.raw>{JSON.stringify(notes.map(n => ({
+      title: n.data.title || n.slug,
+      slug: n.slug
+    })))}</Astro.raw>
+  </script>
+
+  <!-- Live search functionality -->
+  <script type="module">
+    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/+esm';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('search');
+      const results = document.getElementById('search-results');
+      const raw = document.getElementById('notes-data').textContent;
+      const notes = JSON.parse(raw);
+      const fuse = new Fuse(notes, { keys: ['title'], threshold: 0.3 });
+
+      input.addEventListener('input', (event) => {
+        const query = event.target.value.trim();
+        const matches = query ? fuse.search(query).map(r => r.item) : [];
+        if (matches.length > 0) {
+          results.innerHTML = matches.map(note =>
+            `<a href="/notes/${note.slug}" class="block px-4 py-2 rounded hover:bg-blue-100">${note.title}</a>`
+          ).join('');
+          results.classList.remove('hidden');
+        } else {
+          results.innerHTML = '';
+          results.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</Layout>
