@@ -5,6 +5,16 @@ import { getCollection } from 'astro:content';
 const notes = await getCollection('notes');
 const sorted = notes.sort((a, b) => b.slug.localeCompare(a.slug));
 const random = notes[Math.floor(Math.random() * notes.length)];
+
+// Create backlink count mapping
+const backlinkCounts = {};
+for (const sourceNote of notes) {
+  for (const targetNote of notes) {
+    if (sourceNote.body.includes(`[[${targetNote.slug}]]`)) {
+      backlinkCounts[targetNote.slug] = (backlinkCounts[targetNote.slug] || 0) + 1;
+    }
+  }
+}
 ---
 
 <Layout title="Notes">
