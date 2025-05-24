@@ -21,6 +21,15 @@ const { data } = note;
 
 // Get backlinks
 const backlinks = allNotes.filter(n => n.body.includes(`[[${slug}]]`));
+
+const backlinkCounts = {};
+for (const sourceNote of allNotes) {
+  for (const targetNote of allNotes) {
+    if (sourceNote.body.includes(`[[${targetNote.slug}]]`)) {
+      backlinkCounts[targetNote.slug] = (backlinkCounts[targetNote.slug] || 0) + 1;
+    }
+  }
+}
 ---
 
 <Layout title={data.title}>
@@ -33,12 +42,15 @@ const backlinks = allNotes.filter(n => n.body.includes(`[[${slug}]]`));
         <h2 class="text-2xl font-bold mb-4">🔗 Backlinks</h2>
         <ul class="list-disc ml-6">
           {backlinks.map(link => (
-            <li key={link.slug}>
-              <a href={`/notes/${link.slug}`} class="text-blue-600 hover:underline">
-                {link.data.title || link.slug}
-              </a>
-            </li>
-          ))}
+  <li key={link.slug}>
+    <a href={`/notes/${link.slug}`} class="text-blue-600 hover:underline">
+      {link.data.title || link.slug}
+      {backlinkCounts[link.slug] && (
+        <sup class="text-xs text-gray-500 ml-1">{backlinkCounts[link.slug]}</sup>
+      )}
+    </a>
+  </li>
+))}
         </ul>
       </section>
     )}
