@@ -16,17 +16,26 @@ if (!note) {
   throw new Error(`Note "${slug}" not found`);
 }
 
+// Create mappings for both directions
+const titleToSlug = {};
+const slugToTitle = {};
+allNotes.forEach(n => {
+  titleToSlug[n.data.title] = n.slug;
+  slugToTitle[n.slug] = n.data.title;
+});
+
 const { Content } = await note.render();
 const { data } = note;
 
-// Get backlinks
-const backlinks = allNotes.filter(n => n.body.includes(`[[${slug}]]`));
+// Get backlinks - now looking for [[title]] instead of [[slug]]
+const backlinks = allNotes.filter(n => n.body.includes(`[[${data.title}]]`));
 
+// Count backlinks by title
 const backlinkCounts = {};
 for (const sourceNote of allNotes) {
   for (const targetNote of allNotes) {
-    if (sourceNote.body.includes(`[[${targetNote.slug}]]`)) {
-      backlinkCounts[targetNote.slug] = (backlinkCounts[targetNote.slug] || 0) + 1;
+    if (sourceNote.body.includes(`[[${targetNote.data.title}]]`)) {
+      backlinkCounts[targetNote.data.title] = (backlinkCounts[targetNote.data.title] || 0) + 1;
     }
   }
 }
@@ -35,24 +44,80 @@ for (const sourceNote of allNotes) {
 <Layout title={data.title}>
   <article class="prose prose-lg max-w-3xl mx-auto my-8">
     <h1>{data.title}</h1>
-    <Content />
-
+    
+    <div class="wiki-content">
+      <Content />
+    </div>
+    
     {backlinks.length > 0 && (
       <section class="mt-12 border-t pt-6">
         <h2 class="text-2xl font-bold mb-4">🔗 Backlinks</h2>
         <ul class="list-disc ml-6">
           {backlinks.map(link => (
-  <li key={link.slug}>
-    <a href={`/notes/${link.slug}`} class="text-blue-600 hover:underline">
-      {link.data.title || link.slug}
-      {backlinkCounts[link.slug] && (
-        <sup class="text-xs text-gray-500 ml-1">{backlinkCounts[link.slug]}</sup>
-      )}
-    </a>
-  </li>
-))}
+            <li key={link.slug}>
+              <a href={`/notes/${link.slug}`} class="text-blue-600 hover:underline">
+                {link.data.title || link.slug}
+                {backlinkCounts[link.data.title] && (
+                  <sup class="text-xs text-gray-500 ml-1">{backlinkCounts[link.data.title]}</sup>
+                )}
+              </a>
+            </li>
+          ))}
         </ul>
       </section>
     )}
   </article>
 </Layout>
+
+<script define:vars={{ titleToSlug, slugToTitle }}>
+  // Process internal links to show titles instead of slugs
+  function processInternalLinks() {
+    const content = document.querySelector('.wiki-content');
+    if (!content) {
+      console.log('No .wiki-content element found');
+      return;
+    }
+    
+    console.log('Processing internal links...');
+    console.log('slugToTitle:', slugToTitle);
+    
+    // Find all internal links (the ones Astro already created from [[]] syntax)
+    const internalLinks = content.querySelectorAll('a.internal');
+    console.log('Found internal links:', internalLinks.length);
+    
+    internalLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      console.log('Processing link with href:', href);
+      
+      // Extract slug from href like "/notes/deep-work"
+      const match = href.match(/\/notes\/(.+)$/);
+      if (match) {
+        const slug = match[1];
+        const title = slugToTitle[slug];
+        
+        console.log('Slug:', slug, 'Title:', title);
+        
+        if (title) {
+          // Update the link text to show the title instead of the slug
+          link.textContent = title;
+          // Update the classes to match our styling
+          link.className = 'wiki-link text-blue-600 hover:underline font-medium';
+          console.log('Updated link text to:', title);
+        }
+      }
+    });
+  }
+  
+  // Run when the page loads
+  document.addEventListener('DOMContentLoaded', processInternalLinks);
+</script>
+
+<style>
+  .wiki-link {
+    @apply font-medium;
+  }
+  
+  .broken-link {
+    @apply italic;
+  }
+</style>
