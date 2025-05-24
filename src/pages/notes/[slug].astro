@@ -27,14 +27,20 @@ allNotes.forEach(n => {
 const { Content } = await note.render();
 const { data } = note;
 
-// Get backlinks - now looking for [[title]] instead of [[slug]]
-const backlinks = allNotes.filter(n => n.body.includes(`[[${data.title}]]`));
+// Get backlinks - now looking for both [[title]] and [[slug]] patterns
+const backlinks = allNotes.filter(n => 
+  n.body.includes(`[[${data.title}]]`) || n.body.includes(`[[${slug}]]`)
+);
 
-// Count backlinks by title
+// Count backlinks by both title and slug patterns
 const backlinkCounts = {};
 for (const sourceNote of allNotes) {
   for (const targetNote of allNotes) {
-    if (sourceNote.body.includes(`[[${targetNote.data.title}]]`)) {
+    // Check for both [[title]] and [[slug]] patterns
+    const titlePattern = `[[${targetNote.data.title}]]`;
+    const slugPattern = `[[${targetNote.slug}]]`;
+    
+    if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
       backlinkCounts[targetNote.data.title] = (backlinkCounts[targetNote.data.title] || 0) + 1;
     }
   }
@@ -69,7 +75,7 @@ for (const sourceNote of allNotes) {
   </article>
 </Layout>
 
-<script define:vars={{ titleToSlug, slugToTitle }}>
+<script define:vars={{ titleToSlug, slugToTitle, backlinkCounts }}>
   // Process internal links to show titles instead of slugs
   function processInternalLinks() {
     const content = document.querySelector('.wiki-content');
@@ -80,6 +86,7 @@ for (const sourceNote of allNotes) {
     
     console.log('Processing internal links...');
     console.log('slugToTitle:', slugToTitle);
+    console.log('backlinkCounts:', backlinkCounts);
     
     // Find all internal links (the ones Astro already created from [[]] syntax)
     const internalLinks = content.querySelectorAll('a.internal');
@@ -100,6 +107,22 @@ for (const sourceNote of allNotes) {
         if (title) {
           // Update the link text to show the title instead of the slug
           link.textContent = title;
+          
+          // Add backlink count if it exists
+          const backlinkCount = backlinkCounts[title];
+          console.log('Looking for backlinks for title:', title, 'Found:', backlinkCount);
+          console.log('All available backlink counts:', Object.keys(backlinkCounts));
+          
+          if (backlinkCount && backlinkCount > 0) {
+            const sup = document.createElement('sup');
+            sup.className = 'text-xs text-gray-500 ml-1';
+            sup.textContent = backlinkCount;
+            link.appendChild(sup);
+            console.log('Added backlink count:', backlinkCount);
+          } else {
+            console.log('No backlink count found or count is 0');
+          }
+          
           // Update the classes to match our styling
           link.className = 'wiki-link text-blue-600 hover:underline font-medium';
           console.log('Updated link text to:', title);
