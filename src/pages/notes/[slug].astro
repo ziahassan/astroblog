@@ -1,51 +1,46 @@
 ---
-import "/src/styles/global.css";
+import Layout from '../../layouts/layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
-  return notes.map(note => ({
-    params: { slug: note.slug },
-  }));
+  return notes.map(note => ({ params: { slug: note.slug } }));
 }
 
 const { slug } = Astro.params;
 const allNotes = await getCollection('notes');
 
-// Find the current note
+// Find the note
 const note = allNotes.find(n => n.slug === slug);
-
 if (!note) {
   throw new Error(`Note "${slug}" not found`);
 }
 
-// Render content
 const { Content } = await note.render();
-const data = note.data;
+const { data } = note;
 
-// Build backlinks
-const backlinks = allNotes.filter(n => {
-  const raw = n.body; // full source text of the note
-  return raw.includes(`[[${slug}]]`);
-});
+// Get backlinks
+const backlinks = allNotes.filter(n => n.body.includes(`[[${slug}]]`));
 ---
 
-<article class="prose prose-neutral mx-auto mt-12 px-4">
-  <h1>{data?.title ?? "Untitled"}</h1>
-  <Content />
+<Layout title={data.title}>
+  <article class="prose prose-lg max-w-3xl mx-auto my-8">
+    <h1>{data.title}</h1>
+    <Content />
 
-  {backlinks.length > 0 && (
-    <section class="mt-10 border-t pt-6">
-      <h2>Linked from</h2>
-      <ul class="list-disc pl-5 space-y-1">
-        {backlinks.map(linkingNote => (
-          <li>
-            <a class="text-blue-700 hover:underline" href={`/notes/${linkingNote.slug}`}>
-              {linkingNote.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
-</article>
+    {backlinks.length > 0 && (
+      <section class="mt-12 border-t pt-6">
+        <h2 class="text-2xl font-bold mb-4">🔗 Backlinks</h2>
+        <ul class="list-disc ml-6">
+          {backlinks.map(link => (
+            <li key={link.slug}>
+              <a href={`/notes/${link.slug}`} class="text-blue-600 hover:underline">
+                {link.data.title || link.slug}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</Layout>

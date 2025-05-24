@@ -1,0 +1,10 @@
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #333;
+  }
+  nav ul {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
