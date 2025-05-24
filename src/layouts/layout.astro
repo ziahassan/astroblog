@@ -1,18 +1,29 @@
 ---
-const { title = "Page Title" } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+    <title>{title ? `${title} | My Site` : 'My Site'}</title>
+    <link rel="stylesheet" href="/global.css" />
   </head>
-  <body class="bg-white text-gray-900 max-w-5xl mx-auto px-4 py-8 font-sans">
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold">{title}</h1>
-    </header>
-    <main>
+  <body class="font-sans bg-white text-gray-900">
+    <!-- 🧭 Navigation Bar -->
+    <nav class="bg-gray-100 p-4 shadow-md">
+      <ul class="flex space-x-6 justify-center">
+        <li><a href="/now" class="text-blue-600 hover:underline">Now</a></li>
+        <li><a href="/essays" class="text-blue-600 hover:underline">Essays</a></li>
+        <li><a href="/notes" class="text-blue-600 hover:underline">Notes</a></li>
+        <li><a href="/articles" class="text-blue-600 hover:underline">Articles</a></li>
+        <li><a href="/reading" class="text-blue-600 hover:underline">Reading</a></li>
+        <li><a href="/cv" class="text-blue-600 hover:underline">CV</a></li>
+        <li><a href="/media" class="text-blue-600 hover:underline">Media</a></li>
+      </ul>
+    </nav>
+
+    <main class="p-6">
       <slot />
     </main>
   </body>
