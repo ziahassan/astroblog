@@ -54,7 +54,7 @@ const relatedTags = Object.entries(tagCounts)
 ---
 
 <Layout title={`Essays tagged "${tag}"`}>
-  <div class="max-w-4xl mx-auto space-y-8">
+  <div class="max-w-5xl mx-auto space-y-8">
     
     <!-- Header -->
     <header class="text-center border-b border-gray-200 pb-8">
@@ -181,3 +181,12 @@ const relatedTags = Object.entries(tagCounts)
 
   </div>
 </Layout>
+
+<style>
+  /* Ensure consistent navigation spacing */
+  nav ul {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+</style>
