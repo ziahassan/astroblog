@@ -1,6 +1,8 @@
+// Add this to your src/content/config.ts
 import { defineCollection, z } from 'astro:content';
 
 const notes = defineCollection({
+  type: 'content',
   schema: z.object({
     title: z.string(),
     tags: z.array(z.string()).optional(),
@@ -8,7 +10,6 @@ const notes = defineCollection({
   }),
 });
 
-// Add pages collection for static content like "now"
 const pages = defineCollection({
   type: 'content',
   schema: z.object({
@@ -17,7 +18,6 @@ const pages = defineCollection({
   }),
 });
 
-// Add essays collection for blog posts
 const essays = defineCollection({
   type: 'content',
   schema: z.object({
@@ -29,8 +29,22 @@ const essays = defineCollection({
   }),
 });
 
+// Add reading collection for literature notes
+const reading = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    author: z.string().optional(),
+    source: z.string().optional(), // book, article, etc.
+    tags: z.array(z.string()).optional(),
+    readDate: z.date().optional(),
+    rating: z.number().optional(),
+  }),
+});
+
 export const collections = {
   notes,
   pages,
   essays,
+  reading, // Add this
 };

@@ -1,0 +1,400 @@
+---
+// src/pages/reading/[slug].astro
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const reading = await getCollection('reading');
+  return reading.map(note => ({ params: { slug: note.slug } }));
+}
+
+const { slug } = Astro.params;
+const allReading = await getCollection('reading');
+
+// Find the reading note
+const note = allReading.find(n => n.slug === slug);
+if (!note) {
+  throw new Error(`Reading note "${slug}" not found`);
+}
+
+const { Content } = await note.render();
+const { data } = note;
+
+// Create mappings for both directions
+const titleToSlug = {};
+const slugToTitle = {};
+allReading.forEach(n => {
+  titleToSlug[n.data.title] = n.slug;
+  slugToTitle[n.slug] = n.data.title;
+});
+
+// Get backlinks - now looking for both [[title]] and [[slug]] patterns
+const backlinks = allReading.filter(n => 
+  n.body.includes(`[[${data.title}]]`) || n.body.includes(`[[${slug}]]`)
+);
+
+// Count backlinks by both title and slug patterns
+const backlinkCounts = {};
+for (const sourceNote of allReading) {
+  for (const targetNote of allReading) {
+    // Check for both [[title]] and [[slug]] patterns
+    const titlePattern = `[[${targetNote.data.title}]]`;
+    const slugPattern = `[[${targetNote.slug}]]`;
+    
+    if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
+      backlinkCounts[targetNote.data.title] = (backlinkCounts[targetNote.data.title] || 0) + 1;
+    }
+  }
+}
+---
+
+<Layout title={data.title}>
+  <!-- Compact Academic Search Bar -->
+  <div class="fixed top-20 right-6 z-40">
+    <div class="relative">
+      <input
+        type="text"
+        id="quick-search"
+        placeholder="Search reading..."
+        class="w-60 px-3 py-2 text-sm bg-white/95 backdrop-blur border border-gray-300 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+        autocomplete="off"
+      />
+      <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">
+        <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-xs font-mono">⌘K</kbd>
+      </div>
+    </div>
+    
+    <!-- Quick Search Results -->
+    <div 
+      id="quick-search-results" 
+      class="absolute top-full right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-xl max-h-64 overflow-y-auto z-40 hidden"
+    >
+      <div class="px-3 py-2 text-xs text-gray-500 border-b border-gray-100 bg-gray-50 font-medium" id="quick-results-count"></div>
+      <div id="quick-results-list"></div>
+    </div>
+  </div>
+
+  <!-- Main Article Content -->
+  <article class="max-w-4xl mx-auto">
+    <!-- Article Header -->
+    <header class="mb-8 pb-6 border-b border-gray-200">
+      <h1 class="text-4xl font-light text-gray-800 mb-3">{data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-600">
+        {data.author && (
+          <span class="font-medium">by {data.author}</span>
+        )}
+        {data.source && (
+          <span class="text-gray-500">from {data.source}</span>
+        )}
+        {data.readDate && (
+          <span class="font-mono">{new Date(data.readDate).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</span>
+        )}
+        {data.rating && (
+          <span class="text-yellow-600">{'★'.repeat(data.rating)}{'☆'.repeat(5-data.rating)}</span>
+        )}
+        {data.tags && data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-1">
+            {data.tags.map(tag => (
+              <span class="inline-block px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+    
+    <!-- Article Body -->
+    <div class="wiki-content prose prose-lg prose-gray max-w-none leading-relaxed">
+      <Content />
+    </div>
+    
+    <!-- Backlinks Section -->
+    {backlinks.length > 0 && (
+      <section class="mt-12 pt-8 border-t border-gray-200">
+        <h2 class="text-2xl font-light text-gray-800 mb-4 flex items-center gap-2">
+          <span>🔗</span>
+          Referenced by
+        </h2>
+        <div class="grid gap-3">
+          {backlinks.map(link => (
+            <div key={link.slug} class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+              <a href={`/reading/${link.slug}`} class="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
+                {link.data.title || link.slug}
+                {backlinkCounts[link.data.title] && (
+                  <span class="ml-2 text-xs text-gray-500 bg-white px-2 py-1 rounded-md">
+                    {backlinkCounts[link.data.title]} reference{backlinkCounts[link.data.title] > 1 ? 's' : ''}
+                  </span>
+                )}
+              </a>
+              {link.data.author && (
+                <div class="text-sm text-gray-600 mt-1">by {link.data.author}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</Layout>
+
+<!-- Process internal links to show titles instead of slugs -->
+<script define:vars={{ titleToSlug, slugToTitle, backlinkCounts }}>
+  // Process internal links to show titles instead of slugs
+  function processInternalLinks() {
+    const content = document.querySelector('.wiki-content');
+    if (!content) return;
+    
+    // Find all internal links (the ones Astro already created from [[]] syntax)
+    const internalLinks = content.querySelectorAll('a.internal');
+    
+    internalLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      
+      // Extract slug from href like "/reading/book-title"
+      const match = href.match(/\/reading\/(.+)$/);
+      if (match) {
+        const slug = match[1];
+        const title = slugToTitle[slug];
+        
+        if (title) {
+          // Update the link text to show the title instead of the slug
+          link.textContent = title;
+          
+          // Add backlink count if it exists
+          const backlinkCount = backlinkCounts[title];
+          if (backlinkCount && backlinkCount > 0) {
+            const sup = document.createElement('sup');
+            sup.className = 'text-xs text-gray-500 ml-1';
+            sup.textContent = backlinkCount;
+            link.appendChild(sup);
+          }
+          
+          // Update the classes to match our styling
+          link.className = 'wiki-link text-blue-600 hover:text-blue-800 transition-colors font-medium';
+        }
+      }
+    });
+  }
+  
+  // Run when the page loads
+  document.addEventListener('DOMContentLoaded', processInternalLinks);
+</script>
+
+<!-- Quick Search Functionality -->
+<script type="module" define:vars={{ allReading }}>
+  import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/+esm';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const quickInput = document.getElementById('quick-search');
+    const quickResultsContainer = document.getElementById('quick-search-results');
+    const quickResultsList = document.getElementById('quick-results-list');
+    const quickResultsCount = document.getElementById('quick-results-count');
+    
+    if (!quickInput) return;
+    
+    // Process reading data for search
+    const searchReading = allReading.map(n => ({
+      title: n.data.title || n.slug,
+      slug: n.slug,
+      author: n.data.author || '',
+      tags: n.data.tags || [],
+      preview: n.body.replace(/\[\[.*?\]\]/g, '').substring(0, 80).trim()
+    }));
+    
+    // Configure Fuse.js
+    const fuse = new Fuse(searchReading, {
+      keys: [
+        { name: 'title', weight: 0.7 },
+        { name: 'author', weight: 0.2 },
+        { name: 'content', weight: 0.1 }
+      ],
+      threshold: 0.4,
+      includeScore: true,
+      includeMatches: true
+    });
+    
+    let selectedIndex = -1;
+    let currentResults = [];
+    
+    // Search function
+    function performQuickSearch(query) {
+      if (!query.trim()) {
+        hideQuickResults();
+        return;
+      }
+      
+      const searchResults = fuse.search(query);
+      currentResults = searchResults.map(r => r.item);
+      selectedIndex = -1;
+      
+      if (currentResults.length > 0) {
+        showQuickResults(searchResults.slice(0, 5)); // Limit to 5 results
+      } else {
+        showNoQuickResults();
+      }
+    }
+    
+    // Show search results
+    function showQuickResults(searchResults) {
+      quickResultsCount.textContent = `${currentResults.length} note${currentResults.length === 1 ? '' : 's'}`;
+      
+      quickResultsList.innerHTML = searchResults.map((result, index) => {
+        const note = result.item;
+        return `
+          <div class="quick-search-item p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 text-sm transition-colors" data-index="${index}">
+            <div class="font-medium text-gray-900 mb-1">${note.title}</div>
+            ${note.author ? `<div class="text-xs text-gray-600 mb-1">by ${note.author}</div>` : ''}
+            ${note.preview ? `<div class="text-xs text-gray-600 leading-relaxed">${note.preview}...</div>` : ''}
+            ${note.tags.length > 0 ? `
+              <div class="flex flex-wrap gap-1 mt-2">
+                ${note.tags.map(tag => `<span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 text-xs rounded">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+      
+      quickResultsContainer.classList.remove('hidden');
+    }
+    
+    // Show no results
+    function showNoQuickResults() {
+      quickResultsCount.textContent = 'No notes found';
+      quickResultsList.innerHTML = `
+        <div class="p-3 text-center text-gray-500 text-sm">
+          No reading notes found
+        </div>
+      `;
+      quickResultsContainer.classList.remove('hidden');
+    }
+    
+    // Hide results
+    function hideQuickResults() {
+      quickResultsContainer.classList.add('hidden');
+      selectedIndex = -1;
+    }
+    
+    // Navigate to result
+    function selectQuickResult(index) {
+      if (currentResults[index]) {
+        window.location.href = `/reading/${currentResults[index].slug}`;
+      }
+    }
+    
+    // Event listeners
+    quickInput.addEventListener('input', (e) => {
+      performQuickSearch(e.target.value);
+    });
+    
+    // Click on results
+    quickResultsList.addEventListener('click', (e) => {
+      const item = e.target.closest('.quick-search-item');
+      if (item) {
+        const index = parseInt(item.dataset.index);
+        selectQuickResult(index);
+      }
+    });
+    
+    // Click outside to close
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#quick-search') && !e.target.closest('#quick-search-results')) {
+        hideQuickResults();
+      }
+    });
+    
+    // Global keyboard shortcut (Cmd+K or Ctrl+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        quickInput.focus();
+        quickInput.select();
+      }
+    });
+  });
+</script>
+
+<style>
+  .wiki-link {
+    @apply font-medium text-blue-600 hover:text-blue-800 transition-colors;
+  }
+  
+  .broken-link {
+    @apply italic text-gray-400;
+  }
+  
+  /* Enhanced prose styling for academic feel */
+  .prose {
+    @apply text-gray-700;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-light text-gray-800 mt-8 mb-4 border-b border-gray-200 pb-2 scroll-mt-8;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-medium text-gray-800 mt-6 mb-3 scroll-mt-8;
+  }
+  
+  .prose h4 {
+    @apply text-lg font-medium text-gray-800 mt-4 mb-2 scroll-mt-8;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-4 space-y-1;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 my-6;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+  
+  /* Quick search styles */
+  #quick-search-results {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f7fafc;
+  }
+  
+  #quick-search-results::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  #quick-search-results::-webkit-scrollbar-track {
+    background: #f7fafc;
+  }
+  
+  #quick-search-results::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 2px;
+  }
+  
+  .quick-search-item {
+    transition: background-color 0.15s ease;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    #quick-search {
+      width: 180px;
+    }
+    
+    #quick-search-results {
+      width: 260px;
+    }
+  }
+</style>
