@@ -11,10 +11,28 @@ const essays = await getCollection('essays', ({ data }) => {
 const sortedEssays = essays.sort((a, b) => 
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );
+
+// Get recent essays (limit to 20)
+const recentEssays = sortedEssays.slice(0, 20);
+
+// Collect all tags and their counts
+const tagCounts = {};
+essays.forEach(essay => {
+  if (essay.data.tags) {
+    essay.data.tags.forEach(tag => {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+  }
+});
+
+// Sort tags by count (most popular first)
+const sortedTags = Object.entries(tagCounts)
+  .sort(([,a], [,b]) => b - a)
+  .map(([tag, count]) => ({ tag, count }));
 ---
 
 <Layout title="Essays">
-  <div class="max-w-4xl mx-auto space-y-8">
+  <div class="max-w-5xl mx-auto space-y-12">
     
     <!-- Header -->
     <header class="text-center border-b border-gray-200 pb-8">
@@ -22,67 +40,129 @@ const sortedEssays = essays.sort((a, b) =>
       <p class="text-gray-600 text-lg">Thoughts on AI, education, and the future of learning</p>
     </header>
 
-    <!-- Essays List -->
-    <div class="space-y-8">
-      {sortedEssays.map(essay => (
-        <article key={essay.slug} class="group">
-          <div class="p-6 bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
+    <!-- Tag Cloud -->
+    {sortedTags.length > 0 && (
+      <section class="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl p-8 border border-gray-200">
+        <h2 class="text-2xl font-light text-gray-800 mb-6 text-center">Explore by Topic</h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {sortedTags.map(({ tag, count }) => {
+            // Calculate size based on count (min 1rem, max 2rem)
+            const maxCount = Math.max(...sortedTags.map(t => t.count));
+            const minSize = 0.875; // text-sm
+            const maxSize = 1.25;  // text-xl
+            const size = minSize + (maxSize - minSize) * (count / maxCount);
             
-            <!-- Essay Header -->
-            <header class="mb-4">
-              <h2 class="text-2xl font-medium text-gray-900 mb-2">
-                <a 
-                  href={`/essays/${essay.slug}`} 
-                  class="hover:text-blue-600 transition-colors"
-                >
-                  {essay.data.title}
-                </a>
-              </h2>
+            return (
+              <a 
+                href={`/essays/tags/${tag}`}
+                class="group inline-flex items-center gap-2 px-4 py-2 bg-white/70 hover:bg-white border border-gray-200 hover:border-blue-300 rounded-full transition-all duration-200 hover:shadow-sm"
+                style={`font-size: ${size}rem`}
+              >
+                <span class="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+                  {tag}
+                </span>
+                <span class="text-xs text-gray-500 bg-gray-100 group-hover:bg-blue-100 px-2 py-0.5 rounded-full font-mono transition-colors">
+                  {count}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+    <!-- Recent Essays -->
+    <section>
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-light text-gray-800">Recent Essays</h2>
+        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+          {recentEssays.length} of {essays.length} essays
+        </span>
+      </div>
+      
+      <div class="space-y-8">
+        {recentEssays.map(essay => (
+          <article key={essay.slug} class="group">
+            <div class="p-6 bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
               
-              <!-- Metadata -->
-              <div class="flex items-center gap-4 text-sm text-gray-500">
-                <time class="font-mono">
-                  {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
+              <!-- Essay Header -->
+              <header class="mb-4">
+                <h3 class="text-2xl font-medium text-gray-900 mb-2">
+                  <a 
+                    href={`/essays/${essay.slug}`} 
+                    class="hover:text-blue-600 transition-colors"
+                  >
+                    {essay.data.title}
+                  </a>
+                </h3>
                 
-                {essay.data.tags && essay.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1">
-                    {essay.data.tags.map(tag => (
-                      <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </header>
+                <!-- Metadata -->
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                  <time class="font-mono">
+                    {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  
+                  {essay.data.tags && essay.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1">
+                      {essay.data.tags.map(tag => (
+                        <a 
+                          href={`/essays/tags/${tag}`}
+                          class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md font-medium hover:bg-blue-100 transition-colors"
+                        >
+                          {tag}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </header>
 
-            <!-- Description -->
-            {essay.data.description && (
-              <p class="text-gray-600 leading-relaxed mb-4">
-                {essay.data.description}
-              </p>
-            )}
+              <!-- Description -->
+              {essay.data.description && (
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  {essay.data.description}
+                </p>
+              )}
 
-            <!-- Read More Link -->
-            <a 
-              href={`/essays/${essay.slug}`} 
-              class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group-hover:translate-x-1 transition-all"
-            >
-              Read essay
-              <span class="ml-1">→</span>
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
+              <!-- Read More Link -->
+              <a 
+                href={`/essays/${essay.slug}`} 
+                class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group-hover:translate-x-1 transition-all"
+              >
+                Read essay
+                <span class="ml-1">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Archive Link -->
+    {essays.length > 20 && (
+      <section class="text-center py-8 border-t border-gray-200">
+        <div class="bg-gray-50 rounded-lg p-8 border border-gray-200">
+          <h3 class="text-xl font-medium text-gray-800 mb-2">Looking for more?</h3>
+          <p class="text-gray-600 mb-4">
+            Explore {essays.length - 20} more essays in the archive
+          </p>
+          <a 
+            href="/essays/archive" 
+            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            Browse Archive
+            <span class="ml-2">📚</span>
+          </a>
+        </div>
+      </section>
+    )}
 
     <!-- Empty State -->
-    {sortedEssays.length === 0 && (
+    {essays.length === 0 && (
       <div class="text-center py-12">
         <div class="text-4xl mb-4">📝</div>
         <h2 class="text-xl font-medium text-gray-800 mb-2">No essays yet</h2>

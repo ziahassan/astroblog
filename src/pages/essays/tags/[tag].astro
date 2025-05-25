@@ -1,0 +1,183 @@
+---
+// src/pages/essays/tags/[tag].astro
+import Layout from '../../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const essays = await getCollection('essays', ({ data }) => data.draft !== true);
+  
+  // Collect all unique tags
+  const allTags = new Set();
+  essays.forEach(essay => {
+    if (essay.data.tags) {
+      essay.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+  
+  return Array.from(allTags).map(tag => ({
+    params: { tag }
+  }));
+}
+
+const { tag } = Astro.params;
+const allEssays = await getCollection('essays', ({ data }) => data.draft !== true);
+
+// Rebuild allTags here since it's not available from getStaticPaths
+const allTags = new Set();
+allEssays.forEach(essay => {
+  if (essay.data.tags) {
+    essay.data.tags.forEach(t => allTags.add(t));
+  }
+});
+
+// Filter essays by tag
+const taggedEssays = allEssays
+  .filter(essay => essay.data.tags?.includes(tag))
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+
+// Get other popular tags (excluding current one)
+const tagCounts = {};
+allEssays.forEach(essay => {
+  if (essay.data.tags) {
+    essay.data.tags.forEach(t => {
+      if (t !== tag) {
+        tagCounts[t] = (tagCounts[t] || 0) + 1;
+      }
+    });
+  }
+});
+
+const relatedTags = Object.entries(tagCounts)
+  .sort(([,a], [,b]) => b - a)
+  .slice(0, 8)
+  .map(([t, count]) => ({ tag: t, count }));
+---
+
+<Layout title={`Essays tagged "${tag}"`}>
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- Header -->
+    <header class="text-center border-b border-gray-200 pb-8">
+      <div class="mb-4">
+        <a href="/essays" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          ← Back to all essays
+        </a>
+      </div>
+      <h1 class="text-4xl font-light text-gray-800 mb-2">
+        Essays tagged 
+        <span class="text-blue-600 font-medium">"{tag}"</span>
+      </h1>
+      <p class="text-gray-600">
+        {taggedEssays.length} essay{taggedEssays.length === 1 ? '' : 's'} found
+      </p>
+    </header>
+
+    <!-- Tagged Essays -->
+    <section>
+      <div class="space-y-8">
+        {taggedEssays.map(essay => (
+          <article key={essay.slug} class="group">
+            <div class="p-6 bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
+              
+              <!-- Essay Header -->
+              <header class="mb-4">
+                <h2 class="text-2xl font-medium text-gray-900 mb-2">
+                  <a 
+                    href={`/essays/${essay.slug}`} 
+                    class="hover:text-blue-600 transition-colors"
+                  >
+                    {essay.data.title}
+                  </a>
+                </h2>
+                
+                <!-- Metadata -->
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                  <time class="font-mono">
+                    {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  
+                  {essay.data.tags && essay.data.tags.length > 1 && (
+                    <div class="flex flex-wrap gap-1">
+                      {essay.data.tags.map(t => (
+                        <a 
+                          href={`/essays/tags/${t}`}
+                          class={`px-2 py-1 text-xs rounded-md font-medium transition-colors ${
+                            t === tag 
+                              ? 'bg-blue-100 text-blue-700' 
+                              : 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                          }`}
+                        >
+                          {t}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </header>
+
+              <!-- Description -->
+              {essay.data.description && (
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  {essay.data.description}
+                </p>
+              )}
+
+              <!-- Read More Link -->
+              <a 
+                href={`/essays/${essay.slug}`} 
+                class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group-hover:translate-x-1 transition-all"
+              >
+                Read essay
+                <span class="ml-1">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related Tags -->
+    {relatedTags.length > 0 && (
+      <section class="pt-8 border-t border-gray-200">
+        <h3 class="text-xl font-light text-gray-800 mb-4 text-center">
+          Explore other topics
+        </h3>
+        <div class="flex flex-wrap justify-center gap-2">
+          {relatedTags.map(({ tag: relatedTag, count }) => (
+            <a 
+              href={`/essays/tags/${relatedTag}`}
+              class="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 hover:bg-blue-50 text-gray-700 hover:text-blue-600 text-sm rounded-full transition-colors"
+            >
+              <span>{relatedTag}</span>
+              <span class="text-xs text-gray-500 bg-white px-1.5 py-0.5 rounded-full">
+                {count}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Empty State -->
+    {taggedEssays.length === 0 && (
+      <div class="text-center py-12">
+        <div class="text-4xl mb-4">🏷️</div>
+        <h2 class="text-xl font-medium text-gray-800 mb-2">No essays found</h2>
+        <p class="text-gray-600 mb-4">
+          No essays are tagged with "{tag}" yet.
+        </p>
+        <a 
+          href="/essays" 
+          class="text-blue-600 hover:text-blue-800 font-medium"
+        >
+          Browse all essays →
+        </a>
+      </div>
+    )}
+
+  </div>
+</Layout>

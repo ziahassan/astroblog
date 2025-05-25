@@ -19,8 +19,11 @@ if (!essay) {
   throw new Error(`Essay "${slug}" not found`);
 }
 
-const { Content } = await essay.render();
+const { Content, headings } = await essay.render();
 const { data } = essay;
+
+// Filter headings for TOC (h2 and h3 only)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Get related essays (same tags)
 const relatedEssays = allEssays
@@ -59,9 +62,65 @@ const relatedEssays = allEssays
       </div>
     </header>
     
-    <!-- Article Body -->
-    <div class="prose prose-xl prose-gray max-w-none leading-relaxed">
-      <Content />
+    <!-- Article Body with Floating TOC -->
+    <div class="relative">
+      
+      <!-- Floating Table of Contents with Toggle -->
+      {tocHeadings.length > 0 && (
+        <aside class="hidden lg:block fixed right-6 top-1/2 transform -translate-y-1/2 z-30">
+          <!-- TOC Panel -->
+          <div id="toc-panel" class="w-64 p-4 bg-white/95 backdrop-blur rounded-lg border border-gray-200 shadow-lg max-h-96 overflow-y-auto transition-transform duration-300 ease-in-out">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                Contents
+              </h3>
+              <button 
+                id="toc-toggle" 
+                class="text-gray-400 hover:text-gray-600 transition-colors p-1"
+                title="Hide table of contents"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            <nav class="space-y-2" id="toc-nav">
+              {tocHeadings.map(heading => (
+                <a 
+                  href={`#${heading.slug}`}
+                  class={`block text-sm transition-all duration-200 toc-link ${
+                    heading.depth === 2 
+                      ? 'text-gray-600 font-medium border-l-2 border-transparent pl-3' 
+                      : 'text-gray-500 ml-6 border-l-2 border-transparent pl-2'
+                  }`}
+                  data-target={heading.slug}
+                >
+                  {heading.text}
+                </a>
+              ))}
+            </nav>
+          </div>
+          
+          <!-- Show TOC Button (when hidden) -->
+          <button 
+            id="toc-show" 
+            class="hidden w-12 h-12 bg-white/95 backdrop-blur rounded-lg border border-gray-200 shadow-lg items-center justify-center text-gray-600 hover:text-blue-600 transition-all duration-300 hover:shadow-xl"
+            title="Show table of contents"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+            </svg>
+          </button>
+        </aside>
+      )}
+      
+      <!-- Main Content -->
+      <div class="max-w-4xl">
+        <div class="prose prose-xl prose-gray max-w-none leading-relaxed">
+          <Content />
+        </div>
+      </div>
+      
     </div>
     
     <!-- Related Essays -->
@@ -108,15 +167,15 @@ const relatedEssays = allEssays
   }
   
   .prose h2 {
-    @apply text-3xl font-light text-gray-800 mt-12 mb-6 border-b border-gray-200 pb-3;
+    @apply text-3xl font-light text-gray-800 mt-12 mb-6 border-b border-gray-200 pb-3 scroll-mt-8;
   }
   
   .prose h3 {
-    @apply text-2xl font-medium text-gray-800 mt-10 mb-4;
+    @apply text-2xl font-medium text-gray-800 mt-10 mb-4 scroll-mt-8;
   }
   
   .prose h4 {
-    @apply text-xl font-medium text-gray-800 mt-8 mb-3;
+    @apply text-xl font-medium text-gray-800 mt-8 mb-3 scroll-mt-8;
   }
   
   .prose p {
@@ -158,4 +217,108 @@ const relatedEssays = allEssays
   .prose hr {
     @apply border-gray-200 my-12;
   }
+  
+  /* TOC Active states */
+  .toc-link.active {
+    @apply text-blue-600 border-blue-600 bg-blue-50;
+  }
+  
+  .toc-link:hover {
+    @apply text-blue-600 border-blue-300;
+  }
 </style>
+
+<!-- Scroll spy and TOC toggle script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const headings = document.querySelectorAll('h2, h3');
+    const tocPanel = document.getElementById('toc-panel');
+    const tocToggle = document.getElementById('toc-toggle');
+    const tocShow = document.getElementById('toc-show');
+    
+    // TOC Toggle functionality
+    if (tocPanel && tocToggle && tocShow) {
+      tocToggle.addEventListener('click', () => {
+        tocPanel.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          tocPanel.classList.add('hidden');
+          tocShow.classList.remove('hidden');
+          tocShow.classList.add('flex');
+        }, 300);
+      });
+      
+      tocShow.addEventListener('click', () => {
+        tocShow.classList.add('hidden');
+        tocShow.classList.remove('flex');
+        tocPanel.classList.remove('hidden');
+        // Small delay to ensure element is visible before animating
+        setTimeout(() => {
+          tocPanel.style.transform = 'translateX(0)';
+        }, 10);
+      });
+    }
+    
+    if (tocLinks.length === 0 || headings.length === 0) return;
+    
+    // Create intersection observer for scroll spy
+    const observer = new IntersectionObserver((entries) => {
+      let activeHeading = null;
+      
+      // Find the heading that's most visible
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activeHeading = entry.target;
+        }
+      });
+      
+      // If no heading is intersecting, find the one closest to the top
+      if (!activeHeading) {
+        let closestHeading = null;
+        let closestDistance = Infinity;
+        
+        headings.forEach(heading => {
+          const rect = heading.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestHeading = heading;
+          }
+        });
+        
+        activeHeading = closestHeading;
+      }
+      
+      // Update TOC active states
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        const target = link.getAttribute('data-target');
+        if (activeHeading && activeHeading.id === target) {
+          link.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: '-20% 0px -70% 0px', // Trigger when heading is in the middle area
+      threshold: 0
+    });
+    
+    // Observe all headings
+    headings.forEach(heading => {
+      observer.observe(heading);
+    });
+    
+    // Smooth scroll for TOC clicks
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(link.getAttribute('data-target'));
+        if (target) {
+          target.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>
