@@ -29,17 +29,22 @@ const essays = defineCollection({
   }),
 });
 
-// Add reading collection for literature notes
+// Add reading collection for literature notes - robust for Readwise exports
 const reading = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    author: z.string().optional(),
-    source: z.string().optional(), // book, article, etc.
-    tags: z.array(z.string()).optional(),
-    readDate: z.date().optional(),
-    rating: z.number().optional(),
-  }),
+    author: z.union([z.string(), z.null()]).optional(), // Handle null, undefined, or string
+    source: z.union([z.string(), z.null()]).optional(), 
+    tags: z.array(z.string()).optional().default([]),
+    readDate: z.union([z.date(), z.string()]).optional(), // Handle string dates
+    rating: z.union([z.number(), z.null()]).optional(),
+    // Common Readwise fields that might appear
+    url: z.string().optional(),
+    category: z.string().optional(),
+    document_note: z.string().optional(),
+    // Handle any other fields Readwise might add
+  }).passthrough(), // Allow extra fields without errors
 });
 
 export const collections = {

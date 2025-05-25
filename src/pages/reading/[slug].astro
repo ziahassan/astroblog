@@ -80,20 +80,25 @@ for (const sourceNote of allReading) {
     <header class="mb-8 pb-6 border-b border-gray-200">
       <h1 class="text-4xl font-light text-gray-800 mb-3">{data.title}</h1>
       <div class="flex items-center gap-4 text-sm text-gray-600">
-        {data.author && (
+        {data.author && data.author !== null && (
           <span class="font-medium">by {data.author}</span>
         )}
-        {data.source && (
+        {data.source && data.source !== null && (
           <span class="text-gray-500">from {data.source}</span>
         )}
         {data.readDate && (
-          <span class="font-mono">{new Date(data.readDate).toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}</span>
+          <span class="font-mono">
+            {typeof data.readDate === 'string' 
+              ? data.readDate 
+              : new Date(data.readDate).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })
+            }
+          </span>
         )}
-        {data.rating && (
+        {data.rating && data.rating !== null && (
           <span class="text-yellow-600">{'★'.repeat(data.rating)}{'☆'.repeat(5-data.rating)}</span>
         )}
         {data.tags && data.tags.length > 0 && (
@@ -131,7 +136,7 @@ for (const sourceNote of allReading) {
                   </span>
                 )}
               </a>
-              {link.data.author && (
+              {link.data.author && link.data.author !== null && (
                 <div class="text-sm text-gray-600 mt-1">by {link.data.author}</div>
               )}
             </div>
