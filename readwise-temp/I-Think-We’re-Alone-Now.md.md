@@ -1,0 +1,23 @@
+---
+title: I Think We’re Alone Now
+author: Andrew O’Hagan
+Title: I Think We’re Alone Now
+source: reader
+readDate: 2022-12-19
+publishDate: 2025-05-25
+tags: []
+---
+# I Think We’re Alone Now
+
+![rw-book-cover](https://www.lrb.co.uk/storage/social_image/images/7/8/3/5/29015387-1-eng-GB/ddb7c2b403c9-ohagan-website.jpg)
+
+## Metadata
+- Author: [[Andrew O’Hagan]]
+- Full Title: I Think We’re Alone Now
+- Category: #articles
+- Summary:: Malls are playgrounds with parking. They are nightclubs without drinks and with muzak for music. They are billboards of...
+- URL: https://www.lrb.co.uk/the-paper/v44/n24/andrew-o-hagan/short-cuts
+
+## Highlights
+- I found then, as I still do, that malls are a strong sedative and a brutal awakening at the same time. If you’re made a certain way, you can drift round them first thing in the morning and feel totally alive. ([View Highlight](https://read.readwise.io/read/01gmm9zjarr52sw63ymd4p4602))
+- Non-fans say they get lost in them, but getting lost is part of the point. You find your way back to the big stores, or you meet at the fountain. When a child is abducted, the mall can suddenly seem part of the abduction, having failed to protect those passing through its human engineering. That was the feeling in 1993 when the Merseyside toddler James Bulger was taken from the Strand Shopping Centre, as if the building itself was guilty of some terrible anomie. ([View Highlight](https://read.readwise.io/read/01gmma8tss30wgdtdy1657a4wp))

@@ -1,0 +1,22 @@
+---
+title: Why Is No One Taught the One Concept in Quantum Physics Which Denies Reality?
+author: Chris Ferrie
+Title: Why Is No One Taught the One Concept in Quantum Physics Which Denies Reality?
+source: reader
+readDate: 2023-09-18
+publishDate: 2025-05-25
+tags: []
+---
+# Why Is No One Taught the One Concept in Quantum...
+
+![rw-book-cover](https://miro.medium.com/max/1200/0*s6YcPpV68KCwEoUj)
+
+## Metadata
+- Author: [[Chris Ferrie]]
+- Full Title: Why Is No One Taught the One Concept in Quantum Physics Which Denies Reality?
+- Category: #articles
+- Summary:: It’s called contextuality and it is the essence of quantum physics
+- URL: https://csferrie.medium.com/why-is-no-one-taught-the-one-concept-in-quantum-physics-which-denies-reality-6b978eddf8ac
+
+## Highlights
+- There is no way to define a reality that is independent of the way we choose to look at it. ([View Highlight](https://read.readwise.io/read/01hak733n076m24s8msxasy8t3))

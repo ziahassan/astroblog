@@ -1,0 +1,24 @@
+---
+Tags: ReadwiseInbox
+Author: Katherine May
+Title: Research as a Leisure Activity, Solstice Strawberry, and Things to Do Besides Worry
+Source: reader
+Date: 2024-06-29
+Summary: Katherine May shares her favorite Substack posts, focusing on diverse topics like research as a leisure activity and personal reflections on gun violence. She emphasizes the value of storytelling, community, and the exploration of different perspectives. May encourages readers to engage with Substack as a platform for meaningful content and connection.
+---
+# Research as a Leisure Activity, Solstice Strawb...
+
+![rw-book-cover](https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe4329e30-96cf-446e-a654-ace0864f81cc_1600x874.png)
+
+## Metadata
+- Author: [[Katherine May]]
+- Full Title: Research as a Leisure Activity, Solstice Strawberry, and Things to Do Besides Worry
+- Category: #articles
+- Summary:: Katherine May shares her favorite Substack posts, focusing on diverse topics like research as a leisure activity and personal reflections on gun violence. She emphasizes the value of storytelling, community, and the exploration of different perspectives. May encourages readers to engage with Substack as a platform for meaningful content and connection.
+- URL: https://read.substack.com/p/substack-reads-100?utm_source=post-email-title&publication_id=737237&post_id=146041651&utm_campaign=email-post-title&isFreemail=true&r=2t12h&triedRedirect=true&utm_medium=email
+
+## Highlights
+- I suppose I got bitten by the bug in the end. It was partly because I was becoming disenchanted with social media and how much emotional labour it demanded of me as a writer, while never letting me really exercise my craft. But also, I wanted to play in this space where other people were playing. It seemed to me that this format solved a lot of the problems inherent to blogging. I’d spent years pouring the best of my work into a blog, while not even covering my expenses. At least in this place, I got a choice. And I could see how it had created an explosion of brilliant creative work—far more than I could ever manage to read—from people who were otherwise confined to the sidelines. ([View Highlight](https://read.readwise.io/read/01j1j2bmprsje72z0yhng77dza))
+- What I noticed most—as I have so often lately—is the way that objects are carried from one wedding to the next. In this case, it was Sarah’s 35-year-old dress, originally made as a trial run for her own wedding gown. It’s a subtle gesture of continuity as traditions are passed down the ages. As I get older, I feel less rebellious against these things; in fact, I begin to like them a lot.” ([View Highlight](https://read.readwise.io/read/01j1j53d5x8d4wp6swmh40678m))
+
+

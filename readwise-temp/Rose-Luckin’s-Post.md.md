@@ -1,0 +1,23 @@
+---
+title: Rose Luckin’s Post
+author: Rose Luckin
+Title: Rose Luckin’s Post
+source: reader
+readDate: 2024-07-29
+publishDate: 2025-05-25
+tags: []
+---
+# Rose Luckin’s Post
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/uploaded_book_covers/profile_147221/1720539224962)
+
+## Metadata
+- Author: [[Rose Luckin]]
+- Full Title: Rose Luckin’s Post
+- Category: #articles
+- Summary:: Rose Luckin emphasizes that human learning, rooted in real experiences, gives us an advantage over AI. She advocates for educational practices that engage all senses and promote deep understanding. Balancing AI tools with experiential learning is essential for creating effective and meaningful educational experiences.
+- URL: https://www.linkedin.com/posts/rose-luckin-5245003_embodiedlearning-humanadvantage-aiineducation-activity-7221121827727704064-FwFl?utm_source=share&utm_medium=member_ios
+
+## Highlights
+- Our embodiment in the world matters tremendously for learning, and it is an advantage we have over AI. ([View Highlight](https://read.readwise.io/read/01j3y9dr7vf84vfcr1dyr3wtvc))
+- Humans learn through a combination of direct experiences (what Vygotsky referred to as "everyday concepts") and abstract, scientific concepts. This rich, contextual understanding is crucial for deep learning and is something that AI, operating within a vacuum of data, cannot replicate. For instance, an AI can describe photosynthesis in intricate detail, but it has never felt the warmth of sunlight or touched the delicate surface of a leaf. ([View Highlight](https://read.readwise.io/read/01j3y9eqg70164sspe9ragwk6y))

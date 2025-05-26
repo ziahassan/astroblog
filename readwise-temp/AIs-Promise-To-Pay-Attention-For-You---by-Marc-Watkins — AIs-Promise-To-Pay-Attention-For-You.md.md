@@ -1,0 +1,25 @@
+---
+title: AI's Promise To Pay Attention For You - by Marc Watkins
+AI's Promise To Pay Attention For You
+author: Marc Watkins
+Title: AIs Promise To Pay Attention For You - by Marc Watkins
+AIs Promise To Pay Attention For You
+source: reader
+readDate: 2024-12-30
+publishDate: 2025-05-25
+tags: []
+---
+# AI's Promise To Pay Attention For You - by Marc...
+
+![rw-book-cover](https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb951f1-f5b6-44ad-8809-1969bd28555b_1600x1202.jpeg)
+
+## Metadata
+- Author: [[Marc Watkins]]
+- Full Title: AI's Promise To Pay Attention For You - by Marc Watkins
+AI's Promise To Pay Attention For You
+- Category: #articles
+- Summary:: Generative AI is changing how students take notes by automating transcription and summarizing lectures, which could help many learners. However, this technology risks making education less engaging if students rely on it instead of actively processing information. Educators need to find ways to use AI that enhance learning without taking away the creative and critical thinking involved in note-taking.
+- URL: https://marcwatkins.substack.com/p/ais-promise-to-pay-attention-for?r=1z9b3o&utm_campaign=post&utm_medium=web&triedRedirect=true
+
+## Highlights
+- never to interrupt even when people were having great difficulty in explaining themselves, for during such halting and imprecise moments ... people are very revealing—what they hesitate to talk about can tell much about them. Their pauses, their evasions, and their sudden shifts in subject matter are likely indicators of what embarrasses them, or irritates them, or what they regard as too private or imprudent to be disclosed to another person at that particular time. ([View Highlight](https://read.readwise.io/read/01jgbz5y2504p7p3ntv874k5d7))

@@ -1,0 +1,26 @@
+---
+title: Have Income Based Gaps Widened Jan 2023 - NBER WP
+author: þÿShirin A. Hashim, Thomas J. Kane, Thomas Kelley-Kemple, Mary E. Laski, Douglas O. Staiger
+Title: Have Income Based Gaps Widened Jan 2023 - NBER WP
+source: reader
+readDate: 2024-09-11
+publishDate: 2025-05-25
+tags: []
+---
+# Have Income Based Gaps Widened Jan 2023 - NBER WP
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/214695853/IFeZKguduehTe7RcXW7J5mbux_lm1Mci_xFruSzy_BA-cove_qr1Vfq2.png)
+
+## Metadata
+- Author: [[þÿShirin A. Hashim, Thomas J. Kane, Thomas Kelley-Kemple, Mary E. Laski, Douglas O. Staiger]]
+- Full Title: Have Income Based Gaps Widened Jan 2023 - NBER WP
+- Category: #articles
+- Summary:: The authors analyze how income gaps in student achievement have changed over time, using data from the Current Population Survey. They focus on household income categorized by race, mother's education, and location. Their findings include separate estimates for differences in achievement between schools and within schools.
+- URL: https://readwise.io/reader/document_raw_content/214695853
+
+## Highlights
+- Using both methods, we find that income- based achievement gaps in 4th and 8th grade narrowed between 1992 and 2015—while math scores rose at all income levels. ([View Highlight](https://read.readwise.io/read/01j7gpd9npd3m7vt2h6n5cppcm))
+- The ideal data for tracking the change in income-based achievement gaps would combine a consistent measure of student achievement with a student-level measure of income over a long period of time. Unfortunately, the federal government has not collected such data. Thus, any effort to shed light on historical changes in income-based achievement gaps will necessarily involve compromises. ([View Highlight](https://read.readwise.io/read/01j7gqccsmp7pq425wajkq3z9b))
+- Shirin Hashim, Mary Laski and Thomas Kelley-Kemple received support from the Walton Family Foundation for their work on this project. Thomas Kelley-Kemple also received support under pre-doctoral training grant R305B150010-16 from the Institute of Education Sciences at the U.S. Department of Education. We thank Aimee Chen, Janet Currie, David Deming, John Friedman, David Grissmer, Eric Hanushek, Caroline Hoxby, Dan Koretz, Eric Nielsen, Paul Peterson, Steve Raudenbush, Sean Reardon, Sarah Reber, Jesse Rothstein, Sarah Turner, Jim Wyckoff and seminar participants at the University of Virginia, Harvard Graduate School of Education, 2020 NBER Summer Institute, Harvard Opportunity Insights, and the 2020 Association for Public Policy Analysis and Management annual meeting for helpful comments and suggestions. We thank Blake Heller for help preparing data for analysis. The views expressed herein are those of the authors and do not necessarily reflect the views of the National Bureau of Economic Research.
+  At least one co-author has disclosed additional relationships of potential relevance for this research. Further information is available online at http://www.nber.org/papers/w27714 NBER working papers are circulated for discussion and comment purposes. They have not been peer-reviewed or been subject to the review by the NBER Board of Directors that accompanies official NBER publications.
+  © 2020 by Shirin A. Hashim, Thomas J. Kane, Thomas Kelley-Kemple, Mary E. Laski, and Douglas O. Staiger. All rights reserved. Short sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided that full credit, including © notice, is given to the source. ([View Highlight](https://read.readwise.io/read/01j7fj6p3vgx945s9nq5smqezr))

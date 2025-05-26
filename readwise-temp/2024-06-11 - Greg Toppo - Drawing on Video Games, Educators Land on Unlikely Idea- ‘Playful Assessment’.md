@@ -1,0 +1,27 @@
+---
+Tags: ReadwiseInbox
+Author: Greg Toppo
+Title: Drawing on Video Games, Educators Land on Unlikely Idea- ‘Playful Assessment’
+Source: reader
+Date: 2024-06-11
+Summary: Educators are exploring "playful assessment" inspired by video games to make tests more engaging and effective. One example is a 3D digital assessment on Roblox called Distance Dash, testing middle-schoolers on Newton's Second Law of Motion. These new assessments aim to be more interactive and creative, shifting away from traditional testing methods.
+---
+# Drawing on Video Games, Educators Land on Unlik...
+
+![rw-book-cover](https://www.the74million.org/wp-content/uploads/2024/01/playful-assesment-1-825x495.jpg?cb=721116)
+
+## Metadata
+- Author: [[Greg Toppo]]
+- Full Title: Drawing on Video Games, Educators Land on Unlikely Idea- ‘Playful Assessment’
+- Category: #articles
+- Summary:: Educators are exploring "playful assessment" inspired by video games to make tests more engaging and effective. One example is a 3D digital assessment on Roblox called Distance Dash, testing middle-schoolers on Newton's Second Law of Motion. These new assessments aim to be more interactive and creative, shifting away from traditional testing methods.
+- URL: https://www.the74million.org/article/drawing-on-video-games-educators-land-on-unlikely-idea-playful-assessment/?utm_source=The+74+Million+Newsletter&utm_campaign=28e39f3465-EMAIL_CAMPAIGN_2022_07_27_07_47_COPY_01&utm_medium=email&utm_term=0_077b986842-28e39f3465-176112633
+
+## Highlights
+- Educators and developers are increasingly looking to the digital world of games and simulations to make tests more stealthy, playful and, they hope, useful. In the process, the new assessments may also push schools to become more creative. ([View Highlight](https://read.readwise.io/read/01j02g054b34pcab2ggkgwyezt))
+- “The idea is: Can assessment be more embedded?” said Y.J. Kim, an [assistant professor](https://ci.education.wisc.edu/fac-staff/kim-yoon-jeon/) at the University of Wisconsin–Madison. “Can assessment be more exciting? Can assessment be more flexible?” ([View Highlight](https://read.readwise.io/read/01j02g0fg6b2e4bqk8yzpq7v6c))
+- printable card game for teachers that Kim describes as “Charades meets Telephone” to teach the process of drawing conclusions from a chain of evidence.
+  In the game, players take on one of three roles: Performer, Observer or Interpreter. They can only see one of the other two players, and gameplay proceeds as the performer silently acts out, in three movements or less, what’s on a card. The observer takes notes on what she sees and determines how to tell the interpreter what she saw. ([View Highlight](https://read.readwise.io/read/01j02g3d1zfgg6pxbny4b5rzb3))
+    - Note: Indoors has been doing this for years! This is rudimentary compared to the inspired way.
+
+

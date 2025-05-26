@@ -1,0 +1,23 @@
+---
+title: Circular Time, Linear Time, and Microseasons
+author: Austin Kleon
+Title: Circular Time, Linear Time, and Microseasons
+source: reader
+readDate: 2023-03-26
+publishDate: 2025-05-25
+tags: []
+---
+# Circular Time, Linear Time, and Microseasons
+
+![rw-book-cover](http://austinkleon.com/wp-content/uploads/2023/03/line.jpg)
+
+## Metadata
+- Author: [[Austin Kleon]]
+- Full Title: Circular Time, Linear Time, and Microseasons
+- Category: #articles
+- Summary:: Thinking about time as a straight line versus a curved line.
+- URL: https://austinkleon.com/2023/03/23/circular-time-linear-time-and-microseasons/?utm_source=substack&utm_medium=email
+
+## Highlights
+- Ann also sent me Tomas Tranströmer’s poem, “[Answers to Letters](https://www.encyclopedia.com/arts/educational-magazines/answers-letters)”:
+  > Sometimes an abyss opens between Tuesday and Wednesday but twenty-six years may be passed in a moment. Time is not a straight line, it’s more of a labyrinth, and if you press close to the wall at the right place you can hear the hurrying steps and the voices, you can hear yourself walking past there on the other side ([View Highlight](https://read.readwise.io/read/01gwfnd8jkcmcd562j78v9fs4r))

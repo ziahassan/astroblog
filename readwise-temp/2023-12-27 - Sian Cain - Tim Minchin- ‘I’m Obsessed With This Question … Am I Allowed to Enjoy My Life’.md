@@ -1,0 +1,25 @@
+---
+Tags: ReadwiseInbox
+Author: Sian Cain
+Title: Tim Minchin- ‘I’m Obsessed With This Question … Am I Allowed to Enjoy My Life?’
+Source: reader
+Date: 2023-12-27
+Summary: Tim Minchin, the writer and performer, discusses his frustration with the nature of online debate and his obsession with the question of whether he is allowed to enjoy his life. Known for not shying away from controversial topics, Minchin reflects on the challenges of public discourse and the need for curiosity and understanding. He also talks about his career in music and theater, including his involvement in the musical adaptation of Groundhog Day. Despite the criticisms and pressures of fame, Minchin expresses gratitude for the opportunities he has had and the ability to contribute to the world of art.
+---
+# Tim Minchin- ‘I’m Obsessed With This Question …...
+
+![rw-book-cover](https://i.guim.co.uk/img/media/9a04f3835a31b9371358c37c8b69a1d93e79f7bc/188_1011_7000_4201/master/7000.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=ef6bbd248f38d96a841a37728399fca5)
+
+## Metadata
+- Author: [[Sian Cain]]
+- Full Title: Tim Minchin- ‘I’m Obsessed With This Question … Am I Allowed to Enjoy My Life?’
+- Category: #articles
+- Summary:: Tim Minchin, the writer and performer, discusses his frustration with the nature of online debate and his obsession with the question of whether he is allowed to enjoy his life. Known for not shying away from controversial topics, Minchin reflects on the challenges of public discourse and the need for curiosity and understanding. He also talks about his career in music and theater, including his involvement in the musical adaptation of Groundhog Day. Despite the criticisms and pressures of fame, Minchin expresses gratitude for the opportunities he has had and the ability to contribute to the world of art.
+- URL: https://www.theguardian.com/lifeandstyle/2023/dec/09/tim-minchin-interview-bio-life?CMP=fb_gu&utm_medium=Social&utm_source=Facebook&fbclid=IwAR37Llt-0Mc2_wdY8gy8MGbwEjALzjZ_G0w3OTKWwh0FrzPGa4a5oLj9f4E#Echobox=1702378456
+
+## Highlights
+- He adds, smiling: “I’m obsessed by this question, if you can’t tell. Am I allowed to enjoy my life?” ([View Highlight](https://read.readwise.io/read/01hjphq3m1thbba2hsyym6pvzb))
+- He is both fascinated and frustrated by “the incuriosity behind some of our outrage. Simple answers are very rarely true.” ([View Highlight](https://read.readwise.io/read/01hjphqp6zg6nrqbm276bf4y1d))
+- He despairs at the nature of debate online: when he calls for people to listen to each other more, he feels people interpret this as him becoming conservative. “And I’m not! I’ve been saying it for 20 years. We are getting further and further apart. No one asks, what am I doing? It is always, what are *they* doing? ([View Highlight](https://read.readwise.io/read/01hjphsahgr8bavem544j500xb))
+
+

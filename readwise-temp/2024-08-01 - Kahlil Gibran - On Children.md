@@ -1,0 +1,23 @@
+---
+Tags: ReadwiseInbox
+Author: Kahlil Gibran
+Title: On Children
+Source: reader
+Date: 2024-08-01
+Summary: Kahlil Gibran explains that children are not possessions of their parents. They come through their parents but have their own thoughts and destinies. Parents should support their children’s growth while letting them be their own individuals.
+---
+# On Children
+
+![rw-book-cover](https://api.poets.org/sites/default/files/styles/social_share/public/images/biographies/khalil-gibran.jpg?itok=IwTi3_FB)
+
+## Metadata
+- Author: [[Kahlil Gibran]]
+- Full Title: On Children
+- Category: #articles
+- Summary:: Kahlil Gibran explains that children are not possessions of their parents. They come through their parents but have their own thoughts and destinies. Parents should support their children’s growth while letting them be their own individuals.
+- URL: https://poets.org/poem/children-1
+
+## Highlights
+- They are the sons and daughters of Life’s longing for itself. ([View Highlight](https://read.readwise.io/read/01j4786cjvhxyrbfqrjzq06qsc))
+
+

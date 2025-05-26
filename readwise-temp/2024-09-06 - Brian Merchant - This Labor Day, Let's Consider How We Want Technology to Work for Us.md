@@ -1,0 +1,29 @@
+---
+Tags: ReadwiseInbox
+Author: Brian Merchant
+Title: This Labor Day, Lets Consider How We Want Technology to Work for *Us*
+Source: reader
+Date: 2024-09-06
+Summary: This Labor Day, we should think about how technology, especially AI, can work for us rather than against us. Workers across various industries are pushing back against exploitative uses of technology, seeking to ensure their input and consent in how AI is implemented. It's crucial to build a more democratic technological society where workers have control over the tools they use and benefit from them.
+---
+# This Labor Day, Let's Consider How We Want Tech...
+
+![rw-book-cover](https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0e63a4ab-8c70-4718-980d-96365af60fa0_600x467.jpeg)
+
+## Metadata
+- Author: [[Brian Merchant]]
+- Full Title: This Labor Day, Let's Consider How We Want Technology to Work for *Us*
+- Category: #articles
+- Summary:: This Labor Day, we should think about how technology, especially AI, can work for us rather than against us. Workers across various industries are pushing back against exploitative uses of technology, seeking to ensure their input and consent in how AI is implemented. It's crucial to build a more democratic technological society where workers have control over the tools they use and benefit from them.
+- URL: https://www.bloodinthemachine.com/p/this-labor-day-lets-consider-what?utm_source=substack&utm_medium=email
+
+## Highlights
+- That machinery, wide frames and power looms that allowed lower quality clothes to be produced more rapidly, at lower cost, was despised not for its technological qualities, but the uses to which it was put. Because the machinery was deployed by bosses to drive down workers’ wages, degrade their craft, and facilitate the hire of child laborers to run it. ([View Highlight](https://read.readwise.io/read/01j73tvegre4zee43gakbe4yw9))
+- We’ve seen plenty posts and pundits exhorting us to get with it or technology will leave us behind; I say this Labor Day is an occasion to consider what *we* want technology to do for *us*. ([View Highlight](https://read.readwise.io/read/01j73w65sj2536npat1742ead3))
+    - Note: I would do well to remember this.
+- I’d like to encourage us all to spend some time thinking about how we might expand our control and input over how AI, and tech more broadly, shapes our lives; whether in our workplaces, in the streets, or at the ballot box. ([View Highlight](https://read.readwise.io/read/01j73webghe85vabdfffvxxk24))
+- , some organizing will continue to focus the politics of refusal; identifying the contexts of technology in which AI should simply not be used, and resisting it outright. Do we want AI replacing artists simply so studio heads can bolster their bottom lines? Do we want AI to take over [“teacherless classrooms”](https://www.youtube.com/watch?v=MHFCVbUcwIE)? Or AI to generate reportage in newsrooms? No, no, and no, I think. ([View Highlight](https://read.readwise.io/read/01j73whqs30ntefx0grppngfak))
+    - Note: No but also some potentially good applications within these sectors.
+- I’d love to see more work done in this space, more thought developed in more corners given to how we can build policy that prevents wanton and harmful automation of work, and moves decision-making power over the tech into the hands of labor; how to *truly* empower workers to use AI how they see fit—or to *democratize* it, to put it in Silicon Valley terms. ([View Highlight](https://read.readwise.io/read/01j73xaxgme007aj5sczvjvsm5))
+
+

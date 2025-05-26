@@ -1,0 +1,26 @@
+---
+title: "Doing Stuff With AI- Opinionated Midyear Edition"
+source: "readwise"
+tags: []
+---
+# Doing Stuff With AI- Opinionated Midyear Edition
+
+![rw-book-cover](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc9c5b49e-631c-4fec-be0b-ae505c531621_1376x864.png)
+
+## Metadata
+- Author: [[Ethan Mollick]]
+- Full Title: Doing Stuff With AI- Opinionated Midyear Edition
+- Category: #articles
+- Summary:: AI systems have become more capable and user-friendly. The author explores fun ways to interact with AI, such as creating music and playing games. Serious applications of AI, like using Large Language Models for work tasks, are also discussed.
+- URL: https://www.oneusefulthing.org/p/doing-stuff-with-ai-opinionated-midyear
+
+## Highlights
+- LLMs work best when they can write out a plan for what they are doing ([View Highlight](https://read.readwise.io/read/01hzr9j0e04ngq9rv2yb9nrwzr))
+- illuminating.
+  ![](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff018d148-2405-400d-bfee-c01299a1c823_4982x3649.jpeg) ([View Highlight](https://read.readwise.io/read/01hzr9n38tmgqsqvmf24a88xwq))
+- I know this may not seem particularly profound, but “always invite AI to the table” is the principle in my book that people tell me had the biggest impact on them. ([View Highlight](https://read.readwise.io/read/01hzx9ktr4r6w45g6kk33159j7))
+- And don’t sweat prompting too much, [though here are some useful tips](https://www.oneusefulthing.org/p/captains-log-the-irreducible-weirdness), just start a conversation with AI and see where it goes. ([View Highlight](https://read.readwise.io/read/01hzx9mgae92rer8da8fanmgr6))
+- If you really want to do research, however, a specialized AI model, [Perplexity](https://www.perplexity.ai/), may be a better choice, as it has a great interface and specialized tools that are optimized for research. ([View Highlight](https://read.readwise.io/read/01hzx9p0893gx94cb2yr5hr4j4))
+- 4 and Gemini both create images, but, at least for now, they do it in a relatively crude way. When you ask these LLMs to create images, they actually write a prompt for a separate image generation tool and show you the results. That means that they do not directly control the image, and the image generation tool is not as smart as the LLM itself. If you ask the AI to “make sure there are no elephants in the picture” it may send a prompt telling the image generator “and do not show elephants” but the image generator just sees the word “elephants” and gives you some. ([View Highlight](https://read.readwise.io/read/01hzx9qd0sw23a4s84d2fzhzvp))
+
+

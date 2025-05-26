@@ -1,0 +1,35 @@
+---
+title: "978-94-007-6094-3"
+author: "readwise.io"
+source: "reader"
+tags: []
+readDate: 2024-09-16T00:00:00.000Z
+---
+# 978-94-007-6094-3
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/216358504/Cx9ese_2RxSx3WES1kegp-_1202J76dXU0Nim1CLJsw-cove_Qklvqtz.png)
+
+## Metadata
+- Author: [[readwise.io]]
+- Full Title: 978-94-007-6094-3
+- Category: #articles
+- Document Note: **Background-** I need to gain a deeper understanding of Directed Acyclic Graphs (DAGs) and their role in causal analysis for my class discussions and assignments.
+   ---
+   🌐 **Understand DAGs-** Focus on grasping how Directed Acyclic Graphs visually represent causal assumptions and how they reflect researchers' beliefs about causal relationships in the world.
+   🔍 **Differentiate Associations-** Recognize the difference between causal relationships and noncausal associations in data, and understand how identification analysis can help clarify these distinctions.
+   🧠 **Causal vs. Noncausal Data-** Emphasize the importance of understanding that while analysts seek to determine causation, the data they work with primarily provide associations, necessitating careful interpretation.k
+- Summary:: The text discusses the relationship between recent statistical models and causal inference in social sciences. It mentions various key authors and their contributions to the study of causality. The author emphasizes the need for further systematic research on this important topic.
+- URL: https://readwise.io/reader/document_raw_content/216358504
+
+## Highlights
+- DAGs are visual representations of qualitative causal assumptions: They encode researchers’ expert knowledge and beliefs about how the world works. ([View Highlight](https://read.readwise.io/read/01j7wh5sbzr3bbyba2vhgby3c8))
+    - Note: DAGs are pictures that show how people think different things are connected and affect each other. They represent what researchers believe about how things happen in the world.
+- *Identification analysis* determines whether, and under which conditions, it is possible to strip an observed association of all its spurious components. We say that a causal effect is *identified* if a properly stripped association equals (“identifies”) the causal effect. ([View Highlight](https://read.readwise.io/read/01j7whav3nqszzpf0gkd9yrtv3))
+- Identification analysis requires causal assumptions about how the data were generated. The sum of these causal assumptions is called a *causal model*, which must describe both how the world works (how observed and unobserved variables take their values) and how the data were collected (what variables and variable values are recorded) (Greenland 2010). ([View Highlight](https://read.readwise.io/read/01j7whcasrzs0cb2wmdhgzha45))
+- Identification is not the same as estimation. Identification refers to the *possibility* of correctly estimating a causal effect asymptotically from a given set of observed variables, as the number of observations goes to infinity. ([View Highlight](https://read.readwise.io/read/01j7whf8y4zt014frh5r2s2t6y))
+- DAGs are visual representations of qualitative causal assumptions: They encode researchers’
+  expert knowledge and beliefs about how the world works. ([View Highlight](https://read.readwise.io/read/01j7wgxvqtca38r6mhgwdd2nd4))
+- Analysts seek causation, but the data, on their own, only communicate associations. ([View Highlight](https://read.readwise.io/read/01j7wh312mvy8zgd7fjgz5t3mq))
+- Associations usually consist of a mixture of causal and noncausal (spurious) components. Identification analysis determines whether, and under which conditions, it is possible to strip an observed ([View Highlight](https://read.readwise.io/read/01j7wh44wbjvwbkennkb75bwc3))
+- DAGs consist of three elements: variables (nodes, vertices), arrows (edges), and missing arrows. Arrows represent possible direct causal effects between pairs of variables and order the variables in time. ([View Highlight](https://read.readwise.io/read/01j7xc6jr9sm7es57pac7v7728))
+- DAGs are called “acyclic” because they may not contain directed cycles, that is, paths that can be traced strictly along the direction of the arrows to arrive back at the starting point. Acyclicity preserves the truth that the future cannot cause the past. ([View Highlight](https://read.readwise.io/read/01j7xcab3bz3gdv2mkjbyc4ww8))

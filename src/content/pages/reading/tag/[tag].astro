@@ -1,0 +1,188 @@
+---
+// src/pages/reading/tags/[tag].astro
+import Layout from '../../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const reading = await getCollection('reading');
+  
+  // Collect all unique tags
+  const allTags = new Set();
+  reading.forEach(note => {
+    if (note.data.tags) {
+      note.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+  
+  return Array.from(allTags).map(tag => ({
+    params: { tag }
+  }));
+}
+
+const { tag } = Astro.params;
+const allReading = await getCollection('reading');
+
+// Filter reading notes by tag
+const taggedReading = allReading
+  .filter(note => note.data.tags?.includes(tag))
+  .sort((a, b) => {
+    const dateA = a.data.readDate || new Date(0);
+    const dateB = b.data.readDate || new Date(0);
+    return new Date(dateB) - new Date(dateA);
+  });
+
+// Get other popular tags (excluding current one)
+const tagCounts = {};
+allReading.forEach(note => {
+  if (note.data.tags) {
+    note.data.tags.forEach(t => {
+      if (t !== tag) {
+        tagCounts[t] = (tagCounts[t] || 0) + 1;
+      }
+    });
+  }
+});
+
+const relatedTags = Object.entries(tagCounts)
+  .sort(([,a], [,b]) => b - a)
+  .slice(0, 8)
+  .map(([t, count]) => ({ tag: t, count }));
+---
+
+<Layout title={`Reading tagged "${tag}"`}>
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- Header -->
+    <header class="text-center border-b border-gray-200 pb-8">
+      <div class="mb-4">
+        <a href="/reading" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+          ← Back to all reading
+        </a>
+      </div>
+      <h1 class="text-4xl font-light text-gray-800 mb-2">
+        Reading tagged 
+        <span class="text-blue-600 font-medium">"{tag}"</span>
+      </h1>
+      <p class="text-gray-600">
+        {taggedReading.length} note{taggedReading.length === 1 ? '' : 's'} found
+      </p>
+    </header>
+
+    <!-- Tagged Reading Notes -->
+    <section>
+      <div class="space-y-6">
+        {taggedReading.map(note => (
+          <article key={note.slug} class="group">
+            <div class="p-6 bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
+              
+              <!-- Note Header -->
+              <header class="mb-4">
+                <h2 class="text-2xl font-medium text-gray-900 mb-2">
+                  <a 
+                    href={`/reading/${note.slug}`} 
+                    class="hover:text-blue-600 transition-colors"
+                  >
+                    {note.data.title || note.slug}
+                  </a>
+                </h2>
+                
+                <!-- Metadata -->
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                  {note.data.author && note.data.author !== null && (
+                    <span class="font-medium">by {note.data.author}</span>
+                  )}
+                  {note.data.source && note.data.source !== null && (
+                    <span>from {note.data.source}</span>
+                  )}
+                  {note.data.readDate && (
+                    <time class="font-mono">
+                      {typeof note.data.readDate === 'string' 
+                        ? note.data.readDate 
+                        : new Date(note.data.readDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })
+                      }
+                    </time>
+                  )}
+                  
+                  {note.data.tags && note.data.tags.length > 1 && (
+                    <div class="flex flex-wrap gap-1">
+                      {note.data.tags.map(t => (
+                        <a 
+                          href={`/reading/tags/${t}`}
+                          class={`px-2 py-1 text-xs rounded-md font-medium transition-colors ${
+                            t === tag 
+                              ? 'bg-blue-100 text-blue-700' 
+                              : 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                          }`}
+                        >
+                          {t}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </header>
+
+              <!-- Preview -->
+              <div class="text-gray-600 text-sm leading-relaxed mb-4">
+                {note.body.replace(/\[\[.*?\]\]/g, '').substring(0, 200).trim()}...
+              </div>
+
+              <!-- Read More Link -->
+              <a 
+                href={`/reading/${note.slug}`} 
+                class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group-hover:translate-x-1 transition-all"
+              >
+                Read notes
+                <span class="ml-1">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related Tags -->
+    {relatedTags.length > 0 && (
+      <section class="pt-8 border-t border-gray-200">
+        <h3 class="text-xl font-light text-gray-800 mb-4 text-center">
+          Explore other topics
+        </h3>
+        <div class="flex flex-wrap justify-center gap-2">
+          {relatedTags.map(({ tag: relatedTag, count }) => (
+            <a 
+              href={`/reading/tags/${relatedTag}`}
+              class="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 hover:bg-blue-50 text-gray-700 hover:text-blue-600 text-sm rounded-full transition-colors"
+            >
+              <span>{relatedTag}</span>
+              <span class="text-xs text-gray-500 bg-white px-1.5 py-0.5 rounded-full">
+                {count}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Empty State -->
+    {taggedReading.length === 0 && (
+      <div class="text-center py-12">
+        <div class="text-4xl mb-4">🏷️</div>
+        <h2 class="text-xl font-medium text-gray-800 mb-2">No reading notes found</h2>
+        <p class="text-gray-600 mb-4">
+          No reading notes are tagged with "{tag}" yet.
+        </p>
+        <a 
+          href="/reading" 
+          class="text-blue-600 hover:text-blue-800 font-medium"
+        >
+          Browse all reading →
+        </a>
+      </div>
+    )}
+
+  </div>
+</Layout>

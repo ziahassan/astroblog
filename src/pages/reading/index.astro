@@ -16,6 +16,21 @@ const sorted = reading
 
 const random = reading[Math.floor(Math.random() * reading.length)];
 
+// Collect all tags and their counts
+const tagCounts = {};
+reading.forEach(note => {
+  if (note.data.tags && Array.isArray(note.data.tags)) {
+    note.data.tags.forEach(tag => {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+  }
+});
+
+// Sort tags by count (most popular first)
+const sortedTags = Object.entries(tagCounts)
+  .sort(([,a], [,b]) => b - a)
+  .map(([tag, count]) => ({ tag, count }));
+
 // Create backlink count mapping
 const backlinkCounts = {};
 for (const sourceNote of reading) {
@@ -39,6 +54,51 @@ for (const sourceNote of reading) {
       <h1 class="text-4xl font-light text-gray-800 mb-2">Reading Notes</h1>
       <p class="text-gray-600 text-lg">Literature notes and highlights from my reading</p>
     </div>
+
+    <!-- Test Tag Section - should always show -->
+    <div class="bg-red-100 p-4 rounded-lg border border-red-200 mb-6">
+      <h3 class="text-lg font-bold text-red-800">DEBUG: Tag Section Test</h3>
+      <p>This should always show. If you see this, the file is updating correctly.</p>
+      <p>Reading notes found: {reading.length}</p>
+      <p>Sorted tags: {sortedTags.length}</p>
+      <p>Tags: {sortedTags.map(t => t.tag).join(', ')}</p>
+    </div>
+
+    <!-- Tag Cloud -->
+    <section class="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl p-8 border border-gray-200">
+      <h2 class="text-2xl font-light text-gray-800 mb-6 text-center">Explore by Topic</h2>
+      {sortedTags.length > 0 ? (
+        <div class="flex flex-wrap justify-center gap-3">
+          {sortedTags.map(({ tag, count }) => {
+            // Calculate size based on count (min 1rem, max 2rem)
+            const maxCount = Math.max(...sortedTags.map(t => t.count));
+            const minSize = 0.875; // text-sm
+            const maxSize = 1.25;  // text-xl
+            const size = minSize + (maxSize - minSize) * (count / maxCount);
+            
+            return (
+              <a 
+                href={`/reading/tags/${tag}`}
+                class="group inline-flex items-center gap-2 px-4 py-2 bg-white/70 hover:bg-white border border-gray-200 hover:border-blue-300 rounded-full transition-all duration-200 hover:shadow-sm"
+                style={`font-size: ${size}rem`}
+              >
+                <span class="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+                  {tag}
+                </span>
+                <span class="text-xs text-gray-500 bg-gray-100 group-hover:bg-blue-100 px-2 py-0.5 rounded-full font-mono transition-colors">
+                  {count}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="text-center text-gray-500">
+          <p>No tags found yet. Add tags to your reading notes to see them here!</p>
+          <p class="text-sm mt-2">Debug: Found {reading.length} reading notes, {sortedTags.length} tags</p>
+        </div>
+      )}
+    </section>
     
     <!-- Search Bar -->
     <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
@@ -92,14 +152,17 @@ for (const sourceNote of reading) {
               >
                 {note.data.title || note.slug}
               </a>
-              {note.data.author && (
+              {note.data.author && note.data.author !== null && (
                 <div class="text-sm text-gray-500 mt-1">by {note.data.author}</div>
               )}
             </div>
             <div class="flex items-center gap-2">
               {note.data.readDate && (
                 <span class="text-xs text-gray-400 font-mono">
-                  {new Date(note.data.readDate).toLocaleDateString()}
+                  {typeof note.data.readDate === 'string' 
+                    ? note.data.readDate 
+                    : new Date(note.data.readDate).toLocaleDateString()
+                  }
                 </span>
               )}
               {backlinkCounts[note.slug] && (

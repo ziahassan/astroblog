@@ -1,0 +1,25 @@
+---
+title: Back to Kindergarten! A Modest Proposal for a College of the Future
+author: Lawrence Weschler
+Title: Back to Kindergarten! A Modest Proposal for a College of the Future
+source: reader
+readDate: 2024-05-16
+publishDate: 2025-05-25
+tags: []
+---
+# Back to Kindergarten! A Modest Proposal for a C...
+
+![rw-book-cover](https://www.publicbooks.org/wp-content/uploads/2013/01/086699ce-690f-4a60-a2b8-367594924901.png)
+
+## Metadata
+- Author: [[Lawrence Weschler]]
+- Full Title: Back to Kindergarten! A Modest Proposal for a College of the Future
+- Category: #articles
+- Summary:: The text discusses how kindergarten experiences influenced famous figures like architects and scientists. It suggests creating a new college with a core course focused on curiosity and love of learning. The proposal emphasizes a faculty of diverse disciplines teaching without grades for a sense of discovery.
+- URL: https://www.publicbooks.org/back-to-kindergartena-modest-proposal-for-a-collegeof-the-future/?utm_source=substack&utm_medium=email
+
+## Highlights
+- Over the next several decades (through his death in 1852), Froebel elaborated an ever more specific theory and practice for the deployment of kindergartens (his term), small schools for children starting around age four, in which the kindergartners were the teachers—the gardeners of children—and the gardening took the form of guided free play: no tests, no drills, no grades, not even any reading, ‘riting, or ‘rithmatic. Just patterns and patternings (remember, Froebel started out as a crystallographer): a sequential exposition of and exposure to form and the formful. ([View Highlight](https://read.readwise.io/read/01hxzqn8mxv144a8rx6wr4rra9))
+- Key to Froebel’s method was a succession of “gifts,” twenty of them in all, small boxes containing progressively more challenging materials and activities, which the kindergartner gave her charges, each in his or her own good time, as they became ready for them. The first gift, for example, consisted of colorful hand-crocheted wool balls from which emerged looped strings, perfect for tossing at kittens or spinning about one’s finger and in the process learning about centrifugal force. The second gift consisted of a trio of little palm-size wooden objects—a sphere, a cylinder, and a cube—through play with which the child would gradually come to realize, for example, that the cylinder was sort of like a sphere and sort of like a cube. The third, fourth, fifth, and sixth gifts consisted of different sets of wooden blocks (golden rectangles, cubes, triangles sliced along their vertices, and so forth). Then it was on to colorful paper parquetry tiles, and sticks, rings, jointed and interlacing slats, and eventually drawing exercises, and pricking exercises, and sewing (threads through sheets of stiff paper with grided pinprick holes), and cutting and weaving and folding papers, and peas work (dried peas and toothpicks), and finally modeling clay—each gift elaborating on discoveries afforded by the one before, and all pitched to a spirit of adventure and self-expression. ([View Highlight](https://read.readwise.io/read/01hxzqt9cf1s57xbqr7p7yvngm))
+- But it’s only now, in the last half of Brosterman’s book, that things really start to take off. Because that’s where he starts placing images of constructions or parquet work or sewing pages by unknown five-year-olds of the 1880s side by side with avant-garde masterpieces from the 1910s and 1920s—works by Albers and Mondrian and Kandinsky and Klee and Frank Lloyd Wright and Gropius and Le Corbusier and Buckminster Fuller—and you can hardly tell the difference. ([View Highlight](https://read.readwise.io/read/01hxzqv1j4mzvg6faxp15grvhv))
+- And indeed, as Brosterman mines the biographies and memoirs and late-career interviews of all of these twentieth-century masters, it turns out that, in case after case, they had a hugely influential mother or uncle or neighbor who taught kindergarten, that they’d all attended kindergarten, and each one in his own way testified that the germ of his entire vocation had been planted in those kindergarten experiences (Buckminster Fuller attributing the idea for the geodesic dome to his early games with dried peas and toothpicks, the lines and dimensions of Wright’s Unity Temple and Fallingwater deriving explicitly from those of the blocks he’d played with as a young child, and so forth). ([View Highlight](https://read.readwise.io/read/01hxzqw31aj3aap0c6dejgpehb))

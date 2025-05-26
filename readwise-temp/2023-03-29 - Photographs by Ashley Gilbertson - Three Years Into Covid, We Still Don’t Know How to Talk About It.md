@@ -1,0 +1,25 @@
+---
+Tags: ReadwiseInbox
+Author: Photographs by Ashley Gilbertson
+Title: Three Years Into Covid, We Still Don’t Know How to Talk About It
+Source: reader
+Date: 2023-03-29
+Summary: Most Americans think they know the story of the pandemic. But when a writer immersed himself in a Covid oral-history project, he realized how much we’re still missing.
+---
+# Three Years Into Covid, We Still Don’t Know How...
+
+![rw-book-cover](https://static01.nyt.com/images/2023/02/26/magazine/26mag-Covid-images-01/26mag-Covid-images-facebookJumbo-v2.jpg)
+
+## Metadata
+- Author: [[Photographs by Ashley Gilbertson]]
+- Full Title: Three Years Into Covid, We Still Don’t Know How to Talk About It
+- Category: #articles
+- Summary:: Most Americans think they know the story of the pandemic. But when a writer immersed himself in a Covid oral-history project, he realized how much we’re still missing.
+- URL: https://www.nytimes.com/interactive/2023/02/22/magazine/covid-pandemic-oral-history.html
+
+## Highlights
+- As we enter a fourth pandemic year, each of us is consciously or subconsciously working through potentially irreconcilable stories about what we lived through — or else, strenuously avoiding that dissonance, insisting there’s no work to be done. And so, with many people claiming (publicly, at least) that they’re over the pandemic — that they have, so to speak, restraightened all their picture frames and dragged their psychic trash to the curb — this article is saying: *Hey, hold up. What’s in that bag* ([View Highlight](https://read.readwise.io/read/01gwhjnxd15f3m1k9ysn9bm1mf))
+- But the pandemic-present could seem unanalyzable. It exhausted people. It thwarted their powers of concentration. It was traumatic, probably, but also too big or too boring to do much with. And so it was as if people subtly discounted the lives they were living: “A timeless moment,” one woman calls it in May 2020; “lost years,” another says, in mid-2022. All you could do was move on, even though you weren’t actually moving. Because what could be accomplished or understood in such a messy present anyway? (“Like, I can’t sit there and cry for very long,” one working mother explains. “I have a child kicking me in the back or trying to do Spider-Man on top of me or something.”) Literally or figuratively, we were trapped, impatiently punching around inside the deflated balloons of our lives. Maybe, on some level, people were just waiting around for the air to rush back in. ([View Highlight](https://read.readwise.io/read/01gwn6p5wm8hrew5cfy735qy0w))
+- A man surprises himself by how ferociously he screams at another dog owner during an altercation in Prospect Park. The guy “deserved every word I gave him, absolutely,” he said. “And I don’t take any of it back, but I don’t think I would have been as incensed if there wasn’t the larger cloud of existential dread hanging above our heads.” ([View Highlight](https://read.readwise.io/read/01gwqhp8fmjc3wzx9k2m60fcqe))
+
+

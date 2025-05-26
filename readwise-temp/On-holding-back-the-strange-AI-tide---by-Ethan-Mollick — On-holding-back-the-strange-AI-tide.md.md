@@ -1,0 +1,28 @@
+---
+title: On holding back the strange AI tide - by Ethan Mollick
+On holding back the strange AI tide
+author: Ethan Mollick
+Title: On holding back the strange AI tide - by Ethan Mollick
+On holding back the strange AI tide
+source: reader
+readDate: 2023-12-11
+publishDate: 2025-05-25
+tags: []
+---
+# On holding back the strange AI tide - by Ethan ...
+
+![rw-book-cover](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3ca00f7a-519e-467a-ad6b-e0ef68e6e5bd_1376x864.png)
+
+## Metadata
+- Author: [[Ethan Mollick]]
+- Full Title: On holding back the strange AI tide - by Ethan Mollick
+On holding back the strange AI tide
+- Category: #articles
+- Summary:: There is no way to stop the disruption. We need to channel it instead
+- URL: https://www.oneusefulthing.org/p/on-holding-back-the-strange-ai-tide
+
+## Highlights
+- You have no idea what it is good for. There is no reason to believe that the corporate leadership of any organization are going to be wizards at understanding how AI might help a particular employee with a particular task. In fact, they are likely pretty bad at figuring out the best use cases for AI. Individual workers, who are keenly aware of their problems and can experiment a lot with alternate ways of solving them, are far more likely to find uses for a general technology like AI. ([View Highlight](https://read.readwise.io/read/01h6m0e0szf4sapyjnva1fpmc6))
+- Given this challenge, many teachers want to turn back the clock: blue book exams. Handwritten essays. Oral exams. These aren’t bad ideas as temporary fixes, but they are only stopgap measure while we decide what comes next in education. There is a reason we did not do most of these approaches before AI came along. ([View Highlight](https://read.readwise.io/read/01h6m0j5p94cct9ek6k1z7vkcp))
+- The only bad way to react to AI is to pretend it doesn’t change anything ([View Highlight](https://read.readwise.io/read/01h6m0jxnswmpkjn56p15gj9gs))
+- The scientists and engineers designing AI, as capable as they are, have no particular expertise on how AI can best be used, or even how and when it should be used. We get to make those decisions. ([View Highlight](https://read.readwise.io/read/01hhbd3a5zfy8rd3yvdqjg7qv2))

@@ -1,0 +1,22 @@
+---
+title: The First Year of AI College Ends in Ruin
+author: Ian Bogost
+Title: The First Year of AI College Ends in Ruin
+source: reader
+readDate: 2024-01-07
+publishDate: 2025-05-25
+tags: []
+---
+# The First Year of AI College Ends in Ruin
+
+![rw-book-cover](https://cdn.theatlantic.com/thumbor/wlQUQve9YZdzgGEE7ippxqRwotg=/0x0:1920x1080/960x540/media/img/mt/2023/05/ChatGPTCollege/original.jpg)
+
+## Metadata
+- Author: [[Ian Bogost]]
+- Full Title: The First Year of AI College Ends in Ruin
+- Category: #articles
+- Summary:: The content below cannot be summarized as there is no content provided.
+- URL: https://www.theatlantic.com/technology/archive/2023/05/chatbot-cheating-college-campuses/674073/?paymeter=hard-gate-email-test-1&utm_source=facebook&utm_medium=cr&utm_campaign=The+Atlantic+-+Content+Testing&utm_content=The+Atlantic+-+Lookalikes+-+The+First+Year+of+AI+College+Ends+in+Ruin+-+Learn+-+HARDGATE&utm_term=The+Atlantic+-+Content+Testing+-+Lookalikes+-+3&referral=FB_PAID&utm_id=6283258410077&fbclid=IwAR0dhNu_MAZtZMZ9YKfSAts9gQIS8MHipbklYI6NgJhEZvhccp6_inA0KZY
+
+## Highlights
+- Once upon a time, students shared exams or handed down papers to classmates. Then they started outsourcing their homework, aided by the internet. Online businesses such as EssayShark (which asserts that it sells term papers for “[research and reference purposes only](https://www.nytimes.com/2019/09/07/us/college-cheating-papers.html)”) have professionalized that process. Now it’s possible for students to purchase answers for assignments from a “tutoring” service [such as Chegg](https://www.forbes.com/sites/susanadams/2021/01/28/this-12-billion-company-is-getting-rich-off-students-cheating-their-way-through-covid/?sh=3d2d35e363ff)—a practice that the kids call “chegging.” But when the AI chatbots were unleashed last fall, all these cheating methods of the past seemed obsolete. “We now believe [ChatGPT is] having an impact on our new-customer growth rate,” Chegg’s CEO [admitted](https://www.cnbc.com/2023/05/02/chegg-drops-more-than-40percent-after-saying-chatgpt-is-killing-its-business.html) on an earnings call this month. The company has since lost roughly $1 billion in market value. ([View Highlight](https://read.readwise.io/read/01hkh1phwtcsstcfv0ffn7k4m2))

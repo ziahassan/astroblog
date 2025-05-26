@@ -1,0 +1,24 @@
+---
+title: David Cropley, PhD’s Post
+author: David Cropley, PhD
+Title: David Cropley, PhD’s Post
+source: reader
+readDate: 2024-09-11
+publishDate: 2025-05-25
+tags: []
+---
+# David Cropley, PhD’s Post
+
+![rw-book-cover](https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7)
+
+## Metadata
+- Author: [[David Cropley, PhD]]
+- Full Title: David Cropley, PhD’s Post
+- Category: #articles
+- Summary:: David Cropley, PhD discusses a new paper on AI's ability to generate creative ideas and shares his own research findings on human-AI collaboration. His study found that when participants believed they received low creativity help from ChatGPT, their performance actually suffered. Overall, the results suggest that AI's role in enhancing human creativity is more complex than previously thought.
+- URL: https://www.linkedin.com/posts/davidcropley_creative-ai-creativity-activity-7239503901190717441-KKaP?utm_source=share&utm_medium=member_ios
+
+## Highlights
+- In short, the only statistically meaningful result was: When the participants believed that the assistance came from ChatGPT, and was identified as being "low creativity", the participants performance on the DAT was dragged down. All other groups performed better (and about the same) regardless of where the help came from. ([View Highlight](https://read.readwise.io/read/01j7h4qpy5d9n9pcasx8mxnqpg))
+- So, it appears that the only meaningful result is that "low creativity" help from ChatGPT actually lowers human performance on a divergent thinking task, while "high creativity" help from ChatGPT is no better than any kind of help from a human.
+  This suggests that even "Co-creativity" may not be a simple or as straightforward as we think. ([View Highlight](https://read.readwise.io/read/01j7h4rthb3nkdjk5xrs5y59ce))

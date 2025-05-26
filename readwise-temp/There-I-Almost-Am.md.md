@@ -1,0 +1,30 @@
+---
+title: There I Almost Am
+author: Jean Garnett
+Title: There I Almost Am
+source: reader
+readDate: 2022-12-27
+publishDate: 2025-05-25
+tags: []
+---
+# There I Almost Am
+
+![rw-book-cover](https://d181q449nqu6en.cloudfront.net/content/craft/articles/_1200x630_crop_center-center_82_none/Garnett_WEB_cropped_resized.jpg?mtime=20210511132700&focal=none&tmtime=20210511133529)
+
+## Metadata
+- Author: [[Jean Garnett]]
+- Full Title: There I Almost Am
+- Category: #articles
+- Summary:: An essay by Jean Garnett: "Recently, I walked into a small grocery store near my house and the owner, a shy but sociable man, looked up at me and said, 'Are you you, or the other one?'"
+- URL: https://yalereview.org/article/there-i-almost-am
+
+## Highlights
+- She’ll be walking or crying or dancing or getting dressed or trying to tell me something important, and I’ll become aware that my eyes are scanning her as though she were a bar code. You want your identical twin to be beautiful, to confirm that you are beautiful, but you also want her to be ugly, to confirm that she is uglier than you. ([View Highlight](https://read.readwise.io/read/01gn661h5remtw1xc5spfnkp7d))
+- when does envy begin? In her essay “Envy and Gratitude,” Melanie Klein traces it to the body of the mother. I find her writing difficult to understand, and so, recently, when I found myself sitting next to a psychoanalyst at a dinner party, I asked if he could break it down for me. He said, “Think of the breast from the infant’s point of view: I am suffering, I am wanting, I am alone. And then, as if by magic, a nurturing object appears and quenches every thirst, removes every anxiety, wraps me in a cocoon of safety and love.” ([View Highlight](https://read.readwise.io/read/01gn663hn8ee9tmg2h20pyfjy2))
+- thirsty.
+  “So,” continued the analyst, “Mother has the thing that will end all discomfort. But she doesn’t always give it up, at least not fast enough, which must mean she’s keeping some for herself. That produces envy.”
+  “Wanting what someone else has,” I said.
+  “Wanting to *destroy* what you want that someone else has.”
+  “Fling poop at the breast,” I said.
+  His owlish face broke into a smile. “Exactly ([View Highlight](https://read.readwise.io/read/01gn664sp75b1yv84hdy70szyj))
+- i first recognized it in the cartoon villains of our youth. Wicked stepmothers, illegitimate kings, lonely sorceresses. Of these, I particularly identified with Ursula, the sea witch in *The Little Mermaid*. With her crystal ball spying, her glowing eyes (envy *looks*), and her yearning for Triton’s three-pronged golden schlong, she was dripping with envy’s signifiers. At one point, a pair of enormous, pea-green hands come steaming out of her and hover winglike for a second before caressing their way toward Ariel’s face, like a bad smell that makes you horny. Ariel throws her head back as the hands penetrate her, deep throat, no gag reflex, her eyes closed, her neck engorged. ([View Highlight](https://read.readwise.io/read/01gn92afzdnq3cbp5zagay4w8j))

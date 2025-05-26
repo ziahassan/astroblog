@@ -1,0 +1,22 @@
+---
+title: High-School English Needed a Makeover Before ChatGPT
+author: Daniel Herman
+Title: High-School English Needed a Makeover Before ChatGPT
+source: reader
+readDate: 2024-06-28
+publishDate: 2025-05-25
+tags: []
+---
+# High-School English Needed a Makeover Before ChatGPT
+
+![rw-book-cover](https://cdn.theatlantic.com/thumbor/d__v0JJNJPiN2fhOhZ_hUA0MpBs=/1x0:4502x2532/960x540/media/img/mt/2023/08/image_9/original.png)
+
+## Metadata
+- Author: [[Daniel Herman]]
+- Full Title: High-School English Needed a Makeover Before ChatGPT
+- Category: #articles
+- Summary:: High-school English classes often require students to write lengthy research papers, but there may be a better way to engage students and spark their creativity. In one example, a student spent weeks trying to connect the plot of Moby-Dick to the 2008 financial crisis for a research paper. However, when the student saw ChatGPT, an AI language model, complete the same task in just 10 seconds, it raised questions about the future of traditional teaching methods. The emergence of generative AI has led to speculation about the potential impact on various industries, including education.
+- URL: https://www.theatlantic.com/technology/archive/2023/08/chatgpt-rebirth-high-school-english/675189/?utm_campaign=the-atlantic&utm_content=true-anthem&utm_medium=social&utm_source=facebook&fbclid=IwZXh0bgNhZW0CMTEAAR31mCNKZNZl4ezyEHwnAFoLQqf0Lrx5oyCbHuknZLiEUCPFr23IFw3Jsi8_aem_bH8fxQpPs99N9p0YNCm2Ng
+
+## Highlights
+- After all, it’s possible that the average American teenager in 2023 does more writing, and is more defined by that writing (text messages, Instagram posts), than any generation before them. ([View Highlight](https://read.readwise.io/read/01j1fgm7ssqptamrwh0jb79y8p))

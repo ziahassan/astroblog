@@ -1,0 +1,30 @@
+---
+title: Make Schools More Human
+author: proquest.com
+Title: Make Schools More Human
+source: reader
+readDate: 2024-08-28
+publishDate: 2025-05-25
+tags: []
+---
+# Make Schools More Human
+
+![rw-book-cover](https://www.proquest.com/images/pagelayout/ProQuest_logo.gif)
+
+## Metadata
+- Author: [[proquest.com]]
+- Full Title: Make Schools More Human
+- Category: #articles
+- Document Tags: [[Ed Policy]] 
+- Summary:: The pandemic has highlighted the need for schools to focus on the unique needs of all students and create more human-centered environments. Many students thrive when given choices and strong relationships with teachers, rather than a strict, one-size-fits-all approach. As schools prepare to reopen, it’s crucial to prioritize both student and teacher needs to rebuild a better educational system.
+- URL: https://www.proquest.com/docview/2472001203?accountid=11752&parentSessionId=FkzfmgHDVpybMgJZxiuSRKje4W%2FW9m%2B3OT39U46FCq8%3D&sourcetype=Blogs,%20Podcasts,%20&%20Websites
+
+## Highlights
+- The first lesson that the pandemic has revealed is the limits of one-size-fits-all schooling. Some students have actually liked not being in school — the lack of social pressure and anxiety has made them more able to focus on learning. Some were miserably lonely at home and couldn’t wait for school to reopen. More reticent students have really liked being able to type into the chat instead of talking, and some students have thrived in the small groups afforded by virtual breakout rooms. When we reopen schools, could we do so in a way that creates different kinds of opportunities for all kinds of students — introverts and extroverts, fast processors and reflective thinkers? ([View Highlight](https://read.readwise.io/read/01j6cn925mgrhp3rcjhvmkb9wm))
+- A second lesson is the necessity of making schools more human. One of the best outcomes of the pandemic is that it forced schools to get off their treadmill and actually talk to students and parents — understand their life circumstances and how those intersected with school expectations. ([View Highlight](https://read.readwise.io/read/01j6cn9dyzrcae714sn6857k2b))
+- As one seventh grade teacher in New Jersey, William Stribling, said to me, “When we’re on campus, our schedules don’t allow us to be as human-centered as we are in this environment.” ([View Highlight](https://read.readwise.io/read/01j6cn9kzbg0xgtrz23mz7rgqp))
+- Classrooms that are thriving during the pandemic are the ones where teachers have built strong relationships and warm communities, whereas those that focus on compliance are really struggling without the compulsion that physical school provides. ([View Highlight](https://read.readwise.io/read/01j6cnahtmkdb65wbmnmk1kwf6))
+- Smart schools are making significant organizational changes to become more human. Some high schools are moving away from semesters with seven-period days — unsafe in person, unmanageable at home — to a quarter system where students take no more than three subjects at a time. This frees teachers to focus on half as many students (reducing their loads to, often, about 80 from 160), which has given them the time to build the relationships that students need — particularly in a pandemic, but always. ([View Highlight](https://read.readwise.io/read/01j6cnc7jhp3bwwnc46e5c15wa))
+- Coming up with ways to build trust and find solutions that are good for both students and adults is one of the meta-lessons of the pandemic. ([View Highlight](https://read.readwise.io/read/01j6cndyeq6ee2dvfpqxhvpss1))
+- We should take a page from the Japanese tidying expert and Marie Kondo the curriculum, discarding the many topics that have accumulated like old souvenirs*,* while retaining essential knowledge and topics that spark joy. ([View Highlight](https://read.readwise.io/read/01j6cnepjm4yw52wnmgbgf7pa2))
+- you can’t widget your way to powerful learning, that relationships are critical for learning, that students’ interests need to be stimulated and their selves need to be recognized. ([View Highlight](https://read.readwise.io/read/01j6cnf66w5f6cxkh80hn2fgzp))

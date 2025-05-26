@@ -1,0 +1,34 @@
+---
+title: Why Magic Matters
+author: Katherine May
+Title: Why Magic Matters
+source: reader
+readDate: 2024-06-29
+publishDate: 2025-05-25
+tags: []
+---
+# Why Magic Matters
+
+![rw-book-cover](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7afedccf-2ee1-4517-a556-e7d482dbca40_874x1240.jpeg)
+
+## Metadata
+- Author: [[Katherine May]]
+- Full Title: Why Magic Matters
+- Category: #articles
+- Summary:: The author, Katherine May, shares her journey from rejecting magic to embracing enchantment in her book "Enchantment." She encourages readers to seek wonder and connection with the world around them, even in difficult times. Enchantment is described as a way of engaging with the ordinary world with fascination and curiosity.
+- URL: https://katherinemay.substack.com/p/why-magic-matters
+
+## Highlights
+- But I did feel as though certain things - certain stories, certain tricks of the light, the way that the moon chased me home or sea roared through the conch shell in my grandparents’ bathroom - carried a charge, a magnetism, a sense that world contained a wellspring of power that I could intercept, sometimes, in the right state of mind. ([View Highlight](https://read.readwise.io/read/01j1jv3ec39dq0ev6e9xa42mvc))
+- ineptitude, so anxious that I couldn’t breathe. When I look back at my former self, I don’t think this was caused by my rationalist beliefs, but I do see that I pushed away anything that might have offered me connection and comfort, or opened up a space for reflection. I had no model of placing myself within the world that didn’t position me as a lone individual, either striving upwards or failing. Give ([View Highlight](https://read.readwise.io/read/01j1jv5nwe9m70jpwzxq19x0wn))
+- ‘Magic’ is probably a strange word to use for what I’m trying to explain, but then ‘God’ carries a lot of baggage, or at least it always has for me. Eventually, my defences broke down, but not in any sensible kind of order. My behaviour changed before my opinions caught up. I found that I was praying without thinking that there was any being to pray to. For a while, I was forever picking up spiritual texts in charity shops, just out of a sense of intellectual curiosity, you understand, and not out of any personal seeking. It would have been lax, wouldn’t it, not to read all the foundational texts of the yoga classes I so adored? How could I enjoy haiku without reading up on Zen? Can you claim to truly love Ursula Le Guin without reading the Tao Te Ching? A Nick Cave lyric lodged itself in my mind: *I don’t believe in an interventionist God*. It was curious, that specific insertion of ‘interventionist’. Apparently that was not a requirement in the first place. My concept of God started to disintegrate. ([View Highlight](https://read.readwise.io/read/01j1jv81crzfpawc6mhz7c2wm8))
+- What seems irrational to me, now, is to argue against the observation of my own senses. That does not mean that I want to convert anyone to my way of seeing things - far from it. In fact, I strongly suspect that we all perceive things differently, and that we all have different desires. That strikes me as… *a good thing?* ([View Highlight](https://read.readwise.io/read/01j1jva2sv1yzppyah1d1c145h))
+- My husband, meanwhile, senses nothing remotely magical in the world, and is honestly pretty content. He does not need what I need. Similarly, I could live without the overflowing collection of funk records in which he finds transcendence, but I also like having them around. Each to their own doesn’t have to mean separation. ([View Highlight](https://read.readwise.io/read/01j1jvag2gh215ae02hkr3nxvd))
+- But the problem is, I think it’s absolutely necessary. Just as everything seems so desolate, when we feel so isolated and afraid, confused and exhausted, when anger threatens to taint our entire social order, many of us are yearning for something that connects us again, that draws us back into our bodies, and tethers us to our landscapes. Something that gives us back our delight, and allows us to explore our longings. When so many of us are losing hope, it seems vital that we renew our connection to a world that’s worth saving; that we show a more meaningful way to live than hate and individualism. We have seen the harm that comes when we all harden. It’s time to learn how to soften into this strange, conflicted era.
+  The trick, I think, is not to seek belief, but contact. And that contact is intensely personal. It cannot be handed to you by someone else. It is, at best, a lifelong pursuit. That’s what I wrote a book about. ([View Highlight](https://read.readwise.io/read/01j1jvcpqf7820hp2vzcbz658e))
+- ![](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7afedccf-2ee1-4517-a556-e7d482dbca40_874x1240.jpeg) ([View Highlight](https://read.readwise.io/read/01j1jvd25sg262r7zgkw2ga2k1))
+- Children are effortlessly enchanted. We adults find it hard. Somewhere along the way, we lost a skill - or, more likely, deliberately put it aside as we tried to grow up. Piece by piece, unpick your cynicism. Get distracted by beauty. Sometimes we learn all the wrong lessons. ([View Highlight](https://read.readwise.io/read/01j1jvf5qcwqqtzzj6ty438ydx))
+- interpreting your place, weaving stories and mythologies around it. Learn them, and see how they transform the mundane. Pass them on. ([View Highlight](https://read.readwise.io/read/01j1jwhs13zj9fg6h19swckcd8))
+    - Note: Stones are great
+- Foster a relationship with your own wonder. It’s nobody’s business but your own. Keep coming back to it. Keep needing it. Keep noticing. Let it sustain you for a lifetime.
+  **If you think a friend or loved one would enjoy The Clearing by Katherine May, gift** ([View Highlight](https://read.readwise.io/read/01j1jvfk0mnma7491mm4e8xrcf))

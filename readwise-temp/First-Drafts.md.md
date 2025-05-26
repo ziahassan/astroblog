@@ -1,0 +1,22 @@
+---
+title: First Drafts
+author: Austin Kleon
+Title: First Drafts
+source: reader
+readDate: 2024-05-31
+publishDate: 2025-05-25
+tags: []
+---
+# First Drafts
+
+![rw-book-cover](http://austinkleon.com/wp-content/uploads/2018/05/DcCLVDSVMAEKdSn-1.jpg)
+
+## Metadata
+- Author: [[Austin Kleon]]
+- Full Title: First Drafts
+- Category: #articles
+- Summary:: The document delves into the concept of first drafts in writing, referencing Anne Lamott's chapter "Shitty First Drafts" from her book "Bird By Bird." It highlights the common struggle of starting any writing project, emphasizing the importance of simply getting thoughts onto paper initially. Both Lamott and David Rakoff stress the challenging nature of first drafts, likening it to pulling teeth. Rakoff particularly emphasizes that writing always begins poorly and can be a difficult process, a sentiment echoed by those familiar with the creative struggles of producing initial drafts.
+- URL: https://austinkleon.com/2018/04/30/first-drafts/?utm_source=substack&utm_medium=email
+
+## Highlights
+- “It doesn’t matter if it’s good right now, it just needs to exist.” ([View Highlight](https://read.readwise.io/read/01hz7ctaf3dj7hvv2hd8jk8y6t))

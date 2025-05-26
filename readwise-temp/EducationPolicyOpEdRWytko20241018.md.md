@@ -1,0 +1,24 @@
+---
+title: EducationPolicy.OpEd.RWytko.20241018
+author: Rachel Wytko
+Title: EducationPolicy.OpEd.RWytko.20241018
+source: reader
+readDate: 2024-10-28
+publishDate: 2025-05-25
+tags: []
+---
+# EducationPolicy.OpEd.RWytko.20241018
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/229294442/p-HqYsNv9pArYOYGP8Vj-kGjmTZCxb_WqoR09RvA4qE-cove_xWJBRXe.png)
+
+## Metadata
+- Author: [[Rachel Wytko]]
+- Full Title: EducationPolicy.OpEd.RWytko.20241018
+- Category: #articles
+- Document Tags: [[Ed Policy]] 
+- Summary:: The author argues that isolationist parenting, where parents only cheer for their own children, negatively impacts kids' performance and social support in sports and education. This lack of communal encouragement contributes to widening achievement gaps in schools, as children from less advantaged backgrounds often miss out on crucial support. To improve outcomes, parents should work together to support all children, fostering a sense of community and connection.
+- URL: https://readwise.io/reader/document_raw_content/229294442
+
+## Highlights
+- After a particularly intense soccer match, my son’s coach pulled me aside to “chat.” Self-aware, loud-mouthed sports mama that I am, ([View Highlight](https://read.readwise.io/read/01jb9zn553eaw0cdw95e99bb6b))
+- The impact of parents focusing only on supporting their own children in social contexts, or isolationist parenting, extends beyond soccer performances. I ([View Highlight](https://read.readwise.io/read/01jawyb7zrqtsf2xvq0g1ya6d4))

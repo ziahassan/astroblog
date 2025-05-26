@@ -1,0 +1,22 @@
+---
+title: Cardona Is Inviting States to Create Innovative Exams. 4 Ways They Can Start
+author: Jennifer Poon
+Title: Cardona Is Inviting States to Create Innovative Exams. 4 Ways They Can Start
+source: reader
+readDate: 2024-06-11
+publishDate: 2025-05-25
+tags: []
+---
+# Cardona Is Inviting States to Create Innovative...
+
+![rw-book-cover](https://www.the74million.org/wp-content/uploads/2024/02/Miguel-Cardona-exam-innovations-825x495.jpg?cb=721539)
+
+## Metadata
+- Author: [[Jennifer Poon]]
+- Full Title: Cardona Is Inviting States to Create Innovative Exams. 4 Ways They Can Start
+- Category: #articles
+- Summary:: State leaders are urged to create innovative assessment systems that benefit students and educators. Secretary of Education Miguel Cardona encourages states to rethink assessment programs and offers guidance on using the Innovative Assessment Demonstration Authority. State leaders should engage communities, seek federal funding, and leverage flexibility to drive assessment reform.
+- URL: https://www.the74million.org/article/cardona-is-inviting-states-to-create-innovative-exams-4-ways-they-can-start/?utm_source=The+74+Million+Newsletter&utm_campaign=0c5c369b07-EMAIL_CAMPAIGN_2022_07_27_07_47_COPY_01&utm_medium=email&utm_term=0_077b986842-0c5c369b07-177435757
+
+## Highlights
+- But in Cardona’s letter, we see a fresh federal desire to support states with assessment innovation, through the authority or otherwise. And that matters if states are to finally create [one coherent system](https://www.leadingwithlearning.org/post/why-do-we-have-two-systems-of-accountability) to measure learning and report progress that is relevant and meaningful — not just to federal policymakers, but also to educators, students and families. ([View Highlight](https://read.readwise.io/read/01j02mp5e5vtgn9rrvt7z6n7xj))

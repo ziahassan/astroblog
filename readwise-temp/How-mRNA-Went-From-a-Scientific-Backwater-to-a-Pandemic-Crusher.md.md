@@ -1,0 +1,31 @@
+---
+title: How mRNA Went From a Scientific Backwater to a Pandemic Crusher
+author: David Cox
+Title: How mRNA Went From a Scientific Backwater to a Pandemic Crusher
+source: reader
+readDate: 2024-06-29
+publishDate: 2025-05-25
+tags: []
+---
+# How mRNA Went From a Scientific Backwater to a ...
+
+![rw-book-cover](https://media.wired.com/photos/65e8358aafc3a7c90f8ff03f/191:100/w_1280,c_limit/vaccine.jpg)
+
+## Metadata
+- Author: [[David Cox]]
+- Full Title: How mRNA Went From a Scientific Backwater to a Pandemic Crusher
+- Category: #articles
+- Summary:: Katalin Karikó's research on mRNA therapeutics was initially overlooked, but her groundbreaking work led to the development of mRNA vaccines for COVID-19. She overcame challenges to create a modified form of mRNA that could be safely administered, paving the way for mRNA-based vaccines and therapies. Karikó's persistence and innovation have played a crucial role in revolutionizing vaccine development and addressing the global pandemic.
+- URL: https://www.wired.com/story/mrna-coronavirus-vaccine-pfizer-biontech/
+
+## Highlights
+- scientists knew how to isolate mRNA from cells, creating artificial forms was not possible. But in 1984, the American biochemist Kary Mullis invented polymerase chain reaction (PCR), a method of amplifying very small amounts of DNA so it can be studied in detail. By 1989, other researchers had found a way to utilise PCR to generate mRNA from scratch, by amplifying DNA strands and using an enzyme called RNA polymerase to create mRNA molecules from these strands. “For scientists working on mRNA, this was very empowering,” said Karikó. “Suddenly we felt like we could do anything.” ([View Highlight](https://read.readwise.io/read/01j1jt7pz5b0c9pcp5vqm6zdnc))
+- However, by the early to mid 1990s, some of the early excitement surrounding mRNA was beginning to fade. While scientists had cracked the problem of how to create their own mRNA, a new hurdle had emerged. When they injected it into animals it induced such a severe inflammatory response from the immune system that they died immediately. Any thoughts of human trials were impossible. ([View Highlight](https://read.readwise.io/read/01j1jt98xb7adeerbwbbc8h958))
+- 1997, Drew Weissman, a respected immunologist, moved to UPenn. This was long before the days where scientific publications were available online, and so the only way for scientists to peruse the latest research was to photocopy it from journals. “I found myself fighting over a photocopy machine in the department with this scientist called Katalin Karikó,” he remembered. ”So we started talking, and comparing what each other did.” ([View Highlight](https://read.readwise.io/read/01j1jtd2xgxg603tj99zy70nm6))
+    - Note: Amazing just how good we have it today.
+- administered safely, was to identify which of the underlying nucleosides – the letters of RNA’s genetic code – were provoking the immune system and replace them with something else. In the early 2000s, Karikó happened across a study which showed that one of these letters, Uridine, could trigger certain immune receptors. It was the crucial piece of information she had been searching for.
+  In 2005, Karikó and Weissman published a study announcing a specifically modified form of mRNA, which replaced Uridine with an analog – a molecule which looked the same, but did not induce an immune response. It was a clever biological trick, and one which worked. When mice were injected with this modified mRNA, they lived. “I just remember Drew saying, ’Oh my god, it’s not immunogenic,’” said Karikó. “We realised at that moment that this would be very important, and it could be used in vaccines and therapies. So we published a paper, filed a patent, established a company, and then found there was no interest. Nobody invited us anywhere to talk about it, nothing.” ([View Highlight](https://read.readwise.io/read/01j1jtvb2tn0wjtjs9tx3wt7cx))
+- Derrick Rossi, then a postdoctoral researcher at Stanford University, read Karikó and Weissman’s paper and was immediately intrigued. In 2010, Rossi co-founded a biotech company called Moderna, with a group of Harvard and MIT professors, with the specific aim of using modified mRNA to create vaccines and therapeutics. A decade on, Moderna is now one of the leaders in the Covid-19 vaccine race and valued at approximately $35 billion (£26b), after reporting that its mRNA based vaccine showed 94 per cent efficacy in a Phase III clinical trial. ([View Highlight](https://read.readwise.io/read/01j1jtwdnvvdjn0n266wqymmn4))
+- managing to commercialise their finding, licensing their technology to a small German company called BioNTech, after five years of trying and failing.
+  Both Moderna and BioNTech – which had been founded by a Turkish born entrepreneur called Ugur Sahin - had their eye on the lucrative fields of cancer immunotherapy, cardiovascular and metabolic diseases. ([View Highlight](https://read.readwise.io/read/01j1jtybg4r75vx3x4bmsjvqf9))
+- For Karikó, seeing the results of BioNTech’s Phase III trial, simply brought a sense of quiet satisfaction. “I didn’t jump or scream,” she said. “I expected that it would be very effective.” ([View Highlight](https://read.readwise.io/read/01j1jv0n7zds0415vn5grkz41x))

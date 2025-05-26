@@ -1,0 +1,23 @@
+---
+title: UisaBeautifulShapeforYourJournalArticle2.0
+author: readwise.io
+Title: UisaBeautifulShapeforYourJournalArticle2.0
+source: reader
+readDate: 2024-06-09
+publishDate: 2025-05-25
+tags: []
+---
+# UisaBeautifulShapeforYourJournalArticle2.0
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/181713550/kTvDgUFj2aqR5SD-pXeYzfSdXzU9g5alR00GgROfSMI-cove_84lGcDm.png)
+
+## Metadata
+- Author: [[readwise.io]]
+- Full Title: UisaBeautifulShapeforYourJournalArticle2.0
+- Category: #articles
+- Summary:: The text discusses the structure of a journal article, emphasizing the importance of clear communication and organization for both general and technical readers. It provides guidance on how to effectively present your research findings, from setting up the problem to detailing the research design and implications. The author encourages authors to consider their audience, focus on major contributions, and tell a coherent story throughout the paper.
+- URL: https://readwise.io/reader/document_raw_content/181713550
+
+## Highlights
+- Take the reader on a journey. Good papers tell a story. e.g., is there a tension your story resolves? ● Avoid repeating yourself throughout the paper. Early sections can foreshadow what comes next, but they should not fully disclose what later sections will add to the story.
+  ● Provide guideposts that help readers follow the evolving story, keeping the current part in context. ([View Highlight](https://read.readwise.io/read/01hzx9jfx5zsbgtmw7fy2pmtbe))

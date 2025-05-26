@@ -1,0 +1,30 @@
+---
+tags:
+  - ReadwiseInbox
+Author:
+  - Weinstein et al
+Title: Teaching the Science of Learning
+Source: reader
+Date: 2025-01-28
+Summary: This review discusses six effective cognitive strategies for learning, including retrieval practice and spaced practice. Practicing retrieval helps strengthen memory and improve the application of knowledge. Overall, using these strategies can enhance meaningful learning in the classroom.
+Date-of-article: 2025-01-28
+---
+# Teaching the Science of Learning
+
+![rw-book-cover](https://media.springernature.com/w200/springer-static/cover/journal/41235.jpg)
+
+## Metadata
+- Author: [[SpringerOpen]]
+- Full Title: Teaching the Science of Learning
+- Category: #articles
+- Document Tags: [[science of learning]] 
+- Summary:: This review discusses six effective cognitive strategies for learning, including retrieval practice and spaced practice. Practicing retrieval helps strengthen memory and improve the application of knowledge. Overall, using these strategies can enhance meaningful learning in the classroom.
+- URL: https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-017-0087-y
+
+## Highlights
+- The effect is simple: the same amount of repeated studying of the same information spaced out over time will lead to greater retention of that information in the long run, compared with repeated studying of the same information for the same amount of time in one study session. ([View Highlight](https://read.readwise.io/read/01jjq5a7aqhtv4tbbksk4jqsqf))
+- we know from a century of research that retrieving knowledge actually strengthens it (see Karpicke, Lehman, & Aue, [2014](https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-017-0087-y#ref-CR73)) ([View Highlight](https://read.readwise.io/read/01jjq5b7q04267x4dfqrysjnrk))
+- when students expected to be tested, the increased test expectancy led to better-quality encoding of new information. Frequent testing can also serve to decrease mind-wandering – that is, thoughts that are unrelated to the material that students are supposed to be studying (Szpunar, Khan, & Schacter, [2013](https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-017-0087-y#ref-CR157)). ([View Highlight](https://read.readwise.io/read/01jjq5chehbkry41ffft02h9nz))
+    - Note: interesting. goes a little counter to my ideas about ungrading.
+- Dual coding follows from the notion of text being accompanied by complementary visual information to enhance learning. ([View Highlight](https://read.readwise.io/read/01jjq5gb677dchkqpp9tzmxjb7))
+- However, McNeill et al. also found that when students were given visually rich examples, they performed more poorly than students who were not given any visual example, suggesting that the visual details can at times become a distraction and hinder performance. Thus, it is important to consider that images used in teaching are clear and not ambiguous in their meaning (Schwartz, [2007](https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-017-0087-y#ref-CR150)). ([View Highlight](https://read.readwise.io/read/01jjq5h62b4jk74w4krt6mh11x))

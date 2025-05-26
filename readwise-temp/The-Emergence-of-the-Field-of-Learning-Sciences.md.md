@@ -1,0 +1,40 @@
+---
+title: The Emergence of the Field of Learning Sciences
+author: Cambridge Core
+Title: The Emergence of the Field of Learning Sciences
+source: reader
+readDate: 2025-01-23
+publishDate: 2025-05-25
+tags: []
+---
+# The Emergence of the Field of Learning Sciences
+
+![rw-book-cover](https://www.cambridge.org/core/cambridge-core/public/images/logo_core_page_share_600x600.jpg)
+
+## Metadata
+- Author: [[Cambridge Core]]
+- Full Title: The Emergence of the Field of Learning Sciences
+- Category: #articles
+- Document Note: Is this progressive or Just empirically informed 64 Cognitive science?
+   What do we lose when machines articulate for us?
+- Document Tags: [[science of learning]] 
+- Summary:: The learning sciences is an interdisciplinary field that explores how people learn in various settings, from classrooms to informal environments. It aims to enhance teaching methods by focusing on deeper understanding and the importance of prior knowledge. Researchers collaborate across disciplines to create effective learning environments and improve educational practices.
+- URL: https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43
+
+## Highlights
+- not only the formal learning of school classrooms, but also the informal learning that takes place at home, on the job, and among peers. ([View Highlight](https://read.readwise.io/read/01jj7fht00thxnz92mx2gnvgj2))
+- This traditional vision of schooling is known as *instructionism* (Papert, [Reference Papert1993](https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43#c03325-1-44)). Instructionism prepared students for the industrialized economy of the early 20th century. But the world today is much more technologically complex and economically competitive, and instructionism is increasingly failing to educate our students to participate in this new kind of society. ([View Highlight](https://read.readwise.io/read/01jj7fkyv7t670c4q1wekcdnx1))
+- Educated graduates need a deep conceptual understanding of complex concepts and the ability to work with them creatively to generate new ideas, new theories, new products, and new knowledge. ([View Highlight](https://read.readwise.io/read/01jj7fmhxw0z19k05b9spwx3wf))
+- They need to be able to take responsibility for their own continuing, lifelong learning. These abilities are important to the economy, to the continued success of participatory democracy, and to living a fulfilling, meaningful life. ([View Highlight](https://read.readwise.io/read/01jj7fmx5ejm7te22790bwm5fx))
+- In the 1970s, a new science of learning was born – based on research emerging from psychology, computer science, philosophy, sociology, and other scientific disciplines. ([View Highlight](https://read.readwise.io/read/01jj7fs02taxzp77q68g7aa39s))
+- One of the central underlying themes of the learning sciences is that students learn deeper knowledge when they engage in activities that are similar to the everyday activities of professionals who work in a discipline. ([View Highlight](https://read.readwise.io/read/01jj8fjvdgax4gnwjkprsa5nh7))
+- Of course, students are not capable of doing exactly the same things as highly trained professionals; when learning scientists talk about engaging students in authentic practices, they are referring to developmentally appropriate versions of the situated and meaningful practices of experts. ([View Highlight](https://read.readwise.io/read/01jj8fp62t0ae5b7m97bs6znqb))
+- the first half of the 20th century, philosophers came to a consensus on the nature of scientific knowledge: scientific knowledge consisted of statements about the world and of logical operations that could be applied to those statements. This consensus was known as *logical empiricism* (McGuire, [Reference McGuire, Salmon, Earman, Glymour, Lennox, Machamer, McGuire, Norton, Salmon and Schaffner1992](https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43#c03325-1-38); Suppe, [Reference Suppe and Suppe1974](https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43#c03325-1-57)). Logical empiricism combined with behaviorism and traditional classroom practice to form the instructionist approach to education: disciplinary knowledge consisted of facts and procedures, and teaching was thought of as transmitting the facts and procedures to students. ([View Highlight](https://read.readwise.io/read/01jj8fqnt84cx2sj5tdc7gzhc2))
+- newer epistemology holds that the practice of science involves experimentation, trial and error, hypothesis testing, debate, and argumentation. And science is not a solo endeavor; it involves frequent encounters with peers in the scientific community. Scientists frequently talk about evaluating other scientists’ claims and think about how best to support and present their claims to others. ([View Highlight](https://read.readwise.io/read/01jj8fryvxm3sd5e6tsfpz2800))
+- Articulating and learning go hand in hand, in a mutually reinforcing feedback loop. In many cases, learners don’t actually learn something until they start to articulate it – in other words, while thinking out loud, they learn more rapidly and deeply than while studying quietly. ([View Highlight](https://read.readwise.io/read/01jj8g102mr5fkzfk7m2mhvevn))
+    - Note: So never interrupt Someone who is articulating.
+- By 2000, no studies had convincingly shown that computer use was correlated with improved student performance. When researchers began to look more closely at why computers were having so little impact, they discovered that computer use was not based on the learning sciences; instead, teachers were using computers as quick add-ons to the existing instructionist classroom (Cuban, [Reference Cuban2001](https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43#c03325-1-25)). Learning scientists are well aware that computers have generally failed teachers and students; that they are, in Larry Cuban’s ([Reference Cuban2001](https://www.cambridge.org/core/books/cambridge-handbook-of-the-learning-sciences/introduction/12844CFE6CE2AAC36ED67D598B9C0A43#c03325-1-25)) famous words, “oversold and underused.” ([View Highlight](https://read.readwise.io/read/01jj8g5d4a1rkhpfg3zwhr0180))
+    - Note: So where does this leave Us in 2025?
+- Experimental and quasi-experimental designs can provide educators and policy makers with important information about the relative merits of different approaches. But they can’t tell us very much about why or how a teaching method is working – the minute-by-minute structure of the classroom activity that leads to student learning. ([View Highlight](https://read.readwise.io/read/01jj8ga64y108q4kjn1c5bc2n7))
+- During this period, they initiated the “Artificial Intelligence in Education” (AIED) conferences that are still held today. ([View Highlight](https://read.readwise.io/read/01jj8gbsb41kj6146tfnnd0rdv))
+- Unlike these previous generations of educational research, learning scientists spend a lot of time in schools – many of us were full-time teachers before we became researchers. ([View Highlight](https://read.readwise.io/read/01jj8gevvj6vj6nfnqgd2rztwh))

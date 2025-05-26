@@ -1,0 +1,23 @@
+---
+title: A Choice Too Far: Transit Difficulty and Early High School Transfer
+author: readwise.io
+Title: A Choice Too Far- Transit Difficulty and Early High School Transfer
+source: reader
+readDate: 2025-04-28
+publishDate: 2025-05-25
+tags: []
+---
+# A Choice Too Far- Transit Difficulty and Early ...
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/298287373/Ydv9MywEnw_1e5LHg5k5AV_k0zNuK-QRDR20ACDVphA-cove_0yOe8rn.png)
+
+## Metadata
+- Author: [[readwise.io]]
+- Full Title: A Choice Too Far- Transit Difficulty and Early High School Transfer
+- Category: #articles
+- Summary:: Students in Baltimore who have longer commutes to high school are more likely to transfer to schools that are closer to home. These transfers often lead to enrolling in schools that may not have been their top choices but are easier to reach. The study highlights how transportation issues can affect students' school decisions and overall educational experience.
+- URL: https://readwise.io/reader/document_raw_content/298287373
+
+## Highlights
+- Moreover, we found that when these students change schools, their newly enrolled school is substantially closer to home, requires fewer vehicle transfers, and is less likely to have been included among their initial set of school choices. ([View Highlight](https://read.readwise.io/read/01jsymkgmwhn828jsqwybxtx0k))
+- Overall, within-year mobility rates are relatively low in our analytic sample, but even a few new students can cause seri- ous problems for instruction at the classroom level (Lash & Kirkpatrick, 1994). To ([View Highlight](https://read.readwise.io/read/01jsymrwdtwcprzxb4gg60937j))

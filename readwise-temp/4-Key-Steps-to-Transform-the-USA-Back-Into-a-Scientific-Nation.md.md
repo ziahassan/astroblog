@@ -1,0 +1,24 @@
+---
+title: 4 Key Steps to Transform the USA Back Into a Scientific Nation
+author: Big Think
+Title: 4 Key Steps to Transform the USA Back Into a Scientific Nation
+source: reader
+readDate: 2025-04-13
+publishDate: 2025-05-25
+tags: []
+---
+# 4 Key Steps to Transform the USA Back Into a Sc...
+
+![rw-book-cover](https://bigthink.com/wp-content/uploads/2025/02/Aldrin_Looks_Back_at_Tranquility_Base_-_GPN-2000-001102.jpg?resize=1200,630)
+
+## Metadata
+- Author: [[Big Think]]
+- Full Title: 4 Key Steps to Transform the USA Back Into a Scientific Nation
+- Category: #articles
+- Summary:: The USA needs to embrace science to improve public health, safety, and prosperity in the 21st century. By aligning policies with scientific consensus, we can tackle issues like climate change and prevent diseases. Investing in science will benefit everyone and lead to a healthier, safer society for future generations.
+- URL: https://bigthink.com/starts-with-a-bang/4-steps-transform-usa-scientific-nation/?utm_source=fark&utm_medium=website&utm_content=link&ICID=ref_fark
+
+## Highlights
+- It might seem like, at the start of 2025, we’re headed in absolutely the wrong direction. Mass firings and layoffs at the NIH, the NSF, the CDC and more, coupled with the installation of a number of prominent anti-science cabinet members, the [first deadly measles outbreak among children in a decade](https://www.usatoday.com/story/life/health-wellness/2025/02/26/first-measles-death-texas-outbreak/80482935007/), and the [USA’s withdrawal (again) from the Paris Climate Agreement](https://en.wikipedia.org/wiki/United_States_and_the_Paris_Agreement#Rejoining_and_re-withdrawal) all signal a national move away from science.
+  But this is not new. The fact is that Americans have been resistant to heeding the scientific consensus on matters of public policy for many decades, preferring stances that agree with their ideological preferences instead. ([View Highlight](https://read.readwise.io/read/01jn6q6kmzah9d4pxp8kqyy7sz))
+- It is a fundamentally misinformative act to present multiple sides of a controversial issue equally when the scientific consensus overwhelmingly favors one perspective. And yet many will make appeals to: ([View Highlight](https://read.readwise.io/read/01jpbnk75jaae4vz25mmwe3rqx))
