@@ -1,0 +1,25 @@
+---
+title: "A Radical Joyning"
+author: "Rachel Abrams"
+source: "reader"
+tags: []
+readDate: "2023-04-02"
+---
+# A Radical ‘Joyning’
+
+![rw-book-cover](https://tricycle.org/wp-content/uploads/2023/02/inciting-joy-review.png)
+
+## Metadata
+- Author: [[Rachel Abrams]]
+- Full Title: A Radical ‘Joyning’
+- Category: #articles
+- Summary:: Ross Gay’s new essay collection reveals a truer, more tender definition of joy. 
+- URL: https://tricycle.org/article/inciting-joy-review/
+
+## Highlights
+- The word “incite” is often used alongside something like a riot or a revolution, but it’s just as apt for Gay’s definition of joy: a force that dissolves our deepest systems of order—“me,” “you,” “good,” “bad”—and embraces the sweet complexity of what’s left. ([View Highlight](https://read.readwise.io/read/01gx0xvw319vrahzkceaz48tr9))
+- Joy isn’t the lack of pain but the presence of love. ([View Highlight](https://read.readwise.io/read/01gx0xx3jhpwz8a29qfkq68v1y))
+- joy happens when the borders of the self dissolve, suffering happens when they harden. ([View Highlight](https://read.readwise.io/read/01gx0xxcy06dhnay93yq5rk44v))
+- Although not all of us look after someone right up to the end, we’re all [caring for the dying](https://tricycle.org/magazine/home-death/). From that, what might grow? ([View Highlight](https://read.readwise.io/read/01gx0y0bygp30efk9qht8vwde8))
+- Caretaking, a “radical joyning,” happens when we soften the boundaries around the self. A community garden can just be another hobby, but when every mouth that enjoys a ripe mulberry is your mouth too, it becomes something much more beautiful. ([View Highlight](https://read.readwise.io/read/01gx0y2x6j4v3cnhk05q9atpx2))
+- when you avoid your own pain, you can’t bear to look at anyone else’s either. ([View Highlight](https://read.readwise.io/read/01gx0y75tw60000gk8b0qy2yy7))

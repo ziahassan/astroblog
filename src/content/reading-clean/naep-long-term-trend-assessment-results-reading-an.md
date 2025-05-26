@@ -1,0 +1,21 @@
+---
+title: "NAEP Long-Term Trend Assessment Results- Reading and Mathematics"
+author: "nationsreportcard.gov"
+source: "reader"
+tags: []
+readDate: "2024-08-28"
+---
+# NAEP Long-Term Trend Assessment Results- Readin...
+
+![rw-book-cover](https://news.ycombinator.com/favicon.ico)
+
+## Metadata
+- Author: [[nationsreportcard.gov]]
+- Full Title: NAEP Long-Term Trend Assessment Results- Reading and Mathematics
+- Category: #articles
+- Document Tags: [[Ed Policy]] 
+- Summary:: 13-year-old students' average scores in reading and mathematics have decreased compared to the previous assessment in the 2022-23 school year. The decline in scores was observed across various student groups and performance levels. The report highlights a concerning trend of lower scores, especially in mathematics, for students at different percentiles and groups.
+- URL: https://www.nationsreportcard.gov/highlights/ltt/2023/
+
+## Highlights
+- The average scores for 13-year-olds declined 4 points in reading and 9 points in mathematics compared to the previous assessment administered during the 2019–20 school year. Compared to a decade ago, the average scores declined 7 points in reading and 14 points in mathematics. ([View Highlight](https://read.readwise.io/read/01j6cr8fcc54jcdgf8vdmtrs5b))

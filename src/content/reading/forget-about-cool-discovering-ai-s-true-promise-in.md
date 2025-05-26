@@ -1,0 +1,24 @@
+---
+title: "Forget About Cooldiscovering AIs True Promise in Education"
+author: "Scott Pulsipher"
+source: "reader"
+tags: []
+readDate: "2024-05-15"
+---
+# Forget About Cool—discovering AI’s True Promise...
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/uploaded_book_covers/profile_147221/1712849022236)
+
+## Metadata
+- Author: [[Scott Pulsipher]]
+- Full Title: Forget About Cool—discovering AI’s True Promise in Education
+- Category: #articles
+- Summary:: AI's potential in education lies in personalizing learning to close attainment gaps and increase opportunities for all students. The use of AI as a tool can transform education by providing personalized support and guidance to each learner. This technology has the power to create a more egalitarian society by leveling the playing field and ensuring that every student can thrive.
+- URL: https://www.linkedin.com/pulse/forget-cooldiscovering-ais-true-promise-education-scott-pulsipher-ayjgc/?trackingId=uzfZcq1eR3CxjPfrPi4%2BBw%3D%3D&trk=article-ssr-frontend-pulse_little-text-block
+
+## Highlights
+- Can AI enable a more egalitarian society? Benjamin Bloom’s 2 Sigma Problem
+  40 years ago, Benjamin Bloom observed and reported in the journal [Educational Researcher](https://web.mit.edu/5.95/www/readings/bloom-two-sigma.pdf?trk=article-ssr-frontend-pulse_little-text-block) that students who were tutored using one-to-one, mastery-based learning with a corrective instruction loop performed two standard deviations better than those who were taught in a conventional instructional setting (the one most have experienced and has long been perpetuated). Perhaps more significant, the study also debunked the idea that every class will naturally contain a mix of talented students, average students, and low achievers. Whereas just 20% of students in Bloom’s control group mastered learning materials in the traditional classroom setting, 90% of students who received one-to-one, mastery-based learning did. ([View Highlight](https://read.readwise.io/read/01hxwycv47edh6p1m1hsc66e7w))
+- learning is optimized when students have access to their own subject-matter experts, a world without AI automatically puts constraints around opportunity because no professor can individually engage ten students at once. ([View Highlight](https://read.readwise.io/read/01hxwysg92q7zmmch0vgfw9qp4))
+- Apart from enabling a more egalitarian society, the impact of closing attainment gaps would be the education sector’s mic-drop moment. ([View Highlight](https://read.readwise.io/read/01hxwyvqqye7rvb76vzavpjz32))
+- Might we realize the reality (yes, that’s right!) that opportunity is abundant, and equally accessible and attainable by all? ([View Highlight](https://read.readwise.io/read/01hxwyw6qay713nkdbbagrg4x2))

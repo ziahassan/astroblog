@@ -1,0 +1,22 @@
+---
+title: "The Year in Moviegoing  The New Yorker"
+author: "Anthony Lane"
+source: "reader"
+tags: []
+readDate: "2023-12-21"
+---
+# The Year in Moviegoing | The New Yorker
+
+![rw-book-cover](https://media.newyorker.com/photos/6578e5fd86d15967c672397a/16:9/w_1280,c_limit/Movies_final_02.jpg)
+
+## Metadata
+- Author: [[Anthony Lane]]
+- Full Title: The Year in Moviegoing | The New Yorker
+- Category: #articles
+- Summary:: The article provides a reflection on the year of moviegoing, highlighting the impact of the strikes on production and release dates, the fear of artificial intelligence in the industry, and the lack of films appealing to the elderly or that provide opportunities for laughter. The author discusses a few films that stood out, such as "Petite Maman" and "The Worst Person in the World," and praises the performances of actresses like Carey Mulligan and Da'Vine Joy Randolph. Overall, the article suggests that while the year had its share of large and costly films, there were also some gems worth watching.
+- URL: https://www.newyorker.com/culture/2023-in-review/the-year-in-moviegoing?utm_source=nl&utm_brand=tny&utm_mailing=TNY_Daily_121623&utm_campaign=aud-dev&utm_medium=email&utm_term=tny_daily_digest&bxid=657b283ad248f69615036413&cndid=&hasha=c37ee0d5e60da7cd4a9636b703c8aa98&hashb=9c3568adaa2e24d8018b9e539080f2c4e4727889&hashc=c086056e175af3a7c95008bf1638dd7cf629b02e2eb3c148607d7557696f1ea2&esrc=OIDC_SELECT_ACCOUNT_PAGE&mbid=CRMNYR012019
+
+## Highlights
+- Why not get A.I. to write these movies? It couldn’t do any worse. Algorithmically, thanks to previous installments, everything is in place: a clear narrative formula, a strong central protagonist, and the interminable trappings of cosmic bullshit. If human brains can’t wrestle all that into some semblance of consistency, so be it. Give [ChatGPT](https://www.newyorker.com/news/the-new-yorker-interview/its-not-possible-for-me-to-feel-or-be-creepy-an-interview-with-chatgpt) a chance. ([View Highlight](https://read.readwise.io/read/01hhteekn8kgs5dwshzhd8sq16))
+    - Note: The connection here is that most likely just like education we need to up our game when it comes to our human creations. We’ve been living for far too long with creations that and assessments that and assignments and lesson plans and rubrics that aren’t as sophisticated as they could be an artist human, as they could be, we could change that.
+- The irony is that, for anyone who watches movies rather than makes them, the robots have been in control for quite a while—to be precise, since 2:14 A.M. E.S.T. on August 29, 1997, when an A.I. system called Skynet became self-aware and, by way of a celebration, tricked mankind into almost destroying itself in a nuclear war. That’s what Arnold Schwarzenegger told us, anyway, in “Terminator 2: Judgment Day,” and we all know better than to disagree with him. ([View Highlight](https://read.readwise.io/read/01hj5az9hetc4t7vkdr14q7pp2))

@@ -1,0 +1,30 @@
+---
+title: "Working It s Guide to AI at Work"
+author: "readwise.io"
+source: "reader"
+tags: []
+readDate: "2024-07-07"
+---
+# þÿWorking It s Guide to AI at Work
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/192177488/bQ9QylruNuyh6U8l2qCSsc9YHD7oVtYl0FNhw4IaE5E-cove_qLwB4Ab.png)
+
+## Metadata
+- Author: [[readwise.io]]
+- Full Title: þÿWorking It s Guide to AI at Work
+- Category: #articles
+- Summary:: AI at work can help with career progression and succession planning by identifying skills gaps and suggesting potential career paths. The future may see a rise in the demand for prompt engineering skills to effectively communicate with AI systems. Human-made creative work, especially in high-value industries, is unlikely to be replaced by AI, highlighting the importance of individual creativity and craftsmanship.
+- URL: https://readwise.io/reader/document_raw_content/192177488
+
+## Highlights
+- This is useful for businesses preparing to hire — and also prompts more imaginative career planning for workers. ([View Highlight](https://read.readwise.io/read/01j278twcwgkj6x0scm2gtp028))
+    - Note: This is probably true. The issue is that if applicants are using AI to become better applicants (and therefore many more resumes get sent), and recruiters are using AI to weed out candidates (and therefore have to be even more efficient at weeding out candidates)… the whole current career-getting system falls apart.
+- Prompt engineering — the words, queries and requests that are fed into an AI tool to generate the desired output — is going to be the in-demand job of the future (so those humanities degrees may not be in vain). Generative AI is only as good as the instructions humans give it, so we need to develop our communication skills — and it will learn with us. ([View Highlight](https://read.readwise.io/read/01j27aw0hd36m4epxxdj69507h))
+    - Note: This is already proving ot be untrue; we all thought this would be a thing a year ago and it turns out that it’s not that hard to prompt an AI once you get the hang of it. The idea now is that everyone will be able to do it, not just a select few.
+- That means tasks get done more quickly, as Valiente is freed up — and she can dodge repetitive conversations about previous projects. “By the time you’ve had [that conversation] 15 times, it’s really not that interesting,” she says. ([View Highlight](https://read.readwise.io/read/01j27az6dr10msdn4b2ycgatsr))
+    - Note: And the corollary… if your AI bot can attend your meeting that is useless, isn’t the problem the meeting?
+- He notes that “higher value is [already] applied to things that were made with harder work [in industries such as fashion] . . . You buy a custom pair of shoes from an Italian shoemaker who’s got a family business hundreds of years old, versus a mass produced sweatshop sneaker that has no intrinsic value, or storytelling, to be had with it. So, creatively, that could be where we’re heading.” ([View Highlight](https://read.readwise.io/read/01j27b1gt8c7anq1nkkfxak3md))
+    - Note: This is true, and this is what I tell people like coaches and marketers who are worried about AI taking their job.
+      However, if the work you do is boring and mediocre, then expect to be replaced. You have to have a unique selling proposition.
+- He says this can be particularly beneficial to introverts and people with neurodiverse conditions such as autism, for example, who can find face-to-face interviews (whether online or in person) intimidating. ([View Highlight](https://read.readwise.io/read/01j27bgr9chmprk5f050axfsb7))
+    - Note: Uhhh. unless the AI interviewer is going to be the one interacting with others in the workplace, this would probably be a red flag to most employers. Being so introverted that you can’t bear to be seen on camera.

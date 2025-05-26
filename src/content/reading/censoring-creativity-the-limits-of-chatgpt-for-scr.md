@@ -1,0 +1,21 @@
+---
+title: "Censoring Creativity- The Limits of ChatGPT for Scriptwriting"
+author: "Ian Scheffler"
+source: "reader"
+tags: []
+readDate: "2024-06-13"
+---
+# Censoring Creativity- The Limits of ChatGPT for...
+
+![rw-book-cover](https://scx2.b-cdn.net/gfx/news/2024/censoring-creativity-t.jpg)
+
+## Metadata
+- Author: [[Ian Scheffler]]
+- Full Title: Censoring Creativity- The Limits of ChatGPT for Scriptwriting
+- Category: #articles
+- Summary:: Researchers found that using AI like ChatGPT for scriptwriting may lead to excessive censorship, limiting artistic expression. The study highlighted how content moderation filters can restrict even PG-rated scripts, questioning the balance between censorship and creativity in AI-generated content. The researchers emphasized the importance of addressing issues of overzealous content moderation without resorting to censorship in the quest for fair and transparent AI technology.
+- URL: https://techxplore.com/news/2024-06-censoring-creativity-limits-chatgpt-scriptwriting.html#google_vignette
+
+## Highlights
+- In the context of the recent strike, the researchers affirm the necessity of both content moderation and artistic expression, neither of which they believe should be left entirely in the hands of autonomous systems. "Content moderation is far from a solved problem and undeniably important," the researchers conclude. "But the solution to these issues must not be censorship."
+  This study was conducted at the University of Pennsylvania School of Engineering and Applied Science, Haverford College and The Pennsylvania State University. ([View Highlight](https://read.readwise.io/read/01j09dzv3yt7aq7y3vn43zdah9))

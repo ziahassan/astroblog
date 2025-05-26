@@ -1,0 +1,28 @@
+---
+title: "The Art of Letting Life Unfold"
+author: "J.W. Bertolotti"
+source: "reader"
+tags: []
+readDate: "2023-06-30"
+---
+# The Art of Letting Life Unfold
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/media/uploaded_book_covers/profile_147221/1UjvndwlFFhE6Eo07fTztXw.jpeg)
+
+## Metadata
+- Author: [[J.W. Bertolotti]]
+- Full Title: The Art of Letting Life Unfold
+- Category: #articles
+- Summary:: How to Live in Harmony with Life
+- URL: https://link.medium.com/wj4MUGGb3Ab
+
+## Highlights
+- Being adaptable is a crucial component of the art of living. The classic Chinese text, the *Tao Te Ching* (often attributed to Lao Tzu), explains,
+  > *In harmony with the Tao, 
+  > the sky is clear and spacious, 
+  > the earth is solid and full, 
+  > all creatures flourish together, 
+  > content with the way they are, 
+  > endlessly repeating themselves, 
+  > endlessly renewed.* ([View Highlight](https://read.readwise.io/read/01h46ggawtkwgatxvejzzwe9ra))
+- Today’s meditation is not a call to abandon plans, goals, discipline, or structure — quite the contrary. The art of letting life unfold is about being more like the bamboo than the oak tree. The oak tree is all-strength with little flexibility. The bamboo, on the other hand, is both sturdy and flexible. ([View Highlight](https://read.readwise.io/read/01h46gj3b3je6j1hzwq3b48v95))

@@ -1,0 +1,25 @@
+---
+title: "Social-Emotional Learning Strategies Dont Work for Every Student. Heres What Does."
+author: "Clementina Jose"
+source: "reader"
+tags: []
+readDate: "2024-07-05"
+---
+# Social-Emotional Learning Strategies Don't Work...
+
+![rw-book-cover](https://edsurge.imgix.net/uploads/post/image/15842/shutterstock_2204152275-1714077617.jpg?auto=compress%2Cformat&w=1024&h=512&fit=crop)
+
+## Metadata
+- Author: [[Clementina Jose]]
+- Full Title: Social-Emotional Learning Strategies Don't Work for Every Student. Here's What Does.
+- Category: #articles
+- Summary:: Traditional social-emotional learning strategies may not effectively support students facing adversity in impoverished neighborhoods. Culturally sensitive and student-led approaches are needed to address the unique emotional needs of Black and Latino students. Collaboration and personalized coping strategies can create a more inclusive and responsive environment for student well-being.
+- URL: https://www.edsurge.com/news/2024-05-01-social-emotional-learning-strategies-don-t-work-for-every-student-here-s-what-does
+
+## Highlights
+- In this situation, it would be unjust of me to expect children to embrace themselves when feeling overwhelmed or to recite affirmations when they've never experienced such gestures or words of encouragement from authoritative figures ([View Highlight](https://read.readwise.io/read/01j21qtqj59h62jy54hbr4kyd4))
+    - Note: I think this person may misunderstand SEL. They may be conflating it with affirmations or pep talks. It is, or can be, much more.
+- I remember several occasions when I discussed coping strategies with students, often suggesting techniques like breathing exercises, journaling, meditation or talking to someone. However, many students have told me directly, "Miss, that doesn't make me feel better." Some have tried journaling but struggle to express themselves in writing. Breathing exercises didn't always help them de-escalate as expected, and meditation seemed irrelevant to their lived experiences. ([View Highlight](https://read.readwise.io/read/01j21qx8mq565ptsytewy4v3f7))
+    - Note: None of this makes sense. 
+      Journaling isn’t about writing. 
+      Why is meditation or breathing not effective? Lived experiences? What?

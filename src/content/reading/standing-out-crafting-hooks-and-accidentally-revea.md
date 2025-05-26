@@ -1,0 +1,21 @@
+---
+title: "Standing Out, Crafting Hooks, and Accidentally Revealing Everything Thats Wrong With You"
+author: "Max Nussenbaum"
+source: "reader"
+tags: []
+readDate: "2024-10-02"
+---
+# Standing Out, Crafting Hooks, and Accidentally ...
+
+![rw-book-cover](https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe92e7812-fb09-4f93-a0f7-158a659b88f5_1000x429.jpeg)
+
+## Metadata
+- Author: [[Max Nussenbaum]]
+- Full Title: Standing Out, Crafting Hooks, and Accidentally Revealing Everything That’s Wrong With You
+Standing Out, Crafting Hooks, and Accidentally Revealing Everything That’s Wrong With You
+- Category: #articles
+- Summary:: Things I Learned as a Semi-Professional Dating App Bio Writer
+- URL: https://www.candyforbreakfast.email/p/standing-out-crafting-hooks-and-accidentally?utm_source=post-email-title&publication_id=94193&post_id=127776471&isFreemail=true&utm_medium=email
+
+## Highlights
+- Getting too serious about creating anything ruins your ability to enjoy it uncritically. ([View Highlight](https://read.readwise.io/read/01j94r6k6k6x5amsks5eftx186))

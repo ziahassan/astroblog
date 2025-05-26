@@ -1,0 +1,21 @@
+---
+title: "The Good China"
+author: "Seth"
+source: "reader"
+tags: []
+readDate: "2023-05-15"
+---
+# The Good China
+
+![rw-book-cover](https://149521506.v2.pressablecdn.com/wp-content/uploads/2018/06/seth_godin_ogimages_v02_18061316.jpg)
+
+## Metadata
+- Author: [[Seth's Blog]]
+- Full Title: The Good China
+- Category: #articles
+- Summary:: Once you use your plates every day, they cease to be the good china. Of course, the plates didn’t change. Your story did. The way you treat them did. The same goes for the red carpet. If you …
+- URL: https://seths.blog/2023/05/the-good-china/?fbclid=IwAR3aolf9qtUweTErqcnlDlOSCA2yeZOKwkj9lcr4F7ap7D4Rsefbe9LSMws
+
+## Highlights
+- Once you use your plates every day, they cease to be the good china.
+  Of course, the plates didn’t change. Your story did. The way you treat them did. ([View Highlight](https://read.readwise.io/read/01h0ep4vrvd8yv238nsn040n1r))

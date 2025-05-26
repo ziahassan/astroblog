@@ -1,0 +1,20 @@
+---
+title: "054  My Methods for Harnessing Intuition and Flow State"
+author: "Theo Stowell"
+source: "reader"
+tags: []
+readDate: "2024-07-02"
+---
+# 054 • My Methods for Harnessing Intuition and F...
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/static/images/article3.5c705a01b476.png)
+
+## Metadata
+- Author: [[Theo Stowell]]
+- Full Title: 054 • My Methods for Harnessing Intuition and Flow State
+- Category: #articles
+- Summary:: Theo Stowell shares methods like meditation, limiting inputs, and journaling to tap into intuition and achieve a flow state. By practicing these techniques, you can better understand your core desires and make decisions based on logic rather than fleeting desires. Developing awareness and focus can help you follow your intuition effectively.
+
+## Highlights
+- An additional simple method to isolate your intuition is to simply limit your brain’s inputs. If you’re spending all day on social media, then you’re going to be more tuned into the content and desires of other peoples’ heads and not your own. ([View Highlight](https://read.readwise.io/read/01j1rdhwb2cacdmz5dw17m7vb2))
+- This is no way to understand your own brain. Strip things back, spend more time creating rather than consuming, and when you’re not, get off the internet. There’s a lot to see in front of your own eyes. ([View Highlight](https://read.readwise.io/read/01j1rdjajwa2h31cptm6sjy515))

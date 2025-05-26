@@ -1,0 +1,22 @@
+---
+title: "ICYMI- First Lady Casey DeSantis Announces Florida Is First in Nation to Reframe and Rethink the Way Mental Health Is Taught in Schools"
+author: "Solodev"
+source: "reader"
+tags: []
+readDate: "2024-10-02"
+---
+# ICYMI- First Lady Casey DeSantis Announces Flor...
+
+![rw-book-cover](https://readwise-assets.s3.amazonaws.com/static/images/article0.00998d930354.png)
+
+## Metadata
+- Author: [[Solodev]]
+- Full Title: ICYMI- First Lady Casey DeSantis Announces Florida Is First in Nation to Reframe and Rethink the Way Mental Health Is Taught in Schools
+- Category: #articles
+- Document Tags: [[ed policy]] 
+- Summary:: First Lady Casey DeSantis announced a new mental health education initiative in Florida that focuses on teaching resilience instead of disorders. The State Board of Education approved this approach, which includes updated standards and resources for students, teachers, and parents. This initiative aims to empower students to overcome challenges and build essential life skills.
+- URL: https://www.fldoe.org/newsroom/latest-news/icymi-first-lady-casey-desantis-announces-florida-is-first-in-nation-to-reframe-and-rethink-the-way-mental-health-is-taught-in-schools.stml
+
+## Highlights
+- Florida is no longer teaching to a disorder — Florida is teaching kids the skills to learn how to overcome challenges. ([View Highlight](https://read.readwise.io/read/01j95gap9rpt8rxzzm6gk98vwv))
+- No problem is insurmountable — all you need is a little help to become resilient.” ([View Highlight](https://read.readwise.io/read/01j95gdcfbbk3b913bsw1e1c9v))

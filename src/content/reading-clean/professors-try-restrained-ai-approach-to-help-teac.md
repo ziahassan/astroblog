@@ -1,0 +1,21 @@
+---
+title: "Professors Try Restrained AI Approach to Help Teach Writing"
+author: "https-www.edsurge.comjeffrey-r-young"
+source: "reader"
+tags: []
+readDate: "2024-07-04"
+---
+# Professors Try ‘Restrained AI’ Approach to Help...
+
+![rw-book-cover](https://edsurge.imgix.net/uploads/post/image/15869/robot_writing-1716379055.png?auto=compress%2Cformat&w=1024&h=512&fit=crop)
+
+## Metadata
+- Author: [[https-//www.edsurge.com/jeffrey-r-young]]
+- Full Title: Professors Try ‘Restrained AI’ Approach to Help Teach Writing
+- Category: #articles
+- Summary:: English professors at Carnegie Mellon University are using restrained generative AI to help students improve their writing skills. Their tool, myScribe, assists students in turning loose thoughts into sentences, reducing cognitive load. The goal is to guide AI to enhance writing efficiency while preserving the important human process of writing.
+- URL: https://www.edsurge.com/news/2024-05-23-professors-try-restrained-ai-approach-to-help-teach-writing
+
+## Highlights
+- “When everyone else was afraid that AI was going to hijack writing from students,” remembers Kaufer, “We said, ‘Well if we can restrain AI, then AI can reduce many of the remedial tasks of writing that keep students from really [looking] to see what’s going on with their writing.” ([View Highlight](https://read.readwise.io/read/01j1z4ndsxz8r3py0ba435kdty))
+    - Note: You can't restrain AI. At best, you could teach Students a health way to use it in class.

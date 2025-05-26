@@ -1,0 +1,21 @@
+---
+title: "SoLD Allies Elevate the Science of Learning and Development and Advance Key Shifts in Research, Practice, and Policy to Transform Education and Youth Development Systems to Be Aligned With the Science and Designed for Equity."
+author: "Science of Learning and Development (SoLD) Alliance"
+source: "reader"
+tags: []
+readDate: "2024-10-31"
+---
+# SoLD Allies Elevate the Science of Learning and...
+
+![rw-book-cover](https://soldalliance.org/wp-content/uploads/2021/11/file-33.png)
+
+## Metadata
+- Author: [[Science of Learning and Development (SoLD) Alliance]]
+- Full Title: SoLD Allies Elevate the Science of Learning and Development and Advance Key Shifts in Research, Practice, and Policy to Transform Education and Youth Development Systems to Be Aligned With the Science and Designed for Equity.
+- Category: #articles
+- Summary:: The SoLD Alliance focuses on improving education and youth development by using research on how young people learn best. They emphasize the need for equitable systems, especially as schools recover from the impacts of COVID-19. Recent challenges have highlighted existing inequities but also the resilience of families and community organizations.
+- URL: https://soldalliance.org/
+
+## Highlights
+- SoLD Resources ([View Highlight](https://read.readwise.io/read/01jbhmcmz4w72ws07jbzbh0qds))
+    - Tags: [[ed policy]]
