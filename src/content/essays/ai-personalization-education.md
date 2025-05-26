@@ -5,6 +5,7 @@ publishDate: 2024-12-15
 description: "As AI tools become more sophisticated at adapting to individual learners, we must carefully consider what we're optimizing for and what we might be losing along the way."
 tags: ["AI", "education", "personalization", "pedagogy"]
 draft: false
+heroImage: "/images/essays/bball.jpg"
 ---
 
 The conversation around AI in education often centers on a single, seemingly obvious goal: personalization. The promise is compelling—imagine learning experiences that adapt in real-time to each student's needs, pace, and interests. But as we rush toward this algorithmic future, we must pause to ask: what exactly are we personalizing, and at what cost?
