@@ -4,6 +4,7 @@ author: "Loni Mahanta"
 source: "reader"
 tags: []
 readDate: "2025-05-25"
+summary: "China is requiring all students to learn about artificial intelligence, which should prompt the U.S. to strengthen its own AI education. If America does not prioritize AI literacy, it risks falling behind in economic and national security. To compete globally, U.S. schools must integrate AI education into their curriculums now."
 ---
 # AI Education Is the New Space Race. Here’s How ...
 
