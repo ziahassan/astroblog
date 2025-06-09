@@ -1,5 +1,5 @@
 ---
-// src/pages/recent.astro
+// src/pages/now.astro
 import Layout from '../layouts/layout.astro';
 import { getCollection } from 'astro:content';
 
@@ -11,19 +11,43 @@ const essays = await getCollection('essays', ({ data }) => {
 const notes = await getCollection('notes');
 const readings = await getCollection('reading');
 
+// Get the single updates file
+let updatesContent = null;
+try {
+  const updatesCollection = await getCollection('updates');
+  updatesContent = updatesCollection.find(update => update.slug === 'current');
+} catch (error) {
+  console.log('No updates file found');
+}
+
+// Get the Content component properly
+const { Content: UpdatesContent } = updatesContent ? await updatesContent.render() : { Content: null };
+
 // Sort and limit recent items
 const recentEssays = essays
   .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
   .slice(0, 3);
 
 const recentNotes = notes
-  .sort((a, b) => new Date(b.data.publishDate || b.data.created || Date.now()).getTime() - new Date(a.data.publishDate || a.data.created || Date.now()).getTime())
+  .sort((a, b) => {
+    // Sort by created date if available, otherwise by title
+    if (a.data.created && b.data.created) {
+      return new Date(b.data.created).getTime() - new Date(a.data.created).getTime();
+    } else if (a.data.created) {
+      return -1; // Notes with dates come first
+    } else if (b.data.created) {
+      return 1; // Notes with dates come first
+    } else {
+      return a.data.title.localeCompare(b.data.title); // Alphabetical for notes without dates
+    }
+  })
   .slice(0, 6);
 
 const recentReadings = readings
+  .filter(reading => reading.data.readDate || reading.data.dateAdded) // Only include readings with dates
   .sort((a, b) => {
-    const dateA = new Date(a.data.readDate || a.data.dateAdded || 0);
-    const dateB = new Date(b.data.readDate || b.data.dateAdded || 0);
+    const dateA = new Date(a.data.readDate || a.data.dateAdded);
+    const dateB = new Date(b.data.readDate || b.data.dateAdded);
     return dateB.getTime() - dateA.getTime();
   })
   .slice(0, 5);
@@ -82,21 +106,57 @@ function getHeroImageGradient(essay) {
   
   return gradients[Math.abs(hash) % gradients.length];
 }
+
+// Helper function to filter and clean tags
+function getValidTags(tags) {
+  if (!tags || !Array.isArray(tags)) return [];
+  return tags
+    .filter(tag => tag && typeof tag === 'string' && tag.trim().length > 0)
+    .map(tag => tag.trim()); // Also trim whitespace
+}
 ---
 
-<Layout title="Recent Updates">
+<Layout title="What I'm Up To Now">
   <!-- Hero Section -->
-  <header class="max-w-5xl mx-auto px-6 pt-16 pb-12">
-    <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 text-center">
-      Recent Updates
+  <header class="max-w-5xl mx-auto px-6 pt-16 pb-8">
+    <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-4 text-center">
+      Now
     </h1>
-    <p class="text-xl text-gray-600 text-center max-w-2xl mx-auto leading-relaxed">
-      What I've been writing, thinking about, and reading lately
+    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto leading-relaxed">
+      What I'm currently focused on
     </p>
   </header>
 
   <!-- Main Content Grid -->
   <div class="max-w-7xl mx-auto px-6 pb-20">
+    
+    <!-- Updates Section -->
+    {updatesContent && UpdatesContent && (
+      <section class="mb-16">
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:bg-orange-50 transition-colors">
+          {updatesContent.data.lastUpdated && (
+            <div class="text-xs text-gray-500 mb-4 text-right">
+              Last updated: {getRelativeTime(updatesContent.data.lastUpdated)}
+            </div>
+          )}
+          
+          <div class="prose prose-gray max-w-none">
+            <UpdatesContent />
+          </div>
+          
+          {/* Tags if available */}
+          {updatesContent.data.tags && getValidTags(updatesContent.data.tags).length > 0 && (
+            <div class="flex gap-1 mt-4 pt-4 border-t border-gray-100">
+              {getValidTags(updatesContent.data.tags).map(tag => (
+                <span key={tag} class="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-md">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
     
     <!-- Latest Essays - Featured -->
     <section class="mb-20">
@@ -111,85 +171,88 @@ function getHeroImageGradient(essay) {
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {recentEssays.map((essay, index) => (
-          <article key={essay.slug} class="group">
-            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              
-              <!-- Hero Image -->
-              <div class="relative h-48 overflow-hidden">
-                {essay.data.heroImage ? (
-                  <img 
-                    src={essay.data.heroImage} 
-                    alt={essay.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <div class={`w-full h-full bg-gradient-to-br ${getHeroImageGradient(essay)} flex items-center justify-center`}>
-                    <div class="text-center text-white p-4">
-                      <div class="text-3xl mb-2">📖</div>
-                      <div class="text-sm font-medium opacity-90 leading-tight">{essay.data.title}</div>
-                    </div>
-                  </div>
-                )}
+        {recentEssays.map((essay, index) => {
+          const validTags = getValidTags(essay.data.tags);
+          return (
+            <article key={essay.slug} class="group">
+              <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 
-                <!-- Latest badge -->
-                {index === 0 && (
-                  <div class="absolute top-3 left-3">
-                    <div class="bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-medium">
-                      Latest
+                <!-- Hero Image -->
+                <div class="relative h-48 overflow-hidden">
+                  {essay.data.heroImage ? (
+                    <img 
+                      src={essay.data.heroImage} 
+                      alt={essay.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div class={`w-full h-full bg-gradient-to-br ${getHeroImageGradient(essay)} flex items-center justify-center`}>
+                      <div class="text-center text-white p-4">
+                        <div class="text-3xl mb-2">📖</div>
+                        <div class="text-sm font-medium opacity-90 leading-tight">{essay.data.title}</div>
+                      </div>
                     </div>
-                  </div>
-                )}
-                
-                <!-- Date badge -->
-                <div class="absolute bottom-3 right-3">
-                  <div class="bg-black/70 text-white px-2 py-1 rounded-md text-xs font-mono">
-                    {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric'
-                    })}
+                  )}
+                  
+                  <!-- Latest badge -->
+                  {index === 0 && (
+                    <div class="absolute top-3 left-3">
+                      <div class="bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-medium">
+                        Latest
+                      </div>
+                    </div>
+                  )}
+                  
+                  <!-- Date badge -->
+                  <div class="absolute bottom-3 right-3">
+                    <div class="bg-black/70 text-white px-2 py-1 rounded-md text-xs font-mono">
+                      {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Content -->
-              <div class="p-4">
-                <h3 class="font-semibold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
-                  <a href={`/essays/${essay.slug}`}>
-                    {essay.data.title}
+                
+                <!-- Content -->
+                <div class="p-4">
+                  <h3 class="font-semibold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <a href={`/essays/${essay.slug}`}>
+                      {essay.data.title}
+                    </a>
+                  </h3>
+                  
+                  {essay.data.description && (
+                    <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">
+                      {essay.data.description}
+                    </p>
+                  )}
+                  
+                  {validTags.length > 0 && (
+                    <div class="flex flex-wrap gap-1 mb-3">
+                      {validTags.slice(0, 2).map(tag => (
+                        <span key={tag} class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                      {validTags.length > 2 && (
+                        <span class="text-xs text-gray-400">+{validTags.length - 2}</span>
+                      )}
+                    </div>
+                  )}
+                  
+                  <a 
+                    href={`/essays/${essay.slug}`}
+                    class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm group-hover:translate-x-1 transition-all"
+                  >
+                    Read essay
+                    <span class="ml-1">→</span>
                   </a>
-                </h3>
-                
-                {essay.data.description && (
-                  <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">
-                    {essay.data.description}
-                  </p>
-                )}
-                
-                {essay.data.tags && essay.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1 mb-3">
-                    {essay.data.tags.slice(0, 2).map(tag => (
-                      <span key={tag} class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                    {essay.data.tags.length > 2 && (
-                      <span class="text-xs text-gray-400">+{essay.data.tags.length - 2}</span>
-                    )}
-                  </div>
-                )}
-                
-                <a 
-                  href={`/essays/${essay.slug}`}
-                  class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm group-hover:translate-x-1 transition-all"
-                >
-                  Read essay
-                  <span class="ml-1">→</span>
-                </a>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
       
       <div class="text-center mt-8">
@@ -216,42 +279,48 @@ function getHeroImageGradient(essay) {
         </div>
         
         <div class="space-y-4">
-          {recentNotes.map((note, index) => (
-            <article key={note.slug} class="group">
-              <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-green-50 hover:border-green-300 transition-all">
-                <div class="flex items-start justify-between gap-4 mb-3">
-                  <h3 class="font-medium text-gray-900 leading-tight group-hover:text-green-700 transition-colors">
-                    <a href={`/notes/${note.slug}`}>
-                      {note.data.title}
-                    </a>
-                  </h3>
-                  <time class="text-xs text-gray-500 font-mono flex-shrink-0">
-                    {getRelativeTime(note.data.publishDate || note.data.created || Date.now())}
-                  </time>
+          {recentNotes.map((note, index) => {
+            const validTags = getValidTags(note.data.tags);
+            return (
+              <article key={note.slug} class="group">
+                <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-green-50 hover:border-green-300 transition-all">
+                  <div class="flex items-start justify-between gap-4 mb-3">
+                    <h3 class="font-medium text-gray-900 leading-tight group-hover:text-green-700 transition-colors">
+                      <a href={`/notes/${note.slug}`}>
+                        {note.data.title}
+                      </a>
+                    </h3>
+                    <time class="text-xs text-gray-500 font-mono flex-shrink-0">
+                      {note.data.created ? 
+                        getRelativeTime(note.data.created) : 
+                        'No date'
+                      }
+                    </time>
+                  </div>
+                  
+                  {/* Note content preview */}
+                  {note.body && (
+                    <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
+                      {note.body.replace(/#{1,6}\s+/g, '').replace(/\*\*/g, '').replace(/\[(.*?)\]/g, '$1').substring(0, 200)}...
+                    </div>
+                  )}
+                  
+                  {validTags.length > 0 && (
+                    <div class="flex gap-1">
+                      {validTags.slice(0, 3).map((tag, tagIndex) => (
+                        <span key={`${note.slug}-tag-${tagIndex}`} class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-md">
+                          {tag}
+                        </span>
+                      ))}
+                      {validTags.length > 3 && (
+                        <span class="text-xs text-gray-500">+{validTags.length - 3}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
-                
-                {/* Note content preview */}
-                {note.body && (
-                  <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
-                    {note.body.replace(/#{1,6}\s+/g, '').replace(/\*\*/g, '').replace(/\[(.*?)\]/g, '$1').substring(0, 200)}...
-                  </div>
-                )}
-                
-                {note.data.tags && note.data.tags.length > 0 && (
-                  <div class="flex gap-1">
-                    {note.data.tags.slice(0, 3).map(tag => (
-                      <span key={tag} class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-md">
-                        {tag}
-                      </span>
-                    ))}
-                    {note.data.tags.length > 3 && (
-                      <span class="text-xs text-gray-500">+{note.data.tags.length - 3}</span>
-                    )}
-                  </div>
-                )}
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
         
         <div class="mt-6">
@@ -275,67 +344,86 @@ function getHeroImageGradient(essay) {
         </div>
         
         <div class="space-y-4">
-          {recentReadings.map((reading) => (
-            <article key={reading.slug} class="group">
-              <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-purple-50 hover:border-purple-300 transition-all">
-                <div class="flex items-start gap-3">
-                  <span class="text-lg flex-shrink-0 mt-0.5">{getStatusIcon(reading.data.status)}</span>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-start justify-between gap-3 mb-2">
-                      <h3 class="font-medium text-gray-900 leading-tight group-hover:text-purple-700 transition-colors">
-                        <a href={`/reading/${reading.slug}`}>
-                          {reading.data.title}
-                        </a>
-                      </h3>
-                      <time class="text-xs text-gray-500 font-mono flex-shrink-0">
-                        {getRelativeTime(reading.data.readDate || reading.data.dateAdded || Date.now())}
-                      </time>
-                    </div>
-                    
-                    <p class="text-sm text-gray-600 mb-3">
-                      by {reading.data.author}
-                    </p>
-                    
-                    {/* Summary from YAML metadata */}
-                    {reading.data.summary && (
-                      <div class="text-sm text-gray-700 leading-relaxed mb-3 p-3 bg-purple-50 rounded-lg border-l-3 border-purple-300">
-                        <div class="font-medium text-purple-800 text-xs uppercase tracking-wide mb-1">Summary</div>
-                        <div class="line-clamp-3">{reading.data.summary}</div>
+          {recentReadings.map((reading) => {
+            const validTags = getValidTags(reading.data.tags);
+            return (
+              <article key={reading.slug} class="group">
+                <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-purple-50 hover:border-purple-300 transition-all">
+                  <div class="flex items-start gap-3">
+                    <span class="text-lg flex-shrink-0 mt-0.5">{getStatusIcon(reading.data.status)}</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-start justify-between gap-3 mb-2">
+                        <h3 class="font-medium text-gray-900 leading-tight group-hover:text-purple-700 transition-colors">
+                          <a href={`/reading/${reading.slug}`}>
+                            {reading.data.title}
+                          </a>
+                        </h3>
+                        <time class="text-xs text-gray-500 font-mono flex-shrink-0">
+                          {getRelativeTime(reading.data.readDate || reading.data.dateAdded)}
+                        </time>
                       </div>
-                    )}
-                    
-                    {/* Personal notes */}
-                    {reading.data.notes && !reading.data.summary && (
-                      <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2 italic">
-                        "{reading.data.notes}"
-                      </div>
-                    )}
-                    
-                    <div class="flex items-center justify-between">
-                      <span class={`px-2 py-1 text-xs font-medium rounded-lg border ${getStatusColor(reading.data.status)}`}>
-                        {reading.data.status?.replace('-', ' ')}
-                        {reading.data.progress && ` • ${reading.data.progress}`}
-                      </span>
                       
-                      {/* Rating if available */}
-                      {reading.data.rating && (
-                        <div class="flex items-center gap-1">
-                          <span class="text-xs text-gray-500">Rating:</span>
-                          <div class="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <span key={i} class={`text-xs ${i < reading.data.rating ? 'text-yellow-500' : 'text-gray-300'}`}>
-                                ★
-                              </span>
-                            ))}
-                          </div>
+                      <p class="text-sm text-gray-600 mb-3">
+                        by {reading.data.author}
+                      </p>
+                      
+                      {/* Summary from YAML metadata */}
+                      {reading.data.summary && (
+                        <div class="text-sm text-gray-700 leading-relaxed mb-3 p-3 bg-purple-50 rounded-lg border-l-3 border-purple-300">
+                          <div class="font-medium text-purple-800 text-xs uppercase tracking-wide mb-1">Summary</div>
+                          <div class="line-clamp-3">{reading.data.summary}</div>
                         </div>
                       )}
+                      
+                      {/* Personal notes */}
+                      {reading.data.notes && !reading.data.summary && (
+                        <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2 italic">
+                          "{reading.data.notes}"
+                        </div>
+                      )}
+                      
+                      {/* Tags */}
+                      {validTags.length > 0 && (
+                        <div class="flex gap-1 mb-3">
+                          {validTags.slice(0, 3).map(tag => (
+                            <span key={tag} class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-md">
+                              {tag}
+                            </span>
+                          ))}
+                          {validTags.length > 3 && (
+                            <span class="text-xs text-gray-500">+{validTags.length - 3}</span>
+                          )}
+                        </div>
+                      )}
+                      
+                      <div class="flex items-center justify-between">
+                        {reading.data.status && (
+                          <span class={`px-2 py-1 text-xs font-medium rounded-lg border ${getStatusColor(reading.data.status)}`}>
+                            {reading.data.status.replace('-', ' ')}
+                            {reading.data.progress && ` • ${reading.data.progress}`}
+                          </span>
+                        )}
+                        
+                        {/* Rating if available */}
+                        {reading.data.rating && (
+                          <div class="flex items-center gap-1">
+                            <span class="text-xs text-gray-500">Rating:</span>
+                            <div class="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <span key={i} class={`text-xs ${i < reading.data.rating ? 'text-yellow-500' : 'text-gray-300'}`}>
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
         
         <div class="mt-6">
@@ -385,6 +473,13 @@ function getHeroImageGradient(essay) {
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
