@@ -1,0 +1,1 @@
+Got this from a [[Jim Rohn]] YouTube video that is probably Ai generated, but I thought it was an interesting idea nonetheless.

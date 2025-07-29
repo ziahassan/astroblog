@@ -1,0 +1,7 @@
+Feasible
+
+Novel
+
+Ethical
+
+Relevant

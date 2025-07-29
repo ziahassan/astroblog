@@ -1,6 +1,47 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+import GraphView from '../components/GraphView.tsx';
+
+// Get notes for the graph
+let notes = [];
+try {
+  notes = await getCollection('notes');
+} catch (error) {
+  console.warn('Could not load notes:', error);
+}
+
+// Build graph data safely
+const nodes = notes.map(note => ({
+  id: note.slug,
+  title: note.data.title || note.slug,
+  tags: note.data.tags || []
+}));
+
+const links = [];
+
+// Create links between notes based on [[links]]
+for (const sourceNote of notes) {
+  for (const targetNote of notes) {
+    if (sourceNote.slug !== targetNote.slug && sourceNote.body) {
+      const titlePattern = `[[${targetNote.data.title}]]`;
+      const slugPattern = `[[${targetNote.slug}]]`;
+      
+      if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
+        links.push({
+          source: sourceNote.slug,
+          target: targetNote.slug
+        });
+      }
+    }
+  }
+}
+
+const graphData = { nodes, links };
+const nodeCount = nodes.length;
+const linkCount = links.length;
+const connectionPercentage = nodeCount > 1 ? Math.round((linkCount / Math.max(nodeCount * (nodeCount - 1) / 2, 1)) * 100) : 0;
 ---
 
 <Layout title="Zia Hassan">
@@ -45,7 +86,10 @@ import Layout from '../layouts/layout.astro';
             💻 EdTech Consultant
           </div>
           <div class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mr-2 mb-2">
-            👨‍🏫 Educator & ICF-certified Life and Career Coach
+            👨‍🏫 Educator & Adjunct Faculty
+          </div>
+          <div class="inline-flex items-center px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-medium mr-2 mb-2">
+            🌟 ICF Certified Life & Career Coach, PCC
           </div>
         </div>
         
@@ -74,8 +118,56 @@ import Layout from '../layouts/layout.astro';
     </div>
   </header>
 
-  <!-- About This Site -->
+  <!-- Main content -->
   <main class="max-w-4xl mx-auto px-6 pb-16">
+    
+    <!-- Interactive Knowledge Graph -->
+    <section class="mb-16">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <!-- Graph Header -->
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold text-gray-800 serif mb-2">Knowledge Graph</h2>
+              <p class="text-gray-600">
+                Interactive visualization of {nodeCount} connected notes and ideas
+              </p>
+            </div>
+            <a href="/notes" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm">
+              <span class="mr-2">🌐</span>
+              Explore All Notes
+            </a>
+          </div>
+        </div>
+        
+        <!-- Graph Container -->
+        <div class="relative">
+          <div class="graph-container bg-gradient-to-br from-gray-50 to-blue-50">
+            <GraphView data={graphData} client:load />
+          </div>
+          
+          <!-- Graph Controls Overlay -->
+          <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 text-xs text-gray-600 shadow-sm border border-gray-200">
+            <div class="space-y-1">
+              <div>🖱️ <strong>Click:</strong> Open note</div>
+              <div>🔍 <strong>Scroll:</strong> Zoom in/out</div>
+              <div>✋ <strong>Drag:</strong> Move nodes</div>
+            </div>
+          </div>
+          
+          <!-- Stats Overlay -->
+          <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 text-xs text-gray-600 shadow-sm border border-gray-200">
+            <div class="space-y-1 text-right">
+              <div><strong>{nodeCount}</strong> Notes</div>
+              <div><strong>{linkCount}</strong> Connections</div>
+              <div><strong>{connectionPercentage}%</strong> Connected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About This Site -->
     <section class="mb-16">
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
         <div class="prose-custom">
@@ -292,6 +384,30 @@ import Layout from '../layouts/layout.astro';
     pointer-events: none;
     z-index: 1;
     animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Graph container styling */
+  .graph-container {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Graph responsiveness */
+  @media (max-width: 768px) {
+    .graph-container {
+      height: 300px;
+    }
+    
+    .absolute.top-4.left-4,
+    .absolute.top-4.right-4 {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      margin: 1rem;
+      display: inline-block;
+    }
   }
   
   @keyframes float {

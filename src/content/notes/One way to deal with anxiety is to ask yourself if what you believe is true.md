@@ -1,0 +1,25 @@
+I have a history of anxiety.
+
+I've never been formally diagnosed, but I worry and catastrophize quite a bit.
+
+I heard someone once say that a good question to ask in a moment of anxiety is...
+
+_Is it true?_
+
+Whatever it is you're catastrophizing, whatever belief you're holding that is weighing you down...
+
+Is it really true?
+
+Can you know beyond a shadow of a doubt?
+
+Often, the answer to this question is no.
+
+It's more like our mind is playing tricks on us.
+
+In the first week of Kindergarten, my son developed benign polyuria, which means you feel the need to pee constantly. 
+
+I told him it was his brain playing tricks on him, and after a little while, the symptoms went away.
+
+How many of our symptoms, I wonder, occur because believe things that are untrue?
+
+Related: [[Limiting Beliefs]], [[Adopted belief vs. core belief]], [[anxiety]], [[Zettelkasten/Cards/Concepts/Ambient anxiety|Ambient anxiety]]

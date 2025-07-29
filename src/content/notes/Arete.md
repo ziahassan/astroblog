@@ -1,0 +1,58 @@
+This is the best version of yourself within the different [[roles]] that you play.
+
+## PhD student
+In my best PhD student life I am:
+- writing every day;
+- reading something interesting every day, beyond classwork;
+- collaborating on interesting projects
+- constantly throwing things into my dissertation file.
+- ## Constant Learner
+	- I always have a skill that I am learning, even if slowly
+- ## Researcher
+	- Creating interesting research questions
+	- Paying attention to research that is interesting to me
+	- Trying to bring my research to life as often as possible
+- ## Father
+	- Intentional and attentive to my kids and when I decide to devote time/energy to them
+	- Be at as many events as possible
+	- Watch my kid fondly when they're doing something important or when they say "watch this!"
+	- Nurturing their needs and their interests
+- ## Husband
+	- Being a leader in the household
+	- Noticing when things need repairing
+	- Keeping control of my emotions to effectively and efficiently solve problems
+- ## Friend
+	- Listen more than I talk
+	- Be curious without agenda
+	- Don't offer advice freely; embody a coaching mindset
+- ## Son
+	- More interactions with my parents, taking more opportunities to be present with them and not letting my wife steal the spotlight
+- ## Chef
+	- Cooking healthy meals for family and self
+	- Doing a lot with a little
+	- Being able to use cooking as a spiritual and/or magickal experience
+- ## Brother
+	- Unconditional love
+	- Less advice, more powerful questions
+	- Staying in touch
+- ## Coach
+	- Be present for clients
+	- Attract don't chase
+- ## Teacher/Professor
+	- Provide an optimal learning environment for students
+	- Let students teach each other and themselves before you teach them
+- ## Creative/Musician
+	- War of art, nothing else matters but shipping
+- ## Entrepreneur/solopreneuer
+	- Expanding business as much as possible to serve as many as I can within my target niche
+	- Sharing knowledge/creating courses to share with others what I've learned
+- ## Homeowner
+	- Being attentive and timely to fixing house issues
+	- Keeping the house as tidy as possible through the use of great systems
+- ## Healthy Person
+	- Committing to doing one kind of fitness thing per day, even if it's just stretching
+	- Lifting 2-3 x a week
+	- Getting enough sleep
+- ## Mystic
+	- Constantly pushing the boundaries on what is possible for reality
+	- Being unashamed and unabashed in my pursuits

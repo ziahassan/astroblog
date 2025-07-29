@@ -1,0 +1,28 @@
+Ever had a kid’s movie spark a profound realization about careers? That happened to me today while watching Inside Out 2 with my 5-year-old.  
+  
+Two main messages of the movie (no heavy spoilers, though maybe light ones) are:  
+  
+1. Our emotions don't get to determine who we are and  
+2. What we believe about ourselves affects our choices (and as a corollary, our choices affect our career trajectory).  
+  
+It is tempting to believe that navigating a career journey is just about working hard, growing skills, networking, and achieving important things.  
+  
+All of this is true, but there's an important, underlying piece to the whole thing...  
+  
+It all starts with our self-concept.  
+  
+The stories we tell ourselves matter.  
+  
+"I'm an impostor who doesn't deserve to be here" is a story, just like "I'm a winner who is smarter than everyone here" is a story.  
+  
+What Inside Out 2 made me realize is that it's not about just shutting out the bad stories, or even worse, getting mad when you catch yourself telling a negative story.  
+  
+It's simply about awareness.  
+  
+You just ask:  
+  
+What story am I telling myself?  
+  
+What actions am I taking (or not taking) as a result?
+
+[[2024-06-23-insideout2]]

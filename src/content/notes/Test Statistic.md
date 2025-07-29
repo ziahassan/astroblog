@@ -1,0 +1,1 @@
+Compares data to null. # of standard errors between sample  point estimate and the H0 value parameter.

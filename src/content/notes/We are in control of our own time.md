@@ -1,0 +1,2 @@
+Ali Abdaal [video](https://www.youtube.com/watch?v=iONDebHX9qk)- we are in control of our own time. 
+A profound yet important realization. Another thing that is cool to think about is that when we're children, our time is planned for us. We have to at some point learn to take control.
