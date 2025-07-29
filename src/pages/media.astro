@@ -11,7 +11,7 @@ const mediaItems = await getAllMediaItems();
   <div class="floating-emoji" style="top: 10%; left: 5%;">🎙️</div>
   <div class="floating-emoji" style="top: 20%; right: 10%;">📹</div>
   <div class="floating-emoji" style="top: 60%; left: 8%;">🎧</div>
-  <div class="floating-emoji" style="top: 80%; right: 5%;">📺</div>
+  <div class="floating-emoji" style="top: 80%; right: 5%;">🎵</div>
 
   <!-- Header -->
   <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
@@ -20,8 +20,8 @@ const mediaItems = await getAllMediaItems();
         Media & Appearances
       </h1>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        Conversations about AI, education, and the future of learning. Podcasts, videos, 
-        and guest appearances exploring how technology can make education more human.
+        Conversations about AI, education, music, and the future of learning. Podcasts, videos, 
+        music releases, and guest appearances exploring creativity, technology, and human connection.
       </p>
     </div>
     
@@ -35,6 +35,9 @@ const mediaItems = await getAllMediaItems();
       </button>
       <button class="filter-btn" data-filter="youtube">
         Videos ({mediaItems.filter(item => item.type === 'youtube').length})
+      </button>
+      <button class="filter-btn" data-filter="music">
+        Music ({mediaItems.filter(item => item.type === 'music').length})
       </button>
       <button class="filter-btn" data-filter="guest">
         Guest Appearances ({mediaItems.filter(item => item.type === 'guest').length})
@@ -75,6 +78,7 @@ const mediaItems = await getAllMediaItems();
                       {item.type === 'podcast' && '🎙️ Podcast'}
                       {item.type === 'youtube' && '📹 Video'}
                       {item.type === 'guest' && '🎧 Guest'}
+                      {item.type === 'music' && '🎵 Music'}
                     </span>
                     <time datetime={item.publishDate.toISOString()}>
                       {item.publishDate.toLocaleDateString('en-US', { 
@@ -88,6 +92,9 @@ const mediaItems = await getAllMediaItems();
                     )}
                     {item.platform && (
                       <span>📍 {item.platform}</span>
+                    )}
+                    {item.price && (
+                      <span>💰 {item.price}</span>
                     )}
                   </div>
                 </div>
@@ -111,6 +118,7 @@ const mediaItems = await getAllMediaItems();
                   {item.type === 'podcast' && '🎧 Listen'}
                   {item.type === 'youtube' && '▶️ Watch'}
                   {item.type === 'guest' && '🎙️ Listen'}
+                  {item.type === 'music' && '🎵 Listen'}
                 </a>
                 
                 {item.type === 'youtube' && (
@@ -188,6 +196,11 @@ const mediaItems = await getAllMediaItems();
   .media-type-badge.guest {
     background: #e0e7ff;
     color: #4f46e5;
+  }
+  
+  .media-type-badge.music {
+    background: #f3e8ff;
+    color: #7c3aed;
   }
   
   .line-clamp-2 {

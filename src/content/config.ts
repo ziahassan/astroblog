@@ -76,6 +76,19 @@ const guestAppearances = defineCollection({
   }),
 });
 
+const music = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    releaseDate: z.date(),
+    description: z.string().optional(),
+    url: z.string(),
+    thumbnail: z.string().optional(),
+    price: z.string().optional(),
+    platform: z.string().default('Bandcamp'),
+  }),
+});
+
 export const collections = {
   notes,
   pages,
@@ -83,4 +96,5 @@ export const collections = {
   reading,
   cv, // Add this
   guestAppearances,
+  music,
 };

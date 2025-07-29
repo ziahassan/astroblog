@@ -7,10 +7,11 @@ export interface MediaItem {
   description: string;
   publishDate: Date;
   url: string;
-  type: 'podcast' | 'youtube' | 'guest';
+  type: 'podcast' | 'youtube' | 'guest' | 'music';
   thumbnail?: string;
   duration?: string;
   platform?: string;
+  price?: string; // For music releases
 }
 
 // YouTube API functions
@@ -87,6 +88,29 @@ export async function getPodcastEpisodes(rssUrl: string): Promise<MediaItem[]> {
   }
 }
 
+// Music releases from content collection
+export async function getMusicReleases(): Promise<MediaItem[]> {
+  try {
+    const { getCollection } = await import('astro:content');
+    const musicEntries = await getCollection('music');
+    
+    return musicEntries.map((entry): MediaItem => ({
+      id: entry.slug,
+      title: entry.data.title,
+      description: entry.data.description || '',
+      publishDate: entry.data.releaseDate,
+      url: entry.data.url,
+      type: 'music',
+      thumbnail: entry.data.thumbnail,
+      platform: entry.data.platform,
+      price: entry.data.price
+    }));
+  } catch (error) {
+    console.error('Error fetching music releases:', error);
+    return [];
+  }
+}
+
 // Guest appearances (manual for now)
 export async function getGuestAppearances(): Promise<MediaItem[]> {
   // For now, return empty array - we'll add a content collection for this
@@ -99,14 +123,15 @@ export async function getAllMediaItems(): Promise<MediaItem[]> {
   const channelId = import.meta.env.YOUTUBE_CHANNEL_ID || 'UCYourChannelId'; // We'll get this from your channel
   const podcastRssUrl = import.meta.env.PODCAST_RSS_URL;
 
-  const [youtubeVideos, podcastEpisodes, guestAppearances] = await Promise.all([
+  const [youtubeVideos, podcastEpisodes, guestAppearances, musicReleases] = await Promise.all([
     apiKey && channelId ? getYouTubeVideos(apiKey, channelId) : Promise.resolve([]),
     podcastRssUrl ? getPodcastEpisodes(podcastRssUrl) : Promise.resolve([]),
-    getGuestAppearances()
+    getGuestAppearances(),
+    getMusicReleases()
   ]);
 
   // Combine and sort by date (newest first)
-  const allItems = [...youtubeVideos, ...podcastEpisodes, ...guestAppearances];
+  const allItems = [...youtubeVideos, ...podcastEpisodes, ...guestAppearances, ...musicReleases];
   
   return allItems.sort((a, b) => b.publishDate.getTime() - a.publishDate.getTime());
 }
