@@ -48,9 +48,39 @@ const reading = defineCollection({
   }).passthrough(), // Allow extra fields without errors
 });
 
+// Add CV collection
+const cv = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    lastUpdated: z.date(),
+    contact: z.object({
+      location: z.string(),
+      phone: z.string(),
+      email: z.string(),
+    }),
+  }),
+});
+
+
+const guestAppearances = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    podcast: z.string(),
+    publishDate: z.date(),
+    description: z.string().optional(),
+    url: z.string(),
+    thumbnail: z.string().optional(),
+    duration: z.string().optional(),
+  }),
+});
+
 export const collections = {
   notes,
   pages,
   essays,
-  reading, // Add this
+  reading,
+  cv, // Add this
+  guestAppearances,
 };

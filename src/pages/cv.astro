@@ -1,0 +1,247 @@
+---
+// src/pages/cv.astro
+import Layout from '../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+const cvEntries = await getCollection('cv');
+const cv = cvEntries[0]; // Get the first (and only) CV entry
+const { Content } = await cv.render();
+---
+
+<Layout title="Curriculum Vitae">
+  <!-- Background decorative elements -->
+  <div class="floating-emoji" style="top: 10%; left: 5%;">🎓</div>
+  <div class="floating-emoji" style="top: 20%; right: 10%;">📊</div>
+  <div class="floating-emoji" style="top: 60%; left: 8%;">🔬</div>
+  <div class="floating-emoji" style="top: 80%; right: 5%;">📝</div>
+
+  <!-- Header -->
+  <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4 serif">
+        Zia Hassan
+      </h1>
+      <div class="text-lg text-gray-600 space-y-1">
+        <p>{cv.data.contact.location}</p>
+        <p>{cv.data.contact.phone}</p>
+        <p>
+          <a href={`mailto:${cv.data.contact.email}`} class="text-blue-600 hover:underline font-medium">
+            {cv.data.contact.email}
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- Last updated badge -->
+    <div class="last-updated rounded-lg p-4 text-center max-w-md mx-auto">
+      <p class="text-sm text-gray-600">
+        <span class="font-medium">Last updated:</span> 
+        {cv.data.lastUpdated.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}
+      </p>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="max-w-4xl mx-auto px-6 pb-16">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
+      <div class="cv-content prose-custom">
+        <Content />
+      </div>
+    </div>
+    
+    <!-- Download/Print Actions -->
+    <div class="mt-8 text-center">
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-6">
+        <div class="flex flex-wrap justify-center gap-4">
+          <button onclick="window.print()" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            <span class="mr-2">🖨️</span>
+            Print CV
+          </button>
+          <a href="/essays" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
+            <span class="mr-2">📝</span>
+            Read my essays
+          </a>
+          <a href="/notes" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
+            <span class="mr-2">🌐</span>
+            Explore my notes
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
+    min-height: 100vh;
+  }
+  
+  .serif {
+    font-family: 'Crimson Text', serif;
+  }
+  
+  .prose-custom {
+    line-height: 1.75;
+  }
+  
+  /* CV-specific styling */
+  .cv-content h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5rem;
+    position: relative;
+  }
+  
+  .cv-content h2:first-of-type {
+    margin-top: 0;
+  }
+  
+  .cv-content h2::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+  
+  .cv-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cv-content p {
+    margin-bottom: 1.25rem;
+    color: #374151;
+  }
+  
+  .cv-content strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .cv-content em {
+    font-style: italic;
+    color: #6b7280;
+  }
+  
+  .cv-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .cv-content li {
+    margin-bottom: 0.5rem;
+    color: #374151;
+  }
+  
+  .cv-content a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .cv-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .last-updated {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-left: 4px solid #3b82f6;
+  }
+  
+  .floating-emoji {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Print styles */
+  @media print {
+    .floating-emoji,
+    .last-updated,
+    .bg-gradient-to-br {
+      display: none !important;
+    }
+    
+    body {
+      background: white !important;
+    }
+    
+    .bg-white {
+      box-shadow: none !important;
+      border: none !important;
+    }
+    
+    .cv-content h2::before {
+      display: none;
+    }
+    
+    .cv-content h2 {
+      border-bottom: 1px solid #000;
+      margin-top: 1.5rem;
+    }
+    
+    .cv-content {
+      font-size: 11pt;
+      line-height: 1.4;
+    }
+    
+    header {
+      padding-top: 0 !important;
+    }
+    
+    .text-5xl, .text-6xl {
+      font-size: 24pt !important;
+    }
+    
+    .text-lg {
+      font-size: 12pt !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cv-content h2::before {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Add staggered animations to floating emojis
+  document.addEventListener('DOMContentLoaded', () => {
+    const emojis = document.querySelectorAll('.floating-emoji');
+    
+    emojis.forEach((emoji, index) => {
+      emoji.style.animationDelay = `${index * 0.5}s`;
+    });
+  });
+</script>

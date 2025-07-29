@@ -16,6 +16,7 @@
     "d3": "^7.9.0",
     "js-yaml": "^4.1.0",
     "remark-wiki-link": "^2.0.1",
+    "rss-parser": "^3.13.0",
     "starlight-site-graph": "^0.3.2"
   },
   "devDependencies": {
