@@ -1,379 +1,465 @@
 ---
-// src/pages/now.astro
+// src/pages/recent.astro
 import Layout from '../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get content collections
+const essays = await getCollection('essays', ({ data }) => {
+  return data.draft !== true && data.publishDate && new Date(data.publishDate) <= new Date();
+});
+
+const notes = await getCollection('notes');
+const readings = await getCollection('reading');
+
+// Sort and limit recent items
+const recentEssays = essays
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+  .slice(0, 3);
+
+const recentNotes = notes
+  .filter(note => note.data.publishDate || note.data.created) // Only include notes with dates
+  .sort((a, b) => new Date(b.data.publishDate || b.data.created).getTime() - new Date(a.data.publishDate || a.data.created).getTime())
+  .slice(0, 6);
+
+const recentReadings = readings
+  .filter(reading => reading.data.readDate || reading.data.dateAdded) // Only include readings with dates
+  .sort((a, b) => {
+    const dateA = new Date(a.data.readDate || a.data.dateAdded);
+    const dateB = new Date(b.data.readDate || b.data.dateAdded);
+    return dateB.getTime() - dateA.getTime();
+  })
+  .slice(0, 5);
+
+// Helper functions
+function getRelativeTime(dateString, debugInfo = '') {
+  // Special check for the problematic timestamp
+  if (dateString && dateString.toString().length > 15) {
+    console.error('🚨 FOUND THE PROBLEM! Timestamp detected:', dateString, 'Called from:', debugInfo);
+    console.error('Stack trace:', new Error().stack);
+    return 'TIMESTAMP ERROR';
+  }
+  
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  
+  console.log(`✅ Valid date [${debugInfo}]:`, dateString, 'Diff:', diffInSeconds, 'seconds');
+  
+  if (diffInSeconds < 60) return 'just now';
+  if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
+  if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+  if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)}d ago`;
+  
+  return date.toLocaleDateString('en-US', { 
+    month: 'short', 
+    day: 'numeric'
+  });
+}
+
+function getStatusColor(status) {
+  switch(status) {
+    case 'reading': return 'bg-blue-100 text-blue-800 border-blue-200';
+    case 'finished': return 'bg-green-100 text-green-800 border-green-200';
+    case 'want-to-read': return 'bg-gray-100 text-gray-700 border-gray-200';
+    default: return 'bg-gray-100 text-gray-700 border-gray-200';
+  }
+}
+
+function getStatusIcon(status) {
+  switch(status) {
+    case 'reading': return '📖';
+    case 'finished': return '✅';
+    case 'want-to-read': return '📚';
+    default: return '📄';
+  }
+}
+
+function getHeroImageGradient(essay) {
+  const gradients = [
+    'from-blue-400 via-purple-500 to-purple-600',
+    'from-green-400 via-blue-500 to-purple-600', 
+    'from-pink-400 via-red-500 to-yellow-500',
+    'from-indigo-400 via-purple-500 to-pink-500',
+    'from-teal-400 via-blue-500 to-indigo-600',
+    'from-orange-400 via-red-500 to-pink-500',
+    'from-emerald-400 via-teal-500 to-cyan-600',
+    'from-violet-400 via-purple-500 to-indigo-600'
+  ];
+  
+  const hash = essay.slug.split('').reduce((a, b) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0);
+  
+  return gradients[Math.abs(hash) % gradients.length];
+}
+
+// Helper function to filter and clean tags
+function getValidTags(tags) {
+  if (!tags || !Array.isArray(tags)) return [];
+  return tags
+    .filter(tag => tag && typeof tag === 'string' && tag.trim().length > 0)
+    .map(tag => tag.trim()); // Also trim whitespace
+}
 ---
 
-<Layout title="Now">
-  <!-- Background decorative elements -->
-  <div class="floating-emoji" style="top: 10%; left: 5%;">🌱</div>
-  <div class="floating-emoji" style="top: 20%; right: 10%;">📚</div>
-  <div class="floating-emoji" style="top: 60%; left: 8%;">💭</div>
-  <div class="floating-emoji" style="top: 80%; right: 5%;">✨</div>
-
-  <!-- Header -->
-  <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
-    <div class="text-center mb-12">
-      <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4 serif">
-        What I'm up to now
-      </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        A living document of my current projects, thoughts, and focus areas. 
-        Inspired by Derek Sivers' <a href="https://nownownow.com/about" class="text-blue-600 hover:underline font-medium">now page movement</a>.
-      </p>
-    </div>
-    
-    <!-- Last updated badge -->
-    <div class="last-updated rounded-lg p-4 text-center max-w-md mx-auto">
-      <p class="text-sm text-gray-600">
-        <span class="font-medium">Last updated:</span> January 2025
-      </p>
-    </div>
+<Layout title="Recent Updates">
+  <!-- Hero Section -->
+  <header class="max-w-5xl mx-auto px-6 pt-16 pb-12">
+    <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 text-center">
+      Recent Updates
+    </h1>
+    <p class="text-xl text-gray-600 text-center max-w-2xl mx-auto leading-relaxed">
+      What I've been writing, thinking about, and reading lately
+    </p>
   </header>
 
-  <!-- Main content -->
-  <main class="max-w-4xl mx-auto px-6 pb-16">
+  <!-- Main Content Grid -->
+  <div class="max-w-7xl mx-auto px-6 pb-20">
     
-    <!-- Current focus -->
-    <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">Currently</h2>
-          
-          <p>
-            I'm deep into exploring how AI can transform education without losing the human elements that make learning meaningful. 
-            There's something fascinating about the tension between personalization and community, between efficiency and serendipity.
-          </p>
-          
-          <p>
-            Most of my days are split between writing, teaching, and experimenting with new tools. I'm particularly excited about 
-            how AI can help us ask better questions rather than just giving us better answers. The essays I've been working on 
-            explore this theme from different angles.
-          </p>
-          
-          <p>
-            On the technical side, I'm building out this digital garden you're reading right now. It's becoming a place where 
-            I can think in public and see how ideas connect to each other over time. The graph visualizations are my favorite part – 
-            there's something magical about seeing thought patterns emerge.
-          </p>
+    <!-- Latest Essays - Featured -->
+    <section class="mb-20">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center">
+          <span class="text-2xl">📝</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-800">Latest Essays</h2>
+          <p class="text-gray-600 text-sm">Long-form thoughts and explorations</p>
         </div>
       </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">Projects</h2>
-          
-          <h3>🌐 This Digital Garden</h3>
-          <p>
-            Building a connected knowledge base that functions like a second brain. The goal is to create a space where 
-            ideas can grow and link to each other organically. I'm particularly focused on making the connections between 
-            concepts visible and explorable.
-          </p>
-          
-          <h3>✍️ AI & Education Essay Series</h3>
-          <p>
-            Working on a collection of long-form pieces about the intersection of artificial intelligence and learning. 
-            Each essay explores a different facet – from personalization to assessment to the future of teaching itself.
-          </p>
-          
-          <h3>🎓 Teaching & Workshops</h3>
-          <p>
-            Continuing to work with educators who want to thoughtfully integrate AI tools into their practice. 
-            The focus is always on amplifying human creativity and connection, not replacing it.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Reading & Learning -->
-    <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">Reading & Learning</h2>
-          
-          <p>
-            I'm always consuming books, papers, and conversations that shape how I think about learning and technology. 
-            Here's what's currently on my bedside table and in my browser tabs:
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-6 mt-8">
-            <div>
-              <h3>📖 Currently Reading</h3>
-              <div class="space-y-3">
-                <div class="reading-item p-3 border-l-2 border-blue-200 pl-4">
-                  <div class="font-medium text-gray-800">The Alignment Problem</div>
-                  <div class="text-sm text-gray-600">Brian Christian</div>
-                  <div class="text-xs text-gray-500 mt-1">How machine learning reflects human values</div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {recentEssays.map((essay, index) => {
+          const validTags = getValidTags(essay.data.tags);
+          return (
+            <article key={essay.slug} class="group">
+              <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                
+                <!-- Hero Image -->
+                <div class="relative h-48 overflow-hidden">
+                  {essay.data.heroImage ? (
+                    <img 
+                      src={essay.data.heroImage} 
+                      alt={essay.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div class={`w-full h-full bg-gradient-to-br ${getHeroImageGradient(essay)} flex items-center justify-center`}>
+                      <div class="text-center text-white p-4">
+                        <div class="text-3xl mb-2">📖</div>
+                        <div class="text-sm font-medium opacity-90 leading-tight">{essay.data.title}</div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <!-- Latest badge -->
+                  {index === 0 && (
+                    <div class="absolute top-3 left-3">
+                      <div class="bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-medium">
+                        Latest
+                      </div>
+                    </div>
+                  )}
+                  
+                  <!-- Date badge -->
+                  <div class="absolute bottom-3 right-3">
+                    <div class="bg-black/70 text-white px-2 py-1 rounded-md text-xs font-mono">
+                      {new Date(essay.data.publishDate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </div>
+                  </div>
                 </div>
-                <div class="reading-item p-3 border-l-2 border-green-200 pl-4">
-                  <div class="font-medium text-gray-800">A Pedagogy for Liberation</div>
-                  <div class="text-sm text-gray-600">Paulo Freire & Ira Shor</div>
-                  <div class="text-xs text-gray-500 mt-1">Dialogues on transforming education</div>
-                </div>
-                <div class="reading-item p-3 border-l-2 border-purple-200 pl-4">
-                  <div class="font-medium text-gray-800">The Pattern on the Stone</div>
-                  <div class="text-sm text-gray-600">W. Daniel Hillis</div>
-                  <div class="text-xs text-gray-500 mt-1">The simple ideas that make computers work</div>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h3>🔖 Want to Read</h3>
-              <div class="space-y-3">
-                <div class="reading-item p-3 border-l-2 border-orange-200 pl-4">
-                  <div class="font-medium text-gray-800">The Age of AI</div>
-                  <div class="text-sm text-gray-600">Henry Kissinger, Eric Schmidt, Daniel Huttenlocher</div>
-                </div>
-                <div class="reading-item p-3 border-l-2 border-teal-200 pl-4">
-                  <div class="font-medium text-gray-800">Mindstorms</div>
-                  <div class="text-sm text-gray-600">Seymour Papert</div>
-                </div>
-                <div class="reading-item p-3 border-l-2 border-pink-200 pl-4">
-                  <div class="font-medium text-gray-800">The Network Society</div>
-                  <div class="text-sm text-gray-600">Manuel Castells</div>
+                
+                <!-- Content -->
+                <div class="p-4">
+                  <h3 class="font-semibold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <a href={`/essays/${essay.slug}`}>
+                      {essay.data.title}
+                    </a>
+                  </h3>
+                  
+                  {essay.data.description && (
+                    <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">
+                      {essay.data.description}
+                    </p>
+                  )}
+                  
+                  {validTags.length > 0 && (
+                    <div class="flex flex-wrap gap-1 mb-3">
+                      {validTags.slice(0, 2).map(tag => (
+                        <span key={tag} class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                      {validTags.length > 2 && (
+                        <span class="text-xs text-gray-400">+{validTags.length - 2}</span>
+                      )}
+                    </div>
+                  )}
+                  
+                  <a 
+                    href={`/essays/${essay.slug}`}
+                    class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm group-hover:translate-x-1 transition-all"
+                  >
+                    Read essay
+                    <span class="ml-1">→</span>
+                  </a>
                 </div>
               </div>
-            </div>
+            </article>
+          )
+        })}
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/essays" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium">
+          <span class="mr-2">📝</span>
+          View all essays
+        </a>
+      </div>
+    </section>
+
+    <!-- Notes and Reading Grid -->
+    <div class="grid lg:grid-cols-2 gap-12">
+      
+      <!-- Recent Notes -->
+      <section>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center">
+            <span class="text-2xl">🌱</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-800">Garden Notes</h2>
+            <p class="text-gray-600 text-sm">Growing ideas and connections</p>
           </div>
         </div>
-      </div>
-    </section>
+        
+        <div class="space-y-4">
+          {recentNotes.map((note, index) => {
+            const validTags = getValidTags(note.data.tags);
+            return (
+              <article key={note.slug} class="group">
+                <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-green-50 hover:border-green-300 transition-all">
+                  <div class="flex items-start justify-between gap-4 mb-3">
+                    <h3 class="font-medium text-gray-900 leading-tight group-hover:text-green-700 transition-colors">
+                      <a href={`/notes/${note.slug}`}>
+                        {note.data.title}
+                      </a>
+                    </h3>
+                    <time class="text-xs text-gray-500 font-mono flex-shrink-0">
+                      {getRelativeTime(note.data.publishDate || note.data.created, `NOTE: ${note.data.title}`)}
+                    </time>
+                  </div>
+                  
+                  {/* Note content preview */}
+                  {note.body && (
+                    <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
+                      {note.body.replace(/#{1,6}\s+/g, '').replace(/\*\*/g, '').replace(/\[(.*?)\]/g, '$1').substring(0, 200)}...
+                    </div>
+                  )}
+                  
+                  {validTags.length > 0 && (
+                    <div class="flex gap-1">
+                      {validTags.slice(0, 3).map((tag, tagIndex) => (
+                        <span key={`${note.slug}-tag-${tagIndex}`} class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-md">
+                          {tag}
+                        </span>
+                      ))}
+                      {validTags.length > 3 && (
+                        <span class="text-xs text-gray-500">+{validTags.length - 3}</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        
+        <div class="mt-6">
+          <a href="/notes" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-sm">
+            <span class="mr-2">🌱</span>
+            Explore the garden
+          </a>
+        </div>
+      </section>
 
-    <!-- Thinking About -->
-    <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">Thinking About</h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3>🤖 AI & Humanity</h3>
-              <p>
-                How do we preserve what makes us uniquely human while embracing tools that can augment our capabilities? 
-                I'm particularly interested in the space between automation and creativity.
-              </p>
-            </div>
-            
-            <div>
-              <h3>🧠 Learning Systems</h3>
-              <p>
-                What can we learn from how children naturally acquire knowledge? How do we scale personalized learning 
-                without losing the magic of human connection and serendipitous discovery?
-              </p>
-            </div>
-            
-            <div>
-              <h3>🌱 Digital Gardens</h3>
-              <p>
-                How can we make our thinking more visible and connected? I'm fascinated by tools that help us 
-                see patterns in our own thoughts and make unexpected connections.
-              </p>
-            </div>
-            
-            <div>
-              <h3>🎯 Focused Work</h3>
-              <p>
-                In an age of constant distraction, how do we create the deep focus necessary for meaningful work? 
-                What practices and environments support sustained attention?
-              </p>
-            </div>
+      <!-- Recent Reading -->
+      <section>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center">
+            <span class="text-2xl">📚</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-800">Recent Reading</h2>
+            <p class="text-gray-600 text-sm">Books shaping my thinking</p>
           </div>
         </div>
+        
+        <div class="space-y-4">
+          {recentReadings.map((reading) => {
+            const validTags = getValidTags(reading.data.tags);
+            return (
+              <article key={reading.slug} class="group">
+                <div class="bg-white rounded-xl border border-gray-200 p-5 hover:bg-purple-50 hover:border-purple-300 transition-all">
+                  <div class="flex items-start gap-3">
+                    <span class="text-lg flex-shrink-0 mt-0.5">{getStatusIcon(reading.data.status)}</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-start justify-between gap-3 mb-2">
+                        <h3 class="font-medium text-gray-900 leading-tight group-hover:text-purple-700 transition-colors">
+                          <a href={`/reading/${reading.slug}`}>
+                            {reading.data.title}
+                          </a>
+                        </h3>
+                        <time class="text-xs text-gray-500 font-mono flex-shrink-0">
+                          {getRelativeTime(reading.data.readDate || reading.data.dateAdded, `READING: ${reading.data.title}`)}
+                        </time>
+                      </div>
+                      
+                      <p class="text-sm text-gray-600 mb-3">
+                        by {reading.data.author}
+                      </p>
+                      
+                      {/* Summary from YAML metadata */}
+                      {reading.data.summary && (
+                        <div class="text-sm text-gray-700 leading-relaxed mb-3 p-3 bg-purple-50 rounded-lg border-l-3 border-purple-300">
+                          <div class="font-medium text-purple-800 text-xs uppercase tracking-wide mb-1">Summary</div>
+                          <div class="line-clamp-3">{reading.data.summary}</div>
+                        </div>
+                      )}
+                      
+                      {/* Personal notes */}
+                      {reading.data.notes && !reading.data.summary && (
+                        <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2 italic">
+                          "{reading.data.notes}"
+                        </div>
+                      )}
+                      
+                      {/* Tags */}
+                      {validTags.length > 0 && (
+                        <div class="flex gap-1 mb-3">
+                          {validTags.slice(0, 3).map(tag => (
+                            <span key={tag} class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-md">
+                              {tag}
+                            </span>
+                          ))}
+                          {validTags.length > 3 && (
+                            <span class="text-xs text-gray-500">+{validTags.length - 3}</span>
+                          )}
+                        </div>
+                      )}
+                      
+                      <div class="flex items-center justify-between">
+                        {reading.data.status && (
+                          <span class={`px-2 py-1 text-xs font-medium rounded-lg border ${getStatusColor(reading.data.status)}`}>
+                            {reading.data.status.replace('-', ' ')}
+                            {reading.data.progress && ` • ${reading.data.progress}`}
+                          </span>
+                        )}
+                        
+                        {/* Rating if available */}
+                        {reading.data.rating && (
+                          <div class="flex items-center gap-1">
+                            <span class="text-xs text-gray-500">Rating:</span>
+                            <div class="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <span key={i} class={`text-xs ${i < reading.data.rating ? 'text-yellow-500' : 'text-gray-300'}`}>
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        
+        <div class="mt-6">
+          <a href="/reading" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-sm">
+            <span class="mr-2">📚</span>
+            See reading list
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Stats Footer -->
+    <section class="mt-20 pt-12 border-t border-gray-200">
+      <div class="text-center mb-8">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Digital Garden Stats</h3>
+        <p class="text-gray-600 text-sm">Growing collection of thoughts and ideas</p>
       </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Personal -->
-    <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">Life Outside Work</h2>
-          
-          <p>
-            I'm trying to be more intentional about how I spend my time away from screens. This means longer walks, 
-            more conversations that meander, and protecting time for pure play and exploration.
-          </p>
-          
-          <p>
-            Music continues to be a constant companion. I'm slowly working through Bach's Well-Tempered Clavier on piano – 
-            there's something about the mathematical beauty of his counterpoint that feels connected to the work I do with AI.
-          </p>
-          
-          <p>
-            I've been experimenting with film photography as a way to slow down and be more deliberate. There's something 
-            about the constraints and the anticipation of development that creates a different relationship with image-making.
-          </p>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center p-6 bg-white rounded-xl border border-gray-200">
+          <div class="text-3xl font-light text-gray-800 mb-2">{essays.length}</div>
+          <div class="text-sm text-gray-600 font-medium">Essays</div>
+          <div class="text-xs text-gray-500 mt-1">Published thoughts</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-gray-200">
+          <div class="text-3xl font-light text-gray-800 mb-2">{notes.length}</div>
+          <div class="text-sm text-gray-600 font-medium">Notes</div>
+          <div class="text-xs text-gray-500 mt-1">Garden entries</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-gray-200">
+          <div class="text-3xl font-light text-gray-800 mb-2">{readings.filter(r => r.data.status === 'reading').length}</div>
+          <div class="text-sm text-gray-600 font-medium">Reading</div>
+          <div class="text-xs text-gray-500 mt-1">Currently active</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-gray-200">
+          <div class="text-3xl font-light text-gray-800 mb-2">{readings.filter(r => r.data.status === 'finished').length}</div>
+          <div class="text-sm text-gray-600 font-medium">Finished</div>
+          <div class="text-xs text-gray-500 mt-1">Books completed</div>
         </div>
       </div>
     </section>
-
-    <!-- Contact -->
-    <section>
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-8 md:p-12 text-center">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4 serif">Want to Connect?</h2>
-        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-          I'm always interested in conversations about learning, technology, and the future we're building together. 
-          If something here resonates with you, I'd love to hear from you.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="mailto:hello@ziahassan.com" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-            <span class="mr-2">✉️</span>
-            Email me
-          </a>
-          <a href="/essays" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
-            <span class="mr-2">📝</span>
-            Read my essays
-          </a>
-          <a href="/notes" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
-            <span class="mr-2">🌐</span>
-            Explore my notes
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="max-w-4xl mx-auto px-6 py-8 text-center text-sm text-gray-500">
-    <p>
-      This page is inspired by <a href="https://maggieappleton.com/now/" class="text-blue-600 hover:underline">Maggie Appleton's approach</a> 
-      to sharing work in progress and current thinking.
-    </p>
-  </footer>
+  </div>
 </Layout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
-    min-height: 100vh;
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
-  .serif {
-    font-family: 'Crimson Text', serif;
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
-  .prose-custom {
-    line-height: 1.75;
+  /* Smooth transitions */
+  article {
+    transition: all 0.3s ease;
   }
   
-  .prose-custom p {
-    margin-bottom: 1.5rem;
-    color: #374151;
+  /* Hover effects */
+  article:hover {
+    transform: translateY(-2px);
   }
   
-  .prose-custom h2 {
-    font-family: 'Crimson Text', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 0.5rem;
+  /* Color-coded hover effects */
+  section:nth-child(2) article:hover {
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
   }
   
-  .prose-custom h3 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #374151;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  section:nth-child(3) article:hover {
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15);
   }
   
-  .prose-custom a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .prose-custom a:hover {
-    text-decoration: underline;
-  }
-  
-  .prose-custom em {
-    font-style: italic;
-    color: #6b7280;
-  }
-  
-  .prose-custom strong {
-    font-weight: 600;
-    color: #1f2937;
-  }
-  
-  .last-updated {
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-    border-left: 4px solid #3b82f6;
-  }
-  
-  .reading-item {
-    transition: all 0.2s ease;
-  }
-  
-  .reading-item:hover {
-    transform: translateX(4px);
-    background-color: #f9fafb;
-  }
-  
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, #e5e7eb, transparent);
-    margin: 3rem 0;
-  }
-  
-  .floating-emoji {
-    position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.6;
-    pointer-events: none;
-    z-index: 1;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .timeline-dot {
-    position: relative;
-  }
-  
-  .timeline-dot::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 0.5rem;
-    width: 8px;
-    height: 8px;
-    background: #3b82f6;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px #3b82f6;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  @media (max-width: 768px) {
-    .timeline-dot::before {
-      display: none;
-    }
+  section:nth-child(4) article:hover {
+    box-shadow: 0 8px 25px rgba(147, 51, 234, 0.15);
   }
 </style>
-
-<script>
-  // Add staggered animations to floating emojis
-  document.addEventListener('DOMContentLoaded', () => {
-    const emojis = document.querySelectorAll('.floating-emoji');
-    
-    emojis.forEach((emoji, index) => {
-      emoji.style.animationDelay = `${index * 0.5}s`;
-    });
-  });
-</script>
