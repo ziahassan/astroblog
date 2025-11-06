@@ -1,0 +1,329 @@
+---
+// src/pages/media.astro
+import Layout from '../layouts/layout.astro';
+import { getAllMediaItems } from '../lib/media';
+
+const mediaItems = await getAllMediaItems();
+---
+
+<Layout title="Media">
+  <!-- Background decorative elements -->
+  <div class="floating-emoji" style="top: 10%; left: 5%;">🎙️</div>
+  <div class="floating-emoji" style="top: 20%; right: 10%;">📹</div>
+  <div class="floating-emoji" style="top: 60%; left: 8%;">🎧</div>
+  <div class="floating-emoji" style="top: 80%; right: 5%;">🎵</div>
+
+  <!-- Header -->
+  <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4 serif">
+        Media & Appearances
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Conversations about AI, education, music, and the future of learning. Podcasts, videos, 
+        music releases, and guest appearances exploring creativity, technology, and human connection.
+      </p>
+    </div>
+    
+    <!-- Filter controls -->
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      <button class="filter-btn active" data-filter="all">
+        All ({mediaItems.length})
+      </button>
+      <button class="filter-btn" data-filter="podcast">
+        Podcast ({mediaItems.filter(item => item.type === 'podcast').length})
+      </button>
+      <button class="filter-btn" data-filter="youtube">
+        Videos ({mediaItems.filter(item => item.type === 'youtube').length})
+      </button>
+      <button class="filter-btn" data-filter="music">
+        Music ({mediaItems.filter(item => item.type === 'music').length})
+      </button>
+      <button class="filter-btn" data-filter="guest">
+        Guest Appearances ({mediaItems.filter(item => item.type === 'guest').length})
+      </button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="max-w-4xl mx-auto px-6 pb-16">
+    <div class="space-y-6">
+      {mediaItems.map((item) => (
+        <article class={`media-item bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 transition-all duration-300 hover:shadow-md`} data-type={item.type}>
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Thumbnail -->
+            {item.thumbnail && (
+              <div class="flex-shrink-0">
+                <img 
+                  src={item.thumbnail} 
+                  alt={item.title}
+                  class="w-full md:w-48 h-32 md:h-28 object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div class="flex-1">
+                  <h2 class="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">
+                      {item.title}
+                    </a>
+                  </h2>
+                  
+                  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-3">
+                    <span class={`media-type-badge ${item.type}`}>
+                      {item.type === 'podcast' && '🎙️ Podcast'}
+                      {item.type === 'youtube' && '📹 Video'}
+                      {item.type === 'guest' && '🎧 Guest'}
+                      {item.type === 'music' && '🎵 Music'}
+                    </span>
+                    <time datetime={item.publishDate.toISOString()}>
+                      {item.publishDate.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}
+                    </time>
+                    {item.duration && (
+                      <span>⏱️ {item.duration}</span>
+                    )}
+                    {item.platform && (
+                      <span>📍 {item.platform}</span>
+                    )}
+                    {item.price && (
+                      <span>💰 {item.price}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Description -->
+              {item.description && (
+                <p class="text-gray-600 leading-relaxed line-clamp-3 mb-4">
+                  {item.description}
+                </p>
+              )}
+              
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  {item.type === 'podcast' && '🎧 Listen'}
+                  {item.type === 'youtube' && '▶️ Watch'}
+                  {item.type === 'guest' && '🎙️ Listen'}
+                  {item.type === 'music' && '🎵 Listen'}
+                </a>
+                
+                {item.type === 'youtube' && (
+                  <button 
+                    class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium share-btn"
+                    data-url={item.url}
+                    data-title={item.title}
+                  >
+                    🔗 Share
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <div class="text-6xl mb-4">🔍</div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">No items found</h3>
+      <p class="text-gray-600">Try adjusting your filter selection.</p>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
+    min-height: 100vh;
+  }
+  
+  .serif {
+    font-family: 'Crimson Text', serif;
+  }
+  
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background: white;
+    color: #6b7280;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .filter-btn:hover, .filter-btn.active {
+    border-color: #3b82f6;
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .media-type-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+  
+  .media-type-badge.podcast {
+    background: #fef3c7;
+    color: #d97706;
+  }
+  
+  .media-type-badge.youtube {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+  
+  .media-type-badge.guest {
+    background: #e0e7ff;
+    color: #4f46e5;
+  }
+  
+  .media-type-badge.music {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .media-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+  }
+  
+  .media-item.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    margin: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .floating-emoji {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @media (max-width: 768px) {
+    .filter-btn {
+      font-size: 0.875rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const mediaItems = document.querySelectorAll('.media-item');
+    const emptyState = document.getElementById('empty-state');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter items
+        let visibleCount = 0;
+        mediaItems.forEach(item => {
+          const shouldShow = filter === 'all' || item.dataset.type === filter;
+          
+          if (shouldShow) {
+            item.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+        
+        // Show/hide empty state
+        if (visibleCount === 0) {
+          emptyState?.classList.remove('hidden');
+        } else {
+          emptyState?.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Share functionality
+    const shareBtns = document.querySelectorAll('.share-btn');
+    shareBtns.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const url = btn.dataset.url;
+        const title = btn.dataset.title;
+        
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+          } catch (err) {
+            console.log('Share cancelled');
+          }
+        } else {
+          // Fallback to clipboard
+          try {
+            await navigator.clipboard.writeText(url);
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => {
+              btn.innerHTML = '🔗 Share';
+            }, 2000);
+          } catch (err) {
+            console.error('Could not copy to clipboard');
+          }
+        }
+      });
+    });
+    
+    // Staggered animations for floating emojis
+    const emojis = document.querySelectorAll('.floating-emoji');
+    emojis.forEach((emoji, index) => {
+      emoji.style.animationDelay = `${index * 0.5}s`;
+    });
+  });
+</script>

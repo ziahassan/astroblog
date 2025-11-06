@@ -1,0 +1,2 @@
+An interesting #realization is that the astrology subreddits are mostly people complaining and asking for validation. 
+It goes in line very much with how people interact with astrology though. But it can be a trap. It can create/activate saboteurs, specifically the victim one.
