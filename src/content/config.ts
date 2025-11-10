@@ -4,8 +4,13 @@ import { defineCollection, z } from 'astro:content';
 const notes = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    tags: z.array(z.string()).optional(),
+    title: z.string().optional(),
+    tags: z.union([z.array(z.string()), z.string()]).optional().transform(val => {
+      if (typeof val === 'string') {
+        return val.split(',').map(tag => tag.trim()).filter(Boolean);
+      }
+      return val || [];
+    }),
     status: z.string().optional(),
     publishDate: z.date().optional(),
     created: z.date().optional(),

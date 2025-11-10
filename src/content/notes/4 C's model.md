@@ -1,3 +1,7 @@
+---
+title: "4 C's model"
+tags: []
+---
 4 C's model of [[creativity]] - I've been doing the first 3 C's for years; now it's time for the 4th! - Kauffman and Beghetto
 
 - mini-c : exploring creativity as a child perhaps
