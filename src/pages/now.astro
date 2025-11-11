@@ -30,15 +30,19 @@ const recentEssays = essays
 
 const recentNotes = notes
   .sort((a, b) => {
-    // Sort by created date if available, otherwise by title
-    if (a.data.created && b.data.created) {
+    // Sort by created date if available, otherwise by title/slug
+    const createdA = a?.data?.created;
+    const createdB = b?.data?.created;
+    if (createdA && createdB) {
       return new Date(b.data.created).getTime() - new Date(a.data.created).getTime();
-    } else if (a.data.created) {
+    } else if (createdA) {
       return -1; // Notes with dates come first
-    } else if (b.data.created) {
+    } else if (createdB) {
       return 1; // Notes with dates come first
     } else {
-      return a.data.title.localeCompare(b.data.title); // Alphabetical for notes without dates
+      const titleA = (a?.data?.title ?? a?.slug ?? '').toLowerCase();
+      const titleB = (b?.data?.title ?? b?.slug ?? '').toLowerCase();
+      return titleA.localeCompare(titleB); // Alphabetical fallback
     }
   })
   .slice(0, 6);

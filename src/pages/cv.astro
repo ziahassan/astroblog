@@ -1,125 +1,299 @@
 ---
-// src/pages/cv.astro
 import Layout from '../layouts/layout.astro';
 import { getCollection } from 'astro:content';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
 const cvEntries = await getCollection('cv');
-const cv = cvEntries[0]; // Get the first (and only) CV entry
-const { Content } = await cv.render();
+const cv = cvEntries[0];
+
+const contact = cv.data?.contact ?? {};
+const updatedOn = cv.data?.lastUpdated ? new Date(cv.data.lastUpdated) : null;
+
+const slugify = (value = '') =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+const sections = [];
+const sectionRegex = /##\s+(.+)\n([\s\S]*?)(?=(?:\n##\s+)|$)/g;
+let match;
+const markdownProcessor = await createMarkdownProcessor();
+
+while ((match = sectionRegex.exec(cv.body ?? '')) !== null) {
+  const [, rawTitle, rawContent = ''] = match;
+  const title = rawTitle.trim();
+  const id = slugify(title);
+  const rendered = await markdownProcessor.render(rawContent.trim());
+  sections.push({ title, id, html: rendered.code });
+}
+
+const headings = sections.map(({ title, id }) => ({ title, id }));
+
+const researchSummaryMatch = cv.body?.match(/##\s+Research Interests([\s\S]*?)(?:\n##\s|$)/);
+const stripMarkdown = (text = '') =>
+  text
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .replace(/#+\s*/g, '')
+    .trim();
+
+const researchSummary = researchSummaryMatch
+  ? stripMarkdown(researchSummaryMatch[1]).replace(/\s+/g, ' ')
+  : '';
 ---
 
 <Layout title="Curriculum Vitae">
-  <!-- Background decorative elements -->
-  <div class="floating-emoji" style="top: 10%; left: 5%;">🎓</div>
-  <div class="floating-emoji" style="top: 20%; right: 10%;">📊</div>
-  <div class="floating-emoji" style="top: 60%; left: 8%;">🔬</div>
-  <div class="floating-emoji" style="top: 80%; right: 5%;">📝</div>
-
-  <!-- Header -->
-  <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
-    <div class="text-center mb-12">
-      <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4 serif">
-        Zia Hassan
-      </h1>
-      <div class="text-lg text-gray-600 space-y-1">
-        <p>{cv.data.contact.location}</p>
-        <p>{cv.data.contact.phone}</p>
-        <p>
-          <a href={`mailto:${cv.data.contact.email}`} class="text-blue-600 hover:underline font-medium">
-            {cv.data.contact.email}
-          </a>
-        </p>
+  <!-- Hero -->
+  <section class="cv-hero px-6 pt-16 pb-12">
+    <div class="max-w-5xl mx-auto space-y-6 text-center lg:text-left">
+      <p class="uppercase tracking-[0.3em] text-xs text-gray-500">Curriculum Vitae</p>
+      <div>
+        <h1 class="text-4xl md:text-5xl font-light text-slate-900 serif">Zia Hassan</h1>
+        <p class="text-lg text-slate-500 mt-2">Educational technology researcher, consultant, and doctoral scholar.</p>
       </div>
+      <div class="contact-grid">
+        {contact.location && (
+          <div class="contact-chip">
+            <span>📍</span>
+            {contact.location}
+          </div>
+        )}
+        {contact.email && (
+          <a href={`mailto:${contact.email}`} class="contact-chip hover:shadow-md transition-shadow">
+            <span>✉️</span>
+            {contact.email}
+          </a>
+        )}
+      </div>
+      {researchSummary && (
+        <div class="research-summary">
+          <h2>Research focus</h2>
+          <p>{researchSummary}</p>
+        </div>
+      )}
     </div>
-    
-    <!-- Last updated badge -->
-    <div class="last-updated rounded-lg p-4 text-center max-w-md mx-auto">
-      <p class="text-sm text-gray-600">
-        <span class="font-medium">Last updated:</span> 
-        {cv.data.lastUpdated.toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        })}
-      </p>
-    </div>
-  </header>
+  </section>
 
   <!-- Main content -->
-  <main class="max-w-4xl mx-auto px-6 pb-16">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-      <div class="cv-content prose-custom">
-        <Content />
-      </div>
-    </div>
-    
-    <!-- Download/Print Actions -->
-    <div class="mt-8 text-center">
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-6">
-        <div class="flex flex-wrap justify-center gap-4">
-          <button onclick="window.print()" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-            <span class="mr-2">🖨️</span>
-            Print CV
-          </button>
-          <a href="/essays" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
-            <span class="mr-2">📝</span>
-            Read my essays
-          </a>
-          <a href="/notes" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
-            <span class="mr-2">🌐</span>
-            Explore my notes
-          </a>
+  <section class="cv-layout px-6 pb-16">
+    <div class="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[280px,1fr]">
+      <aside class="space-y-6">
+        <div class="cv-card">
+          <h3>Contact</h3>
+          <ul class="space-y-3 text-sm text-slate-600">
+            {contact.location && <li><span class="card-label">Location</span>{contact.location}</li>}
+            {contact.email && (
+              <li>
+                <span class="card-label">Email</span>
+                <a href={`mailto:${contact.email}`} class="text-blue-600 hover:underline font-medium">{contact.email}</a>
+              </li>
+            )}
+          </ul>
         </div>
-      </div>
+
+        {updatedOn && (
+          <div class="cv-card">
+            <h3>Last updated</h3>
+            <p class="text-sm text-slate-500">
+              {updatedOn.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+          </div>
+        )}
+
+        {headings.length > 0 && (
+          <nav class="cv-card">
+            <h3>On this page</h3>
+            <ol class="space-y-2 text-sm text-slate-600">
+              {headings.map((section) => (
+                <li key={section.id}>
+                  <a href={`#${section.id}`} class="hover:text-blue-600 transition-colors">
+                    {section.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        <div class="cv-card">
+          <h3>Quick actions</h3>
+          <div class="space-y-3">
+            <button onclick="window.print()" class="cv-btn primary w-full">
+              🖨️ Print CV
+            </button>
+            <a href="/notes" class="cv-btn ghost w-full text-center">
+              🌐 Explore notes
+            </a>
+            <a href="/essays" class="cv-btn ghost w-full text-center">
+              📝 Read essays
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <article class="cv-article cv-content prose-custom">
+        {sections.map((section) => (
+          <section id={section.id} class="cv-section" key={section.id}>
+            <h2>{section.title}</h2>
+            <div class="section-body" set:html={section.html}></div>
+          </section>
+        ))}
+      </article>
     </div>
-  </main>
+  </section>
 </Layout>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
   
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
-    min-height: 100vh;
-  }
-  
   .serif {
     font-family: 'Crimson Text', serif;
   }
   
+  .cv-section {
+    border: 1px solid #e2e8f0;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    background: #fff;
+  }
+
+  .cv-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.4rem;
+  }
+
+  .cv-hero {
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      justify-content: flex-start;
+    }
+  }
+
+  .contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.9rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: #475569;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  }
+
+  .research-summary {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e0e7ff;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08);
+  }
+
+  .research-summary h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-layout {
+    background: #f8fafc;
+  }
+
+  .cv-card {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.5rem;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
+  }
+
+  .cv-card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #94a3b8;
+    margin-bottom: 0.25rem;
+  }
+
+  .cv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .cv-btn.primary {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
+  }
+
+  .cv-btn.primary:hover {
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+  }
+
+  .cv-btn.ghost {
+    background: white;
+    border-color: #e2e8f0;
+    color: #2563eb;
+  }
+
+  .cv-btn.ghost:hover {
+    border-color: #cbd5f5;
+    background: #f8fbff;
+  }
+
+  .cv-article {
+    background: white;
+    border-radius: 1.5rem;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    box-shadow: 0 25px 55px rgba(15, 23, 42, 0.08);
+  }
+  
   .prose-custom {
     line-height: 1.75;
-  }
-  
-  /* CV-specific styling */
-  .cv-content h2 {
-    font-family: 'Crimson Text', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #3b82f6;
-    padding-bottom: 0.5rem;
-    position: relative;
-  }
-  
-  .cv-content h2:first-of-type {
-    margin-top: 0;
-  }
-  
-  .cv-content h2::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 0.5rem;
-    width: 8px;
-    height: 8px;
-    background: #3b82f6;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px #3b82f6;
+    color: #334155;
   }
   
   .cv-content h3 {
@@ -165,83 +339,38 @@ const { Content } = await cv.render();
     text-decoration: underline;
   }
   
-  .last-updated {
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-    border-left: 4px solid #3b82f6;
-  }
-  
-  .floating-emoji {
-    position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.6;
-    pointer-events: none;
-    z-index: 1;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  
   /* Print styles */
   @media print {
-    .floating-emoji,
-    .last-updated,
-    .bg-gradient-to-br {
-      display: none !important;
-    }
-    
-    body {
+    .cv-hero,
+    .cv-layout {
       background: white !important;
+      padding: 0 !important;
     }
-    
-    .bg-white {
+
+    .cv-layout > div {
+      display: block !important;
+    }
+
+    .cv-card,
+    .cv-article {
       box-shadow: none !important;
       border: none !important;
+      padding: 0 !important;
     }
-    
-    .cv-content h2::before {
-      display: none;
-    }
-    
-    .cv-content h2 {
-      border-bottom: 1px solid #000;
-      margin-top: 1.5rem;
-    }
-    
+
     .cv-content {
       font-size: 11pt;
       line-height: 1.4;
     }
-    
-    header {
-      padding-top: 0 !important;
-    }
-    
-    .text-5xl, .text-6xl {
-      font-size: 24pt !important;
-    }
-    
-    .text-lg {
-      font-size: 12pt !important;
-    }
   }
   
   @media (max-width: 768px) {
-    .cv-content h2::before {
-      display: none;
+    .cv-article {
+      padding: 1.5rem;
+    }
+
+    .contact-grid {
+      flex-direction: column;
     }
   }
 </style>
-
-<script>
-  // Add staggered animations to floating emojis
-  document.addEventListener('DOMContentLoaded', () => {
-    const emojis = document.querySelectorAll('.floating-emoji');
-    
-    emojis.forEach((emoji, index) => {
-      emoji.style.animationDelay = `${index * 0.5}s`;
-    });
-  });
-</script>

@@ -18,12 +18,14 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 // Create backlink count mapping
 const backlinkCounts = {};
 for (const sourceNote of notes) {
+  const sourceBody = typeof sourceNote?.body === 'string' ? sourceNote.body : '';
+  if (!sourceBody) continue;
   for (const targetNote of notes) {
     // Check for both [[title]] and [[slug]] patterns
     const titlePattern = `[[${targetNote.data.title}]]`;
     const slugPattern = `[[${targetNote.slug}]]`;
-    
-    if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
+
+    if (sourceBody.includes(titlePattern) || sourceBody.includes(slugPattern)) {
       backlinkCounts[targetNote.slug] = (backlinkCounts[targetNote.slug] || 0) + 1;
     }
   }

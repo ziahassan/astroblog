@@ -20,28 +20,40 @@ if (!note) {
 const titleToSlug = {};
 const slugToTitle = {};
 allNotes.forEach(n => {
-  titleToSlug[n.data.title] = n.slug;
-  slugToTitle[n.slug] = n.data.title;
+  const title = n?.data?.title ?? n.slug;
+  if (title) {
+    titleToSlug[title] = n.slug;
+    slugToTitle[n.slug] = title;
+  }
 });
 
 const { Content } = await note.render();
 const { data } = note;
 
 // Get backlinks - now looking for both [[title]] and [[slug]] patterns
-const backlinks = allNotes.filter(n => 
-  n.body.includes(`[[${data.title}]]`) || n.body.includes(`[[${slug}]]`)
-);
+const backlinks = allNotes.filter(n => {
+  const body = typeof n?.body === 'string' ? n.body : '';
+  if (!body) return false;
+  const titlePattern = data?.title ? `[[${data.title}]]` : null;
+  const slugPattern = `[[${slug}]]`;
+  return (titlePattern && body.includes(titlePattern)) || body.includes(slugPattern);
+});
 
 // Count backlinks by both title and slug patterns
 const backlinkCounts = {};
 for (const sourceNote of allNotes) {
   for (const targetNote of allNotes) {
     // Check for both [[title]] and [[slug]] patterns
-    const titlePattern = `[[${targetNote.data.title}]]`;
+    const targetTitle = targetNote?.data?.title ?? targetNote.slug;
+    const titlePattern = targetTitle ? `[[${targetTitle}]]` : null;
     const slugPattern = `[[${targetNote.slug}]]`;
     
-    if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
-      backlinkCounts[targetNote.data.title] = (backlinkCounts[targetNote.data.title] || 0) + 1;
+    const sourceBody = typeof sourceNote?.body === 'string' ? sourceNote.body : '';
+    if (!sourceBody) continue;
+
+    if ((titlePattern && sourceBody.includes(titlePattern)) || sourceBody.includes(slugPattern)) {
+      const key = targetTitle || targetNote.slug;
+      backlinkCounts[key] = (backlinkCounts[key] || 0) + 1;
     }
   }
 }
