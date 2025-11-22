@@ -29,6 +29,7 @@ allNotes.forEach(n => {
 
 const { Content } = await note.render();
 const { data } = note;
+const displayTitle = data?.title || slug;
 
 // Get backlinks - now looking for both [[title]] and [[slug]] patterns
 const backlinks = allNotes.filter(n => {
@@ -59,7 +60,7 @@ for (const sourceNote of allNotes) {
 }
 ---
 
-<Layout title={data.title}>
+<Layout title={displayTitle}>
   <!-- Compact Academic Search Bar -->
   <div class="fixed top-20 right-6 z-40">
     <div class="relative">
@@ -89,7 +90,7 @@ for (const sourceNote of allNotes) {
   <article class="max-w-4xl mx-auto">
     <!-- Article Header -->
     <header class="mb-8 pb-6 border-b border-gray-200">
-      <h1 class="text-4xl font-light text-gray-800 mb-3">{data.title}</h1>
+      <h1 class="text-4xl font-light text-gray-800 mb-3">{displayTitle}</h1>
       <div class="flex items-center gap-4 text-sm text-gray-600">
         {data.publishDate && (
           <span class="font-mono">{new Date(data.publishDate).toLocaleDateString('en-US', { 
@@ -211,10 +212,10 @@ for (const sourceNote of allNotes) {
 </script>
 
 <!-- Local Graph Visualization -->
-<script define:vars={{ allNotes, data: data, slug: slug, backlinks }}>
+<script define:vars={{ allNotes, data, slug, backlinks, displayTitle }}>
   document.addEventListener('DOMContentLoaded', () => {
     console.log('Starting graph creation...');
-    console.log('Current note:', { slug, title: data.title });
+    console.log('Current note:', { slug, title: displayTitle });
     console.log('All notes:', allNotes.length);
     console.log('Backlinks:', backlinks.length);
     
@@ -255,7 +256,7 @@ for (const sourceNote of allNotes) {
       <div class="flex items-center justify-center h-full text-gray-500">
         <div class="text-center">
           <div class="text-sm mb-2">📊 Graph visualization</div>
-          <div class="text-xs">Current: ${data.title}</div>
+          <div class="text-xs">Current: ${displayTitle}</div>
           ${backlinks.length > 0 ? `<div class="text-xs">Connected to ${backlinks.length} note(s)</div>` : ''}
         </div>
       </div>
@@ -284,7 +285,7 @@ for (const sourceNote of allNotes) {
     // Build graph data
     const currentNote = {
       id: slug,
-      title: data.title || slug,
+      title: displayTitle,
       type: 'current',
       tags: data.tags || []
     };

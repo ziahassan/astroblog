@@ -152,65 +152,91 @@ function calculateReadingTime(content) {
       )}
     </header>
     
-    <!-- Article Body with Floating TOC -->
+    <!-- Article Body with Table of Contents -->
     <div class="relative">
-      
-      <!-- Floating Table of Contents with Toggle -->
       {tocHeadings.length > 0 && (
-        <aside class="hidden lg:block fixed right-6 top-1/2 transform -translate-y-1/2 z-30">
-          <!-- TOC Panel -->
-          <div id="toc-panel" class="w-64 p-4 bg-white/95 backdrop-blur rounded-lg border border-gray-200 shadow-lg max-h-96 overflow-y-auto transition-transform duration-300 ease-in-out">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                Contents
-              </h3>
+        <div class="mb-6">
+          {/* Mobile collapsible TOC */}
+          <div class="lg:hidden">
+            <details id="toc-accordion" class="group bg-white border border-gray-200 rounded-xl shadow-sm">
+              <summary class="flex items-center justify-between px-4 py-3 cursor-pointer text-sm font-semibold text-gray-800">
+                <span class="flex items-center gap-2">
+                  <span class="sr-only">Table of contents</span>
+                  <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="text-gray-400 group-open:rotate-180 transition-transform">⌄</span>
+              </summary>
+              <nav class="border-t border-gray-100 p-3 space-y-2 max-h-64 overflow-y-auto">
+                {tocHeadings.map(heading => (
+                  <a 
+                    href={`#${heading.slug}`}
+                    class={`block text-sm rounded-lg px-3 py-2 transition-colors toc-link ${
+                      heading.depth === 2 
+                        ? 'text-gray-700 font-medium' 
+                        : 'text-gray-500 pl-4'
+                    }`}
+                    data-target={heading.slug}
+                  >
+                    {heading.text}
+                  </a>
+                ))}
+              </nav>
+            </details>
+          </div>
+
+          {/* Desktop floating mini menu */}
+          <div class="hidden lg:block">
+            <div class="fixed right-6 top-1/2 -translate-y-1/2 z-30 flex flex-col items-end gap-3 pointer-events-none">
               <button 
-                id="toc-toggle" 
-                class="text-gray-400 hover:text-gray-600 transition-colors p-1"
-                title="Hide table of contents"
+                id="toc-toggle"
+                class="pointer-events-auto flex items-center gap-2 px-3 py-2 text-sm font-semibold text-gray-700 bg-white/95 backdrop-blur border border-gray-200 rounded-full shadow-md hover:border-blue-300 hover:text-blue-700 transition-all"
+                aria-expanded="false"
+                aria-controls="toc-flyout"
+                aria-label="Toggle table of contents"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                <span class="flex items-center justify-center w-6 h-6 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                  </svg>
+                </span>
+                <svg class="w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+              <div 
+                id="toc-flyout" 
+                class="pointer-events-auto hidden w-80 bg-white/95 backdrop-blur border border-gray-200 rounded-2xl shadow-2xl max-h-[70vh] overflow-y-auto p-3 translate-y-1"
+              >
+                <nav class="space-y-2" id="toc-nav">
+                  {tocHeadings.map(heading => (
+                    <a 
+                      href={`#${heading.slug}`}
+                      class={`block text-sm rounded-lg px-3 py-2 transition-colors toc-link ${
+                        heading.depth === 2 
+                          ? 'text-gray-700 font-medium border-l-2 border-transparent hover:border-blue-300 hover:text-blue-700' 
+                          : 'text-gray-500 pl-4 border-l-2 border-transparent hover:border-blue-200 hover:text-blue-600'
+                      }`}
+                      data-target={heading.slug}
+                    >
+                      {heading.text}
+                    </a>
+                  ))}
+                </nav>
+              </div>
             </div>
-            <nav class="space-y-2" id="toc-nav">
-              {tocHeadings.map(heading => (
-                <a 
-                  href={`#${heading.slug}`}
-                  class={`block text-sm transition-all duration-200 toc-link ${
-                    heading.depth === 2 
-                      ? 'text-gray-600 font-medium border-l-2 border-transparent pl-3' 
-                      : 'text-gray-500 ml-6 border-l-2 border-transparent pl-2'
-                  }`}
-                  data-target={heading.slug}
-                >
-                  {heading.text}
-                </a>
-              ))}
-            </nav>
           </div>
-          
-          <!-- Show TOC Button (when hidden) -->
-          <button 
-            id="toc-show" 
-            class="hidden w-12 h-12 bg-white/95 backdrop-blur rounded-lg border border-gray-200 shadow-lg items-center justify-center text-gray-600 hover:text-blue-600 transition-all duration-300 hover:shadow-xl"
-            title="Show table of contents"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
-            </svg>
-          </button>
-        </aside>
+        </div>
       )}
-      
-      <!-- Main Content -->
+
       <div class="max-w-4xl">
         <div class="prose prose-xl prose-gray max-w-none leading-relaxed">
           <Content />
         </div>
       </div>
-      
     </div>
     
     <!-- Related Essays -->
@@ -367,6 +393,14 @@ function calculateReadingTime(content) {
   .toc-link:hover {
     @apply text-blue-600 border-blue-300;
   }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  #toc-toggle svg {
+    transition: transform 150ms ease;
+  }
   
   /* Smooth transitions */
   * {
@@ -380,34 +414,42 @@ function calculateReadingTime(content) {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const tocLinks = document.querySelectorAll('.toc-link');
-    const headings = document.querySelectorAll('h2, h3');
-    const tocPanel = document.getElementById('toc-panel');
+    const headings = document.querySelectorAll('.prose h2, .prose h3');
+    const mobileToc = document.getElementById('toc-accordion');
     const tocToggle = document.getElementById('toc-toggle');
-    const tocShow = document.getElementById('toc-show');
-    
-    // TOC Toggle functionality
-    if (tocPanel && tocToggle && tocShow) {
-      tocToggle.addEventListener('click', () => {
-        tocPanel.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-          tocPanel.classList.add('hidden');
-          tocShow.classList.remove('hidden');
-          tocShow.classList.add('flex');
-        }, 300);
+    const tocFlyout = document.getElementById('toc-flyout');
+
+    if (tocLinks.length === 0 || headings.length === 0) return;
+
+    function closeFlyout() {
+      if (tocFlyout) tocFlyout.classList.add('hidden');
+      if (tocToggle) tocToggle.setAttribute('aria-expanded', 'false');
+      if (tocToggle) tocToggle.querySelector('svg')?.classList.remove('rotate-180');
+    }
+
+    function openFlyout() {
+      if (tocFlyout) tocFlyout.classList.remove('hidden');
+      if (tocToggle) tocToggle.setAttribute('aria-expanded', 'true');
+      if (tocToggle) tocToggle.querySelector('svg')?.classList.add('rotate-180');
+    }
+
+    if (tocToggle && tocFlyout) {
+      tocToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = tocToggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeFlyout();
+        } else {
+          openFlyout();
+        }
       });
-      
-      tocShow.addEventListener('click', () => {
-        tocShow.classList.add('hidden');
-        tocShow.classList.remove('flex');
-        tocPanel.classList.remove('hidden');
-        // Small delay to ensure element is visible before animating
-        setTimeout(() => {
-          tocPanel.style.transform = 'translateX(0)';
-        }, 10);
+
+      document.addEventListener('click', (e) => {
+        if (!tocFlyout.contains(e.target) && !tocToggle.contains(e.target)) {
+          closeFlyout();
+        }
       });
     }
-    
-    if (tocLinks.length === 0 || headings.length === 0) return;
     
     // Create intersection observer for scroll spy
     const observer = new IntersectionObserver((entries) => {
@@ -465,6 +507,10 @@ function calculateReadingTime(content) {
             behavior: 'smooth',
             block: 'start'
           });
+          if (mobileToc && mobileToc.hasAttribute('open')) {
+            mobileToc.removeAttribute('open');
+          }
+          closeFlyout();
         }
       });
     });

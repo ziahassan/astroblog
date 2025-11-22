@@ -305,8 +305,30 @@ const researchSummary = researchSummaryMatch
   }
   
   .cv-content p {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.8rem;
     color: #374151;
+  }
+  
+  .cv-content .section-body p strong:first-child {
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 0.35rem;
+    color: #1f2937;
+  }
+  
+  .cv-content .section-body p + p {
+    margin-top: 0.35rem;
+  }
+  
+  .cv-content .section-body p em {
+    display: block;
+    margin-top: 0.1rem;
+    margin-bottom: 0.9rem;
+    color: #475569;
+  }
+  
+  .cv-content .section-body p:first-child strong:first-child {
+    margin-top: 0;
   }
   
   .cv-content strong {
@@ -320,13 +342,21 @@ const researchSummary = researchSummaryMatch
   }
   
   .cv-content ul {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
+    margin: 1rem 0 2rem;
+    padding-left: 1.4rem;
   }
   
   .cv-content li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     color: #374151;
+  }
+
+  .cv-content .section-body p + ul {
+    margin-top: 0.2rem;
+  }
+
+  .cv-content .section-body ul + p strong:first-child {
+    margin-top: 2rem;
   }
   
   .cv-content a {
