@@ -3,417 +3,318 @@ import Layout from '../../layouts/layout.astro';
 import { getCollection } from 'astro:content';
 
 const notes = await getCollection('notes');
-// Sort by creation date (newest first) and limit to 20
-const sorted = notes
-  .sort((a, b) => {
-    // Use publishDate if available, otherwise fall back to slug comparison
-    const dateA = a.data.publishDate || a.data.date || new Date(0);
-    const dateB = b.data.publishDate || b.data.date || new Date(0);
-    return new Date(dateB) - new Date(dateA);
-  })
-  .slice(0, 20);
 
-const random = notes[Math.floor(Math.random() * notes.length)];
+// Sort by creation date (newest first)
+const sorted = notes.sort((a, b) => {
+  const dateA = a.data.publishDate || a.data.created || new Date(0);
+  const dateB = b.data.publishDate || b.data.created || new Date(0);
+  return new Date(dateB).getTime() - new Date(dateA).getTime();
+});
+
+// Get recent notes (top 30)
+const recentNotes = sorted.slice(0, 30);
+
+// Collect all tags and their counts
+const tagCounts: Record<string, number> = {};
+notes.forEach(note => {
+  const tags = note.data.tags || [];
+  tags.forEach((tag: string) => {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  });
+});
+
+// Sort tags by count
+const sortedTags = Object.entries(tagCounts)
+  .sort(([,a], [,b]) => b - a)
+  .slice(0, 20); // Top 20 tags
 
 // Create backlink count mapping
-const backlinkCounts = {};
+const backlinkCounts: Record<string, number> = {};
 for (const sourceNote of notes) {
   const sourceBody = typeof sourceNote?.body === 'string' ? sourceNote.body : '';
   if (!sourceBody) continue;
   for (const targetNote of notes) {
-    // Check for both [[title]] and [[slug]] patterns
     const titlePattern = `[[${targetNote.data.title}]]`;
     const slugPattern = `[[${targetNote.slug}]]`;
-
     if (sourceBody.includes(titlePattern) || sourceBody.includes(slugPattern)) {
       backlinkCounts[targetNote.slug] = (backlinkCounts[targetNote.slug] || 0) + 1;
     }
   }
 }
+
+// Random note
+const random = notes[Math.floor(Math.random() * notes.length)];
 ---
 
 <Layout title="Notes">
-  <section class="max-w-4xl mx-auto space-y-8">
-    <!-- Header -->
-    <div class="text-center border-b border-gray-200 pb-8">
-      <h1 class="text-4xl font-light text-gray-800 mb-2">Research Notes</h1>
-      <p class="text-gray-600 text-lg">A collection of thoughts, ideas, and research findings</p>
-    </div>
-    
-    <!-- Search Section -->
-    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
-      <div class="max-w-lg mx-auto relative">
-        <div class="relative">
-          <input
-            type="text"
-            id="search"
-            placeholder="Search through notes and ideas..."
-            class="w-full px-4 py-3 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 shadow-sm"
-            autocomplete="off"
-          />
-          <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-            <kbd class="px-2 py-1 bg-gray-100 rounded text-xs font-mono">⌘K</kbd>
-          </div>
-        </div>
-        
-        <!-- Search Results Dropdown -->
-        <div 
-          id="search-results" 
-          class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl max-h-96 overflow-y-auto z-50 hidden"
-        >
-          <div class="px-4 py-2 text-sm text-gray-500 border-b border-gray-100 bg-gray-50">
-            <span id="results-count"></span>
-          </div>
-          <div id="results-list"></div>
-        </div>
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- Minimal Header -->
+    <header class="py-8 border-b border-gray-200">
+      <div class="flex items-baseline justify-between">
+        <h1 class="text-3xl font-light text-gray-800">Notes</h1>
+        <span class="text-sm text-gray-500">{notes.length} notes</span>
       </div>
-      
-      <!-- Random Note Button -->
-      <div class="text-center mt-4">
-        <a href={`/notes/${random.slug}`}>
-          <button class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-medium text-sm shadow-sm">
-            <span class="mr-2">🎲</span>
-            Surprise Me
+      <p class="text-gray-500 mt-2">Atomic ideas, research findings, and evergreen thoughts.</p>
+    </header>
+
+    <!-- Search + Random -->
+    <div class="py-6 flex items-center gap-4">
+      <div class="flex-1 relative">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search notes..."
+          class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          autocomplete="off"
+        />
+        <kbd class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 bg-gray-200 text-gray-500 rounded text-xs font-mono">⌘K</kbd>
+      </div>
+      <a href={`/notes/${random.slug}`} class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
+        <span>🎲</span> Random
+      </a>
+      <a href="/graph" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
+        <span>🕸️</span> Graph
+      </a>
+    </div>
+
+    <!-- Search Results (hidden by default) -->
+    <div id="search-results" class="hidden mb-6">
+      <div class="bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+        <div class="px-4 py-2 bg-gray-50 border-b text-sm text-gray-500" id="results-count"></div>
+        <div id="results-list"></div>
+      </div>
+    </div>
+
+    <!-- Tags Row -->
+    {sortedTags.length > 0 && (
+      <div class="pb-6 border-b border-gray-100">
+        <div class="flex flex-wrap gap-2">
+          <button class="tag-filter active px-3 py-1.5 text-xs font-medium rounded-full bg-gray-900 text-white transition-all" data-tag="all">
+            All
           </button>
-        </a>
+          {sortedTags.map(([tag, count]) => (
+            <button
+              class="tag-filter px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
+              data-tag={tag}
+            >
+              {tag} <span class="text-gray-400 ml-1">{count}</span>
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
-    
+    )}
+
     <!-- Notes List -->
-    <div id="notes-list" class="bg-white">
-      <div class="flex items-center justify-between mb-6 border-b border-gray-200 pb-4">
-        <h2 class="text-2xl font-light text-gray-800">Recent Notes</h2>
-        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-          {sorted.length} of {notes.length} notes
-        </span>
-      </div>
-      
-      <div class="space-y-3">
-        {sorted.map(note => (
-          <div key={note.slug} class="group p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <a 
-                  href={`/notes/${note.slug}`} 
-                  class="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
+    <div id="notes-container" class="py-6">
+
+      <!-- Recent Section -->
+      <div class="mb-8">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Recent</h2>
+        <div class="space-y-1" id="notes-list">
+          {recentNotes.map(note => {
+            const tags = note.data.tags || [];
+            const title = note.data.title || note.slug;
+            const backlinks = backlinkCounts[note.slug] || 0;
+
+            return (
+              <div
+                class="note-item group flex items-center gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors"
+                data-tags={JSON.stringify(tags)}
+                data-title={title.toLowerCase()}
+              >
+                <a
+                  href={`/notes/${note.slug}`}
+                  class="flex-1 text-gray-800 hover:text-blue-600 transition-colors truncate"
                 >
-                  {note.data.title || note.slug}
+                  {title}
                 </a>
-                {note.data.tags && note.data.tags.length > 0 && (
-                  <div class="mt-2 flex flex-wrap gap-1">
-                    {note.data.tags.map(tag => (
-                      <span class="inline-block px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  {tags.length > 0 && (
+                    <div class="hidden sm:flex gap-1">
+                      {tags.slice(0, 2).map((tag: string) => (
+                        <span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded">
+                          {tag}
+                        </span>
+                      ))}
+                      {tags.length > 2 && (
+                        <span class="text-xs text-gray-400">+{tags.length - 2}</span>
+                      )}
+                    </div>
+                  )}
+
+                  {backlinks > 0 && (
+                    <span class="text-xs text-gray-400 font-mono" title={`${backlinks} backlinks`}>
+                      ←{backlinks}
+                    </span>
+                  )}
+                </div>
               </div>
-              
-              <div class="flex items-center gap-3 text-sm text-gray-500 ml-4">
-                {note.data.publishDate && (
-                  <span class="font-mono text-xs">
-                    {new Date(note.data.publishDate).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'short', 
-                      day: 'numeric' 
-                    })}
-                  </span>
-                )}
-                {backlinkCounts[note.slug] && (
-                  <span class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-md text-xs">
-                    <span>🔗</span>
-                    {backlinkCounts[note.slug]}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
-      
-      {notes.length > 20 && (
-        <div class="mt-8 text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <p class="text-sm text-gray-600">
-            Showing {sorted.length} most recent notes. <span class="font-medium">Use search to explore all {notes.length} notes.</span>
-          </p>
+
+      <!-- Show more -->
+      {notes.length > 30 && (
+        <div class="text-center py-4">
+          <button
+            id="show-all-btn"
+            class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 font-medium"
+          >
+            Show all {notes.length} notes ↓
+          </button>
         </div>
       )}
     </div>
-  </section>
+
+    <!-- Empty state for filters -->
+    <div id="empty-state" class="hidden py-12 text-center">
+      <div class="text-4xl mb-3">🔍</div>
+      <p class="text-gray-500">No notes match this filter.</p>
+    </div>
+
+  </div>
 </Layout>
 
-<!-- Enhanced Live Search -->
-<script type="module" define:vars={{ notes, backlinkCounts }}>
-  import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/+esm';
-  
+<script define:vars={{ notes, backlinkCounts }}>
   document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('search');
-    const resultsContainer = document.getElementById('search-results');
+    const searchInput = document.getElementById('search');
+    const searchResults = document.getElementById('search-results');
     const resultsList = document.getElementById('results-list');
     const resultsCount = document.getElementById('results-count');
-    const notesList = document.getElementById('notes-list');
-    
-    console.log('Search initialized');
-    
-    // Process notes data directly from Astro variables
-    const processedNotes = notes.map(n => ({
+    const notesContainer = document.getElementById('notes-container');
+    const noteItems = document.querySelectorAll('.note-item');
+    const tagFilters = document.querySelectorAll('.tag-filter');
+    const emptyState = document.getElementById('empty-state');
+
+    // Prepare notes data for search
+    const notesData = notes.map(n => ({
       title: n.data.title || n.slug,
       slug: n.slug,
       tags: n.data.tags || [],
       backlinks: backlinkCounts[n.slug] || 0,
-      preview: n.body.replace(/\[\[.*?\]\]/g, '').substring(0, 100).trim()
+      preview: (n.body || '').replace(/\[\[.*?\]\]/g, '').substring(0, 80).trim()
     }));
-    
-    console.log('Processed notes:', processedNotes);
-    
-    if (!processedNotes || processedNotes.length === 0) {
-      console.error('No notes found');
-      return;
-    }
-    
-    // Configure Fuse.js for better search
-    const fuse = new Fuse(processedNotes, {
-      keys: [
-        { name: 'title', weight: 0.7 },
-        { name: 'tags', weight: 0.2 },
-        { name: 'preview', weight: 0.1 }
-      ],
-      threshold: 0.4,
-      includeScore: true,
-      includeMatches: true
+
+    let activeTag = 'all';
+
+    // Tag filtering
+    tagFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        activeTag = tag;
+
+        // Update active state
+        tagFilters.forEach(b => {
+          b.classList.remove('active', 'bg-gray-900', 'text-white');
+          b.classList.add('bg-gray-100', 'text-gray-600');
+        });
+        btn.classList.add('active', 'bg-gray-900', 'text-white');
+        btn.classList.remove('bg-gray-100', 'text-gray-600');
+
+        // Filter notes
+        let visibleCount = 0;
+        noteItems.forEach(item => {
+          const itemTags = JSON.parse(item.dataset.tags || '[]');
+          const shouldShow = tag === 'all' || itemTags.includes(tag);
+
+          if (shouldShow) {
+            item.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        // Show/hide empty state
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+        notesContainer.classList.toggle('hidden', visibleCount === 0);
+      });
     });
-    
-    let selectedIndex = -1;
-    let currentResults = [];
-    
-    // Search function
+
+    // Search functionality
     function performSearch(query) {
-      console.log('Performing search for:', query); // Debug log
-      
       if (!query.trim()) {
-        console.log('Empty query, hiding results'); // Debug log
-        hideResults();
+        searchResults.classList.add('hidden');
+        notesContainer.classList.remove('hidden');
         return;
       }
-      
-      const searchResults = fuse.search(query);
-      console.log('Search results:', searchResults); // Debug log
-      
-      currentResults = searchResults.map(r => r.item);
-      selectedIndex = -1;
-      
-      if (currentResults.length > 0) {
-        console.log('Showing results'); // Debug log
-        showResults(searchResults);
+
+      const q = query.toLowerCase();
+      const results = notesData.filter(note =>
+        note.title.toLowerCase().includes(q) ||
+        note.tags.some(t => t.toLowerCase().includes(q)) ||
+        note.preview.toLowerCase().includes(q)
+      ).slice(0, 10);
+
+      if (results.length > 0) {
+        resultsCount.textContent = `${results.length} result${results.length === 1 ? '' : 's'}`;
+        resultsList.innerHTML = results.map((note, i) => `
+          <a href="/notes/${note.slug}" class="block px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-0 transition-colors">
+            <div class="font-medium text-gray-900">${note.title}</div>
+            ${note.preview ? `<div class="text-sm text-gray-500 truncate mt-1">${note.preview}...</div>` : ''}
+            ${note.tags.length > 0 ? `
+              <div class="flex gap-1 mt-2">
+                ${note.tags.slice(0, 3).map(t => `<span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded">${t}</span>`).join('')}
+              </div>
+            ` : ''}
+          </a>
+        `).join('');
+        searchResults.classList.remove('hidden');
+        notesContainer.classList.add('hidden');
       } else {
-        console.log('No results found'); // Debug log
-        showNoResults(query);
-      }
-    }
-    
-    // Show search results
-    function showResults(searchResults) {
-      const maxResults = 8;
-      const limitedResults = searchResults.slice(0, maxResults);
-      
-      resultsCount.textContent = `${currentResults.length} note${currentResults.length === 1 ? '' : 's'} found`;
-      
-      resultsList.innerHTML = limitedResults.map((result, index) => {
-        const note = result.item;
-        const score = (1 - result.score) * 100;
-        
-        // Highlight matches in title
-        let highlightedTitle = note.title;
-        if (result.matches) {
-          const titleMatch = result.matches.find(m => m.key === 'title');
-          if (titleMatch && titleMatch.indices) {
-            highlightedTitle = highlightText(note.title, titleMatch.indices);
-          }
-        }
-        
-        return `
-          <div class="search-result-item p-4 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors" data-index="${index}">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <div class="font-medium text-gray-900 mb-1">${highlightedTitle}</div>
-                ${note.preview ? `<div class="text-sm text-gray-600 leading-relaxed">${note.preview}...</div>` : ''}
-                ${note.tags.length > 0 ? `
-                  <div class="flex flex-wrap gap-1 mt-2">
-                    ${note.tags.map(tag => `<span class="inline-block px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md">${tag}</span>`).join('')}
-                  </div>
-                ` : ''}
-              </div>
-              <div class="text-right text-xs text-gray-400 ml-4 flex-shrink-0">
-                ${note.backlinks > 0 ? `<div class="mb-1">🔗 ${note.backlinks}</div>` : ''}
-                <div class="font-mono">${Math.round(score)}%</div>
-              </div>
-            </div>
+        resultsCount.textContent = 'No results';
+        resultsList.innerHTML = `
+          <div class="px-4 py-6 text-center text-gray-500">
+            No notes found for "${query}"
           </div>
         `;
-      }).join('');
-      
-      if (searchResults.length > maxResults) {
-        resultsList.innerHTML += `
-          <div class="p-3 text-center text-sm text-gray-500 border-t">
-            ... and ${searchResults.length - maxResults} more results
-          </div>
-        `;
-      }
-      
-      resultsContainer.classList.remove('hidden');
-      notesList.classList.add('hidden');
-    }
-    
-    // Show no results message
-    function showNoResults(query) {
-      resultsCount.textContent = 'No notes found';
-      resultsList.innerHTML = `
-        <div class="p-4 text-center text-gray-500">
-          <div class="text-lg">🔍</div>
-          <div class="mt-2">No notes found for "${query}"</div>
-          <div class="text-sm mt-1">Try a different search term</div>
-        </div>
-      `;
-      resultsContainer.classList.remove('hidden');
-      notesList.classList.add('hidden');
-    }
-    
-    // Hide search results
-    function hideResults() {
-      resultsContainer.classList.add('hidden');
-      notesList.classList.remove('hidden');
-      selectedIndex = -1;
-    }
-    
-    // Highlight text matches
-    function highlightText(text, indices) {
-      let result = '';
-      let lastIndex = 0;
-      
-      indices.forEach(([start, end]) => {
-        result += text.slice(lastIndex, start);
-        result += `<mark class="bg-yellow-200 px-1 rounded">${text.slice(start, end + 1)}</mark>`;
-        lastIndex = end + 1;
-      });
-      
-      result += text.slice(lastIndex);
-      return result;
-    }
-    
-    // Navigate to selected result
-    function selectResult(index) {
-      if (currentResults[index]) {
-        window.location.href = `/notes/${currentResults[index].slug}`;
+        searchResults.classList.remove('hidden');
+        notesContainer.classList.add('hidden');
       }
     }
-    
-    // Update visual selection
-    function updateSelection() {
-      const items = document.querySelectorAll('.search-result-item');
-      items.forEach((item, index) => {
-        if (index === selectedIndex) {
-          item.classList.add('bg-blue-100');
-          item.scrollIntoView({ block: 'nearest' });
-        } else {
-          item.classList.remove('bg-blue-100');
-        }
-      });
-    }
-    
-    // Event listeners
-    input.addEventListener('input', (e) => {
-      console.log('Input event triggered:', e.target.value); // Debug log
-      performSearch(e.target.value);
-    });
-    
-    // Keyboard navigation
-    input.addEventListener('keydown', (e) => {
-      if (!resultsContainer.classList.contains('hidden')) {
-        switch (e.key) {
-          case 'ArrowDown':
-            e.preventDefault();
-            selectedIndex = Math.min(selectedIndex + 1, currentResults.length - 1);
-            updateSelection();
-            break;
-          case 'ArrowUp':
-            e.preventDefault();
-            selectedIndex = Math.max(selectedIndex - 1, -1);
-            updateSelection();
-            break;
-          case 'Enter':
-            e.preventDefault();
-            if (selectedIndex >= 0) {
-              selectResult(selectedIndex);
-            } else if (currentResults.length > 0) {
-              selectResult(0);
-            }
-            break;
-          case 'Escape':
-            hideResults();
-            input.blur();
-            break;
-        }
-      }
-    });
-    
-    // Click on search results
-    resultsList.addEventListener('click', (e) => {
-      const item = e.target.closest('.search-result-item');
-      if (item) {
-        const index = parseInt(item.dataset.index);
-        selectResult(index);
-      }
-    });
-    
-    // Click outside to close
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('#search') && !e.target.closest('#search-results')) {
-        hideResults();
-      }
-    });
-    
-    // Global keyboard shortcut (Cmd+K or Ctrl+K)
+
+    searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+
+    // Keyboard shortcut
     document.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        input.focus();
-        input.select();
+        searchInput.focus();
+        searchInput.select();
+      }
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        searchResults.classList.add('hidden');
+        notesContainer.classList.remove('hidden');
+        searchInput.blur();
       }
     });
-    
-    // Focus search on page load
-    input.focus();
+
+    // Click outside to close search
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#search') && !e.target.closest('#search-results')) {
+        if (searchInput.value) {
+          searchResults.classList.add('hidden');
+          notesContainer.classList.remove('hidden');
+        }
+      }
+    });
   });
 </script>
 
 <style>
-  /* Custom scrollbar for search results */
+  .note-item.hidden {
+    display: none;
+  }
+
   #search-results {
     scrollbar-width: thin;
-    scrollbar-color: #cbd5e0 #f7fafc;
   }
-  
-  #search-results::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  #search-results::-webkit-scrollbar-track {
-    background: #f7fafc;
-  }
-  
-  #search-results::-webkit-scrollbar-thumb {
-    background-color: #cbd5e0;
-    border-radius: 3px;
-  }
-  
-  /* Smooth transitions */
-  .search-result-item {
-    transition: background-color 0.15s ease;
-  }
-  
-  /* Search input focus state */
+
   #search:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
 </style>

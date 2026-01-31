@@ -96,12 +96,29 @@ const music = defineCollection({
   }),
 });
 
+// Articles collection for Quarto exports and formal research pieces
+const articles = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    publishDate: z.date(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional(),
+    quartoFile: z.string().optional(), // Path to HTML file in public/articles/
+    abstract: z.string().optional(),
+    authors: z.array(z.string()).optional(),
+    doi: z.string().optional(),
+  }),
+});
+
 export const collections = {
   notes,
   pages,
   essays,
   reading,
-  cv, // Add this
+  cv,
   guestAppearances,
   music,
+  articles,
 };

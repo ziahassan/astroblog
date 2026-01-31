@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Layout title={article.data.title}>
+  <div class="max-w-4xl mx-auto px-4 py-10">
+
+    <!-- Back link -->
+    <a href="/articles" class="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 mb-8">
+      ← Back to Articles
+    </a>
+
+    <!-- Article Header -->
+    <header class="mb-8 pb-8 border-b border-gray-200">
+      <h1 class="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+        {article.data.title}
+      </h1>
+
+      {article.data.authors && article.data.authors.length > 0 && (
+        <p class="text-lg text-gray-600 mt-3">
+          {article.data.authors.join(', ')}
+        </p>
+      )}
+
+      <div class="flex flex-wrap items-center gap-4 mt-4 text-sm text-gray-500">
+        <time datetime={article.data.publishDate.toISOString()}>
+          {article.data.publishDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+
+        {article.data.doi && (
+          <a
+            href={`https://doi.org/${article.data.doi}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline"
+          >
+            DOI: {article.data.doi}
+          </a>
+        )}
+      </div>
+
+      {article.data.tags && article.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {article.data.tags.map(tag => (
+            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {article.data.abstract && (
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Abstract</h2>
+          <p class="text-gray-700 leading-relaxed">{article.data.abstract}</p>
+        </div>
+      )}
+    </header>
+
+    <!-- Quarto Embed or Markdown Content -->
+    {article.data.quartoFile ? (
+      <div class="quarto-embed">
+        <div class="mb-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
+          This article was created with <a href="https://quarto.org" target="_blank" class="underline">Quarto</a>.
+          <a href={`/articles/${article.data.quartoFile}`} target="_blank" class="ml-2 underline">Open full page →</a>
+        </div>
+        <iframe
+          src={`/articles/${article.data.quartoFile}`}
+          class="w-full border border-gray-200 rounded-lg"
+          style="height: 80vh; min-height: 600px;"
+          title={article.data.title}
+        />
+      </div>
+    ) : (
+      <article class="prose prose-lg max-w-none">
+        <Content />
+      </article>
+    )}
+
+  </div>
+</Layout>
+
+<style>
+  .prose {
+    --tw-prose-body: #374151;
+    --tw-prose-headings: #111827;
+    --tw-prose-links: #2563eb;
+    --tw-prose-code: #111827;
+  }
+
+  .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose :where(p):not(:where([class~="not-prose"] *)) {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    font-size: 0.875em;
+  }
+</style>
