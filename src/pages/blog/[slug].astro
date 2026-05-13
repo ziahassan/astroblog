@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.draft !== true);
+  return posts.map(post => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const posts = await getCollection('blog');
+const post = posts.find(p => p.slug === slug);
+
+if (!post) throw new Error(`Post "${slug}" not found`);
+
+const { Content } = await post.render();
+const { data } = post;
+---
+
+<Layout title={data.title}>
+  <article class="max-w-3xl mx-auto px-4 py-10">
+
+    <a href="/blog" class="text-sm text-gray-400 hover:text-gray-600 transition-colors mb-8 inline-block">
+      ← Blog
+    </a>
+
+    <header class="mb-8 pb-6 border-b border-gray-200">
+      <h1 class="text-3xl font-light text-gray-800 mb-3 leading-tight">{data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <time class="font-mono">
+          {new Date(data.publishDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        {data.tags && data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-1">
+            {data.tags.map(tag => (
+              <span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      {data.description && (
+        <p class="text-gray-500 mt-3 text-base leading-relaxed">{data.description}</p>
+      )}
+    </header>
+
+    <div class="prose prose-gray max-w-none leading-relaxed">
+      <Content />
+    </div>
+
+  </article>
+</Layout>
+
+<style>
+  .prose h2 { @apply text-2xl font-light text-gray-800 mt-8 mb-4 border-b border-gray-100 pb-2; }
+  .prose h3 { @apply text-xl font-medium text-gray-800 mt-6 mb-3; }
+  .prose p  { @apply mb-4 leading-relaxed text-gray-700; }
+  .prose ul, .prose ol { @apply my-4 space-y-1 text-gray-700; }
+  .prose blockquote { @apply border-l-4 border-gray-200 pl-4 italic text-gray-500 my-6; }
+  .prose code { @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono; }
+  .prose pre  { @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4; }
+  .prose a    { @apply text-blue-600 hover:underline; }
+</style>

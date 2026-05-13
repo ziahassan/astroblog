@@ -76,6 +76,9 @@ const random = notes[Math.floor(Math.random() * notes.length)];
       <a href="/graph" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
         <span>🕸️</span> Graph
       </a>
+      <a href="/reading" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
+        Reading notes →
+      </a>
     </div>
 
     <!-- Search Results (hidden by default) -->
@@ -114,7 +117,7 @@ const random = notes[Math.floor(Math.random() * notes.length)];
         <div class="space-y-1" id="notes-list">
           {recentNotes.map(note => {
             const tags = note.data.tags || [];
-            const title = note.data.title || note.slug;
+            const title = note.data.title || note.id.replace(/\.mdx?$/, '');
             const backlinks = backlinkCounts[note.slug] || 0;
 
             return (
@@ -191,7 +194,7 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 
     // Prepare notes data for search
     const notesData = notes.map(n => ({
-      title: n.data.title || n.slug,
+      title: n.data.title || n.id.replace(/\.mdx?$/, ''),
       slug: n.slug,
       tags: n.data.tags || [],
       backlinks: backlinkCounts[n.slug] || 0,

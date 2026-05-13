@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+const items = await getCollection('teaching');
+
+const sorted = items.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const typeLabel = {
+  presentation: 'Presentation',
+  handout: 'Handout',
+  workshop: 'Workshop',
+};
+
+const typeColors = {
+  presentation: 'bg-blue-50 text-blue-700 border-blue-200',
+  handout: 'bg-green-50 text-green-700 border-green-200',
+  workshop: 'bg-purple-50 text-purple-700 border-purple-200',
+};
+
+const allTags = [...new Set(items.flatMap(i => i.data.tags || []))].sort();
+---
+
+<Layout title="Teaching">
+  <div class="max-w-3xl mx-auto px-4">
+
+    <header class="py-8 border-b border-gray-200">
+      <div class="flex items-baseline justify-between">
+        <h1 class="text-3xl font-light text-gray-800">Teaching</h1>
+        <span class="text-sm text-gray-500">{items.length} resource{items.length !== 1 ? 's' : ''}</span>
+      </div>
+      <p class="text-gray-500 mt-2">Presentations, handouts, and workshop materials.</p>
+    </header>
+
+    {allTags.length > 0 && (
+      <div class="py-4 flex flex-wrap gap-2 border-b border-gray-100">
+        <button class="tag-filter active px-3 py-1 text-xs font-medium rounded-full bg-gray-900 text-white" data-tag="all">
+          All
+        </button>
+        {allTags.map(tag => (
+          <button
+            class="tag-filter px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+            data-tag={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
+    <div class="py-6 grid sm:grid-cols-2 gap-6" id="items-list">
+      {sorted.map(item => {
+        const href = item.data.presentationPath
+          ? `/presentations/${item.data.presentationPath}/index.html`
+          : item.data.url || null;
+
+        return (
+          <div
+            class="teaching-item group border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 hover:shadow-sm transition-all"
+            data-tags={JSON.stringify(item.data.tags || [])}
+          >
+            {/* Thumbnail */}
+            {(item.data.presentationPath || item.data.thumbnail) && (
+              <a href={href || '#'} target={item.data.presentationPath ? '_blank' : '_self'} rel="noopener noreferrer" class="block relative bg-gray-100" style="aspect-ratio: 16/9; overflow: hidden;">
+                {item.data.thumbnail ? (
+                  <img
+                    src={item.data.thumbnail}
+                    alt={item.data.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="presentation-preview" style="width:100%;height:100%;overflow:hidden;position:relative;">
+                    <iframe
+                      data-src={`/presentations/${item.data.presentationPath}/index.html`}
+                      class="lazy-iframe"
+                      style="width:300%;height:300%;transform:scale(0.333);transform-origin:top left;border:none;pointer-events:none;"
+                      tabindex="-1"
+                    />
+                  </div>
+                )}
+              </a>
+            )}
+
+            {/* Info */}
+            <div class="p-4">
+              <div class="flex items-start justify-between gap-3 mb-1">
+                <h2 class="text-sm font-medium text-gray-900 leading-snug">
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">
+                      {item.data.title}
+                    </a>
+                  ) : item.data.title}
+                </h2>
+                <span class={`flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded border ${typeColors[item.data.type]}`}>
+                  {typeLabel[item.data.type]}
+                </span>
+              </div>
+              {item.data.event && (
+                <p class="text-xs text-gray-500">{item.data.event}</p>
+              )}
+              {item.data.description && (
+                <p class="text-xs text-gray-500 mt-1">{item.data.description}</p>
+              )}
+              <time class="text-xs text-gray-400 font-mono mt-2 block">
+                {new Date(item.data.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              </time>
+            </div>
+          </div>
+        );
+      })}
+
+      {items.length === 0 && (
+        <div class="py-16 text-center text-gray-400">
+          <p>No materials yet.</p>
+        </div>
+      )}
+    </div>
+
+    <div id="empty-state" class="hidden py-12 text-center text-gray-400">
+      <p>No materials match this filter.</p>
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Lazy-load iframe previews via Intersection Observer
+    const lazyIframes = document.querySelectorAll('.lazy-iframe');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const iframe = entry.target as HTMLIFrameElement;
+          const src = iframe.dataset.src;
+          if (src && !iframe.src) iframe.src = src;
+          observer.unobserve(iframe);
+        }
+      });
+    }, { rootMargin: '200px' });
+    lazyIframes.forEach(el => observer.observe(el));
+
+    const filters = document.querySelectorAll('.tag-filter');
+    const items = document.querySelectorAll('.teaching-item');
+    const emptyState = document.getElementById('empty-state');
+    const list = document.getElementById('items-list');
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = (btn as HTMLElement).dataset.tag;
+
+        filters.forEach(b => {
+          b.classList.remove('active', 'bg-gray-900', 'text-white');
+          b.classList.add('bg-gray-100', 'text-gray-600');
+        });
+        btn.classList.add('active', 'bg-gray-900', 'text-white');
+        btn.classList.remove('bg-gray-100', 'text-gray-600');
+
+        let visible = 0;
+        items.forEach(item => {
+          const tags = JSON.parse((item as HTMLElement).dataset.tags || '[]');
+          const show = tag === 'all' || tags.includes(tag);
+          (item as HTMLElement).style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        emptyState?.classList.toggle('hidden', visible > 0);
+        list?.classList.toggle('hidden', visible === 0);
+      });
+    });
+  });
+</script>

@@ -20,7 +20,7 @@ if (!note) {
 const titleToSlug = {};
 const slugToTitle = {};
 allNotes.forEach(n => {
-  const title = n?.data?.title ?? n.slug;
+  const title = n?.data?.title ?? n.id.replace(/\.mdx?$/, '');
   if (title) {
     titleToSlug[title] = n.slug;
     slugToTitle[n.slug] = title;
@@ -29,7 +29,7 @@ allNotes.forEach(n => {
 
 const { Content } = await note.render();
 const { data } = note;
-const displayTitle = data?.title || slug;
+const displayTitle = data?.title || note.id.replace(/\.mdx?$/, '');
 
 // Get backlinks - now looking for both [[title]] and [[slug]] patterns
 const backlinks = allNotes.filter(n => {
@@ -45,7 +45,7 @@ const backlinkCounts = {};
 for (const sourceNote of allNotes) {
   for (const targetNote of allNotes) {
     // Check for both [[title]] and [[slug]] patterns
-    const targetTitle = targetNote?.data?.title ?? targetNote.slug;
+    const targetTitle = targetNote?.data?.title ?? targetNote.id.replace(/\.mdx?$/, '');
     const titlePattern = targetTitle ? `[[${targetTitle}]]` : null;
     const slugPattern = `[[${targetNote.slug}]]`;
     
