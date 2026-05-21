@@ -74,12 +74,14 @@ const guestAppearances = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    podcast: z.string(),
+    show: z.string(),
+    type: z.enum(['podcast', 'interview', 'talk', 'video']).default('podcast'),
     publishDate: z.date(),
     description: z.string().optional(),
     url: z.string(),
     thumbnail: z.string().optional(),
     duration: z.string().optional(),
+    embedUrl: z.string().optional(),
   }),
 });
 
@@ -96,8 +98,23 @@ const music = defineCollection({
   }),
 });
 
-// Articles collection for Quarto exports and formal research pieces
-const articles = defineCollection({
+const research = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    status: z.enum(['preprint', 'under-review', 'published']),
+    year: z.number(),
+    venue: z.string(),
+    abstract: z.string(),
+    authors: z.array(z.string()),
+    doi: z.string().optional(),
+    url: z.string().optional(),
+    quartoPath: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
+const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -105,10 +122,21 @@ const articles = defineCollection({
     description: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional(),
-    quartoFile: z.string().optional(), // Path to HTML file in public/articles/
-    abstract: z.string().optional(),
-    authors: z.array(z.string()).optional(),
-    doi: z.string().optional(),
+  }),
+});
+
+const teaching = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(['presentation', 'handout', 'workshop']),
+    date: z.date(),
+    description: z.string().optional(),
+    event: z.string().optional(),
+    url: z.string().optional(),
+    presentationPath: z.string().optional(), // folder name under /presentations/
+    thumbnail: z.string().optional(),        // override image path if you have one
+    tags: z.array(z.string()).optional(),
   }),
 });
 
@@ -120,5 +148,7 @@ export const collections = {
   cv,
   guestAppearances,
   music,
-  articles,
+  research,
+  blog,
+  teaching,
 };

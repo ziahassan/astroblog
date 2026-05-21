@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const papers = await getCollection('research');
+  return papers.map(paper => ({ params: { slug: paper.slug } }));
+}
+
+const { slug } = Astro.params;
+const papers = await getCollection('research');
+const paper = papers.find(p => p.slug === slug);
+
+if (!paper) throw new Error(`Paper "${slug}" not found`);
+
+const { data } = paper;
+
+const statusLabel = {
+  'preprint': 'Preprint',
+  'under-review': 'Under Review',
+  'published': 'Published',
+};
+
+const statusColors = {
+  'preprint': 'bg-amber-50 text-amber-700 border-amber-200',
+  'under-review': 'bg-blue-50 text-blue-700 border-blue-200',
+  'published': 'bg-green-50 text-green-700 border-green-200',
+};
+
+const paperUrl = data.quartoPath
+  ? `/papers/${data.quartoPath}/`
+  : data.url || null;
+---
+
+<Layout title={data.title}>
+  <article class="max-w-3xl mx-auto px-4 py-10">
+
+    <a href="/research" class="text-sm text-gray-400 hover:text-gray-600 transition-colors mb-8 inline-block">
+      ← Research
+    </a>
+
+    <header class="mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class={`text-xs font-medium px-2.5 py-1 rounded border ${statusColors[data.status]}`}>
+          {statusLabel[data.status]}
+        </span>
+        <span class="text-sm text-gray-400 font-mono">{data.year}</span>
+      </div>
+
+      <h1 class="text-3xl font-light text-gray-800 leading-tight mb-4">
+        {data.title}
+      </h1>
+
+      <p class="text-gray-500 text-sm">
+        {data.authors.join(', ')}
+      </p>
+
+      <p class="text-gray-400 text-sm mt-1">
+        {data.venue}
+        {data.doi && (
+          <> &middot; <a href={`https://doi.org/${data.doi}`} target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors font-mono">{data.doi}</a></>
+        )}
+      </p>
+    </header>
+
+    <section class="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Abstract</h2>
+      <p class="text-gray-700 leading-relaxed">{data.abstract}</p>
+    </section>
+
+    {data.tags && data.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-8">
+        {data.tags.map(tag => (
+          <span class="px-2.5 py-1 bg-gray-100 text-gray-500 text-xs rounded-md">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    {paperUrl && (
+      <a
+        href={paperUrl}
+        target={data.quartoPath ? '_self' : '_blank'}
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors"
+      >
+        Read paper →
+      </a>
+    )}
+
+  </article>
+</Layout>
