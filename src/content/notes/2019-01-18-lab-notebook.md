@@ -1,3 +1,7 @@
+---
+created: 2023-10-26
+---
+
 Today, I received a package in the mail that I’ve been waiting for since the new year started.
 
 I wasn’t quite sure when it would arrive, and I checked the mail incessantly. There was no tracking number or notification service letting me know when it would be out for delivery.

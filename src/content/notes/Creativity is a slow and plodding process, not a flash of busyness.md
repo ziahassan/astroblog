@@ -1,3 +1,7 @@
+---
+created: 2025-01-24
+---
+
 [[creativity]] 
 
 [[creativity as gardening]]

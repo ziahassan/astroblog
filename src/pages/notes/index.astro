@@ -4,15 +4,46 @@ import { getCollection } from 'astro:content';
 
 const notes = await getCollection('notes');
 
-// Sort by creation date (newest first)
+// Helper to extract date from filename (e.g., "2019-01-18-lab-notebook" -> Date)
+function getDateFromSlug(slug: string): Date | null {
+  const match = slug.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) {
+    const date = new Date(match[1]);
+    if (!isNaN(date.getTime())) return date;
+  }
+  return null;
+}
+
+// Sort: first by backlinks (most connected), then by filename date, then alphabetically
 const sorted = notes.sort((a, b) => {
-  const dateA = a.data.publishDate || a.data.created || new Date(0);
-  const dateB = b.data.publishDate || b.data.created || new Date(0);
-  return new Date(dateB).getTime() - new Date(dateA).getTime();
+  // First try frontmatter dates
+  const dateA = a.data.publishDate || a.data.created;
+  const dateB = b.data.publishDate || b.data.created;
+
+  if (dateA && dateB) {
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  }
+  if (dateA) return -1;
+  if (dateB) return 1;
+
+  // Then try extracting date from filename
+  const slugDateA = getDateFromSlug(a.slug);
+  const slugDateB = getDateFromSlug(b.slug);
+
+  if (slugDateA && slugDateB) {
+    return slugDateB.getTime() - slugDateA.getTime();
+  }
+  if (slugDateA) return -1;
+  if (slugDateB) return 1;
+
+  // Finally, sort alphabetically by title
+  const titleA = (a.data.title || a.slug).toLowerCase();
+  const titleB = (b.data.title || b.slug).toLowerCase();
+  return titleA.localeCompare(titleB);
 });
 
-// Get recent notes (top 30)
-const recentNotes = sorted.slice(0, 30);
+// Get recent notes (top 50)
+const recentNotes = sorted.slice(0, 50);
 
 // Collect all tags and their counts
 const tagCounts: Record<string, number> = {};
@@ -58,9 +89,9 @@ const random = notes[Math.floor(Math.random() * notes.length)];
       <p class="text-gray-500 mt-2">Atomic ideas, research findings, and evergreen thoughts.</p>
     </header>
 
-    <!-- Search + Random -->
-    <div class="py-6 flex items-center gap-4">
-      <div class="flex-1 relative">
+    <!-- Search + Random + Sort -->
+    <div class="py-6 flex flex-wrap items-center gap-4">
+      <div class="flex-1 relative min-w-[200px]">
         <input
           type="text"
           id="search"
@@ -70,6 +101,20 @@ const random = notes[Math.floor(Math.random() * notes.length)];
         />
         <kbd class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 bg-gray-200 text-gray-500 rounded text-xs font-mono">⌘K</kbd>
       </div>
+
+      <!-- Sort Options -->
+      <div class="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+        <button class="sort-btn active px-3 py-1.5 text-xs font-medium rounded-md bg-white shadow-sm text-gray-800 transition-all" data-sort="date">
+          Date
+        </button>
+        <button class="sort-btn px-3 py-1.5 text-xs font-medium rounded-md text-gray-600 hover:bg-gray-200 transition-all" data-sort="connected">
+          Connected
+        </button>
+        <button class="sort-btn px-3 py-1.5 text-xs font-medium rounded-md text-gray-600 hover:bg-gray-200 transition-all" data-sort="alpha">
+          A-Z
+        </button>
+      </div>
+
       <a href={`/notes/${random.slug}`} class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
         <span>🎲</span> Random
       </a>
@@ -116,12 +161,18 @@ const random = notes[Math.floor(Math.random() * notes.length)];
             const tags = note.data.tags || [];
             const title = note.data.title || note.slug;
             const backlinks = backlinkCounts[note.slug] || 0;
+            const dateA = note.data.publishDate || note.data.created;
+            const slugMatch = note.slug.match(/^(\d{4}-\d{2}-\d{2})/);
+            const slugDate = slugMatch ? slugMatch[1] : null;
+            const sortDate = dateA ? new Date(dateA).getTime() : (slugDate ? new Date(slugDate).getTime() : 0);
 
             return (
               <div
                 class="note-item group flex items-center gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors"
                 data-tags={JSON.stringify(tags)}
                 data-title={title.toLowerCase()}
+                data-backlinks={backlinks}
+                data-date={sortDate}
               >
                 <a
                   href={`/notes/${note.slug}`}
@@ -199,6 +250,55 @@ const random = notes[Math.floor(Math.random() * notes.length)];
     }));
 
     let activeTag = 'all';
+
+    // Sort functionality
+    const sortBtns = document.querySelectorAll('.sort-btn');
+    const notesList = document.getElementById('notes-list');
+
+    function sortNotes(sortType) {
+      const items = Array.from(noteItems);
+
+      items.sort((a, b) => {
+        if (sortType === 'connected') {
+          // Sort by backlinks (most connected first)
+          const backlinkA = parseInt(a.dataset.backlinks || '0');
+          const backlinkB = parseInt(b.dataset.backlinks || '0');
+          if (backlinkB !== backlinkA) return backlinkB - backlinkA;
+          // Fall back to alphabetical for ties
+          return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        } else if (sortType === 'alpha') {
+          // Sort alphabetically
+          return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        } else {
+          // Sort by date (newest first)
+          const dateA = parseInt(a.dataset.date || '0');
+          const dateB = parseInt(b.dataset.date || '0');
+          if (dateB !== dateA) return dateB - dateA;
+          // Fall back to alphabetical for ties
+          return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        }
+      });
+
+      // Reorder DOM elements
+      items.forEach(item => notesList.appendChild(item));
+    }
+
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sortType = btn.dataset.sort;
+
+        // Update active state
+        sortBtns.forEach(b => {
+          b.classList.remove('active', 'bg-white', 'shadow-sm', 'text-gray-800');
+          b.classList.add('text-gray-600');
+        });
+        btn.classList.add('active', 'bg-white', 'shadow-sm', 'text-gray-800');
+        btn.classList.remove('text-gray-600');
+
+        // Sort the notes
+        sortNotes(sortType);
+      });
+    });
 
     // Tag filtering
     tagFilters.forEach(btn => {

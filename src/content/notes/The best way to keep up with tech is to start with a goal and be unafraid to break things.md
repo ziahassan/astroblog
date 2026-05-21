@@ -1,3 +1,7 @@
+---
+created: 2024-06-07
+---
+
 People sometimes ask me how to "keep up" with the changing technology. This has become more relevant lately, given the rapid momentum of GenAI, but it seems to be a question many people have.
 
 So, here are the two principles you can use if you want to stay abreast. My one caveat is that there is a tremendous amount of pressure to stay current. I think it will be important for all of us to take stock of how technology is rapidly changing and decide how it will fit into our lives, but I'm also against putting pressure on people to "keep up.'

@@ -1,3 +1,7 @@
+---
+created: 2025-05-12
+---
+
 Consider this when you get offended.
 
 That is just a person becoming their trauma, right in front of you.

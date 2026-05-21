@@ -1,3 +1,7 @@
+---
+created: 2025-01-02
+---
+
 If someone is trying to make sense of something in front of you, let them and don't interrupt.
 
 Don't try to "what you're trying to say is..."

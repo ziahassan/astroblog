@@ -1,3 +1,7 @@
+---
+created: 2024-07-01
+---
+
 Perhaps this is what separates us from the apes in [[June 30, 2024-🎓 Excellence vs. Egalitarianism in Human Societies]]. 
 
 We don't just kill the aggressors, never to be heard from again.

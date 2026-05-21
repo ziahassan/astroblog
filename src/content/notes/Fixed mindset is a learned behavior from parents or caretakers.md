@@ -1,3 +1,7 @@
+---
+created: 2024-11-25
+---
+
 We must be cautious as parents of what we model for our children.
 
 It is totally normal and human to get into a fixed mindset; it takes some serious contemplation, training, and growth to get out of it.

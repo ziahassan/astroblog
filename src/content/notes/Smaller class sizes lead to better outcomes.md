@@ -1,3 +1,7 @@
+---
+created: 2024-03-21
+---
+
 Someone recently asked me this question during an interview. Thankfully, I had an answer ready to go: if teachers were given smaller class sizes (say 8, for argument's sake), a lot of problems in modern education could be solved.
 
 Here are some of them:

@@ -1,3 +1,7 @@
+---
+created: 2024-06-01
+---
+
 Ninety percent of all resistance is caused by overprompting” 
 
 Where did this come from and what does it mean?

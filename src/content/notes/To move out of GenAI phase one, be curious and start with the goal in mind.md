@@ -1,3 +1,7 @@
+---
+created: 2024-06-08
+---
+
 Going through my LinkedIn feed, you would think the whole world is talking about (and is smarter about) the topics I regularly write and talk about when it comes to AI in education.
 
 But I can still blow minds when I give keynotes or workshops outside of LinkedIn.

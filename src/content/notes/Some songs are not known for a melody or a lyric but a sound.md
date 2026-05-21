@@ -1,3 +1,7 @@
+---
+created: 2025-01-19
+---
+
 This are songs like, she drives me crazy, most of what Eno does (could you really cover one of his songs successfully or would you even want to)?
 
 Those moments where I try to play a song on a guitar and it doesn't quite sound the same even though I'm singing it fine. It's because that "sound" isn't there. Think of a lot of Phil Collins honestly (another day in paradise).

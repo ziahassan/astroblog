@@ -1,4 +1,5 @@
 ---
+created: 2024-03-22
 permalink: emo
 ---
 I recently joined a facebook group that is all about 90's and 00's emo and grunge music, which is the kind of music I grew up on. 

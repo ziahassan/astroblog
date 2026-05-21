@@ -1,1 +1,5 @@
+---
+created: 2024-05-02
+---
+
 > My contention is that creative work is like this, too. Some people argue that an [[AI]] will never write a novel as well as Jane Austen because there’s something intrinsically special about human creativity; this infuriates AI enthusiasts, who see it as nothing more than an appeal to [magic creativity fairy dust](https://click.convertkit-mail2.com/27u5xw0466fohvzl609u3hro9v444ug/wnh2hghwmwznx8h7/aHR0cHM6Ly90d2l0dGVyLmNvbS9BbHRpbW9yL3N0YXR1cy8xNjM5ODE4Mjg3MDU0OTc5MDcy). I agree with the AI boosters that there’s no reason to assume AI won’t match the output of a human in any given field. But this misses the point. The point about a good novel produced by a human (or a song, or painting, or dare I say it, an email newsletter) isn’t that only a human _could ever_ have produced it. It’s that a human _did in fact_ produce it. There really was another thinking, emoting consciousness at the “other end of the line.” And when you consume the work, you enter into a kind of relationship with them. [[Oliver Burkeman]]

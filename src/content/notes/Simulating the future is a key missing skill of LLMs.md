@@ -1,3 +1,7 @@
+---
+created: 2024-03-22
+---
+
 From [[Cal Newport]]
 
 Tags: #ai 

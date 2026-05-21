@@ -1,3 +1,7 @@
+---
+created: 2024-06-06
+---
+
 Here's a framework to keep you balanced in this generative AI age. I don't know about you, but I'm finding myself yearning to rediscover the joy in what makes creativity uniquely human.
 
 Here's what I came up with.

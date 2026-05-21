@@ -1,4 +1,5 @@
 ---
+created: 2023-12-13
 aliases:
   - AI is an intern, not a CEO
   - You are the ceo, not the AI

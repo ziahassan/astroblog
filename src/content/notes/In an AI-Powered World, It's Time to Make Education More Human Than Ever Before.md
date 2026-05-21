@@ -1,4 +1,5 @@
 ---
+created: 2024-10-09
 permalink: oped
 ---
 The first time one of my college students turned in an essay written by ChatGPT, I confronted them and threatened to evoke the college's academic integrity policy.

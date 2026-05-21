@@ -1,3 +1,7 @@
+---
+created: 2024-10-31
+---
+
 This is related to the [[Covid19 Pandemic]] in that we did a lot of studies and it was the randomized ones that were seen as the most relevant.
 
 The gold standard for studies of this nature are [[randomized control trials]]

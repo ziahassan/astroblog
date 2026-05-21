@@ -1,4 +1,5 @@
 ---
+created: 2024-10-03
 title: A challenge with vocational training is that hte programs can't always keep up with the changing economy
 tags: ["careers", "education"]
 publishDate: 2025-05-24 

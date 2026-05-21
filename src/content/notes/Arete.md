@@ -1,3 +1,7 @@
+---
+created: 2024-11-30
+---
+
 This is the best version of yourself within the different [[roles]] that you play.
 
 ## PhD student

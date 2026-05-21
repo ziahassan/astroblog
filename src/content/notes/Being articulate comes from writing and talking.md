@@ -1,4 +1,5 @@
 ---
+created: 2022-08-01
 tags: atomic
 ---
 There is no other way to become articulate. You simply need to write and talk. 🗣

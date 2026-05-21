@@ -1,3 +1,7 @@
+---
+created: 2024-06-25
+---
+
 There's something that many of my clients don't realize when they start working with me as a career coach. They think they want a new job. But really, they want a new team and/or a new leader. The best job in the world isn't worth much without the people that go with it. There isn't enough money in the world to make me work on a dysfunctional team.
 
 It doesn't take long for my clients to figure this out. When I ask them to describe their ideal future job, they talk a little about the work...and a lot about the people they work with.

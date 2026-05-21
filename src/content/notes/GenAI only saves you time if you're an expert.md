@@ -1,4 +1,5 @@
 ---
+created: 2025-05-22
 aliases:
   - expertise matters in an AI-powered era
 ---

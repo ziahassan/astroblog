@@ -1,3 +1,7 @@
+---
+created: 2023-12-20
+---
+
 For a computer, it's an algorithmic process, like [[AI]]. What's the next instruction? 
 
 For a person, it's [[intuition]] - this is what guides the non-prioritization principles of [[gtd]]. 

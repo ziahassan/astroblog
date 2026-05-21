@@ -1,3 +1,7 @@
+---
+created: 2024-04-05
+---
+
 [[AI]]
 
 [AI May Never Be Able To Make A Movie - Russell Palmer (youtube.com)](https://www.youtube.com/watch?v=S0rO6sqGKdk)

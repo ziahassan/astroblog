@@ -1,4 +1,5 @@
 ---
+created: 2022-09-14
 tags: atomic
 ---
 It's true that we create narratives in order to make sense of our lives.

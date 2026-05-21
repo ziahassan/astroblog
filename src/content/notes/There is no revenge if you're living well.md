@@ -1,3 +1,7 @@
+---
+created: 2024-05-31
+---
+
 Living well is the best revenge? 
 
 Or...

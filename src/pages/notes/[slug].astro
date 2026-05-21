@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/layout.astro';
 import { getCollection } from 'astro:content';
+import LocalGraphView from '../../components/LocalGraphView.tsx';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
@@ -17,8 +18,8 @@ if (!note) {
 }
 
 // Create mappings for both directions
-const titleToSlug = {};
-const slugToTitle = {};
+const titleToSlug: Record<string, string> = {};
+const slugToTitle: Record<string, string> = {};
 allNotes.forEach(n => {
   const title = n?.data?.title ?? n.slug;
   if (title) {
@@ -31,14 +32,74 @@ const { Content } = await note.render();
 const { data } = note;
 const displayTitle = data?.title || slug;
 
-// Get backlinks - now looking for both [[title]] and [[slug]] patterns
-const backlinks = allNotes.filter(n => {
+// Get backlinks - notes that link TO this note, with context
+const backlinks = [];
+for (const n of allNotes) {
+  if (n.slug === slug) continue;
   const body = typeof n?.body === 'string' ? n.body : '';
-  if (!body) return false;
+  if (!body) continue;
+
   const titlePattern = data?.title ? `[[${data.title}]]` : null;
   const slugPattern = `[[${slug}]]`;
-  return (titlePattern && body.includes(titlePattern)) || body.includes(slugPattern);
-});
+
+  if ((titlePattern && body.includes(titlePattern)) || body.includes(slugPattern)) {
+    // Extract context around the link
+    const pattern = titlePattern && body.includes(titlePattern) ? titlePattern : slugPattern;
+    const index = body.indexOf(pattern);
+    const start = Math.max(0, index - 80);
+    const end = Math.min(body.length, index + pattern.length + 80);
+    let context = body.slice(start, end)
+      .replace(/\[\[([^\]]+)\]\]/g, '$1') // Remove wiki-link brackets
+      .replace(/\n/g, ' ')
+      .trim();
+    if (start > 0) context = '...' + context;
+    if (end < body.length) context = context + '...';
+
+    backlinks.push({
+      slug: n.slug,
+      title: n.data?.title || n.slug,
+      context
+    });
+  }
+}
+
+// Get outgoing links - notes this note links TO
+const outgoingLinks = [];
+const noteBody = typeof note?.body === 'string' ? note.body : '';
+const wikiLinkRegex = /\[\[([^\]]+)\]\]/g;
+const seenOutgoing = new Set();
+let wikiMatch;
+while ((wikiMatch = wikiLinkRegex.exec(noteBody)) !== null) {
+  const linkText = wikiMatch[1];
+  let targetSlug = null;
+  if (titleToSlug[linkText] !== undefined) {
+    targetSlug = titleToSlug[linkText];
+  } else if (allNotes.find(n => n.slug === linkText)) {
+    targetSlug = linkText;
+  }
+  if (targetSlug && targetSlug !== slug && !seenOutgoing.has(targetSlug)) {
+    seenOutgoing.add(targetSlug);
+    outgoingLinks.push({ slug: targetSlug, title: slugToTitle[targetSlug] || targetSlug });
+  }
+}
+
+// Build local graph data for the current note
+const localNodeMap = new Map();
+localNodeMap.set(slug, { id: slug, title: displayTitle, isCurrent: true });
+for (const l of outgoingLinks) {
+  if (!localNodeMap.has(l.slug)) localNodeMap.set(l.slug, { id: l.slug, title: l.title, isCurrent: false });
+}
+for (const l of backlinks) {
+  if (!localNodeMap.has(l.slug)) localNodeMap.set(l.slug, { id: l.slug, title: l.title, isCurrent: false });
+}
+const localGraphData = {
+  nodes: Array.from(localNodeMap.values()),
+  links: [
+    ...outgoingLinks.map(l => ({ source: slug, target: l.slug })),
+    ...backlinks.map(l => ({ source: l.slug, target: slug })),
+  ],
+  currentSlug: slug,
+};
 
 // Count backlinks by both title and slug patterns
 const backlinkCounts = {};
@@ -116,36 +177,45 @@ for (const sourceNote of allNotes) {
       <Content />
     </div>
     
-    <!-- Local Graph Visualization -->
-    <section class="mt-12 pt-8 border-t border-gray-200">
-      <h2 class="text-2xl font-light text-gray-800 mb-4 flex items-center gap-2">
-        <span>🕸️</span>
-        Local Graph
-      </h2>
-      <div id="note-graph" class="w-full h-96 bg-gray-50 rounded-lg border border-gray-200"></div>
-    </section>
-    
-    <!-- Backlinks Section -->
-    {backlinks.length > 0 && (
+    <!-- Connections Section -->
+    {(outgoingLinks.length > 0 || backlinks.length > 0) && (
       <section class="mt-12 pt-8 border-t border-gray-200">
-        <h2 class="text-2xl font-light text-gray-800 mb-4 flex items-center gap-2">
-          <span>🔗</span>
-          Referenced by
-        </h2>
-        <div class="grid gap-3">
-          {backlinks.map(link => (
-            <div key={link.slug} class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
-              <a href={`/notes/${link.slug}`} class="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
-                {link.data.title || link.slug}
-                {backlinkCounts[link.data.title] && (
-                  <span class="ml-2 text-xs text-gray-500 bg-white px-2 py-1 rounded-md">
-                    {backlinkCounts[link.data.title]} reference{backlinkCounts[link.data.title] > 1 ? 's' : ''}
-                  </span>
-                )}
-              </a>
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Connections</h2>
+
+        <LocalGraphView data={localGraphData} client:load />
+
+        {outgoingLinks.length > 0 && (
+          <div class="mt-6">
+            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Links out</h3>
+            <div class="flex flex-wrap gap-2">
+              {outgoingLinks.map(link => (
+                <a href={`/notes/${link.slug}`} class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 hover:border-blue-300 hover:text-blue-600 transition-all">
+                  {link.title}
+                </a>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
+
+        {backlinks.length > 0 && (
+          <div class="mt-6">
+            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Links in</h3>
+            <div class="space-y-2">
+              {backlinks.map(link => (
+                <a href={`/notes/${link.slug}`} class="block p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all group">
+                  <div class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
+                    {link.title}
+                  </div>
+                  {link.context && (
+                    <div class="text-xs text-gray-500 mt-1 leading-relaxed">
+                      {link.context}
+                    </div>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     )}
   </article>
@@ -211,322 +281,6 @@ for (const sourceNote of allNotes) {
   document.addEventListener('DOMContentLoaded', processInternalLinks);
 </script>
 
-<!-- Local Graph Visualization -->
-<script define:vars={{ allNotes, data, slug, backlinks, displayTitle }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('Starting graph creation...');
-    console.log('Current note:', { slug, title: displayTitle });
-    console.log('All notes:', allNotes.length);
-    console.log('Backlinks:', backlinks.length);
-    
-    // Load D3 and create graph
-    loadD3AndCreateGraph();
-  });
-  
-  async function loadD3AndCreateGraph() {
-    try {
-      console.log('Loading D3...');
-      
-      // Create script element to load D3
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
-      script.onload = () => {
-        console.log('D3 loaded successfully');
-        createLocalGraph();
-      };
-      script.onerror = (error) => {
-        console.error('Failed to load D3:', error);
-        // Fallback: create a simple visualization
-        createFallbackGraph();
-      };
-      document.head.appendChild(script);
-      
-    } catch (error) {
-      console.error('Error loading D3:', error);
-      createFallbackGraph();
-    }
-  }
-  
-  function createFallbackGraph() {
-    console.log('Creating fallback graph...');
-    const container = document.getElementById('note-graph');
-    if (!container) return;
-    
-    container.innerHTML = `
-      <div class="flex items-center justify-center h-full text-gray-500">
-        <div class="text-center">
-          <div class="text-sm mb-2">📊 Graph visualization</div>
-          <div class="text-xs">Current: ${displayTitle}</div>
-          ${backlinks.length > 0 ? `<div class="text-xs">Connected to ${backlinks.length} note(s)</div>` : ''}
-        </div>
-      </div>
-    `;
-  }
-  
-  function createLocalGraph() {
-    console.log('Creating D3 graph...');
-    
-    if (typeof d3 === 'undefined') {
-      console.error('D3 not available');
-      createFallbackGraph();
-      return;
-    }
-    
-    const container = document.getElementById('note-graph');
-    if (!container) {
-      console.error('Graph container not found');
-      return;
-    }
-    
-    // Clear any existing content
-    container.innerHTML = '';
-    console.log('Container cleared');
-    
-    // Build graph data
-    const currentNote = {
-      id: slug,
-      title: displayTitle,
-      type: 'current',
-      tags: data.tags || []
-    };
-    
-    // Create nodes - current note + connected notes
-    const nodes = [currentNote];
-    const links = [];
-    
-    console.log('Building graph data...');
-    
-    // Add backlinks (notes that link TO this note)
-    backlinks.forEach(note => {
-      console.log('Adding backlink:', note.data.title);
-      const backlinkNode = {
-        id: note.slug,
-        title: note.data.title || note.slug,
-        type: 'backlink',
-        tags: note.data.tags || []
-      };
-      nodes.push(backlinkNode);
-      
-      // Create link FROM backlink TO current note
-      links.push({
-        source: note.slug,
-        target: slug,
-        type: 'backlink'
-      });
-    });
-    
-    // Add forward links (notes this note links TO)
-    allNotes.forEach(note => {
-      if (note.slug !== slug) {
-        const currentNoteBody = allNotes.find(n => n.slug === slug)?.body || '';
-        if (currentNoteBody.includes(`[[${note.data.title}]]`) || currentNoteBody.includes(`[[${note.slug}]]`)) {
-          console.log('Adding forward link:', note.data.title);
-          const existingNode = nodes.find(n => n.id === note.slug);
-          if (!existingNode) {
-            const forwardNode = {
-              id: note.slug,
-              title: note.data.title || note.slug,
-              type: 'forward',
-              tags: note.data.tags || []
-            };
-            nodes.push(forwardNode);
-          }
-          
-          // Create link FROM current note TO forward link
-          links.push({
-            source: slug,
-            target: note.slug,
-            type: 'forward'
-          });
-        }
-      }
-    });
-    
-    // Add shared tag connections (notes with same tags)
-    if (data.tags && data.tags.length > 0) {
-      allNotes.forEach(note => {
-        if (note.slug !== slug && note.data.tags) {
-          const sharedTags = data.tags.filter(tag => note.data.tags.includes(tag));
-          if (sharedTags.length > 0) {
-            const existingNode = nodes.find(n => n.id === note.slug);
-            if (!existingNode && nodes.length < 15) { // Limit nodes to keep graph readable
-              console.log('Adding tag-related note:', note.data.title);
-              const tagNode = {
-                id: note.slug,
-                title: note.data.title || note.slug,
-                type: 'tag-related',
-                tags: note.data.tags,
-                sharedTags: sharedTags
-              };
-              nodes.push(tagNode);
-              
-              // Create tag-based connection
-              links.push({
-                source: slug,
-                target: note.slug,
-                type: 'tag',
-                sharedTags: sharedTags
-              });
-            }
-          }
-        }
-      });
-    }
-    
-    console.log('Final graph data:', { nodes: nodes.length, links: links.length });
-    console.log('Nodes:', nodes);
-    console.log('Links:', links);
-    
-    // If no connections, show a simple single node
-    if (nodes.length === 1) {
-      console.log('No connections found, showing single node');
-      createSingleNodeGraph(container, currentNote);
-      return;
-    }
-    
-    // Set up SVG
-    const width = container.clientWidth || 800;
-    const height = 384; // h-96 = 384px
-    
-    console.log('Creating SVG:', { width, height });
-    
-    const svg = d3.select(container)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .attr('viewBox', [0, 0, width, height]);
-    
-    console.log('SVG created');
-    
-    // Create simulation
-    const simulation = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(d => d.id).distance(80))
-      .force('charge', d3.forceManyBody().strength(-200))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(30));
-    
-    console.log('Simulation created');
-    
-    // Create links
-    const link = svg.append('g')
-      .selectAll('line')
-      .data(links)
-      .join('line')
-      .attr('stroke', d => {
-        switch (d.type) {
-          case 'backlink': return '#3b82f6'; // blue
-          case 'forward': return '#10b981'; // green
-          case 'tag': return '#f59e0b'; // amber
-          default: return '#6b7280'; // gray
-        }
-      })
-      .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', d => d.type === 'tag' ? 1 : 2);
-    
-    console.log('Links created:', links.length);
-    
-    // Create nodes
-    const node = svg.append('g')
-      .selectAll('g')
-      .data(nodes)
-      .join('g')
-      .attr('class', 'node')
-      .style('cursor', 'pointer');
-    
-    // Add circles to nodes
-    node.append('circle')
-      .attr('r', d => d.type === 'current' ? 12 : 8)
-      .attr('fill', d => {
-        switch (d.type) {
-          case 'current': return '#1f2937'; // dark gray
-          case 'backlink': return '#3b82f6'; // blue
-          case 'forward': return '#10b981'; // green
-          case 'tag-related': return '#f59e0b'; // amber
-          default: return '#6b7280'; // gray
-        }
-      })
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 2);
-    
-    console.log('Node circles created:', nodes.length);
-    
-    // Add labels to nodes
-    node.append('text')
-      .text(d => d.title.length > 20 ? d.title.substring(0, 20) + '...' : d.title)
-      .attr('x', 0)
-      .attr('y', -15)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '11px')
-      .attr('font-family', 'system-ui, sans-serif')
-      .attr('fill', '#374151')
-      .attr('font-weight', d => d.type === 'current' ? 'bold' : 'normal');
-    
-    console.log('Node labels created');
-    
-    // Add click handler to navigate to notes
-    node.on('click', (event, d) => {
-      if (d.id !== slug) {
-        window.location.href = `/notes/${d.id}`;
-      }
-    });
-    
-    // Update positions on simulation tick
-    simulation.on('tick', () => {
-      link
-        .attr('x1', d => d.source.x)
-        .attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x)
-        .attr('y2', d => d.target.y);
-      
-      node
-        .attr('transform', d => `translate(${d.x},${d.y})`);
-    });
-    
-    console.log('Graph setup complete');
-  }
-  
-  function createSingleNodeGraph(container, currentNote) {
-    console.log('Creating single node graph');
-    
-    const width = container.clientWidth || 800;
-    const height = 384;
-    
-    const svg = d3.select(container)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .attr('viewBox', [0, 0, width, height]);
-    
-    // Create single node in center
-    const nodeGroup = svg.append('g')
-      .attr('transform', `translate(${width/2}, ${height/2})`);
-    
-    nodeGroup.append('circle')
-      .attr('r', 15)
-      .attr('fill', '#1f2937')
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 2);
-    
-    nodeGroup.append('text')
-      .text(currentNote.title.length > 20 ? currentNote.title.substring(0, 20) + '...' : currentNote.title)
-      .attr('x', 0)
-      .attr('y', -20)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '12px')
-      .attr('font-family', 'system-ui, sans-serif')
-      .attr('fill', '#374151')
-      .attr('font-weight', 'bold');
-    
-    // Add "no connections" text
-    svg.append('text')
-      .text('No connections found')
-      .attr('x', width/2)
-      .attr('y', height/2 + 40)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '14px')
-      .attr('fill', '#6b7280');
-  }
-</script>
 
 <!-- Quick Search Functionality -->
 <script type="module" define:vars={{ allNotes }}>

@@ -1,3 +1,7 @@
+---
+created: 2024-06-13
+---
+
 It's hard to answer the question of what it means to be a university until we answer the question of what it means to be a K12 institution. Maybe the more useful place to start is what it means to be a kid. 
 
 When I was growing up, K12 was where you learned the "basics" so that you could "figure the rest of it out" in college. Even the special classes in high school weren't really that specialized (although I'm sure there has been SOME progress in this regard....right...? 😟)

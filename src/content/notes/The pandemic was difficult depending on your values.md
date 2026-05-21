@@ -1,3 +1,7 @@
+---
+created: 2025-07-06
+---
+
 The pandemic was a swirl of competing values.
 
 Those who valued autonomy were likely angry about all of the new rules imposed on them, both socially and societally.

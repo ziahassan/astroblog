@@ -1,3 +1,7 @@
+---
+created: 2023-08-14
+---
+
 Idea for [[First Steps Into Fatherhood]] #copy 
 
 Can you unpack that statement? #gpt 

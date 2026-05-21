@@ -1,1 +1,5 @@
+---
+created: 2024-10-24
+---
+
 Rooting for other people's children is important for the creation of a more cohesive community and society. By supporting all children, not just our own, we foster an environment where every child feels valued, included, and supported to reach their full potential. Celebrating their achievements, encouraging their efforts, and recognizing their struggles helps in nurturing a collective sense of belonging. It also promotes mutual respect and understanding among different families within the community. In addition, it encourages the development of positive societal values such as equality, empathy, and cooperation in the younger generation. Thus, rooting for other people's children contributes significantly to building a stronger, more united community and society.

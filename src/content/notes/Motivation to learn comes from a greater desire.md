@@ -1,3 +1,7 @@
+---
+created: 2025-02-14
+---
+
 I'm not sure if this needs a little more polishing to fully make sense:
 
 but picture a budding guitarist. 

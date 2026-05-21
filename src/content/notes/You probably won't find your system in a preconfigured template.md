@@ -1,3 +1,7 @@
+---
+created: 2023-12-22
+---
+
 All of the packages, such as [[GTD]], [[PARA]], [[Zettelkasten]], etc. are pre-configured templates that worked for just one person. 
 
 And possibly others - such as [[sonke ahrens]] who wrote an entire book on Zettelkasten called [[How to Take Smart Notes]].

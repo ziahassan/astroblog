@@ -1,3 +1,7 @@
+---
+created: 2024-05-31
+---
+
 [[PKM]] , personal knowledge management, is a way to interact with the various incoming media in our lives.
 
 YouTuber [[morganeua]] points out that [[Zettelkasten/Cards/Concepts/Critical Thinking|Critical Thinking]] is something we often talk about but don't ever define. 

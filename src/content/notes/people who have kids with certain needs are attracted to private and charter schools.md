@@ -1,3 +1,7 @@
+---
+created: 2024-10-31
+---
+
 Need evidence for the claim people who have kids with certain needs are attracted to private and charter schools
 
 #edpolicy 

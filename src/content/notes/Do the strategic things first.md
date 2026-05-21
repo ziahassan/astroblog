@@ -1,3 +1,7 @@
+---
+created: 2023-12-04
+---
+
 Before anyone else shows up, early in the morning. 
 
 Workouts - long term health 

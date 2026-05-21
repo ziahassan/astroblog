@@ -1,4 +1,5 @@
 ---
+created: 2023-05-05
 tags: ai
 ---
 AI is not going to replace you

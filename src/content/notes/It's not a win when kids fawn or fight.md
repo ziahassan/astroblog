@@ -1,3 +1,7 @@
+---
+created: 2023-12-20
+---
+
 We don't like it when kids go into fight... but we consider it good [[parenting]] when they fawn. 
 
 Very interesting.

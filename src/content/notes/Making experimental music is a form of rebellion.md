@@ -1,3 +1,7 @@
+---
+created: 2025-07-06
+---
+
 A huge reason why I love experimental I think is that it eschews "boxes."
 
 There is a particular formula for a hit song or even a pop song. 

@@ -1,4 +1,5 @@
 ---
+created: 2024-10-18
 aliases:
   - being human is a harder task than being technology
 ---

@@ -1,3 +1,7 @@
+---
+created: 2024-06-07
+---
+
 I don't argue to win anymore. I argue to learn. 
 
 I don't have to accept anyone's arguments as truth.

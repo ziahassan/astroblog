@@ -1,3 +1,7 @@
+---
+created: 2021-10-09
+---
+
 It truly is the rat race, working a job. 
 
 And that at any time someone can just come and take away all the things you've been working for.

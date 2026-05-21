@@ -1,3 +1,7 @@
+---
+created: 2023-08-20
+---
+
 We used to call them programs, now they are applications.
 
 Programs are things that have multiple applications.

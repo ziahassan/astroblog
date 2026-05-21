@@ -1,3 +1,7 @@
+---
+created: 2024-06-14
+---
+
 Doomscrolling is...
 
 

@@ -1,3 +1,7 @@
+---
+created: 2024-06-07
+---
+
 In my own words:
 
 There are at least two ways to interact with AI.

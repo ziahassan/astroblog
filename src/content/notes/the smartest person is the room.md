@@ -1,3 +1,7 @@
+---
+created: 2024-05-27
+---
+
 Related: [[Scenius]]
 
 This phrase is often used to emphasize the collective intelligence that comes from a group of people. It suggests that while an individual may be smart, the room as a whole - with its diverse range of knowledge, skills, and perspectives - is smarter. This idea promotes collaboration and teamwork. This concept can also be interpreted metaphorically, suggesting that the environment or culture of a room (whether it’s a classroom, office, or any other space) can influence and enhance learning or decision-making processes.

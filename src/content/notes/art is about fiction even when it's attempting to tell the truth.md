@@ -1,3 +1,7 @@
+---
+created: 2025-01-05
+---
+
 We are creating a world that we want to see, not one that currently exists.
 
 If it currently exists, what's the point?

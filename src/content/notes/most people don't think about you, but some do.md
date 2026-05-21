@@ -1,4 +1,5 @@
 ---
+created: 2022-09-24
 tags: atomic
 ---
 When I was 12, I wore a yellow sweatsuit to school.

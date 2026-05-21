@@ -1,3 +1,7 @@
+---
+created: 2024-10-03
+---
+
 Theories are big explanations about why something works. They might encompass many different studies and experiments.
 
 Models represent the variables in these theories concretely, showing how variables relate to other variables.  What do you measure and in what order?

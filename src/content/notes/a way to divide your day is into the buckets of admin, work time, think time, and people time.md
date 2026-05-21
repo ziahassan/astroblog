@@ -1,3 +1,7 @@
+---
+created: 2025-01-09
+---
+
 Admin time
 - email
 - chores

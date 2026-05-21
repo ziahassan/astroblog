@@ -1,3 +1,7 @@
+---
+created: 2025-01-02
+---
+
 Why people are buying more physical things in mid2020's
 
 

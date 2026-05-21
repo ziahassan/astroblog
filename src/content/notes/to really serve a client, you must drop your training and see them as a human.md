@@ -1,3 +1,7 @@
+---
+created: 2025-01-09
+---
+
 We are trained on case studies, problems, reports, and other such things that get us to see our problems as concepts.
 
 But if you're a person serving a person, it's important to remember their entire humanity.

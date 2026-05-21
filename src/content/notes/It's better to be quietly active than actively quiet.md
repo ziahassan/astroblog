@@ -1,3 +1,7 @@
+---
+created: 2024-10-20
+---
+
 Are you actively quiet? Do you shrink back into a corner when we need your voice most? 
 
 Or, are you quietly active? Do you cook up plans in your bedroom without much outward noise, ready to reveal your project when it's finally done?

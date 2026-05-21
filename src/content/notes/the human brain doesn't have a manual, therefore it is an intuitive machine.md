@@ -1,3 +1,7 @@
+---
+created: 2025-01-09
+---
+
 We can observe how the brain works, we can understand how it processes information...
 
 but living inside a brain is a whole other thing. There are clues, there are guides, there is [[Therapy]]...

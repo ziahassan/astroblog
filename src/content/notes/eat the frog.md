@@ -1,3 +1,7 @@
+---
+created: 2023-12-16
+---
+
 A [[brian tracy]] concept.
 
 🐸

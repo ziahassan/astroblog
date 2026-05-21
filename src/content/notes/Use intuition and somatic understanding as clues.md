@@ -1,3 +1,7 @@
+---
+created: 2023-07-11
+---
+
 We can be _more_ logical using our emotions.
 
 It shows up in our body, our brain labels it...

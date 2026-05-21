@@ -1,3 +1,7 @@
+---
+created: 2023-01-07
+---
+
 Apparently, Seal's Kiss From a Rose was like this.
 
 We are not great judges of what everyone will like.
