@@ -1,7 +1,3 @@
----
-created: 2024-11-23
----
-
 Since [[There is no such thing as educational theories, it draws from all the other disciplines]], this makes it a bit challenging for researchers. It means we draw upon various different fields instead of learning one very deeply.
 
 #edpolicy 

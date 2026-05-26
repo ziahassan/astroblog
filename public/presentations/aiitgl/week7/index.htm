@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1" />
+<link rel="stylesheet" href="engine/main.css">
+<link rel="stylesheet" href="theme/copenhagen.css">
+<link rel="stylesheet" href="engine/katex/katex.min.css">
+<style>
+:root{
+--logo: ;
+--darkaccent1color: #E1EBE3;
+--lightaccent1color: #6E9075;
+--accent2: #43aa8b;
+--accent3: #f9c74f;
+--accent4: #90be6d;
+--accent5: #f8961e;
+--accent6: #577590;
+--lighttitletextcolor: #ffffffe6;
+--darktitletextcolor: #000000b3;
+--lightbodytextcolor: #ffffffe6;
+--darkbodytextcolor: #000000b3;
+--lightbackgroundcolor: transparent;
+--darkbackgroundcolor: transparent;
+--bodyfont: Albert Sans;
+--titlefont: Albert Sans;
+--lightframecolor: #FFFFFF;
+--darkframecolor: #000000;
+} 
+
+</style>
+</head>
+<body class="responsive">
+<div class="reveal">
+<div class="slides">
+<section class="variable-size-headings light cover-container responsive present has-light-background fitted" data-background-color="#d3e9d8" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-cover" style="width: 100%; font-size: 0.859rem;">
+        <div style=""><h1 id="aiassessment:capabilitieslimitationsandbalancedapproaches">AI Assessment: Capabilities, Limitations, and Balanced Approaches</h1></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light v-split-container responsive present has-light-background fitted" data-background-color="#d0e4d7" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.859rem;">
+        <div style=""><h2 id="keyquestionsfortoday">Key Questions for Today</h2></div>
+        <div style=""><ul>
+<li>What can AI effectively evaluate in student learning?</li>
+<li>What limitations do AI assessment systems have?</li>
+<li>How can we design effective AI-generated feedback?</li>
+<li>When does AI misrepresent student understanding?</li>
+<li>How can we integrate human and AI assessment effectively?</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#cde1d7" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.578rem;">
+        <div style=""><h2 id="whatcanaieffectivelyevaluate">What Can AI Effectively Evaluate?</h2></div>
+        <div style=""><ul>
+<li><p><strong>Objective knowledge</strong></p></li>
+<li><p>Multiple choice responses</p></li>
+<li><p>Factual recall</p></li>
+<li><p>Terminology usage</p></li>
+<li><p><strong>Standard patterns</strong></p></li>
+<li><p>Common problem-solving approaches</p></li>
+<li><p>Basic writing structures</p></li>
+<li><p>Expected answer formats</p></li>
+<li><p><strong>Quantifiable metrics</strong></p></li>
+<li><p>Length and complexity</p></li>
+<li><p>Time spent on tasks</p></li>
+<li><p>Response patterns</p></li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light grid-container responsive present has-light-background fitted" data-background-color="#cadcd7" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-grid grid-items-4 " style="width: 100%; font-size: 0.953rem;">
+        <div style=""><h2 id="subject-specificassessmentstrengths">Subject-Specific Assessment Strengths</h2></div><div style=""><p><strong>Mathematics:</strong></p>
+
+<ul>
+<li>Calculation accuracy</li>
+<li>Application of formulas</li>
+<li>Solution verification</li>
+</ul></div><div style=""><p><strong>Writing:</strong></p>
+
+<ul>
+<li>Grammar and mechanics</li>
+<li>Organization structure</li>
+<li>Vocabulary usage</li>
+</ul></div><div style=""><p><strong>Science:</strong></p>
+
+<ul>
+<li>Knowledge of facts</li>
+<li>Understanding of standard processes</li>
+<li>Basic concept relationships</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#cadad8" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.578rem;">
+        <div style=""><h2 id="canaieffectivelyevaluatethese">Can AI effectively evaluate these?</h2></div>
+        <div style=""><ul>
+<li><p><strong>Novel approaches</strong></p></li>
+<li><p>Unconventional but valid solutions</p></li>
+<li><p>Creative problem-solving</p></li>
+<li><p>Innovative thinking</p></li>
+<li><p><strong>Nuanced understanding</strong></p></li>
+<li><p>Subtle misconceptions</p></li>
+<li><p>Depth of conceptual grasp</p></li>
+<li><p>Context-dependent meaning</p></li>
+<li><p><strong>Higher-order thinking</strong></p></li>
+<li><p>Complex critical analysis</p></li>
+<li><p>Interdisciplinary connections</p></li>
+<li><p>Evaluative judgment</p></li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#ccd9da" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.719rem;">
+        <div style=""><h2 id="activity:think-pair-share">Activity: Think-Pair-Share</h2></div>
+        <div style=""><ol>
+<li><p><strong>Think:</strong> What are the implications of AI assessment capabilities and limitations for your subject area/context?</p></li>
+<li><strong>Pair:</strong> Discuss with a partner:
+
+<ul>
+<li>One aspect of learning AI could assess effectively</li>
+<li>One aspect that would require human assessment</li>
+<li>Why this division makes sense</li>
+</ul></li>
+<li><p><strong>Share:</strong> Selected pairs will share key insights with the whole group</p></li>
+</ol></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#ced8dc" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h2 id="principlesofeffectiveaifeedback">Principles of Effective AI Feedback</h2></div>
+        <div style=""><p><strong>Specific and actionable</strong></p>
+
+<ul>
+<li>Points to particular aspects of work</li>
+<li>Suggests concrete next steps</li>
+</ul>
+
+<p><strong>Learning-focused</strong></p>
+
+<ul>
+<li>Emphasizes growth over judgment</li>
+<li>Connects to learning goals</li>
+</ul>
+
+<p><strong>Balanced in approach</strong></p>
+
+<ul>
+<li>Identifies both strengths and needs</li>
+<li>Provides encouraging tone</li>
+</ul>
+
+<p><strong>Appropriate in scope</strong></p>
+
+<ul>
+<li>Manageable number of suggestions</li>
+<li>Prioritizes most important issues</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#d1d7df" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.531rem;">
+        <div style=""><h2 id="typesofaifeedback">Types of AI Feedback</h2></div>
+        <div style=""><p><strong>Verification Feedback</strong></p>
+
+<ul>
+<li>Confirms correctness/incorrectness</li>
+<li>Limited learning impact</li>
+<li>Example: "Your answer is incorrect."</li>
+</ul>
+
+<p><strong>Elaborative Feedback</strong></p>
+
+<ul>
+<li>Explains why answers are right/wrong</li>
+<li>Provides additional information</li>
+<li>Example: "Your answer is incorrect because you applied the wrong formula. The correct approach is..."</li>
+</ul>
+
+<p><strong>Process Feedback</strong></p>
+
+<ul>
+<li>Addresses strategies and approaches</li>
+<li>Focuses on how to improve</li>
+<li>Example: "Your approach shows you're trying to use elimination, but consider setting up the equations differently by..."</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#d4d6e0" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h2 id="impactofdifferentfeedbacktypes">Impact of Different Feedback Types</h2></div>
+        <div style=""><table>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Feedback Type</th>
+	<th>Learning Impact</th>
+	<th>Best Used For</th>
+	<th>Limitations</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>Verification</td>
+	<td>Low</td>
+	<td>Quick checks, Simple tasks</td>
+	<td>Doesn't support improvement</td>
+</tr>
+<tr>
+	<td>Elaborative</td>
+	<td>Medium</td>
+	<td>Content mastery, Concept building</td>
+	<td>Can promote dependence</td>
+</tr>
+<tr>
+	<td>Process</td>
+	<td>High</td>
+	<td>Complex tasks, Skill development</td>
+	<td>More difficult to automate</td>
+</tr>
+</tbody>
+</table></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#d9d5e1" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.672rem;">
+        <div style=""><h2 id="aifeedbackdesignconsiderations">AI Feedback Design Considerations</h2></div>
+        <div style=""><p><strong>Student factors:</strong></p>
+
+<ul>
+<li>Prior knowledge</li>
+<li>Motivation level</li>
+<li>Feedback literacy</li>
+</ul>
+
+<p><strong>Task factors:</strong></p>
+
+<ul>
+<li>Complexity</li>
+<li>Purpose (formative/summative)</li>
+<li>Stakes involved</li>
+</ul>
+
+<p><strong>Feedback delivery:</strong></p>
+
+<ul>
+<li>Timing (immediate vs. delayed)</li>
+<li>Format (text, visual, interactive)</li>
+<li>Tone and language</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present has-light-background fitted" data-background-color="#ddd4e2" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 1rem;">
+        <div style=""><h2 id="fourcorners">Four Corners</h2></div>
+        <div style=""><p>Move to the corner that represents what you see as the primary value of AI in assessment:</p>
+
+<p><strong>Corner 1: Efficiency</strong></p>
+
+<p><strong>Corner 2: Objectivity</strong></p>
+
+<p><strong>Corner 3: Personalization</strong></p>
+
+<p><strong>Corner 4: Analytics</strong></p></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e0d5e3" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h2 id="whenaimisrepresentsstudentunderstanding">When AI Misrepresents Student Understanding</h2></div>
+        <div style=""><p><strong>False Positives:</strong></p>
+
+<ul>
+<li>Giving credit for superficial responses</li>
+<li>Missing plagiarism or AI-generated work</li>
+<li>Accepting formulaic approaches without understanding</li>
+</ul>
+
+<p><strong>False Negatives:</strong></p>
+
+<ul>
+<li>Penalizing unusual but valid approaches</li>
+<li>Missing sophisticated thinking</li>
+<li>Failing to recognize creative solutions</li>
+</ul>
+
+<p><strong>Reductive Analysis:</strong></p>
+
+<ul>
+<li>Focusing only on surface features</li>
+<li>Missing conceptual connections</li>
+<li>Ignoring important context</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e2d7e3" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.578rem;">
+        <div style=""><h2 id="assessmentvalidityconcerns">Assessment Validity Concerns</h2></div>
+        <div style=""><p><strong>Construct Validity:</strong></p>
+
+<ul>
+<li>Does the AI measure what it claims to measure?</li>
+<li>Does it capture the full construct or just parts?</li>
+</ul>
+
+<p><strong>Content Validity:</strong></p>
+
+<ul>
+<li>Does the assessment cover the intended content?</li>
+<li>Is important content missing from evaluation?</li>
+</ul>
+
+<p><strong>Consequential Validity:</strong></p>
+
+<ul>
+<li>What are the impacts of this assessment approach?</li>
+<li>Does it lead to appropriate instructional decisions?</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e4dae3" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.672rem;">
+        <div style=""><h2 id="examplesofaiassessmentmisrepresentations">Examples of AI Assessment Misrepresentations</h2></div>
+        <div style=""><p><strong>Example 1: Math Problem Solving</strong></p>
+
+<ul>
+<li>Student uses valid but uncommon approach</li>
+<li>AI fails to recognize alternative solution path</li>
+<li>Student receives incorrect feedback</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present has-light-background fitted" data-background-color="#e7dde4" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.953rem;">
+        <div style=""><h2 id="example2:writtenanalysis">Example 2: Written Analysis</h2>
+
+<ul>
+<li>Student makes deep but implicit connections</li>
+<li>AI focuses only on explicit statements</li>
+<li>Sophisticated thinking goes unrecognized</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present has-light-background fitted" data-background-color="#e7dce1" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.906rem;">
+        <div style=""><h2 id="example3:scienceexplanation">Example 3: Science Explanation**</h2>
+
+<ul>
+<li>Student explanation uses unconventional analogies</li>
+<li>AI expects standard terminology</li>
+<li>Conceptual understanding is missed</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e7dcdf" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h2 id="addressingvaliditychallenges">Addressing Validity Challenges</h2></div>
+        <div style=""><p><strong>Design approaches:</strong></p>
+
+<ul>
+<li>Multiple assessment methods</li>
+<li>Clear criteria for evaluation</li>
+<li>Appropriate task selection</li>
+</ul>
+
+<p><strong>Implementation strategies:</strong></p>
+
+<ul>
+<li>Human review of edge cases</li>
+<li>Continuous improvement of algorithms</li>
+<li>Student appeal processes</li>
+</ul>
+
+<p><strong>Transparency practices:</strong></p>
+
+<ul>
+<li>Clear communication about AI role</li>
+<li>Sharing assessment limitations</li>
+<li>Explaining decision processes</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e7dcdd" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.485rem;">
+        <div style=""><h2 id="stationactivity:aifeedbackimpacts">Station Activity: AI Feedback Impacts</h2></div>
+        <div style=""><p><strong>Station 1:</strong> Content-Focused AI Feedback</p>
+
+<ul>
+<li>Example feedback provided</li>
+<li>Questions about impact on learning</li>
+<li>Space for observations</li>
+</ul>
+
+<p><strong>Station 2:</strong> Process-Focused AI Feedback</p>
+
+<ul>
+<li>Example feedback provided</li>
+<li>Questions about impact on learning</li>
+<li>Space for observations</li>
+</ul>
+
+<p><strong>Station 3:</strong> Combined Human-AI Feedback</p>
+
+<ul>
+<li>Example feedback provided</li>
+<li>Questions about impact on learning</li>
+<li>Space for observations</li>
+</ul>
+
+<p><strong>Station 4:</strong> Harmful AI Feedback</p>
+
+<ul>
+<li>Example feedback provided</li>
+<li>Questions about potential negative impacts</li>
+<li>Space for observations</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e8dddc" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.485rem;">
+        <div style=""><h2 id="modelsforintegratinghumanandaiassessment">Models for Integrating Human and AI Assessment</h2></div>
+        <div style=""><p><strong>Sequential Model</strong></p>
+
+<ul>
+<li>AI provides initial assessment</li>
+<li>Human reviews, modifies, and finalizes</li>
+<li>Example: AI grades essays first, teacher reviews</li>
+</ul>
+
+<p><strong>Parallel Model</strong></p>
+
+<ul>
+<li>AI and human assess independently</li>
+<li>Results are compared and reconciled</li>
+<li>Example: Double-scoring writing with comparison</li>
+</ul>
+
+<p><strong>Complementary Model</strong></p>
+
+<ul>
+<li>AI and human assess different aspects</li>
+<li>Results are combined for complete picture</li>
+<li>Example: AI checks mechanics, humans assess ideas</li>
+</ul>
+
+<p><strong>Augmentation Model</strong></p>
+
+<ul>
+<li>Human leads assessment process</li>
+<li>AI provides supporting data and analysis</li>
+<li>Example: Teacher grades with AI analytics dashboard</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present fit-warning has-light-background fitted" data-background-color="#e8dfdc" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.719rem;">
+        <div style=""><h2 id="designingbalancedassessmentsystems">Designing Balanced Assessment Systems</h2></div>
+        <div style=""><p><strong>Key questions to consider:</strong></p>
+
+<ol>
+<li><p>What aspects of learning are best assessed by AI?</p></li>
+<li><p>What aspects require human judgment?</p></li>
+<li><p>How will these approaches be integrated?</p></li>
+<li><p>How will we ensure validity and reliability?</p></li>
+<li><p>How will students experience the assessment?</p></li>
+<li><p>How will the assessment inform teaching?</p></li>
+</ol></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present has-light-background fitted" data-background-color="#e8e1dd" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.859rem;">
+        <div style=""><h2 id="assessmentdesignactivity">Assessment Design Activity</h2></div>
+        <div style=""><p><strong>Your task:</strong> Design an AI-enhanced assessment approach</p>
+
+<ol>
+<li>Select a specific learning objective</li>
+<li>Design the assessment approach</li>
+<li>Create examples of different types of feedback</li>
+<li>Develop an integration plan</li>
+<li>Address validity concerns</li>
+</ol></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present has-light-background fitted" data-background-color="#e9e4de" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.813rem;">
+        <div style=""><h2 id="keytakeaways">Key takeaways</h2>
+
+<ul>
+<li>AI has specific assessment capabilities and limitations</li>
+<li>Effective AI feedback follows sound design principles</li>
+<li>Validity challenges require intentional mitigation</li>
+<li>Balanced approaches integrate AI and human judgment</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section></div>
+</div>
+<script src="engine/index.js"></script>
+<script src="engine/pptxgen.min.js"></script>
+<script src="engine/pfill.js"></script>
+<script src="engine/published.js"></script>
+<script>
+Reveal.configure({
+progress:true,
+progress:true,
+dependencies: [
+  {
+    src: "engine/highlight.js",
+    sync: true,
+    callback: function () {
+      hljs.initHighlightingOnLoad();
+    },
+  },
+],
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+---
+title: "Zia Hassan"
+subtitle: "Curriculum Vitae"
+date: "May 2026"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 1
+    toc-location: left
+    toc-title: "Sections"
+    theme: cosmo
+    page-layout: article
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+body {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.1rem;
+  color: #1f2937;
+  line-height: 1.75;
+}
+
+h1.title {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 400;
+  font-size: 2.8rem;
+  color: #1e1b4b;
+  margin-bottom: 0.1rem;
+}
+
+p.subtitle {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin-top: 0;
+}
+
+.quarto-title-meta {
+  display: none;
+}
+
+h2 {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #1e1b4b;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.3rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Contact info block */
+.contact-block {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.contact-block a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+/* Entry: institution + role */
+.entry {
+  margin-bottom: 1.4rem;
+}
+
+.entry-header {
+  font-weight: 600;
+  color: #111827;
+}
+
+.entry-role {
+  font-style: italic;
+  color: #6b7280;
+  margin-top: 0;
+}
+
+.entry-body ul {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  padding-left: 1.4rem;
+}
+
+.entry-body li {
+  margin-bottom: 0.25rem;
+  color: #374151;
+}
+
+/* Publication entries */
+.pub {
+  margin-bottom: 0.9rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  color: #374151;
+}
+
+.pub em {
+  font-style: italic;
+}
+
+/* Subsection headers within a section */
+h3 {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin-top: 1.8rem;
+  margin-bottom: 0.7rem;
+  border: none;
+}
+
+/* TOC styling */
+#quarto-sidebar {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8rem;
+}
+
+nav#TOC a {
+  color: #6b7280;
+  text-decoration: none;
+}
+
+nav#TOC a:hover {
+  color: #7c3aed;
+}
+
+nav#TOC .active {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+
+@media print {
+  #quarto-sidebar { display: none; }
+  body { font-size: 10pt; }
+  h2 { font-size: 13pt; margin-top: 1.5rem; }
+}
+</style>
+
+<div class="contact-block">
+  <span>Silver Spring, MD 20906</span>
+  <span>(240) 271-7408</span>
+  <a href="mailto:zhassan4@jh.edu">zhassan4@jh.edu</a>
+</div>
+
+## Research Interests
+
+My research explores the transformative impact of generative AI on educational ecosystems. Rather than focusing solely on technological implementations, I investigate the broader social, pedagogical, and institutional ripple effects that AI technologies create within educational settings. I am particularly interested in how AI reshapes educator roles, student-teacher relationships, assessment practices, and instructional design, with implications for educational equity and policy development.
+
+## Education
+
+<div class="entry">
+<div class="entry-header">Johns Hopkins University – School of Education, Baltimore, MD</div>
+<div class="entry-role">PhD in Education (In Progress, Expected May 2029)</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Anne Arundel Community College, Arnold, MD</div>
+<div class="entry-role">Certificate in Life & Engagement Coaching, May 2021</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Trinity Washington University – School of Education, Washington, DC</div>
+<div class="entry-role">Master of Arts in Teaching, December 2016</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">American University – Kogod School of Business, Washington, DC</div>
+<div class="entry-role">Bachelor of Science in Information Systems, May 2007</div>
+</div>
+
+## Relevant Professional Experience
+
+<div class="entry">
+<div class="entry-header">EdTechBFF, Silver Spring, MD</div>
+<div class="entry-role">Founder & Educational Technology Consultant, 2021–Present</div>
+<div class="entry-body">
+- Provide specialized consulting services for educational institutions on technology integration
+- Developed SharePoint database system for Green Acres School to visualize curriculum connections across grade levels
+- Contracted for educational technology projects with various schools and educational organizations
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Montgomery College, Rockville, MD</div>
+<div class="entry-role">Adjunct Faculty, August 2022–Present</div>
+<div class="entry-body">
+- EDUC101: History and Foundations of Education
+- EDUC243: Processes and Acquisition of Reading
+- Mentor for ACET accelerated teacher training program
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Anne Arundel Community College, Arnold, MD</div>
+<div class="entry-role">Adjunct Professor & Corporate Trainer, February 2020–Present</div>
+<div class="entry-body">
+- Awarded Adjunct of the Year, 2025
+- EDU133: Human Growth and Development
+- EDU201: Life & Engagement Coaching
+- EDU202: Life & Engagement Coaching (EXPAND)
+- Corporate Training: Microsoft Excel, Managing People & Performance, Communication for Leaders
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Frederick Community College, Frederick, MD</div>
+<div class="entry-role">Adjunct Faculty</div>
+<div class="entry-body">
+- BGMT100: Spreadsheet Applications
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Microsoft Education, Washington, DC</div>
+<div class="entry-role">Microsoft Learning Consultant, July 2017–June 2022</div>
+<div class="entry-body">
+- Facilitated customized training for K–12 and Higher Education educators nationally
+- Developed implementation plans with technology directors, CTOs, and CIOs
+- Led pandemic response webinars for major school districts on remote learning
+- Presented educational technology research and implementation strategies at major EdTech conferences
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Capital City Public Charter School, Washington, DC</div>
+<div class="entry-role">Third Grade Lead Teacher, August 2016–August 2017</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Truesdell Education Campus, Washington, DC</div>
+<div class="entry-role">Third & Fourth Grade ELA Teacher, August 2014–June 2016</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">IBM Corporation, Washington, DC</div>
+<div class="entry-role">Senior Consultant, July 2007–June 2013</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Pivot Pilots, Silver Spring, MD</div>
+<div class="entry-role">Educational & Career Coach, February 2021–Present</div>
+<div class="entry-body">
+- Applied ICF coaching principles to support professional transitions
+</div>
+</div>
+
+## Methodological & Technical Expertise
+
+<div class="skills-grid">
+<div>
+
+### Methods
+- Inferential Statistics
+- Linear Models
+- Machine Learning
+- Biostatistics
+- Multi-level Models
+- Qualitative Data Analysis
+
+</div>
+<div>
+
+### Technology & Software
+- AI Tools: Claude, ChatGPT, and other LLMs
+- Programming: Python, R
+- Statistical Software: Stata
+- Development: VSCode
+- Microsoft Office Suite (Expert)
+- Adobe Creative Suite
+
+</div>
+</div>
+
+## Research Experience
+
+<div class="entry">
+<div class="entry-header">Johns Hopkins University, Baltimore, MD</div>
+<div class="entry-role">Doctoral Researcher, 2022–Present</div>
+<div class="entry-body">
+- Research collaborator on study examining teacher perceptions and experiences with the ALEF AI-enabled learning platform (PI: Dr. Jennifer Morrison); conducted semi-structured interviews with educators, supported data presentation, and will lead qualitative write-up of interview findings
+- Research collaborator on media literacy study examining evidence of media literacy support across state department of education websites; responsibilities include data collection and coding
+- Consultant researcher with Dover School District supporting stakeholder training on EWIMS data logging procedures to improve accuracy of early warning system predictions
+- Research assistant on Research Partnership for Professional Learning grant focusing on social perspective taking between teachers and students (Social Psychology in Environmental Education Lab with Dr. Hunter Gehlbach)
+  - Quantitative analysis of teacher-student interactions and perspective-taking outcomes
+  - Statistical modeling of educational intervention effects
+- Investigating AI personas through psychological experimentation (in data collection phase)
+- Leading AI-based methodology personal relevance study on climate change motivation, with focus on survey design related to AI
+</div>
+</div>
+
+## Selected Academic Writing
+
+### Pre-prints and Working Papers
+
+<div class="pub">Hassan, Z., Robey, M., & Gehlbach, H. (2026). Core competencies for planetary health education: An AI-assisted review and synthesis of health professions literature. *OSF Preprints*. https://doi.org/10.17605/OSF.IO/HR2VS</div>
+
+<div class="pub">Hassan, Z. (2025). Friction and coordination in schooling: Transactional teaching, relational work, and the limits of educational efficiency. *OSF Preprints*. https://doi.org/10.17605/OSF.IO/9B47G</div>
+
+<div class="pub">Hassan, Z. (2024). Student motivation in regard to AI. *Research Gate*. https://doi.org/10.13140/RG.2.2.24184.97281</div>
+
+### Book Chapters
+
+<div class="pub">Hassan, Z., Plucker, J., Gao, Q., & Qian, M. (Forthcoming). Reimagining creativity assessment in the modern era. In Bill Lucas, *Handbook for creativity in schools*. Edward Elgar Publishing.</div>
+
+<div class="pub">Hassan, Z. (2026). Artificial intelligence and the evolution of talent development in education. In Jonathan Plucker and Melanie Meyer, *The future of advanced education and talent development*. Information Age Publishing Inc.</div>
+
+### Books
+
+<div class="pub">Hassan, Z. (2020). *Inventing the modern classroom: A research-based approach to educational technology integration*. Kindle Direct Publishing.</div>
+
+### Manuscripts in Preparation
+
+<div class="pub">Hassan, Z. (manuscript in preparation). Friction and coordination in schooling: Why assessment's future depends on preserving human judgment. *Research and Practice in Assessment* [Special Issue: Artificial Intelligence and the Future of Assessment in Higher Education]. Invited for submission.</div>
+
+<div class="pub">Hassan, Z., & Plucker, J. (manuscript in preparation). Why underachievement interventions often miss the point: The case for intrapersonal knowledge systems over adaptive learning technology. *Frontiers in Psychology* [Special Issue: Bridging the Gap: Technology-Driven Solutions for Underachievement and Unlocking Potential]. Abstract accepted.</div>
+
+<div class="pub">Hassan, Z. (2024). Generative AI usage motivations among educators: A rapid review [Unpublished manuscript]. Johns Hopkins University.</div>
+
+## Curriculum Development
+
+<div class="entry">
+<div class="entry-header">AI in Education Course, Johns Hopkins University</div>
+<div class="entry-role">Co-developer with Dr. Jim Diamond, 2024–Present</div>
+<div class="entry-body">
+- Developing an original AI in Education course for the new master's program in the Johns Hopkins International Teaching and Global Learning program
+- Designing curriculum as a requirement for technology track students
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Azure AI Certification Course, New York Department of Education</div>
+<div class="entry-role">Curriculum Developer, 2024–Present</div>
+<div class="entry-body">
+- Developing AI in Education course for Career and Technical Education (CTE) students
+- Creating preparation materials for the Microsoft Azure 900 certification exam
+- Contracted by NYDOE to build state-level AI curriculum
+</div>
+</div>
+
+## Presentations & Invited Talks
+
+### Keynote Presentations
+
+<div class="pub">Hassan, Z. (2024, May). *AI in education: What's on the horizon* [Commencement address]. Anne Arundel Community College Commencement, Arnold, MD.</div>
+
+<div class="pub">Hassan, Z. (2023, August). *AI in education: Everything is about to change* [Conference presentation]. Montgomery College Part-time Faculty Conference, Rockville, MD.</div>
+
+<div class="pub">Hassan, Z. (2024, March). *How to coach a human with AI* [Conference presentation]. The Conference for Coaches, Arnold, MD.</div>
+
+<div class="pub">Hassan, Z. (2024, February). *Implications of artificial intelligence in coaching* [Invited talk]. International Coaching Federation Maryland Chapter, Gambrills, MD.</div>
+
+### Panel Participation
+
+<div class="pub">Hassan, Z. (2024, October). *Expert panelist on AI in education* [Roundtable discussion]. U.S. Department of Education Roundtable, Washington, DC.</div>
+
+<div class="pub">Hassan, Z. (2023, November). *Expert panelist on AI in education* [Roundtable discussion]. DC State Board of Education Roundtable, Washington, DC.</div>
+
+### Conference Presentations
+
+<div class="pub">Hassan, Z. (2021, June). *Teaching Generation Z* [Conference presentation]. International Society for Technology in Education (ISTE) Conference, Virtual.</div>
+
+<div class="pub">Hassan, Z. (2019, June). *Minecraft in education* [Two-day workshop]. International Society for Technology in Education (ISTE) Conference, Philadelphia, PA.</div>
+
+<div class="pub">Hassan, Z. (2017–2022). *Breakout sessions on accessibility, Microsoft Teams, OneNote, and educational technology integration* [Conference presentations]. ISTE, FETC, TCEA, and NCCE, Various Locations.</div>
+
+## Academic Service & Leadership
+
+<div class="entry">
+<div class="entry-header">Grant Reviewer, Aspen Institute – Stevens Initiative</div>
+<div class="entry-role">November 2020–Present</div>
+<div class="entry-body">
+- Review educational virtual exchange grants for US-MENA programs
+- Provide assessment and recommendations for funding decisions
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Campaign Team, Emily Gasoi for DC State Board of Education District 1</div>
+<div class="entry-role">Summer/Fall 2018</div>
+<div class="entry-body">
+- Contributed to successful election campaign for education policy leadership role
+</div>
+</div>
+
+<div class="entry">
+<div class="entry-header">Board Member, EmpowerEd</div>
+<div class="entry-role">August 2017–January 2019</div>
+<div class="entry-body">
+- Advised on strategic direction focusing on teacher empowerment and educational equity
+</div>
+</div>
+
+## Professional Memberships
+
+- American Educational Research Association (AERA)
+- International Coaching Federation (ICF)
+- Society for Research on Educational Effectiveness (SREE)
+
+## References
+
+- Dr. Jonathan Plucker, Johns Hopkins University — jplucke1@jhu.edu
+- Dr. Hunter Gehlbach, Johns Hopkins University — gehlbach@jhu.edu

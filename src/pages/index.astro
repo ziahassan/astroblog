@@ -1,434 +1,361 @@
 ---
-// src/pages/index.astro
 import Layout from '../layouts/layout.astro';
-import { getCollection } from 'astro:content';
-import GraphView from '../components/GraphView.tsx';
+import { getCollection, getEntry, render } from 'astro:content';
 
-// Get notes for the graph
-let notes = [];
+// Recent blog posts
+let recentBlog: any[] = [];
 try {
-  notes = await getCollection('notes');
-} catch (error) {
-  console.warn('Could not load notes:', error);
+  const posts = await getCollection('blog', ({ data }: any) => !data.draft);
+  recentBlog = posts
+    .sort((a: any, b: any) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf())
+    .slice(0, 2);
+} catch (e) {}
+
+// Recent notes
+let recentNotes: any[] = [];
+try {
+  const notes = await getCollection('notes');
+  recentNotes = (notes as any[])
+    .sort((a, b) => {
+      const aDate = (a.data.created || a.data.publishDate || new Date(0)) as Date;
+      const bDate = (b.data.created || b.data.publishDate || new Date(0)) as Date;
+      return new Date(bDate).valueOf() - new Date(aDate).valueOf();
+    })
+    .slice(0, 2);
+} catch (e) {}
+
+function noteExcerpt(body: string): string {
+  return (body || '')
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/#{1,6}\s+/gm, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/^[-*+>\d.]+\s+/gm, '')
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 200);
 }
 
-// Build graph data safely
-const nodes = notes.map(note => ({
-  id: note.slug,
-  title: note.data.title || note.slug,
-  tags: note.data.tags || []
-}));
+function postExcerpt(post: any): string {
+  if (post.data.description) return post.data.description;
+  return noteExcerpt(post.body || '');
+}
 
-const links = [];
-
-// Create links between notes based on [[links]]
-for (const sourceNote of notes) {
-  for (const targetNote of notes) {
-    if (sourceNote.slug !== targetNote.slug && sourceNote.body) {
-      const titlePattern = `[[${targetNote.data.title}]]`;
-      const slugPattern = `[[${targetNote.slug}]]`;
-      
-      if (sourceNote.body.includes(titlePattern) || sourceNote.body.includes(slugPattern)) {
-        links.push({
-          source: sourceNote.slug,
-          target: targetNote.slug
-        });
-      }
-    }
+// Mastodon feed — fetched at build time
+interface MastodonPost {
+  id: string;
+  created_at: string;
+  content: string;
+  url: string;
+  media_attachments: any[];
+}
+let mastodonPosts: MastodonPost[] = [];
+try {
+  const res = await fetch(
+    'https://pkm.social/api/v1/accounts/109330926909065720/statuses?limit=6&exclude_replies=true&exclude_reblogs=true'
+  );
+  if (res.ok) {
+    mastodonPosts = (await res.json()).slice(0, 4);
   }
+} catch (e) {
+  console.warn('Could not fetch Mastodon posts at build time');
 }
 
-const graphData = { nodes, links };
-const nodeCount = nodes.length;
-const linkCount = links.length;
-const connectionPercentage = nodeCount > 1 ? Math.round((linkCount / Math.max(nodeCount * (nodeCount - 1) / 2, 1)) * 100) : 0;
+function stripHtml(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/p>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function shortDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function monthYear(date: Date): string {
+  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+const nowEntry = await getEntry('pages', 'now');
+const { Content: NowContent } = nowEntry ? await render(nowEntry) : { Content: null };
 ---
 
 <Layout title="Zia Hassan">
-  <!-- Background decorative elements -->
-  <div class="floating-emoji" style="top: 15%; left: 8%;">🎓</div>
-  <div class="floating-emoji" style="top: 25%; right: 12%;">🤖</div>
-  <div class="floating-emoji" style="top: 70%; left: 5%;">💡</div>
-  <div class="floating-emoji" style="top: 85%; right: 8%;">🌱</div>
+  <div class="max-w-4xl mx-auto px-6 py-16">
 
-  <!-- Hero Section -->
-  <header class="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
-    <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
-      <!-- Profile Image -->
-      <div class="flex-shrink-0">
-        <div class="relative">
-          <img 
-            src="/profile.jpg" 
-            alt="Zia Hassan"
-            class="w-48 h-48 lg:w-56 lg:h-56 rounded-full object-cover shadow-lg border-4 border-white"
-          />
-          <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-            👋
-          </div>
-        </div>
-      </div>
-      
-      <!-- Intro Content -->
-      <div class="flex-1 text-center lg:text-left">
-        <h1 class="text-5xl lg:text-6xl font-light text-gray-800 mb-4 serif">
-          Hi, I'm Zia Hassan
-        </h1>
-        
-        <!-- Roles -->
-        <div class="space-y-2 mb-6">
-          <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mr-2 mb-2">
-            🎓 PhD Student, Johns Hopkins
-          </div>
-          <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mr-2 mb-2">
-            🔬 AI & Education Researcher
-          </div>
-          <div class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mr-2 mb-2">
-            💻 EdTech Consultant
-          </div>
-          <div class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mr-2 mb-2">
-            👨‍🏫 Educator & Adjunct Faculty
-          </div>
-          <div class="inline-flex items-center px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-medium mr-2 mb-2">
-            🌟 ICF Certified Life & Career Coach, PCC
-          </div>
-        </div>
-        
-        <p class="text-xl text-gray-600 leading-relaxed mb-8 max-w-2xl">
-          I explore the intersection of artificial intelligence and education, 
-          investigating how AI can make learning more human, not less. This digital garden 
-          is where I think in public and connect ideas across research, practice, and possibility.
-        </p>
-        
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-          <a href="/essays" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-            <span class="mr-2">📝</span>
-            Read my essays
-          </a>
-          <a href="/notes" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors font-medium">
-            <span class="mr-2">🌐</span>
-            Explore my notes
-          </a>
-          <a href="/media" class="inline-flex items-center px-6 py-3 bg-white text-gray-700 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-medium">
-            <span class="mr-2">🎙️</span>
-            Listen & watch
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
+    <!-- Hero -->
+    <section class="mb-20 -mx-6 px-8 pt-14 pb-12 bg-gradient-to-br from-violet-50 via-indigo-50 to-white rounded-2xl">
+      <h1 class="text-5xl font-light text-indigo-950 mb-3 tracking-tight" style="font-family: 'Crimson Text', Georgia, serif;">
+        Zia Hassan
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mb-8">
+        I am curious about what it means to be human.
+      </p>
+      <nav class="flex flex-wrap gap-6 text-sm">
+        <a href="https://pkm.social/@Ziahassan" target="_blank" rel="noopener" class="text-violet-600 hover:text-violet-900 font-medium transition-colors">Mastodon</a>
+        <a href="https://pixelfed.social/ziahassan" target="_blank" rel="noopener" class="text-violet-600 hover:text-violet-900 font-medium transition-colors">Pixelfed</a>
+        <a href="mailto:zhassan4@jh.edu" class="text-violet-600 hover:text-violet-900 font-medium transition-colors">Email</a>
+        <a href="/cv" class="text-violet-600 hover:text-violet-900 font-medium transition-colors">CV</a>
+      </nav>
+    </section>
 
-  <!-- Main content -->
-  <main class="max-w-4xl mx-auto px-6 pb-16">
-    
-    <!-- Interactive Knowledge Graph -->
+    <!-- Writing -->
     <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <!-- Graph Header -->
-        <div class="p-6 border-b border-gray-100">
-          <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-2xl font-semibold text-gray-800 serif mb-2">Knowledge Graph</h2>
-              <p class="text-gray-600">
-                Interactive visualization of {nodeCount} connected notes and ideas
-              </p>
-            </div>
-            <a href="/notes" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm">
-              <span class="mr-2">🌐</span>
-              Explore All Notes
+      <div class="flex items-end justify-between mb-7">
+        <div>
+          <h2 class="text-2xl font-light text-gray-900" style="font-family: 'Crimson Text', Georgia, serif;">Writing</h2>
+          <p class="text-sm text-gray-400 mt-1">Thoughts on education, AI, and everything in between.</p>
+        </div>
+        <a href="/blog" class="text-sm text-violet-500 hover:text-violet-700 transition-colors flex-shrink-0 ml-4">All posts →</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {recentBlog.map((post: any) => {
+          const excerpt = postExcerpt(post);
+          return (
+            <a
+              href={`/blog/${post.slug}`}
+              class="group flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden"
+            >
+              <div class="h-1.5 bg-violet-400 group-hover:bg-violet-500 transition-colors" />
+              {post.data.image && (
+                <div class="overflow-hidden" style="height:160px;">
+                  <img src={post.data.image} alt="" class="w-full h-full object-cover" />
+                </div>
+              )}
+              <div class="p-6 flex flex-col flex-1">
+                <span class="card-label text-violet-500 mb-3">Writing</span>
+                <h3 class="text-xl font-medium text-gray-900 leading-snug mb-3 group-hover:text-violet-700 transition-colors" style="font-family: 'Crimson Text', Georgia, serif;">
+                  {post.data.title}
+                </h3>
+                {excerpt && (
+                  <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-5 line-clamp-3">{excerpt}</p>
+                )}
+                <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-50">
+                  <span class="text-xs text-amber-500 font-medium">{monthYear(post.data.publishDate)}</span>
+                  <span class="text-violet-400 group-hover:text-violet-600 transition-colors text-sm">→</span>
+                </div>
+              </div>
             </a>
-          </div>
-        </div>
-        
-        <!-- Graph Container -->
-        <div class="relative">
-          <div class="graph-container bg-gradient-to-br from-gray-50 to-blue-50">
-            <GraphView data={graphData} client:load />
-          </div>
-          
-          <!-- Graph Controls Overlay -->
-          <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 text-xs text-gray-600 shadow-sm border border-gray-200">
-            <div class="space-y-1">
-              <div>🖱️ <strong>Click:</strong> Open note</div>
-              <div>🔍 <strong>Scroll:</strong> Zoom in/out</div>
-              <div>✋ <strong>Drag:</strong> Move nodes</div>
-            </div>
-          </div>
-          
-          <!-- Stats Overlay -->
-          <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 text-xs text-gray-600 shadow-sm border border-gray-200">
-            <div class="space-y-1 text-right">
-              <div><strong>{nodeCount}</strong> Notes</div>
-              <div><strong>{linkCount}</strong> Connections</div>
-              <div><strong>{connectionPercentage}%</strong> Connected</div>
-            </div>
-          </div>
-        </div>
+          );
+        })}
+        {recentBlog.length === 0 && (
+          <p class="text-sm text-gray-400 col-span-2">No posts yet.</p>
+        )}
       </div>
     </section>
 
-    <!-- About This Site -->
+    <!-- Notes from the garden -->
     <section class="mb-16">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="timeline-dot">About This Digital Garden</h2>
-          
-          <p>
-            This site functions as my digital garden—a space where ideas grow, connect, and evolve over time. 
-            Unlike a traditional blog with polished, finished posts, this is a living collection of thoughts, 
-            research, and explorations in various stages of development.
-          </p>
-          
-          <p>
-            You'll find everything from rough notes and early drafts to more developed essays and completed research. 
-            The goal isn't perfection, but connection—both between ideas and between people who care about the 
-            future of learning and technology.
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-8 mt-8">
-            <div class="space-y-4">
-              <h3>🌱 What You'll Find</h3>
-              <div class="space-y-3">
-                <div class="flex items-start gap-3">
-                  <span class="text-blue-500 mt-1">📝</span>
-                  <div>
-                    <div class="font-medium text-gray-800">Essays & Research</div>
-                    <div class="text-sm text-gray-600">Long-form explorations of AI in education</div>
+      <div class="flex items-end justify-between mb-7">
+        <div>
+          <h2 class="text-2xl font-light text-gray-900" style="font-family: 'Crimson Text', Georgia, serif;">From the Garden</h2>
+          <p class="text-sm text-gray-400 mt-1">Atomic notes, research threads, and works in progress.</p>
+        </div>
+        <a href="/notes" class="text-sm text-teal-500 hover:text-teal-700 transition-colors flex-shrink-0 ml-4">All notes →</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {recentNotes.map((note: any) => {
+          const title = note.data.title || (note.id || note.slug)
+            .replace(/\.mdx?$/, '')
+            .replace(/^\d{4}-\d{2}-\d{2}-?/, '')
+            .replace(/-/g, ' ')
+            .trim() || note.slug;
+          const excerpt = noteExcerpt(note.body || '');
+          const tags: string[] = note.data.tags || [];
+          return (
+            <a
+              href={`/notes/${note.slug}`}
+              class="group flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden"
+            >
+              <div class="h-1.5 bg-teal-400 group-hover:bg-teal-500 transition-colors" />
+              <div class="p-6 flex flex-col flex-1">
+                <span class="card-label text-teal-500 mb-3">Note</span>
+                <h3 class="text-xl font-medium text-gray-900 leading-snug mb-3 group-hover:text-teal-700 transition-colors" style="font-family: 'Crimson Text', Georgia, serif;">
+                  {title}
+                </h3>
+                {excerpt && (
+                  <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-5 line-clamp-3">{excerpt}</p>
+                )}
+                <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-50">
+                  <div class="flex gap-1.5">
+                    {tags.slice(0, 2).map(tag => (
+                      <span class="text-xs bg-teal-50 text-teal-600 border border-teal-100 rounded px-1.5 py-0.5">{tag}</span>
+                    ))}
                   </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="text-green-500 mt-1">💭</span>
-                  <div>
-                    <div class="font-medium text-gray-800">Notes & Ideas</div>
-                    <div class="text-sm text-gray-600">Connected thoughts and works in progress</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="text-purple-500 mt-1">🎙️</span>
-                  <div>
-                    <div class="font-medium text-gray-800">Conversations</div>
-                    <div class="text-sm text-gray-600">Podcasts, videos, and guest appearances</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="text-orange-500 mt-1">📚</span>
-                  <div>
-                    <div class="font-medium text-gray-800">Reading & Learning</div>
-                    <div class="text-sm text-gray-600">Books, papers, and ongoing learning</div>
-                  </div>
+                  <span class="text-teal-400 group-hover:text-teal-600 transition-colors text-sm">→</span>
                 </div>
               </div>
-            </div>
-            
-            <div class="space-y-4">
-              <h3>🔗 How Ideas Connect</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                This garden uses bidirectional linking and graph visualizations to show how concepts relate to each other. 
-                You can explore not just individual pieces, but the web of connections between them.
-              </p>
-              
-              <div class="bg-gray-50 rounded-lg p-4 mt-4">
-                <div class="text-sm text-gray-600 mb-2">🔍 <strong>Pro tip:</strong></div>
-                <div class="text-sm text-gray-600">
-                  Look for linked concepts throughout the site, and don't miss the interactive graph view 
-                  that shows how everything connects.
+            </a>
+          );
+        })}
+        {recentNotes.length === 0 && (
+          <p class="text-sm text-gray-400 col-span-2">No notes yet.</p>
+        )}
+      </div>
+    </section>
+
+    <!-- Bottom row: Mastodon + Currently -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Mastodon -->
+      <section class="bg-violet-50 rounded-2xl p-6 border border-violet-100">
+        <div class="flex items-baseline justify-between mb-5">
+          <h2 class="section-label-violet">On Mastodon</h2>
+          <a href="https://pkm.social/@Ziahassan" target="_blank" rel="noopener" class="text-xs text-violet-400 hover:text-violet-600 transition-colors">Follow →</a>
+        </div>
+        {mastodonPosts.length > 0 ? (
+          <div class="space-y-4">
+            {mastodonPosts.map((post) => {
+              const text = stripHtml(post.content);
+              const truncated = text.length > 260 ? text.slice(0, 258) + '…' : text;
+              return (
+                <div class="text-sm border-l-2 border-violet-200 pl-3">
+                  <p class="text-slate-700 leading-relaxed mb-1.5">{truncated}</p>
+                  <a
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="text-xs text-violet-400 hover:text-violet-600 transition-colors"
+                  >
+                    {shortDate(post.created_at)}
+                  </a>
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
+        ) : (
+          <p class="text-sm text-violet-400">
+            <a href="https://pkm.social/@Ziahassan" target="_blank" rel="noopener" class="hover:text-violet-600">
+              @Ziahassan@pkm.social
+            </a>
+          </p>
+        )}
+      </section>
+
+      <!-- Currently -->
+      <section class="bg-amber-50 rounded-2xl p-6 border border-amber-100">
+        <div class="mb-5">
+          <h2 class="section-label-amber">Currently</h2>
         </div>
+        <div class="currently-content text-sm text-slate-700 leading-relaxed">
+          {NowContent && <NowContent />}
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Newsletter -->
+    <section class="mt-12 pt-8 border-t border-gray-100">
+      <h2 class="section-label mb-4">Stay in touch</h2>
+      <p class="text-sm text-gray-500 mb-4">A general purpose newsletter: hand picked web gems and hand rolled thoughts about how humanity is changing.</p>
+      <form
+        action="https://buttondown.com/api/emails/embed-subscribe/ziahassan"
+        method="post"
+        class="flex gap-2 max-w-sm"
+      >
+        <input
+          type="email"
+          name="email"
+          id="bd-email"
+          placeholder="your@email.com"
+          required
+          class="flex-1 px-3 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-transparent"
+        />
+        <button
+          type="submit"
+          class="px-4 py-2 text-sm font-medium bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+        >
+          Subscribe
+        </button>
+      </form>
+    </section>
+
+    <!-- Explore -->
+    <section class="mt-12 pt-8 border-t border-gray-100">
+      <h2 class="section-label mb-5">Explore</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/articles" class="explore-pill">Articles &amp; papers</a>
+        <a href="/teaching" class="explore-pill">Teaching &amp; presentations</a>
+        <a href="/media" class="explore-pill">Podcasts &amp; media</a>
+        <a href="/notes" class="explore-pill">Knowledge graph</a>
+        <a href="/blog" class="explore-pill">Blog archive</a>
       </div>
     </section>
 
-    <!-- Current Focus -->
-    <section class="mb-16">
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-8 md:p-12">
-        <div class="prose-custom">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-6 serif">Currently Exploring</h2>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="text-center">
-              <div class="text-3xl mb-3">🤖</div>
-              <h3 class="font-semibold text-gray-800 mb-2">AI Personas</h3>
-              <p class="text-sm text-gray-600">
-                How do different AI personalities affect learning outcomes and student engagement?
-              </p>
-            </div>
-            
-            <div class="text-center">
-              <div class="text-3xl mb-3">🧠</div>
-              <h3 class="font-semibold text-gray-800 mb-2">Perspective Taking</h3>
-              <p class="text-sm text-gray-600">
-                Research on social perspective taking between teachers and students in educational settings.
-              </p>
-            </div>
-            
-            <div class="text-center">
-              <div class="text-3xl mb-3">🌍</div>
-              <h3 class="font-semibold text-gray-800 mb-2">Climate Education</h3>
-              <p class="text-sm text-gray-600">
-                Personal relevance and motivation in climate change education and environmental learning.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quick Links -->
-    <section class="grid md:grid-cols-2 gap-6">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-          <span class="mr-2">⚡</span>
-          Quick Start
-        </h3>
-        <div class="space-y-3">
-          <a href="/now" class="block p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-            <div class="font-medium text-gray-800">What I'm up to now</div>
-            <div class="text-sm text-gray-600">Current projects and focus areas</div>
-          </a>
-          <a href="/cv" class="block p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-            <div class="font-medium text-gray-800">Academic CV</div>
-            <div class="text-sm text-gray-600">Research, teaching, and professional background</div>
-          </a>
-        </div>
-      </div>
-      
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-          <span class="mr-2">💬</span>
-          Let's Connect
-        </h3>
-        <p class="text-gray-600 text-sm mb-4">
-          Interested in collaborating or discussing AI and education? I'd love to hear from you.
-        </p>
-        <a href="mailto:zhassan4@jh.edu" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-          <span class="mr-2">✉️</span>
-          Get in touch
-        </a>
-      </div>
-    </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
-    min-height: 100vh;
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+  .card-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
-  
-  .serif {
-    font-family: 'Crimson Text', serif;
-  }
-  
-  .prose-custom {
-    line-height: 1.75;
-  }
-  
-  .prose-custom p {
-    margin-bottom: 1.5rem;
-    color: #374151;
-  }
-  
-  .prose-custom h2 {
-    font-family: 'Crimson Text', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 0.5rem;
-  }
-  
-  .prose-custom h3 {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 1rem;
-  }
-  
-  .prose-custom a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .prose-custom a:hover {
-    text-decoration: underline;
-  }
-  
-  .timeline-dot {
-    position: relative;
-  }
-  
-  .timeline-dot::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 0.5rem;
-    width: 8px;
-    height: 8px;
-    background: #3b82f6;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px #3b82f6;
-  }
-  
-  .floating-emoji {
-    position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.6;
-    pointer-events: none;
-    z-index: 1;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  /* Graph container styling */
-  .graph-container {
-    height: 400px;
-    position: relative;
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  /* Graph responsiveness */
-  @media (max-width: 768px) {
-    .graph-container {
-      height: 300px;
-    }
-    
-    .absolute.top-4.left-4,
-    .absolute.top-4.right-4 {
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      margin: 1rem;
-      display: inline-block;
-    }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7c3aed; /* violet-700 */
   }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+
+  .section-label-violet {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6d28d9;
   }
-  
-  @media (max-width: 1024px) {
-    .timeline-dot::before {
-      display: none;
-    }
+
+  .section-label-amber {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b45309;
+  }
+
+  .explore-pill {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: #f5f3ff;
+    color: #5b21b6;
+    border: 1px solid #ddd6fe;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .explore-pill:hover {
+    background: #ede9fe;
+    color: #3b0764;
+  }
+
+  .currently-content p {
+    margin-bottom: 0.75rem;
+  }
+  .currently-content p:last-child {
+    margin-bottom: 0;
   }
 </style>
-
-<script>
-  // Add staggered animations to floating emojis
-  document.addEventListener('DOMContentLoaded', () => {
-    const emojis = document.querySelectorAll('.floating-emoji');
-    
-    emojis.forEach((emoji, index) => {
-      emoji.style.animationDelay = `${index * 0.5}s`;
-    });
-  });
-</script>

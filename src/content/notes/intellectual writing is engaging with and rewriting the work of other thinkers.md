@@ -1,0 +1,1 @@
+I keep trying to disprove this to myself, but every single book I've ever loved has clearly drawn from the past corpus of literature. [[everythign is a remix]], [[good artists borrow, great artists steal]], [[Zettelkasten/People/Austin Kleon|Austin Kleon]].

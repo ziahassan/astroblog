@@ -1,7 +1,3 @@
----
-created: 2024-06-29
----
-
 I have a history of anxiety.
 
 I've never been formally diagnosed, but I worry and catastrophize quite a bit.

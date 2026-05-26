@@ -1,7 +1,3 @@
----
-created: 2025-01-08
----
-
 You can't buy an ice cream cone I mean you can buy the sugar vanilla extract the cream and the cone in a configuration that someone has put together but you can't buy an ice cream because ice cream cone is an experience and the way the winter but experience is different from the things and materials to make it up for affected by the sound of the lady in the room were affected by the people that were with the mood were in and out of that has to do with the money that you spend ice cream cone
 
 make this make a little more sense:

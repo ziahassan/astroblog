@@ -1,7 +1,3 @@
----
-created: 2023-02-17
----
-
 Artist date with intention: activate one sense in ten date. Touch something. Hear something. 
 
 Important to do it alone. 

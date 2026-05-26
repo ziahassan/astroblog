@@ -1,5 +1,4 @@
 ---
-created: 2022-09-05
 tags: atomic
 ---
 Your basal ganglia is the place where your habits live.

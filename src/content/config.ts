@@ -5,11 +5,12 @@ const notes = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().optional(),
-    tags: z.union([z.array(z.string()), z.string()]).optional().transform(val => {
+    tags: z.union([z.array(z.string()), z.string(), z.null()]).optional().transform(val => {
+      if (!val) return [];
       if (typeof val === 'string') {
         return val.split(',').map(tag => tag.trim()).filter(Boolean);
       }
-      return val || [];
+      return val;
     }),
     status: z.string().optional(),
     publishDate: z.date().optional(),
@@ -122,6 +123,7 @@ const blog = defineCollection({
     description: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional(),
+    image: z.string().optional(),
   }),
 });
 

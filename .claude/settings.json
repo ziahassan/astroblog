@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(node scripts/sync-presentations.mjs --dry-run)",
+      "Bash(node scripts/sync-presentations.mjs)",
+      "Bash(rm /Users/ziahassan/Documents/GitHub/astroblog/src/content/teaching/*.md)",
+      "Bash(node scripts/migrate-hugo-posts.mjs --dry-run)",
+      "Bash(node scripts/migrate-hugo-posts.mjs)",
+      "Bash(xargs -I{} head -10 {})",
+      "Bash(npx pagefind *)",
+      "Bash(python3 -c ' *)",
+      "WebFetch(domain:maggieappleton.com)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('id'\\), d.get\\('display_name'\\)\\)\")",
+      "Bash(rm /Users/ziahassan/Documents/GitHub/astroblog/src/pages/articles/\\\\[slug\\\\].astro)",
+      "Bash(ls /Volumes/MacMiniExternal/notes2024/Zettelkasten/ )",
+      "Read(//Volumes/MacMiniExternal/notes2024/Zettelkasten/**)",
+      "Bash(python3 -)",
+      "Bash(cat \"/Users/ziahassan/Documents/GitHub/astroblog/src/content/notes/dont argue to win argue to learn.md\" 2>/dev/null || find /Users/ziahassan/Documents/GitHub/astroblog/src/content/notes -iname \"*dont*argue*\" -o -iname \"*don't*argue*\" 2>/dev/null)",
+      "Read(//Users/ziahassan/Documents/GitHub/astroblog/src/content/notes/**)",
+      "Bash(xxd)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(type\\(d\\), len\\(d\\) if isinstance\\(d,list\\) else d\\)\")",
+      "Bash(git -C /Users/ziahassan/Documents/GitHub/astroblog remote -v)",
+      "Bash(git -C /Users/ziahassan/Documents/GitHub/astroblog ls-files src/content/notes)",
+      "Bash(rm /Users/ziahassan/Documents/GitHub/astroblog/src/content/notes)",
+      "Bash(mkdir /Users/ziahassan/Documents/GitHub/astroblog/src/content/notes)",
+      "Bash(rsync -av --delete \"/Volumes/MacMiniExternal/notes2024/Zettelkasten/AtomicNotes/\" \"/Users/ziahassan/Documents/GitHub/astroblog/src/content/notes/\")",
+      "Bash(grep -n \"sync-site\\\\|astroblog\" ~/.zshrc 2>/dev/null | head -10)",
+      "Read(//Users/ziahassan/**)",
+      "Bash(cat >> *)"
+    ],
+    "additionalDirectories": [
+      "/Users/ziahassan/Documents/GitHub/astroblog/src/content/teaching",
+      "/Users/ziahassan/Documents/GitHub/astroblog/src/pages/articles",
+      "/Users/ziahassan"
+    ]
+  }
+}

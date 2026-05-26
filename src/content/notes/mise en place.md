@@ -1,1 +1,0 @@
-[[zettelkasten and PKM is mise en place for creatives]]

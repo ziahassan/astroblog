@@ -1,5 +1,4 @@
 ---
-created: 2022-09-24
 tags: atomic
 ---
 When I was 12, I wore a yellow sweatsuit to school.
@@ -22,6 +21,6 @@ But you also don't need to let it weigh on you.
 
 If they're thinking about _your_ embarrassing memories, that's on them.
 
-[[Ruminating on embarrassing memories is a habit]], and [[Habits can control you or you can control your habits]].
+[[Ruminating on embarrassing memories is a habit]], and [[habits can control you or you can control your habits]].
 
 Back to [[Evergreen Notes]]

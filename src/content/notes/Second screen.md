@@ -1,1 +1,0 @@
-Specifically coming up with content that is meant to be viewed on a second screen, like you’re looking at your phone primarily while something mindless is on in the background. Example: [[love is blind]]

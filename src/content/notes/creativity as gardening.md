@@ -1,5 +1,4 @@
 ---
-created: 2022-09-03
 tags: atomic
 ---
 Picture yourself in your garden.

@@ -1,5 +1,4 @@
 ---
-created: 2025-04-16
 aliases:
   - room of balloons
 ---

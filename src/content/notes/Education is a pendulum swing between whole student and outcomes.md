@@ -1,7 +1,3 @@
----
-created: 2024-09-02
----
-
 Education has historically swung between focusing on the development of the whole student - their character, passions, creativity, critical thinking skills - and focusing on specific outcomes such as test scores, graduation rates, and job placements. 
 
 On one hand, educators recognize the importance of developing well-rounded individuals who can contribute positively to society. This approach emphasizes the importance of social-emotional learning, arts education, physical education, and other non-academic aspects that contribute to a student’s overall wellbeing.

@@ -1,7 +1,3 @@
----
-created: 2024-04-01
----
-
 A kid and dad will get a peak of oxytocin when they're playing together.
 
 A kid will get oxytocin being taken care of by mom when they are hurt either physically or emotionally and need that comfort.

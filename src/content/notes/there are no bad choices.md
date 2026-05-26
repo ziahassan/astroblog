@@ -1,5 +1,4 @@
 ---
-created: 2022-09-14
 tags: atomic
 ---
 We're always worried about making the "wrong" choice when it comes to big decisions.

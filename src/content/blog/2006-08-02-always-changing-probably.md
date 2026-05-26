@@ -1,0 +1,18 @@
+---
+title: "Always Changing Probably"
+publishDate: 2006-08-02
+---
+
+I develop a similar habit wherever I work: get to work, do a few tasks, go get a mid-morning snack, do more work, late lunch, relax, and go home. Billy and Andy came over the other night to work on some songs. We molded a song that Andy had written a year ago &#8211; Time Has Passed, or something like that. Changed the chord structure a little bit (it&#8217;s always easier playing a guitar rather than a piano) and worked the melody so that Billy could add in some harmonies. One of the previous nights, we had a long discussion about music over a few whisky sours. Billy and Andy understand music theory well enough to discuss it and emote over the same complexities, and while I know some basics, I&#8217;m much more into sound rather than notes. Admittedely, as Billy pointed out, my brain works with music differently than Andy and different than himself. It&#8217;s possible that we, as a planet, work differently with music, but surprisingly, we have similar emotions over some music. At the same time, we have very polar emotions over some other types of songs.
+
+You can&#8217;t really point it out. Is it the tone of the voice, the chord progression, the melody of an instrument layered over the progression, the acoustics in the room of the recording, the processing? Which is the thing that pushes the music over the edge of emotion, and why does that edge exist in different places for different people? And is that thing different for same music and different people?
+
+We began recording the song. I recorded the guitar part with some effect, and Andy felt nervous about singing because it was late in the dorms. Even though we were pretty certain no one could hear from my bedroom with the door closed, Andy has a very loud voice. We took a break to smoke and eat Chinese food. Talked with a public safety officer about getting a ticket and things to do to avoid getting charged. If a cop asks you why you think he pulled you over, say you don&#8217;t know.
+
+Listening to Sandi Thom&#8217;s record Smile&#8230; it confuses people. Interesting arrangements and production. The single, &#8220;I wish I was a Punk Rocker&#8221; is a very catchy radio song that may have been recorded with fancy production and a big band sound, but was eventually stripped down to nothing but a melody line, harmonies, and percussion.
+
+Went home last night to watch Tsotsi with my dad and my sister. It&#8217;s one of those movies that builds and builds until a really dramatic final scene involving lots of eye contact, long pauses, hesitation, and suspense. Sometimes I wish I was a film maker. I would want too much control, I think.
+
+I&#8217;ve been using a program called Melodyne, which can take a melody line and let you edit the individual notes. You can sculpt the pitch to however you want it, you can create harmonies, or an entire choir if you felt like it. This may open up a lot of doors. Also inherited a Les Paul guitar from Scott, who acquired it from his friend in Japan. Playing electric guitar feels so unnatural to me, although it shouldn&#8217;t, since it&#8217;s almost the same as playing a synth. Except instead of data, there are actual sound waves involved.
+
+Plans for tonight: hang out with Scott and get dinner. Maybe see what Andy&#8217;s up to, if his wisdom teeth haven&#8217;t kept him pinned down. I don&#8217;t know where home base is right now.

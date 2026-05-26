@@ -1,7 +1,3 @@
----
-created: 2024-06-09
----
-
 This is related to [[AI]] as a way of creating content. 
 
 We want to feel like we are creating and maintaining our own work. Using tools to help with this process can be very useful, but once we cross [[The Ownership Threshold]], it starts to feel less like our own work.

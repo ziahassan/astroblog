@@ -1,7 +1,3 @@
----
-created: 2024-07-13
----
-
 Romanticizing the process is necessary. 
 
 Otherwise you can't get into [[flow state]]. 

@@ -1,8 +1,4 @@
----
-created: 2023-12-25
----
-
-We are constantly getting emotional information from our limbic system. To be aware of these processes ([[Meditation]], [[journaling]], [[nature]], etc.) you have power over your life.
+We are constantly getting emotional information from our limbic system. To be aware of these processes ([[Meditation]], [[Zettelkasten/Cards/Concepts/journaling]], [[nature]], etc.) you have power over your life.
 
 Very much related to the topics mentioned above but also [[A man is valuable because of presence, or depth of awareness]], [[Your emotions are not your child's responsibility]].
 

@@ -1,7 +1,3 @@
----
-created: 2024-06-12
----
-
 How do you turn a standard essay assignment into a platform for real-world skills and broader impact? Last semester, one of my students shocked me with a simple request: to complete their mini-essay as a podcast instead.
 
 When I said yes, the student seemed shocked that I was so easily swayed. 

@@ -1,3 +1,0 @@
-A super small p-value means that there was an effect in the research. a P value is calculated by statistical tests and it represents the probability that the results of your test occurred at random. If p-value is very small, it means the probability of your results happening by chance is very low and, hence, your results are statistically significant. This often leads to the conclusion that some effect or difference exists in the data you tested. However, [[a small p-value does not tell you about the size or importance of that effect]].
-
-If the P value is not sufficiently small, we fail to reject H0.

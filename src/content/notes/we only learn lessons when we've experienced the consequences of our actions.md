@@ -1,7 +1,3 @@
----
-created: 2024-07-01
----
-
 Truth in life. 
 
 You can hear the same lecture over and over but until you have an experience, you do not learn.

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/layout.astro';
 import { getCollection } from 'astro:content';
+import FullGraphView from '../../components/FullGraphView.tsx';
 
 const notes = await getCollection('notes');
 
@@ -42,8 +43,7 @@ const sorted = notes.sort((a, b) => {
   return titleA.localeCompare(titleB);
 });
 
-// Get recent notes (top 50)
-const recentNotes = sorted.slice(0, 50);
+const recentNotes = sorted; // render all, cap display in CSS
 
 // Collect all tags and their counts
 const tagCounts: Record<string, number> = {};
@@ -75,28 +75,65 @@ for (const sourceNote of notes) {
 
 // Random note
 const random = notes[Math.floor(Math.random() * notes.length)];
+
+// Clean up slug-style titles (e.g. "2019-01-18-lab-notebook" → "Lab Notebook")
+function cleanTitle(note: any): string {
+  if (note.data.title) return note.data.title;
+  return note.id
+    .replace(/\.mdx?$/, '')
+    .replace(/^\d{4}-\d{2}-\d{2}-?/, '')
+    .replace(/-/g, ' ')
+    .trim() || note.slug;
+}
+
+// Build full graph data
+const graphNodes = notes.map(note => ({
+  id: note.slug,
+  title: cleanTitle(note),
+  connections: backlinkCounts[note.slug] || 0,
+}));
+
+const graphLinks: { source: string; target: string }[] = [];
+const titleToSlug: Record<string, string> = {};
+notes.forEach(n => {
+  if (n.data.title) titleToSlug[n.data.title] = n.slug;
+});
+for (const note of notes) {
+  const body = typeof note.body === 'string' ? note.body : '';
+  const seen = new Set<string>();
+  for (const match of body.matchAll(/\[\[([^\]]+)\]\]/g)) {
+    const linkText = match[1];
+    const targetSlug = titleToSlug[linkText] ?? (notes.find(n => n.slug === linkText)?.slug);
+    if (targetSlug && targetSlug !== note.slug && !seen.has(targetSlug)) {
+      seen.add(targetSlug);
+      graphLinks.push({ source: note.slug, target: targetSlug });
+    }
+  }
+}
+
+const graphData = { nodes: graphNodes, links: graphLinks };
 ---
 
 <Layout title="Notes">
-  <div class="max-w-5xl mx-auto px-4">
+  <div class="max-w-5xl mx-auto px-6 py-10">
 
-    <!-- Minimal Header -->
-    <header class="py-8 border-b border-gray-200">
+    <!-- Header -->
+    <header class="pb-8 border-b border-gray-100">
       <div class="flex items-baseline justify-between">
-        <h1 class="text-3xl font-light text-gray-800">Notes</h1>
-        <span class="text-sm text-gray-500">{notes.length} notes</span>
+        <h1 class="text-3xl font-light text-indigo-950" style="font-family: 'Crimson Text', Georgia, serif;">Notes</h1>
+        <span class="text-sm text-gray-400">{notes.length} notes</span>
       </div>
       <p class="text-gray-500 mt-2">Atomic ideas, research findings, and evergreen thoughts.</p>
     </header>
 
     <!-- Search + Random + Sort -->
-    <div class="py-6 flex flex-wrap items-center gap-4">
+    <div class="py-6 flex flex-wrap items-center gap-3">
       <div class="flex-1 relative min-w-[200px]">
         <input
           type="text"
           id="search"
           placeholder="Search notes..."
-          class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent text-sm"
           autocomplete="off"
         />
         <kbd class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 bg-gray-200 text-gray-500 rounded text-xs font-mono">⌘K</kbd>
@@ -115,21 +152,28 @@ const random = notes[Math.floor(Math.random() * notes.length)];
         </button>
       </div>
 
-      <a href={`/notes/${random.slug}`} class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
-        <span>🎲</span> Random
+      <a href={`/notes/${random.slug}`} class="px-3 py-2 bg-teal-50 hover:bg-teal-100 border border-teal-100 rounded-lg text-sm font-medium text-teal-700 transition-colors">
+        🎲 Random
       </a>
-      <a href="/graph" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
-        <span>🕸️</span> Graph
-      </a>
-      <a href="/reading" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-1.5">
+      <a href="/reading" class="px-3 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-600 transition-colors">
         Reading notes →
       </a>
+
+      <!-- View toggle -->
+      <div class="flex items-center gap-1 bg-teal-50 border border-teal-100 rounded-lg p-1 ml-auto">
+        <button id="view-cards" class="view-toggle active px-3 py-1.5 text-xs font-medium rounded-md bg-white shadow-sm text-teal-700 transition-all">
+          Cards
+        </button>
+        <button id="view-graph" class="view-toggle px-3 py-1.5 text-xs font-medium rounded-md text-teal-500 hover:bg-teal-100 transition-all">
+          Graph
+        </button>
+      </div>
     </div>
 
     <!-- Search Results (hidden by default) -->
     <div id="search-results" class="hidden mb-6">
       <div class="bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto">
-        <div class="px-4 py-2 bg-gray-50 border-b text-sm text-gray-500" id="results-count"></div>
+        <div class="px-4 py-2 bg-teal-50 border-b border-teal-100 text-sm text-teal-700" id="results-count"></div>
         <div id="results-list"></div>
       </div>
     </div>
@@ -138,76 +182,73 @@ const random = notes[Math.floor(Math.random() * notes.length)];
     {sortedTags.length > 0 && (
       <div class="pb-6 border-b border-gray-100">
         <div class="flex flex-wrap gap-2">
-          <button class="tag-filter active px-3 py-1.5 text-xs font-medium rounded-full bg-gray-900 text-white transition-all" data-tag="all">
+          <button class="tag-filter active px-3 py-1.5 text-xs font-medium rounded-full bg-teal-600 text-white transition-all" data-tag="all">
             All
           </button>
           {sortedTags.map(([tag, count]) => (
             <button
-              class="tag-filter px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
+              class="tag-filter px-3 py-1.5 text-xs font-medium rounded-full bg-teal-50 text-teal-700 border border-teal-100 hover:bg-teal-100 transition-all"
               data-tag={tag}
             >
-              {tag} <span class="text-gray-400 ml-1">{count}</span>
+              {tag} <span class="text-teal-400 ml-1">{count}</span>
             </button>
           ))}
         </div>
       </div>
     )}
 
+    <!-- Graph View -->
+    <div id="graph-container" class="hidden py-6">
+      <FullGraphView data={graphData} client:only="react" />
+    </div>
+
     <!-- Notes List -->
     <div id="notes-container" class="py-6">
 
-      <!-- Recent Section -->
-      <div class="mb-8">
-        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Recent</h2>
-        <div class="space-y-1" id="notes-list">
-          {recentNotes.map(note => {
-            const tags = note.data.tags || [];
-            const title = note.data.title || note.id.replace(/\.mdx?$/, '');
-            const backlinks = backlinkCounts[note.slug] || 0;
-            const dateA = note.data.publishDate || note.data.created;
-            const slugMatch = note.slug.match(/^(\d{4}-\d{2}-\d{2})/);
-            const slugDate = slugMatch ? slugMatch[1] : null;
-            const sortDate = dateA ? new Date(dateA).getTime() : (slugDate ? new Date(slugDate).getTime() : 0);
+      <!-- Card Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="notes-list">
+        {recentNotes.map((note, i) => {
+          const tags = note.data.tags || [];
+          const title = cleanTitle(note);
+          const backlinks = backlinkCounts[note.slug] || 0;
+          const dateA = note.data.publishDate || note.data.created;
+          const slugMatch = note.slug.match(/^(\d{4}-\d{2}-\d{2})/);
+          const slugDate = slugMatch ? slugMatch[1] : null;
+          const sortDate = dateA ? new Date(dateA).getTime() : (slugDate ? new Date(slugDate).getTime() : 0);
 
-            return (
-              <div
-                class="note-item group flex items-center gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors"
-                data-tags={JSON.stringify(tags)}
-                data-title={title.toLowerCase()}
-                data-backlinks={backlinks}
-                data-date={sortDate}
-              >
-                <a
-                  href={`/notes/${note.slug}`}
-                  class="flex-1 text-gray-800 hover:text-blue-600 transition-colors truncate"
-                >
+          return (
+            <a
+              href={`/notes/${note.slug}`}
+              class={`note-item group flex flex-col rounded-lg overflow-hidden border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all${i >= 50 ? ' beyond-fifty' : ''}`}
+              style="background:#fafaf8; border-color:#e8e3dc;"
+              data-tags={JSON.stringify(tags)}
+              data-title={title.toLowerCase()}
+              data-backlinks={backlinks}
+              data-date={sortDate}
+            >
+              <div class="h-[3px] bg-teal-300 group-hover:bg-teal-500 transition-colors" />
+              <div class="p-3 flex flex-col flex-1" style="min-height:110px;">
+                <p class="text-gray-800 group-hover:text-teal-700 transition-colors leading-snug font-medium text-sm flex-1" style="font-family: 'Crimson Text', Georgia, serif; font-size: 1rem;">
                   {title}
-                </a>
-
-                <div class="flex items-center gap-2 flex-shrink-0">
-                  {tags.length > 0 && (
-                    <div class="hidden sm:flex gap-1">
-                      {tags.slice(0, 2).map((tag: string) => (
-                        <span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded">
-                          {tag}
-                        </span>
-                      ))}
-                      {tags.length > 2 && (
-                        <span class="text-xs text-gray-400">+{tags.length - 2}</span>
-                      )}
-                    </div>
-                  )}
-
+                </p>
+                <div class="mt-3 flex items-end justify-between gap-1">
+                  <div class="flex flex-wrap gap-1">
+                    {tags.slice(0, 2).map((tag: string) => (
+                      <span class="px-1.5 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded leading-none">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                   {backlinks > 0 && (
-                    <span class="text-xs text-gray-400 font-mono" title={`${backlinks} backlinks`}>
+                    <span class="text-xs text-teal-400 font-mono flex-shrink-0" title={`${backlinks} backlinks`}>
                       ←{backlinks}
                     </span>
                   )}
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </a>
+          );
+        })}
       </div>
 
       <!-- Show more -->
@@ -215,7 +256,7 @@ const random = notes[Math.floor(Math.random() * notes.length)];
         <div class="text-center py-4">
           <button
             id="show-all-btn"
-            class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 font-medium"
+            class="px-4 py-2 text-sm text-violet-600 hover:text-violet-800 font-medium transition-colors"
           >
             Show all {notes.length} notes ↓
           </button>
@@ -225,8 +266,7 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 
     <!-- Empty state for filters -->
     <div id="empty-state" class="hidden py-12 text-center">
-      <div class="text-4xl mb-3">🔍</div>
-      <p class="text-gray-500">No notes match this filter.</p>
+      <p class="text-gray-400">No notes match this filter.</p>
     </div>
 
   </div>
@@ -245,7 +285,7 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 
     // Prepare notes data for search
     const notesData = notes.map(n => ({
-      title: n.data.title || n.id.replace(/\.mdx?$/, ''),
+      title: n.data.title || n.id.replace(/\.mdx?$/, '').replace(/^\d{4}-\d{2}-\d{2}-?/, '').replace(/-/g, ' ').trim() || n.slug,
       slug: n.slug,
       tags: n.data.tags || [],
       backlinks: backlinkCounts[n.slug] || 0,
@@ -253,6 +293,12 @@ const random = notes[Math.floor(Math.random() * notes.length)];
     }));
 
     let activeTag = 'all';
+
+    // Show all button
+    document.getElementById('show-all-btn')?.addEventListener('click', (e) => {
+      document.querySelectorAll('.beyond-fifty').forEach(el => el.classList.remove('beyond-fifty'));
+      e.target.closest('div')?.remove();
+    });
 
     // Sort functionality
     const sortBtns = document.querySelectorAll('.sort-btn');
@@ -311,13 +357,13 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 
         // Update active state
         tagFilters.forEach(b => {
-          b.classList.remove('active', 'bg-gray-900', 'text-white');
-          b.classList.add('bg-gray-100', 'text-gray-600');
+          b.classList.remove('active', 'bg-teal-600', 'text-white');
+          b.classList.add('bg-teal-50', 'text-teal-700');
         });
-        btn.classList.add('active', 'bg-gray-900', 'text-white');
-        btn.classList.remove('bg-gray-100', 'text-gray-600');
+        btn.classList.add('active', 'bg-teal-600', 'text-white');
+        btn.classList.remove('bg-teal-50', 'text-teal-700');
 
-        // Filter notes
+        // Filter notes — show all matching regardless of beyond-fifty
         let visibleCount = 0;
         noteItems.forEach(item => {
           const itemTags = JSON.parse(item.dataset.tags || '[]');
@@ -325,11 +371,24 @@ const random = notes[Math.floor(Math.random() * notes.length)];
 
           if (shouldShow) {
             item.classList.remove('hidden');
+            // When filtering, reveal beyond-fifty notes if they match
+            if (tag !== 'all') item.classList.remove('beyond-fifty');
             visibleCount++;
           } else {
             item.classList.add('hidden');
           }
         });
+
+        // Restore beyond-fifty when going back to All
+        if (tag === 'all') {
+          let count = 0;
+          noteItems.forEach(item => {
+            if (!item.classList.contains('hidden')) {
+              count++;
+              if (count > 50) item.classList.add('beyond-fifty');
+            }
+          });
+        }
 
         // Show/hide empty state
         emptyState.classList.toggle('hidden', visibleCount > 0);
@@ -405,11 +464,39 @@ const random = notes[Math.floor(Math.random() * notes.length)];
         }
       }
     });
+
+    // View toggle: Cards ↔ Graph
+    const graphContainer = document.getElementById('graph-container');
+    const btnCards = document.getElementById('view-cards');
+    const btnGraph = document.getElementById('view-graph');
+
+    btnGraph?.addEventListener('click', () => {
+      notesContainer.classList.add('hidden');
+      graphContainer?.classList.remove('hidden');
+      searchResults.classList.add('hidden');
+      btnGraph.classList.add('bg-white', 'shadow-sm', 'text-teal-700');
+      btnGraph.classList.remove('text-teal-500');
+      btnCards?.classList.remove('bg-white', 'shadow-sm', 'text-teal-700');
+      btnCards?.classList.add('text-teal-500');
+    });
+
+    btnCards?.addEventListener('click', () => {
+      graphContainer?.classList.add('hidden');
+      notesContainer.classList.remove('hidden');
+      btnCards.classList.add('bg-white', 'shadow-sm', 'text-teal-700');
+      btnCards.classList.remove('text-teal-500');
+      btnGraph?.classList.remove('bg-white', 'shadow-sm', 'text-teal-700');
+      btnGraph?.classList.add('text-teal-500');
+    });
   });
 </script>
 
 <style>
   .note-item.hidden {
+    display: none;
+  }
+
+  .note-item.beyond-fifty {
     display: none;
   }
 

@@ -1,0 +1,1 @@
+People tend to have a lot of [[imposter syndrome]], and this leads to thinking that talking to someone will be unpleasant for them, but in reality, this is something that all human seem to enjoy. 

@@ -26,24 +26,24 @@ const types = [...new Set(sorted.map(a => a.data.type))];
 ---
 
 <Layout title="Media">
-  <div class="max-w-3xl mx-auto px-4">
+  <div class="max-w-3xl mx-auto px-6 py-10">
 
-    <header class="py-8 border-b border-gray-200">
+    <header class="pb-8 border-b border-gray-100">
       <div class="flex items-baseline justify-between">
-        <h1 class="text-3xl font-light text-gray-800">Media</h1>
-        <span class="text-sm text-gray-500">{appearances.length} appearance{appearances.length !== 1 ? 's' : ''}</span>
+        <h1 class="text-3xl font-light text-indigo-950" style="font-family: 'Crimson Text', Georgia, serif;">Media</h1>
+        <span class="text-sm text-gray-400">{appearances.length} appearance{appearances.length !== 1 ? 's' : ''}</span>
       </div>
       <p class="text-gray-500 mt-2">Podcasts, talks, interviews, and other appearances.</p>
     </header>
 
     {types.length > 1 && (
       <div class="py-4 flex flex-wrap gap-2 border-b border-gray-100">
-        <button class="type-filter active px-3 py-1 text-xs font-medium rounded-full bg-gray-900 text-white" data-type="all">
+        <button class="type-filter active px-3 py-1 text-xs font-medium rounded-full bg-violet-600 text-white" data-type="all">
           All
         </button>
         {types.map(type => (
           <button
-            class="type-filter px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+            class="type-filter px-3 py-1 text-xs font-medium rounded-full bg-violet-50 text-violet-600 border border-violet-100 hover:bg-violet-100 transition-colors"
             data-type={type}
           >
             {typeLabel[type]}
@@ -55,13 +55,13 @@ const types = [...new Set(sorted.map(a => a.data.type))];
     <div class="py-6 space-y-4" id="appearances-list">
       {sorted.map(item => (
         <article
-          class="appearance-item border border-gray-200 rounded-lg p-5 hover:border-gray-300 transition-colors"
+          class="appearance-item border border-gray-100 rounded-lg p-5 hover:border-violet-200 hover:bg-violet-50/30 transition-colors"
           data-type={item.data.type}
         >
           <div class="flex items-start justify-between gap-4 mb-2">
             <div class="flex-1 min-w-0">
               <h2 class="text-base font-medium text-gray-900 leading-snug">
-                <a href={item.data.url} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">
+                <a href={item.data.url} target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 transition-colors">
                   {item.data.title}
                 </a>
               </h2>
@@ -74,7 +74,7 @@ const types = [...new Set(sorted.map(a => a.data.type))];
               <span class={`text-xs font-medium px-2 py-0.5 rounded border ${typeColors[item.data.type]}`}>
                 {typeLabel[item.data.type]}
               </span>
-              <time class="text-xs text-gray-400 font-mono">
+              <time class="text-xs text-amber-500 font-mono font-medium">
                 {new Date(item.data.publishDate).toLocaleDateString('en-US', {
                   month: 'short',
                   year: 'numeric',
@@ -92,7 +92,7 @@ const types = [...new Set(sorted.map(a => a.data.type))];
               <iframe
                 src={item.data.embedUrl}
                 class="w-full h-full"
-                frameborder="0"
+                style="border:0"
                 allowfullscreen
                 loading="lazy"
               />
@@ -127,11 +127,11 @@ const types = [...new Set(sorted.map(a => a.data.type))];
         const type = (btn as HTMLElement).dataset.type;
 
         filters.forEach(b => {
-          b.classList.remove('active', 'bg-gray-900', 'text-white');
-          b.classList.add('bg-gray-100', 'text-gray-600');
+          b.classList.remove('active', 'bg-violet-600', 'text-white');
+          b.classList.add('bg-violet-50', 'text-violet-600');
         });
-        btn.classList.add('active', 'bg-gray-900', 'text-white');
-        btn.classList.remove('bg-gray-100', 'text-gray-600');
+        btn.classList.add('active', 'bg-violet-600', 'text-white');
+        btn.classList.remove('bg-violet-50', 'text-violet-600');
 
         let visible = 0;
         items.forEach(item => {

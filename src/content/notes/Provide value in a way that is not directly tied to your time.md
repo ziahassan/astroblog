@@ -2,7 +2,7 @@ Provide [[value]] in a way that is not directly tied to your [[time.]]
 
 [[Investment]] - you invest your money. The easiest way to make money, he says.
 
-- [x] Start a [[YouTube]] channel
+- [x] Start a [[Zettelkasten/Maps of Content/YouTube Channel]] channel
 
 Easy to get started, hard to make compelling content.
 

@@ -1,3 +1,0 @@
-Fanilect is a term that combines "fan" and "dialect" and refers to the unique language or jargon used by fans of a certain celebrity, TV show, movie, book series, etc., on social media platforms. This language often includes specific abbreviations, emojis, phrases, hashtags, and even inside jokes that only members of the fandom understand.
-
-In the context of Taylor Swift's fans (also known as Swifties), fanilect could include terms like 'TS7' (referring to her seventh album), 'Easter eggs' (hidden messages in her music videos), or 'Red era' (referring to the time around the release of her album Red). Understanding this fanilect allows Swifties to communicate with each other more effectively on social media and creates a sense of community among them.

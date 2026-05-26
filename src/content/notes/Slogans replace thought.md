@@ -1,7 +1,3 @@
----
-created: 2024-06-13
----
-
 Idea from [[This Jungian Life]].
 
 If a problem can be summed up in 3 words or whatever, it encourages action before something is fully considered.

@@ -1,7 +1,3 @@
----
-created: 2025-01-31
----
-
 This is an important principle to consider.
 
 When people see the magically moving text, they think that there is a little person sitting behind the program typing away in response.

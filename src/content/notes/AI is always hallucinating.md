@@ -1,7 +1,3 @@
----
-created: 2025-05-18
----
-
 Heard about this at [[AERA]]. 
 
 It's not *if* a [[generative AI]] tool is hallucing it; it is *always* hallucinating. 

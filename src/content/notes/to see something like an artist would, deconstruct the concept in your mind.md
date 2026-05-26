@@ -1,7 +1,3 @@
----
-created: 2025-01-02
----
-
 Think of something like a cup and deconstruct it into pieces.
 
 What does it become now?

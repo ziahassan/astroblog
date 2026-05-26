@@ -1,9 +1,7 @@
 ---
-created: 2022-07-31
-title: Bus in urdu means enough
-tags: []
-publishDate: 2025-05-24 
+tags: atomic
 ---
+# "Bus" in Urdu means Enough
 Growing up, I got to hear my parents speak in Urdu to friends and family. Although their usage of Urdu has waned over the years, something I'll never forget is their use of the word _bus_. 
 
 _Bus_ in Urdu means _enough_. What's most interesting is the context in which they use it.

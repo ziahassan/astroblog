@@ -1,0 +1,1 @@
+Just reflecting on [[BookFusion/Authors/Ralph Waldo Emerson]] here. 

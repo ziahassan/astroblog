@@ -1,8 +1,4 @@
----
-created: 2025-02-01
----
-
-When you’re [[journaling]] for [[gratitude]] it must be specific.  
+When you’re [[Zettelkasten/Cards/Concepts/journaling]] for [[gratitude]] it must be specific.  
 
 Not “my wife” but “when my wife…”
 

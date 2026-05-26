@@ -1,1 +1,0 @@
-This is all about does it work, not why it works. This is the opposed of [[theoretical research]].

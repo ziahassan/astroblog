@@ -1,7 +1,3 @@
----
-created: 2024-10-31
----
-
 What is a quasirandom study and where is it better used compared to an RCT?
 
 #researchlandscape 

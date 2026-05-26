@@ -1,7 +1,3 @@
----
-created: 2025-05-24
----
-
 This is why dreaming about the future in a positive way is so important.
 
 Unless we have hope that things will get better, there's no good argument for working toward a better future right now.

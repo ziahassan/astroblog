@@ -1,5 +1,4 @@
 ---
-created: 2022-08-01
 tags: atomic
 ---
 There is no other way to become articulate. You simply need to write and talk. 🗣
@@ -9,6 +8,8 @@ Writing is the process of seeing your thoughts laid out on paper. It's invaluabl
 Once you do your writing, you can talk about your ideas. You don't need to reference your writing or read it aloud. Just by writing stuff down, talking about your favorite topics will become easier. 
 
 Also important to remember that [[Quality of thought is a matter of input vs. output]].
+
+[[Professional Development for AI in Schools A Three-Dimensional Approach]]
 
 Thanks [[Vicky Zhao]] for the inspiration.
 

@@ -1,7 +1,3 @@
----
-created: 2024-04-06
----
-
 I think this is from [[dr. becky]]
 
 The idea is that being a parent is simply the act of providing a frontal lobe for your children. Also known  as [[coregulating]].

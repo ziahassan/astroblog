@@ -1,7 +1,3 @@
----
-created: 2024-06-13
----
-
 [[Oliver Burkeman]] says in a newsletter that he gets antsy when he's late for his son's kickboxing class, even though it doesn't really matter if they are on time.
 
 [[krishnamurthi]] says he "doesn't mind what happens."

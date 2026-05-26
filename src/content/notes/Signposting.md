@@ -1,1 +1,0 @@
-In [[academic writing]], explaining where the paper is going the start. 

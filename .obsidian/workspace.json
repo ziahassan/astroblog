@@ -1,0 +1,236 @@
+{
+  "main": {
+    "id": "6461eec33d60247c",
+    "type": "split",
+    "children": [
+      {
+        "id": "38f70a1e07477863",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d81cbf3bdc157222",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/content/blog/2024-11-26-morning-magick.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2024-11-26-morning-magick"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d12e28da1b2c8612",
+    "type": "split",
+    "children": [
+      {
+        "id": "0f1538189f4c93dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9e32e3ba13a7cad",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "43250ec199c3b771",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "223969d6a049c73b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0a6016b17f6917f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "75a14ac531a2054b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9e620b87c60eb6e0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "src/content/blog/2024-11-26-morning-magick.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2024-11-26-morning-magick"
+            }
+          },
+          {
+            "id": "0de79295b116e37e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "src/content/blog/2024-11-26-morning-magick.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2024-11-26-morning-magick"
+            }
+          },
+          {
+            "id": "3183052a2170f6e9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "628fd4d19aa1c63f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "92cfee365e7af4af",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "src/content/blog/2024-11-26-morning-magick.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2024-11-26-morning-magick"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "templater-obsidian:Templater": false
+    }
+  },
+  "active": "f9e32e3ba13a7cad",
+  "lastOpenFiles": [
+    "public/CNAME",
+    "src/content/notes/habits can control you or you can control your habits.md",
+    "src/content/notes/getting out of bed isn't an accomplishment.md",
+    "src/content/pages/now.md",
+    "src/content/notes/zettelkasten and PKM is mise en place for creatives.md",
+    "src/content/notes/your client is the star of the show and you are the guide.md",
+    "src/content/notes/you're only an asshole to some.md",
+    "src/content/notes/you can't renegotiate the terms of life.md",
+    "src/content/notes/you can either be motivated by curiosity or by shame and guilt.md",
+    "src/content/notes/you can either be motivated by curiosity or by shame and guilt and the choice is really yours.md",
+    "src/content/notes/you are indeed the traffic you complain about.md",
+    "src/content/notes/writing is more important than ever despite AI influence.md",
+    "src/content/notes/wishing harm on others damages yourself since you are part of the universal consciousness.md",
+    "src/content/notes/when an old media type goes out of fashion its worst quality becomes its selling point.md",
+    "src/content/notes/what we watch is both what we like and what we don’t.md",
+    "src/content/notes/we're bad at being considerate to our future self.md",
+    "src/content/notes/we want to feel like the creator of our own work.md",
+    "src/content/notes/we underestimate how much others enjoy talking to us and how much we'll enjoy those conversations.md",
+    "src/content/notes/we think our problems are big and that our peers problems are small and vice versa.md",
+    "src/content/notes/we stay chained to the present unless we have an attractive future.md",
+    "src/content/notes/we should not center AI in education.md",
+    "src/content/notes/we only learn lessons when we've experienced the consequences of our actions.md",
+    "src/content/notes/we need less advice and more curiosity.md",
+    "src/content/notes/we naturally anthropomorphize as humans to our detriment and to our benefit.md",
+    "src/content/notes/we may be more inclined these days to take recommendations from algorithm over a person.md",
+    "src/content/notes/we crave the 90s because we crave certainty and the 90s are over so they are certain.md",
+    "src/content/notes",
+    "public/images/blog/morning.jpg",
+    "public/images/blog/test.jpg",
+    "public/images/blog/Unconfirmed 512875.crdownload",
+    "public/images/blog",
+    "src/pages/articles/view.astro",
+    "src/components/FullGraphView.tsx",
+    "public/cv.html",
+    "src/content/cv/resume.html",
+    "cv_files/libs/quarto-html/tabsets/tabsets.js",
+    "cv_files/libs/quarto-html/axe/axe-check.js",
+    "cv_files/libs/quarto-html/tippy.umd.min.js",
+    "dist/presentations/aiworkshop/theme/image4.jpg",
+    "dist/presentations/aiworkshop/theme/template.png",
+    "dist/presentations/aiworkshop/theme/image6.jpg",
+    "dist/presentations/aiworkshop/theme/image5.jpg",
+    "dist/presentations/aiworkshop/theme/image3.jpg",
+    "dist/presentations/aiworkshop/theme/image2.jpg",
+    "dist/presentations/aiworkshop/theme/image1.jpg",
+    "dist/presentations/aiitgl/week8/theme/template.png"
+  ]
+}

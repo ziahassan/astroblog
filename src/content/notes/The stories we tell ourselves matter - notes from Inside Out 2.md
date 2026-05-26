@@ -1,7 +1,3 @@
----
-created: 2024-06-23
----
-
 Ever had a kid’s movie spark a profound realization about careers? That happened to me today while watching Inside Out 2 with my 5-year-old.  
   
 Two main messages of the movie (no heavy spoilers, though maybe light ones) are:  

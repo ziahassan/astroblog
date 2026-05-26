@@ -1,1 +1,0 @@
-Injunctive norms are usually "shoulds" that come from authority figures of some kind.

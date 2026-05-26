@@ -1,7 +1,3 @@
----
-created: 2022-12-16
----
-
 [[Dan Callahan]] on Twitter says:
 >My favorite thing about chatgpt is that its answers are formulaic in the exact same way schools train kids to write answers on their state standardized tests. Will it replace GOOD writing? No. But it will meet minimum acceptability for A LOT of school writing prompts.
 

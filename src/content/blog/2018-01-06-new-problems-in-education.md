@@ -1,0 +1,33 @@
+---
+title: "New Problems In Education"
+publishDate: 2018-01-06
+---
+
+A friend of mine posted an article about 6 problems in education… and I realized that we’ve heard these arguments over and over for the past decade or so, and videos and articles like these keep being made. 
+
+Hasn’t anyone paid attention to the work being in done in schools to address these issues? Yes, we’re a long way from progressive being the norm, but here’s my breakdown of the video which is linked [here][1].
+
+**Problem 1** &#8211; Industrial values, this is still somewhat true (I narrated the audio version of the Seth Godin book about this, which doesn&#8217;t give me extra clout or anything, but definitely made me think deeply about the topic as a side effect before I became a teacher), but to me, a lot of schools have moved beyond just compliance within a class, and so many teachers I&#8217;ve worked with allow and encourage freedom of expression. Teachers may not allow a free for all, but there is a lot of work being done around voice and choice. The biggest issue that still exists to me is class size. With a class of 25 kids, you _must_ employ some of those factory management techniques because there are just too many students to serve in a way that is sensible, customized and effective. You want to provide a good educational experience for everyone, and one person can&#8217;t tailor an individualized program for every single student. Restructuring how resources are used in the system could help, but that would require more money so unlikely.
+
+**Problem 2** &#8211; Lack of autonomy. I could probably just copy and paste what you wrote about because it sums it up so well. Knowing what to prioritize when you have autonomy is a skill in and of itself. I consider myself to be a pretty productive person but when I went freelance-ish this year, I had a hard time structuring my day. The key is balance. Yeah, you don&#8217;t wanna send the message that kids aren&#8217;t in charge of their own lives, but you also have to provide some structure to the choices they could potentially make and set limits on choices that won&#8217;t move a student toward mastery of a skill (however you define that in your classroom, anyway). Autonomy is important but you&#8217;re 100% right that many kids would pick the path of least resistance. I believe this to be true because most adults would too. 
+
+**Problem 3** &#8211; Memorization & rote learning. This is becoming more of an outdated argument. One could certainly argue that the Common Core expects things of students that aren&#8217;t developmentally appropriate, but for most states, the emphasis is on mastery of skill and not memorization of facts. I&#8217;m sure there are still schools across the country that need to modernize, but I feel like we&#8217;re moving in a good direction in this dimension. I&#8217;ve also worked in fairly progressive schools so my perspective might be a bit skewed. But to say that kids just memorize useless facts&#8230; is not something I&#8217;ve experienced in any way at any school in which I&#8217;ve taught. It&#8217;s what the kids do with those facts that is important, even in schools with less progressive values.
+
+**Problem 4** &#8211; No room for passions/interests. This comes down to teachers. I think all kids ask themselves what they&#8217;re good at and what they love to do. And without a forward thinking teacher, it&#8217;s hard to make this part of your educational life if your passion/interest is not, say, reading or writing. This relates back to the issue of class size. If every teacher in America were given a class of, say, 8 students or so&#8230; you&#8217;d see some amazing expression and leveraging of assets in every single classroom. It&#8217;s just so difficult to do on top of everything else when the class exceeds a certain number of students (and that number isn&#8217;t high). I don&#8217;t think the system will ever formalize the process of finding one&#8217;s spark because that can&#8217;t be systemized. It comes down to positive adult/student relationships and creative teaching practices. 
+
+**Problem 5** &#8211; Differences in how we learn. This may be the most outdated argument in the video. Differentiation is mainstream now, isn&#8217;t it? Especially with the push for mastery learning, students do get to learn at their own pace. Even on standardized tests, students with disabilities or who are ELLs get accommodations. This is not to say that there isn&#8217;t room to grow because there _certainly_ is&#8230; but this video seems to make some sweeping claims that undermine a lot of the great work that schools and individual teachers are doing with differentiation. (Not to mention the tech tools)
+
+**Problem 6** &#8211; Lecturing. Okay, maybe THIS is the most outdated. Turn and talks, social complexity structures, inquiry based learning, play based learning, flipped classroom etc&#8230; there&#8217;s a lot of work being done to transform the classroom experience. It&#8217;s hard to say where the country is on this journey, but based on the 3 different schools I&#8217;ve worked in (that all operate completely differently), the focus is on what students are saying, doing, creating, etc. Teachers plan with Bloom&#8217;s, etc. Even some teacher evals I&#8217;ve seen focus on the ratio of teacher talk time to student work time.
+
+I could be wrong, but I&#8217;m not sure whoever made this video is an educator. Here is what I&#8217;d say are the biggest problems in schools right now.
+
+  1. Lack of training around the idea of equity, implicit biases, and messaging.
+  2. Lack of access to technology and lack of training for both faculty and teachers around how to use the technology not as a crutch but as an enhancement to learning
+  3. Positive shifts in pedagogical approach while class size sky rocket and thwart those efforts
+  4. Teacher disempowerment
+  5. Pay compared to the amount of time & energy spent doing the job, leading to burnout.
+  6. And the problem that is so hard to articulate but around behavior. Positive discipline. How does it look in different situations? Where are the boundaries? And what is the goal (less instances of behavior or better control of emotions or appropriate logical consequences or&#8230;?) This contributes so much to burn out but it&#8217;s also the most complex issue. No one has the answer so I believe more thinking around it is necessary.
+
+Just some thoughts as I spend a year on the outskirts of classroom teaching.
+
+ [1]: https://www.youtube.com/watch?v=okpg-lVWLbE

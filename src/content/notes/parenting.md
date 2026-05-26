@@ -1,1 +1,0 @@
-[[You’re not a parent. You’re a substitute frontal lobe.]] 

@@ -1,0 +1,1 @@
+Where exactly, do we go from here, when every single network and service eventually just leads to the [[TikTok]] model?

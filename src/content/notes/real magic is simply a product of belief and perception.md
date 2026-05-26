@@ -1,7 +1,3 @@
----
-created: 2023-10-26
----
-
 
 “That’s a nice trick, but it’s not _real _magic.&#8221;
 

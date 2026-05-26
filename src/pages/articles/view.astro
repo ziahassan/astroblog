@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/layout.astro';
+
+const src = Astro.url.searchParams.get('src') || '';
+const img = Astro.url.searchParams.get('img') || '';
+
+// Only allow paths within /articles/ to prevent open redirect
+const safeSrc = src.startsWith('/articles/') ? src : '';
+const safeImg = img.startsWith('/articles/') ? img : '';
+---
+
+<Layout title="Article">
+  {safeSrc ? (
+    <>
+      {safeImg && (
+        <div style="height:220px; overflow:hidden;">
+          <img src={safeImg} alt="" style="width:100%; height:100%; object-fit:cover; display:block;" />
+        </div>
+      )}
+      <iframe
+        src={safeSrc}
+        style={'width:100%; height:' + (safeImg ? 'calc(100vh - 277px)' : 'calc(100vh - 57px)') + '; border:none; display:block;'}
+        title="Article"
+      />
+    </>
+  ) : (
+    <div class="max-w-2xl mx-auto px-6 py-16 text-gray-500">
+      <p>No article specified. <a href="/articles" class="text-violet-600 hover:underline">Back to articles</a>.</p>
+    </div>
+  )}
+</Layout>

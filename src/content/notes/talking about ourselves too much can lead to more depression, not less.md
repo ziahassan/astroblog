@@ -1,6 +1,2 @@
----
-created: 2024-10-24
----
-
 
 This means that constantly focusing on and discussing our own issues, problems, or negative experiences can potentially increase feelings of depression rather than alleviate them. While it's healthy to express our feelings and emotions, too much self-focus might reinforce negative thought patterns and magnify our problems. Instead of finding relief, we might end up feeling more overwhelmed or stressed, which could further fuel depressive symptoms.

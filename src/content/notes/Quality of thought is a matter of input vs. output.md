@@ -1,5 +1,4 @@
 ---
-created: 2022-09-06
 tags: atomic
 ---
 I was once told that I have [[high quality thoughts 1]].

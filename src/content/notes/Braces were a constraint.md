@@ -1,7 +1,3 @@
----
-created: 2024-03-22
----
-
 When I wore them, I figured that braces were just an annoyance, a fashion (or anti-fashion) statement that also corrected crooked teeth.
 
 Then I remembered the sheet that the orthodontist gave us, the one that got magnet slapped on my fridge.

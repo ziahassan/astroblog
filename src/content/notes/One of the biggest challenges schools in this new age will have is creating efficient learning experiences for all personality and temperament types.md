@@ -1,7 +1,3 @@
----
-created: 2024-10-18
----
-
 One of the biggest challenges schools in this new age will have is creating efficient learning experiences for all personality and temperament types
 
 

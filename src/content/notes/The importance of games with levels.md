@@ -1,0 +1,3 @@
+one of the things I was just thinking about was how, when boys (particularly when I was a boy) and now with my son, one of the things that I really love doing with him is doing something that has levels. I think this is why [[video games]] are so important to [[boys]] in general - there's always a next level to get to, and you're on the journey together. It feels really satisfying when together you beat the game or whatever it is. We did that in Tucson with Belatro, and it's not limited to boys, of course, but we tend to be the ones that play games more often. I think this is a huge part of the camaraderie and [[friendship]] and some of the deepest conversations that happen during those games
+
+

@@ -1,5 +1,4 @@
 ---
-created: 2024-08-09
 tags: []
 Author: Austin Kleon
 Title: AI Can’t Kill Anything Worth Preserving

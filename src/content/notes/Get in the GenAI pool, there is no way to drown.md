@@ -1,7 +1,3 @@
----
-created: 2024-06-11
----
-
 The last two keynotes I delivered were to audiences I don't typically present to: PR and marketing professionals.
 
 One of the most important takeaways, based on audience feedback, seems to be this...

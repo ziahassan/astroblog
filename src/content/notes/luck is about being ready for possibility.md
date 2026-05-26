@@ -1,7 +1,3 @@
----
-created: 2025-01-26
----
-
 This involves having the minutiae of day-to-day life sorted. 
 
 Being [[squared away]] is essential.

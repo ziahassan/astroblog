@@ -1,7 +1,3 @@
----
-created: 2024-10-31
----
-
 What are different types of experimental designs, including student randomized, cluster, matched pair, SMART, etc?
 
 

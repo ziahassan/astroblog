@@ -1,7 +1,3 @@
----
-created: 2025-01-26
----
-
 Part of resisting this rise of [[facism]] is by leaving social media sites like meta, etc.
 
 I'm not sure about self-hosted or things like Bluesky and Mastodon which aren't run by any one company.

@@ -1,7 +1,3 @@
----
-created: 2024-05-31
----
-
 What happens when your system of [[thinking]] becomes personalized?
 
 I've been thinking a lot about what [[critical thinking]] really means. 

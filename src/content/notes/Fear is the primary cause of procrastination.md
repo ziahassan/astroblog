@@ -1,7 +1,3 @@
----
-created: 2025-02-01
----
-
 Quite simply, we procrastinate because we are afraid.
 
 Afraid of doing good work, maybe.

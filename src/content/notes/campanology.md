@@ -1,4 +1,0 @@
-Campanology and it's relationship with music is...
-
-
-Campanology is the study of bells, including their casting, tuning and ringing. Its relationship with music lies in the fact that bells are musical instruments, capable of producing specific notes. This allows them to be used in a musical context, either on their own or as part of a larger ensemble. The use of bells in music ranges from simple single-note melodies to complex arrangements known as change ringing. Furthermore, the tuning and tonal quality of a bell is a key aspect of campanology, much like the tuning and tonal quality of any musical instrument is critical to its use in creating music.

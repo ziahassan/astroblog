@@ -11,13 +11,11 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const allNotes = await getCollection('notes');
 
-// Find the note
 const note = allNotes.find(n => n.slug === slug);
 if (!note) {
   throw new Error(`Note "${slug}" not found`);
 }
 
-// Create mappings for both directions
 const titleToSlug: Record<string, string> = {};
 const slugToTitle: Record<string, string> = {};
 allNotes.forEach(n => {
@@ -30,9 +28,13 @@ allNotes.forEach(n => {
 
 const { Content } = await note.render();
 const { data } = note;
-const displayTitle = data?.title || note.id.replace(/\.mdx?$/, '');
+const displayTitle = data?.title || note.id
+  .replace(/\.mdx?$/, '')
+  .replace(/^\d{4}-\d{2}-\d{2}-?/, '')
+  .replace(/-/g, ' ')
+  .trim() || note.slug;
 
-// Get backlinks - notes that link TO this note, with context
+// Backlinks
 const backlinks = [];
 for (const n of allNotes) {
   if (n.slug === slug) continue;
@@ -43,13 +45,12 @@ for (const n of allNotes) {
   const slugPattern = `[[${slug}]]`;
 
   if ((titlePattern && body.includes(titlePattern)) || body.includes(slugPattern)) {
-    // Extract context around the link
     const pattern = titlePattern && body.includes(titlePattern) ? titlePattern : slugPattern;
     const index = body.indexOf(pattern);
     const start = Math.max(0, index - 80);
     const end = Math.min(body.length, index + pattern.length + 80);
     let context = body.slice(start, end)
-      .replace(/\[\[([^\]]+)\]\]/g, '$1') // Remove wiki-link brackets
+      .replace(/\[\[([^\]]+)\]\]/g, '$1')
       .replace(/\n/g, ' ')
       .trim();
     if (start > 0) context = '...' + context;
@@ -63,7 +64,7 @@ for (const n of allNotes) {
   }
 }
 
-// Get outgoing links - notes this note links TO
+// Outgoing links
 const outgoingLinks = [];
 const noteBody = typeof note?.body === 'string' ? note.body : '';
 const wikiLinkRegex = /\[\[([^\]]+)\]\]/g;
@@ -83,7 +84,7 @@ while ((wikiMatch = wikiLinkRegex.exec(noteBody)) !== null) {
   }
 }
 
-// Build local graph data for the current note
+// Local graph
 const localNodeMap = new Map();
 localNodeMap.set(slug, { id: slug, title: displayTitle, isCurrent: true });
 for (const l of outgoingLinks) {
@@ -101,18 +102,14 @@ const localGraphData = {
   currentSlug: slug,
 };
 
-// Count backlinks by both title and slug patterns
-const backlinkCounts = {};
+const backlinkCounts: Record<string, number> = {};
 for (const sourceNote of allNotes) {
   for (const targetNote of allNotes) {
-    // Check for both [[title]] and [[slug]] patterns
     const targetTitle = targetNote?.data?.title ?? targetNote.id.replace(/\.mdx?$/, '');
     const titlePattern = targetTitle ? `[[${targetTitle}]]` : null;
     const slugPattern = `[[${targetNote.slug}]]`;
-    
     const sourceBody = typeof sourceNote?.body === 'string' ? sourceNote.body : '';
     if (!sourceBody) continue;
-
     if ((titlePattern && sourceBody.includes(titlePattern)) || sourceBody.includes(slugPattern)) {
       const key = targetTitle || targetNote.slug;
       backlinkCounts[key] = (backlinkCounts[key] || 0) + 1;
@@ -122,48 +119,59 @@ for (const sourceNote of allNotes) {
 ---
 
 <Layout title={displayTitle}>
-  <!-- Compact Academic Search Bar -->
+
+  <!-- Floating search -->
   <div class="fixed top-20 right-6 z-40">
     <div class="relative">
       <input
         type="text"
         id="quick-search"
         placeholder="Search notes..."
-        class="w-60 px-3 py-2 text-sm bg-white/95 backdrop-blur border border-gray-300 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+        class="w-56 px-3 py-2 text-sm bg-white/95 backdrop-blur border border-gray-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-transparent transition-all"
         autocomplete="off"
       />
-      <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">
-        <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-xs font-mono">⌘K</kbd>
-      </div>
+      <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 bg-gray-100 text-gray-400 rounded text-xs font-mono">⌘K</kbd>
     </div>
-    
-    <!-- Quick Search Results -->
-    <div 
-      id="quick-search-results" 
+    <div
+      id="quick-search-results"
       class="absolute top-full right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-xl max-h-64 overflow-y-auto z-40 hidden"
     >
-      <div class="px-3 py-2 text-xs text-gray-500 border-b border-gray-100 bg-gray-50 font-medium" id="quick-results-count"></div>
+      <div class="px-3 py-2 text-xs text-teal-700 border-b border-teal-100 bg-teal-50 font-medium" id="quick-results-count"></div>
       <div id="quick-results-list"></div>
     </div>
   </div>
 
-  <!-- Main Article Content -->
-  <article class="max-w-4xl mx-auto">
-    <!-- Article Header -->
-    <header class="mb-8 pb-6 border-b border-gray-200">
-      <h1 class="text-4xl font-light text-gray-800 mb-3">{displayTitle}</h1>
-      <div class="flex items-center gap-4 text-sm text-gray-600">
-        {data.publishDate && (
-          <span class="font-mono">{new Date(data.publishDate).toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}</span>
-        )}
+  <article class="max-w-2xl mx-auto px-6 py-16">
+
+    <a href="/notes" class="text-xs text-gray-400 hover:text-teal-600 transition-colors tracking-wide uppercase font-medium">
+      ← Garden
+    </a>
+
+    <header class="mt-10 mb-12">
+      <h1
+        class="text-4xl font-light text-gray-800 leading-tight mb-5"
+        style="font-family: 'Crimson Text', Georgia, serif; color: #134e4a;"
+      >
+        {displayTitle}
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-3 pt-5 border-t border-teal-100">
+        {(data.publishDate || data.created) && (() => {
+          const d = data.publishDate ?? data.created;
+          return (
+            <time class="text-xs text-amber-500 font-mono font-medium">
+              {new Date(d as string | number | Date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          );
+        })()}
         {data.tags && data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-1">
+          <div class="flex flex-wrap gap-1.5">
             {data.tags.map(tag => (
-              <span class="inline-block px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-md font-medium">
+              <span class="px-2 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded">
                 {tag}
               </span>
             ))}
@@ -171,25 +179,27 @@ for (const sourceNote of allNotes) {
         )}
       </div>
     </header>
-    
-    <!-- Article Body -->
-    <div class="wiki-content prose prose-lg prose-gray max-w-none leading-relaxed">
+
+    <div class="note-content prose">
       <Content />
     </div>
-    
-    <!-- Connections Section -->
-    {(outgoingLinks.length > 0 || backlinks.length > 0) && (
-      <section class="mt-12 pt-8 border-t border-gray-200">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Connections</h2>
 
-        <LocalGraphView data={localGraphData} client:load />
+    <!-- Connections -->
+    {(outgoingLinks.length > 0 || backlinks.length > 0) && (
+      <section class="mt-16 pt-8 border-t border-teal-100">
+        <h2 class="text-xs font-bold text-teal-500 uppercase tracking-widest mb-6">Connections</h2>
+
+        <LocalGraphView data={localGraphData} client:only="react" />
 
         {outgoingLinks.length > 0 && (
-          <div class="mt-6">
-            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Links out</h3>
+          <div class="mt-8">
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Links out</h3>
             <div class="flex flex-wrap gap-2">
               {outgoingLinks.map(link => (
-                <a href={`/notes/${link.slug}`} class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 hover:border-blue-300 hover:text-blue-600 transition-all">
+                <a
+                  href={`/notes/${link.slug}`}
+                  class="px-3 py-1.5 bg-teal-50 border border-teal-100 rounded-lg text-sm text-teal-700 hover:bg-teal-100 hover:border-teal-300 transition-all"
+                >
                   {link.title}
                 </a>
               ))}
@@ -199,17 +209,22 @@ for (const sourceNote of allNotes) {
 
         {backlinks.length > 0 && (
           <div class="mt-6">
-            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Links in</h3>
+            <h3 class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Mentioned by</h3>
             <div class="space-y-2">
               {backlinks.map(link => (
-                <a href={`/notes/${link.slug}`} class="block p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all group">
-                  <div class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
+                <a
+                  href={`/notes/${link.slug}`}
+                  class="block p-4 rounded-lg border transition-all group"
+                  style="background:#fafaf8; border-color:#d1fae5;"
+                >
+                  <div
+                    class="font-medium text-sm mb-1 group-hover:text-teal-700 transition-colors"
+                    style="font-family: 'Crimson Text', Georgia, serif; color: #134e4a;"
+                  >
                     {link.title}
                   </div>
                   {link.context && (
-                    <div class="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {link.context}
-                    </div>
+                    <div class="text-xs text-gray-500 leading-relaxed">{link.context}</div>
                   )}
                 </a>
               ))}
@@ -218,322 +233,212 @@ for (const sourceNote of allNotes) {
         )}
       </section>
     )}
+
+    <footer class="mt-12 pt-8 border-t border-gray-100">
+      <a href="/notes" class="text-sm text-teal-500 hover:text-teal-700 transition-colors font-medium">
+        ← Back to garden
+      </a>
+    </footer>
+
   </article>
 </Layout>
 
 <script define:vars={{ titleToSlug, slugToTitle, backlinkCounts }}>
-  // Process internal links to show titles instead of slugs
   function processInternalLinks() {
-    const content = document.querySelector('.wiki-content');
-    if (!content) {
-      console.log('No .wiki-content element found');
-      return;
-    }
-    
-    console.log('Processing internal links...');
-    console.log('slugToTitle:', slugToTitle);
-    console.log('backlinkCounts:', backlinkCounts);
-    
-    // Find all internal links (the ones Astro already created from [[]] syntax)
-    const internalLinks = content.querySelectorAll('a.internal');
-    console.log('Found internal links:', internalLinks.length);
-    
-    internalLinks.forEach(link => {
+    const content = document.querySelector('.note-content');
+    if (!content) return;
+
+    content.querySelectorAll('a.internal').forEach(link => {
       const href = link.getAttribute('href');
-      console.log('Processing link with href:', href);
-      
-      // Extract slug from href like "/notes/deep-work"
-      const match = href.match(/\/notes\/(.+)$/);
-      if (match) {
-        const slug = match[1];
-        const title = slugToTitle[slug];
-        
-        console.log('Slug:', slug, 'Title:', title);
-        
-        if (title) {
-          // Update the link text to show the title instead of the slug
-          link.textContent = title;
-          
-          // Add backlink count if it exists
-          const backlinkCount = backlinkCounts[title];
-          console.log('Looking for backlinks for title:', title, 'Found:', backlinkCount);
-          console.log('All available backlink counts:', Object.keys(backlinkCounts));
-          
-          if (backlinkCount && backlinkCount > 0) {
-            const sup = document.createElement('sup');
-            sup.className = 'text-xs text-gray-500 ml-1';
-            sup.textContent = backlinkCount;
-            link.appendChild(sup);
-            console.log('Added backlink count:', backlinkCount);
-          } else {
-            console.log('No backlink count found or count is 0');
-          }
-          
-          // Update the classes to match our styling
-          link.className = 'wiki-link text-blue-600 hover:underline font-medium';
-          console.log('Updated link text to:', title);
-        }
+      const match = href?.match(/\/notes\/(.+)$/);
+      if (!match) return;
+
+      const slug = match[1];
+      const title = slugToTitle[slug];
+      if (!title) return;
+
+      link.textContent = title;
+      const count = backlinkCounts[title];
+      if (count > 0) {
+        const sup = document.createElement('sup');
+        sup.className = 'text-xs text-teal-400 ml-0.5';
+        sup.textContent = count;
+        link.appendChild(sup);
       }
+      link.className = 'wiki-link';
     });
   }
-  
-  // Run when the page loads
+
   document.addEventListener('DOMContentLoaded', processInternalLinks);
 </script>
 
-
-<!-- Quick Search Functionality -->
 <script type="module" define:vars={{ allNotes }}>
   document.addEventListener('DOMContentLoaded', async () => {
-    // Load Fuse.js from a working CDN
     const { default: Fuse } = await import('https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js');
-    initQuickSearch(Fuse);
-  });
-  
-  function initQuickSearch(Fuse) {
+
     const quickInput = document.getElementById('quick-search');
     const quickResultsContainer = document.getElementById('quick-search-results');
     const quickResultsList = document.getElementById('quick-results-list');
     const quickResultsCount = document.getElementById('quick-results-count');
-    
     if (!quickInput) return;
-    
-    // Process notes data for search
+
     const searchNotes = allNotes.map(n => ({
       title: n.data.title || n.slug,
       slug: n.slug,
       tags: n.data.tags || [],
-      preview: n.body.replace(/\[\[.*?\]\]/g, '').substring(0, 100).trim(),
-      content: n.body.replace(/\[\[.*?\]\]/g, '') // Full content for searching
+      preview: (n.body || '').replace(/\[\[.*?\]\]/g, '').substring(0, 100).trim(),
+      content: (n.body || '').replace(/\[\[.*?\]\]/g, ''),
     }));
-    
-    // Configure Fuse.js
+
     const fuse = new Fuse(searchNotes, {
-      keys: [
-        { name: 'title', weight: 0.7 },
-        { name: 'content', weight: 0.2 },
-        { name: 'tags', weight: 0.1 }
-      ],
+      keys: [{ name: 'title', weight: 0.7 }, { name: 'content', weight: 0.2 }, { name: 'tags', weight: 0.1 }],
       threshold: 0.4,
       includeScore: true,
-      includeMatches: true
     });
-    
+
     let selectedIndex = -1;
     let currentResults = [];
-    
-    // Search function
-    function performQuickSearch(query) {
-      if (!query.trim()) {
-        hideQuickResults();
-        return;
-      }
-      
-      const searchResults = fuse.search(query);
-      currentResults = searchResults.map(r => r.item);
-      selectedIndex = -1;
-      
-      if (currentResults.length > 0) {
-        showQuickResults(searchResults.slice(0, 5)); // Limit to 5 results
-      } else {
-        showNoQuickResults();
-      }
-    }
-    
-    // Show search results
-    function showQuickResults(searchResults) {
+
+    function showResults(results) {
+      currentResults = results.map(r => r.item);
       quickResultsCount.textContent = `${currentResults.length} note${currentResults.length === 1 ? '' : 's'}`;
-      
-      quickResultsList.innerHTML = searchResults.map((result, index) => {
-        const note = result.item;
-        return `
-          <div class="quick-search-item p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 text-sm transition-colors" data-index="${index}">
-            <div class="font-medium text-gray-900 mb-1">${note.title}</div>
-            ${note.preview ? `<div class="text-xs text-gray-600 leading-relaxed">${note.preview}...</div>` : ''}
-            ${note.tags.length > 0 ? `
-              <div class="flex flex-wrap gap-1 mt-2">
-                ${note.tags.map(tag => `<span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 text-xs rounded">${tag}</span>`).join('')}
-              </div>
-            ` : ''}
-          </div>
-        `;
-      }).join('');
-      
+      quickResultsList.innerHTML = currentResults.slice(0, 5).map((note, i) => `
+        <a href="/notes/${note.slug}" class="quick-search-item block px-4 py-3 hover:bg-teal-50 border-b border-gray-100 last:border-0 transition-colors" data-index="${i}">
+          <div class="font-medium text-gray-900 text-sm">${note.title}</div>
+          ${note.preview ? `<div class="text-xs text-gray-500 truncate mt-0.5">${note.preview}</div>` : ''}
+        </a>
+      `).join('');
       quickResultsContainer.classList.remove('hidden');
     }
-    
-    // Show no results
-    function showNoQuickResults() {
-      quickResultsCount.textContent = 'No notes found';
-      quickResultsList.innerHTML = `
-        <div class="p-3 text-center text-gray-500 text-sm">
-          No notes found
-        </div>
-      `;
-      quickResultsContainer.classList.remove('hidden');
-    }
-    
-    // Hide results
-    function hideQuickResults() {
+
+    function hideResults() {
       quickResultsContainer.classList.add('hidden');
       selectedIndex = -1;
     }
-    
-    // Navigate to result
-    function selectQuickResult(index) {
-      if (currentResults[index]) {
-        window.location.href = `/notes/${currentResults[index].slug}`;
-      }
-    }
-    
-    // Update visual selection
-    function updateQuickSelection() {
-      const items = document.querySelectorAll('.quick-search-item');
-      items.forEach((item, index) => {
-        if (index === selectedIndex) {
-          item.classList.add('bg-blue-100');
-          item.scrollIntoView({ block: 'nearest' });
-        } else {
-          item.classList.remove('bg-blue-100');
-        }
-      });
-    }
-    
-    // Event listeners
-    quickInput.addEventListener('input', (e) => {
-      performQuickSearch(e.target.value);
+
+    quickInput.addEventListener('input', e => {
+      const q = e.target.value;
+      if (!q.trim()) { hideResults(); return; }
+      const results = fuse.search(q);
+      results.length > 0 ? showResults(results) : (quickResultsCount.textContent = 'No results', quickResultsList.innerHTML = '', quickResultsContainer.classList.remove('hidden'));
     });
-    
-    // Keyboard navigation
-    quickInput.addEventListener('keydown', (e) => {
-      if (!quickResultsContainer.classList.contains('hidden')) {
-        switch (e.key) {
-          case 'ArrowDown':
-            e.preventDefault();
-            selectedIndex = Math.min(selectedIndex + 1, Math.min(currentResults.length - 1, 4));
-            updateQuickSelection();
-            break;
-          case 'ArrowUp':
-            e.preventDefault();
-            selectedIndex = Math.max(selectedIndex - 1, -1);
-            updateQuickSelection();
-            break;
-          case 'Enter':
-            e.preventDefault();
-            if (selectedIndex >= 0) {
-              selectQuickResult(selectedIndex);
-            } else if (currentResults.length > 0) {
-              selectQuickResult(0);
-            }
-            break;
-          case 'Escape':
-            hideQuickResults();
-            quickInput.blur();
-            break;
-        }
-      }
+
+    quickInput.addEventListener('keydown', e => {
+      if (quickResultsContainer.classList.contains('hidden')) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); selectedIndex = Math.min(selectedIndex + 1, Math.min(currentResults.length - 1, 4)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); selectedIndex = Math.max(selectedIndex - 1, -1); }
+      else if (e.key === 'Enter') { e.preventDefault(); if (currentResults[selectedIndex >= 0 ? selectedIndex : 0]) window.location.href = `/notes/${currentResults[selectedIndex >= 0 ? selectedIndex : 0].slug}`; }
+      else if (e.key === 'Escape') { hideResults(); quickInput.blur(); }
+      document.querySelectorAll('.quick-search-item').forEach((el, i) => el.classList.toggle('bg-teal-50', i === selectedIndex));
     });
-    
-    // Click on results
-    quickResultsList.addEventListener('click', (e) => {
-      const item = e.target.closest('.quick-search-item');
-      if (item) {
-        const index = parseInt(item.dataset.index);
-        selectQuickResult(index);
-      }
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#quick-search') && !e.target.closest('#quick-search-results')) hideResults();
     });
-    
-    // Click outside to close
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('#quick-search') && !e.target.closest('#quick-search-results')) {
-        hideQuickResults();
-      }
+
+    document.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); quickInput.focus(); quickInput.select(); }
     });
-    
-    // Global keyboard shortcut (Cmd+K or Ctrl+K)
-    document.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        quickInput.focus();
-        quickInput.select();
-      }
-    });
-  }
+  });
 </script>
 
 <style>
-  .wiki-link {
-    @apply font-medium text-blue-600 hover:text-blue-800 transition-colors;
+  .note-content {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: #374151;
   }
-  
-  .broken-link {
-    @apply italic text-gray-400;
+
+  .note-content p {
+    margin-bottom: 1.4em;
   }
-  
-  /* Enhanced prose styling for academic feel */
-  .prose {
-    @apply text-gray-700;
+
+  .note-content h2 {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #134e4a;
+    margin-top: 2.5em;
+    margin-bottom: 0.6em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #ccfbf1;
   }
-  
-  .prose h2 {
-    @apply text-2xl font-light text-gray-800 mt-8 mb-4 border-b border-gray-200 pb-2;
+
+  .note-content h3 {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #134e4a;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
   }
-  
-  .prose h3 {
-    @apply text-xl font-medium text-gray-800 mt-6 mb-3;
+
+  .note-content ul, .note-content ol {
+    margin: 1em 0;
+    padding-left: 1.5em;
   }
-  
-  .prose p {
-    @apply mb-4 leading-relaxed;
+
+  .note-content li {
+    margin-bottom: 0.35em;
   }
-  
-  .prose ul, .prose ol {
-    @apply my-4 space-y-1;
+
+  .note-content blockquote {
+    border-left: 3px solid #99f6e4;
+    padding-left: 1.2em;
+    margin: 1.8em 0;
+    color: #6b7280;
+    font-style: italic;
   }
-  
-  .prose blockquote {
-    @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 my-6;
+
+  .note-content a, .wiki-link {
+    color: #0f766e;
+    text-decoration: underline;
+    text-decoration-color: #99f6e4;
+    text-underline-offset: 2px;
+    transition: color 0.15s, text-decoration-color 0.15s;
   }
-  
-  .prose code {
-    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+
+  .note-content a:hover, .wiki-link:hover {
+    color: #134e4a;
+    text-decoration-color: #0f766e;
   }
-  
-  .prose pre {
-    @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+
+  .note-content code {
+    background: #f0fdfa;
+    color: #0f766e;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: ui-monospace, monospace;
   }
-  
-  /* Quick search styles */
-  #quick-search-results {
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e0 #f7fafc;
+
+  .note-content pre {
+    background: #134e4a;
+    color: #ccfbf1;
+    padding: 1.2em 1.4em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.8em 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
-  
-  #quick-search-results::-webkit-scrollbar {
-    width: 4px;
+
+  .note-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
   }
-  
-  #quick-search-results::-webkit-scrollbar-track {
-    background: #f7fafc;
+
+  .note-content hr {
+    border: none;
+    border-top: 1px solid #ccfbf1;
+    margin: 2.5em 0;
   }
-  
-  #quick-search-results::-webkit-scrollbar-thumb {
-    background-color: #cbd5e0;
-    border-radius: 2px;
-  }
-  
-  .quick-search-item {
-    transition: background-color 0.15s ease;
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    #quick-search {
-      width: 180px;
-    }
-    
-    #quick-search-results {
-      width: 260px;
-    }
+
+  .note-content strong {
+    font-weight: 600;
+    color: #111827;
   }
 </style>

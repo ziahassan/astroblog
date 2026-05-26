@@ -1,0 +1,1 @@
+Reality shatters the minute someone misunderstands. The clarity comes not from correcting the realities and trying to get back to a shared one but simply accepting that these separate realities exist and that's okay for now.

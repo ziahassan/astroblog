@@ -1,5 +1,4 @@
 ---
-created: 2022-08-10
 tags: atomic
 ---
 One of the most amazing meals I've ever had ended up being pretty simple, a meal I've had many times before. 

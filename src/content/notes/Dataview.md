@@ -1,1 +1,0 @@
-This [video](https://www.youtube.com/watch?v=6p5Eb1sqgIY) from [[Paul Dickson]] is a really clear example of how to use dataview properly. Probably one of the best explanations I have seen.

@@ -1,7 +1,3 @@
----
-created: 2023-12-17
----
-
 For instance, when things are rough in my life and a lot of stuff is going on, I let the clothes pile up near the hamper. If I get into habits of not putting clothes in the hamper, it would take cognitive effort to get into a different habit, and I think my brain has a new habit threshold that gets lower in times of intense chop.
 
 It is strategically using the [[basal ganglia]] in the brain to your advantage, to be less stressed.

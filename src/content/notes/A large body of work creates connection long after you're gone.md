@@ -1,5 +1,4 @@
 ---
-created: 2022-09-12
 tags: atomic
 ---
 There's no known way to be immortal.

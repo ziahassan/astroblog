@@ -1,7 +1,3 @@
----
-created: 2024-04-05
----
-
 When I was a kid, I used to ask any celebrity or hero that I met what their meaning of life was.
 
 John Mayer said "comfort."

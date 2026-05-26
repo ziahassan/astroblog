@@ -1,7 +1,3 @@
----
-created: 2025-01-16
----
-
 If this is a game of inputs and outputs, I'd rather focus on outputs.
 
 Inputs may not have the intended results, but outputs will always have the intended results.

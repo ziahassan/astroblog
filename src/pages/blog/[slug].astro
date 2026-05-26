@@ -18,16 +18,40 @@ const { data } = post;
 ---
 
 <Layout title={data.title}>
-  <article class="max-w-3xl mx-auto px-4 py-10">
+  <article class="max-w-2xl mx-auto px-6 py-16" data-pagefind-body>
 
-    <a href="/blog" class="text-sm text-gray-400 hover:text-gray-600 transition-colors mb-8 inline-block">
-      ← Blog
+    <a href="/blog" class="text-xs text-gray-400 hover:text-violet-600 transition-colors tracking-wide uppercase font-medium" data-pagefind-ignore>
+      ← All posts
     </a>
 
-    <header class="mb-8 pb-6 border-b border-gray-200">
-      <h1 class="text-3xl font-light text-gray-800 mb-3 leading-tight">{data.title}</h1>
-      <div class="flex items-center gap-4 text-sm text-gray-500">
-        <time class="font-mono">
+    {data.image && (
+      <div class="mt-8 -mx-6 sm:mx-0 sm:rounded-xl overflow-hidden" style="max-height: 420px;">
+        <img
+          src={data.image}
+          alt=""
+          class="w-full object-cover"
+          style="max-height: 420px;"
+        />
+      </div>
+    )}
+
+    <header class={`mb-12 ${data.image ? 'mt-8' : 'mt-10'}`}>
+      <h1
+        class="text-4xl font-light text-indigo-950 leading-tight mb-6"
+        style="font-family: 'Crimson Text', Georgia, serif;"
+        data-pagefind-meta="title"
+      >
+        {data.title}
+      </h1>
+
+      {data.description && (
+        <p class="text-lg text-slate-500 leading-relaxed mb-6" style="font-family: 'Crimson Text', Georgia, serif;">
+          {data.description}
+        </p>
+      )}
+
+      <div class="flex items-center gap-4 text-sm pt-6 border-t border-gray-100">
+        <time class="text-amber-500 font-mono font-medium text-xs">
           {new Date(data.publishDate).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -35,34 +59,131 @@ const { data } = post;
           })}
         </time>
         {data.tags && data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-1">
+          <div class="flex flex-wrap gap-1.5">
             {data.tags.map(tag => (
-              <span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded">
+              <span class="px-2 py-0.5 bg-violet-50 text-violet-500 border border-violet-100 text-xs rounded">
                 {tag}
               </span>
             ))}
           </div>
         )}
       </div>
-      {data.description && (
-        <p class="text-gray-500 mt-3 text-base leading-relaxed">{data.description}</p>
-      )}
     </header>
 
-    <div class="prose prose-gray max-w-none leading-relaxed">
+    <div class="prose">
       <Content />
     </div>
+
+    <footer class="mt-16 pt-8 border-t border-gray-100">
+      <a href="/blog" class="text-sm text-violet-500 hover:text-violet-700 transition-colors font-medium">
+        ← Back to all posts
+      </a>
+    </footer>
 
   </article>
 </Layout>
 
 <style>
-  .prose h2 { @apply text-2xl font-light text-gray-800 mt-8 mb-4 border-b border-gray-100 pb-2; }
-  .prose h3 { @apply text-xl font-medium text-gray-800 mt-6 mb-3; }
-  .prose p  { @apply mb-4 leading-relaxed text-gray-700; }
-  .prose ul, .prose ol { @apply my-4 space-y-1 text-gray-700; }
-  .prose blockquote { @apply border-l-4 border-gray-200 pl-4 italic text-gray-500 my-6; }
-  .prose code { @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono; }
-  .prose pre  { @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4; }
-  .prose a    { @apply text-blue-600 hover:underline; }
+  .prose {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #374151;
+  }
+
+  .prose p {
+    margin-bottom: 1.5em;
+  }
+
+  .prose h2 {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #1e1b4b;
+    margin-top: 2.5em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .prose h3 {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e1b4b;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose ul, .prose ol {
+    margin: 1.2em 0;
+    padding-left: 1.5em;
+  }
+
+  .prose li {
+    margin-bottom: 0.4em;
+  }
+
+  .prose blockquote {
+    border-left: 3px solid #ddd6fe;
+    padding-left: 1.2em;
+    margin: 2em 0;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .prose a {
+    color: #7c3aed;
+    text-decoration: underline;
+    text-decoration-color: #ddd6fe;
+    text-underline-offset: 2px;
+    transition: color 0.15s, text-decoration-color 0.15s;
+  }
+
+  .prose a:hover {
+    color: #4c1d95;
+    text-decoration-color: #7c3aed;
+  }
+
+  .prose code {
+    background: #f5f3ff;
+    color: #5b21b6;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: ui-monospace, monospace;
+  }
+
+  .prose pre {
+    background: #1e1b4b;
+    color: #e0e7ff;
+    padding: 1.25em 1.5em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.8em 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .prose pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid #f3f4f6;
+    margin: 2.5em 0;
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .prose em {
+    font-style: italic;
+  }
 </style>

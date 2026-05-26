@@ -1,7 +1,3 @@
----
-created: 2025-05-24
----
-
 That is to say, teachers probably could and should use it to become better at what they do.
 
 But if it is apparently to the students that what was generated was AI slop, then the students will resent the teacher.

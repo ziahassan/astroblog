@@ -1,7 +1,3 @@
----
-created: 2023-12-20
----
-
 When you let a child knock you down or have some kind of (feigned) physical or mental control intentionally.
 
 It serves their need for [[autonomy vs. shame]] or [[initiative vs. guilt]] at higher levels, which are [[Erikson]] concepts.

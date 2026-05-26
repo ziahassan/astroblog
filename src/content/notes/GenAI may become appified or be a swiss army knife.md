@@ -1,7 +1,3 @@
----
-created: 2024-06-23
----
-
 Will AI tools become "appified?" Meaning, will models like GPT and Claude get wrapped into a million little apps that each solve a specific problem? This means that most people won't be concerned with prompts and chats, but will just use apps the way they always have, this time with a layer of Generative AI as a feature.  
   
 (This, by the way, is the current state of the EdTech industry, AI tools and all)  

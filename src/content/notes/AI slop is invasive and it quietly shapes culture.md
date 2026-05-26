@@ -1,0 +1,1 @@
+[[AI slop]] is like the weeds in your backyard. Seems somewhat innocuous at first, but then spirals into taking over the whole garden, and in the analogy, the culture of whatever used to occupy that space. Thinking about [[facebook]] and its need to create an entirely new website for AI generated videos. 

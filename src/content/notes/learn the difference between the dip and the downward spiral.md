@@ -1,0 +1,1 @@
+It'll feel different for every person, but [[Seth Godin]] came up with the idea of [[The Dip-6485525]] a while ago, and I believe that it takes wisdom to know the difference between when you're in the dip, and when you are actually in a downward spiral spiraling toward your doom.

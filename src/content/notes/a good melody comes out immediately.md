@@ -1,7 +1,3 @@
----
-created: 2025-01-09
----
-
 Maybe the key is to cycle through a number of new melodies until one sticks out.
 
 Another important point: [[older people write flatter melodies]].

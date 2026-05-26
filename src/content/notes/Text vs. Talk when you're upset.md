@@ -1,7 +1,3 @@
----
-created: 2023-12-20
----
-
 When we write, there's an embedded pause between our internal reaction to something and our external reaction.
 
 This is why I recommend [[Write an angry letter but don't send it]] to my coaching clients.

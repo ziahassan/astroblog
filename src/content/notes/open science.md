@@ -1,5 +1,0 @@
-> The open science movement is a trend towards making scientific research, data, and dissemination accessible to all levels of an inquiring society, amateur or professional. It encompasses practices such as publishing open research, campaigning for open access, encouraging scientists to practice open-notebook science, and generally making it easier to publish and communicate scientific knowledge. The goal is to make scientific research more transparent, reproducible, and freely available to people within and outside of the academic community.
-
-In my own words: making science accessible beyond other scientists, making things open and freely communciated, not hoarding secrets, understanding that we only make progress when we share our results and our methodologies.
-
-It is the group that succeeds, not the individual.

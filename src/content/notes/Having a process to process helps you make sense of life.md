@@ -1,7 +1,3 @@
----
-created: 2024-06-30
----
-
 We don't build in time to process life events.
 
 I think [[holidays]] are the ancient way of doing this. 

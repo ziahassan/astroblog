@@ -1,7 +1,3 @@
----
-created: 2024-06-02
----
-
 Something interesting to consider is that being a scientist about your medical data is probably a more efficient route than waiting for a diagnosis.
 
 I'm not suggesting skipping the doctor.

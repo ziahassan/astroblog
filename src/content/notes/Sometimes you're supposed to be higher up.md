@@ -1,7 +1,3 @@
----
-created: 2024-03-24
----
-
 
 A friend and I were at a concert recently, and we had backstage passes. The passes also allowed us to sit in roped off parts of the venue.
 

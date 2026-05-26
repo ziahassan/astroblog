@@ -1,7 +1,3 @@
----
-created: 2023-12-08
----
-
 For instance , pre-diabetes requires lifestyle treatment. 
 
 [[coaching]] lets you connect to values, and keeps you accountable to your goals rather than leaving it up to you. 

@@ -1,5 +1,4 @@
 ---
-created: 2022-08-06
 tags: atomic
 ---
 # When Your Parents Comment On Your Weight and Hair Loss

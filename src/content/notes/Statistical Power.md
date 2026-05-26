@@ -1,7 +1,3 @@
----
-created: 2024-10-31
----
-
 What is statistical power and what are the elements?
 
 #researchlandscape 

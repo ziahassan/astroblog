@@ -1,0 +1,1 @@
+ever since [[Covid]], I think we all have this sense that anything can happen at anytime, like [[trump]], like [[AI]].

@@ -1,7 +1,3 @@
----
-created: 2024-03-27
----
-
 I used to hate it when this happened.
 
 I'd be in the vicinity of someone south Asian, and after a few niceties, they say: "so where are you from?"

@@ -1,7 +1,3 @@
----
-created: 2023-01-20
----
-
 To become prolific, you have to assume a mindset that makes you prolific. 
 
 The first time you produce something in an effort to be prolific, it will feel like you failed. This is totally normal. 

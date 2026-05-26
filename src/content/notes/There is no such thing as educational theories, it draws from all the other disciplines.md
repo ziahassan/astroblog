@@ -1,7 +1,3 @@
----
-created: 2024-10-18
----
-
 Why might the following statement be true?
 
 There is no such thing as educational theories, it draws from all the other disciplines

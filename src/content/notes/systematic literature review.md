@@ -1,7 +1,3 @@
----
-created: 2024-10-03
----
-
 A systematic literature review is a type of research study that involves an extensive and comprehensive review of existing literature on a specific topic or research question. This includes identifying, selecting, assessing, and summarizing all high quality research evidence relevant to that question. A systematic literature review is carried out in a methodical and standardized manner to minimize bias and ensure reliability and accuracy of the findings. It often includes a meta-analysis, which is a statistical analysis combining the results of multiple individual studies.
 
 [[reading depth beats reading breadth]]

@@ -1,7 +1,3 @@
----
-created: 2025-02-14
----
-
 And the corollary: saying no to the right things limits possibility.
 
 Flip that and you get:

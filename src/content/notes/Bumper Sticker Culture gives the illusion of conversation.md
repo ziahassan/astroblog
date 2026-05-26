@@ -1,7 +1,3 @@
----
-created: 2024-06-13
----
-
 Have you ever seen a bumper sticker while driving that either enrages you or makes you fist bump your steering wheel?
 
 Have you ever wondered who sits in that car and what they do with their days?

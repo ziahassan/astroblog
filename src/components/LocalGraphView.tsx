@@ -31,8 +31,8 @@ export default function LocalGraphView({ data }: { data: LocalGraphData }) {
     const svg = d3.select(ref.current);
     svg.selectAll('*').remove();
 
-    const width = ref.current.clientWidth || 320;
-    const height = 220;
+    const width = ref.current.clientWidth || 500;
+    const height = 380;
 
     svg.append('defs').append('marker')
       .attr('id', 'local-arrow')
@@ -47,10 +47,10 @@ export default function LocalGraphView({ data }: { data: LocalGraphData }) {
       .attr('fill', '#cbd5e1');
 
     const simulation = d3.forceSimulation<LocalNode>(data.nodes as LocalNode[])
-      .force('link', d3.forceLink<LocalNode, LocalLink>(data.links as LocalLink[]).id((d) => d.id).distance(90))
-      .force('charge', d3.forceManyBody().strength(-220))
+      .force('link', d3.forceLink<LocalNode, LocalLink>(data.links as LocalLink[]).id((d) => d.id).distance(140))
+      .force('charge', d3.forceManyBody().strength(-400))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(35));
+      .force('collision', d3.forceCollide().radius(55));
 
     const link = svg.append('g')
       .selectAll('line')
@@ -83,8 +83,8 @@ export default function LocalGraphView({ data }: { data: LocalGraphData }) {
       .selectAll('text')
       .data(data.nodes)
       .join('text')
-      .text((d: any) => d.title.length > 22 ? d.title.substring(0, 20) + '…' : d.title)
-      .attr('font-size', 10)
+      .text((d: any) => d.title.length > 30 ? d.title.substring(0, 28) + '…' : d.title)
+      .attr('font-size', 12)
       .attr('fill', (d: any) => d.isCurrent ? '#1d4ed8' : '#6b7280')
       .attr('font-weight', (d: any) => d.isCurrent ? '600' : '400')
       .attr('text-anchor', 'middle')
@@ -116,7 +116,7 @@ export default function LocalGraphView({ data }: { data: LocalGraphData }) {
     <svg
       ref={ref}
       width="100%"
-      height={220}
+      height={380}
       className="rounded-lg border border-gray-100 bg-gray-50"
     />
   );

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1" />
+<link rel="stylesheet" href="engine/main.css">
+<link rel="stylesheet" href="theme/sanfrancisco.css">
+<link rel="stylesheet" href="engine/katex/katex.min.css">
+<style>
+:root{
+--logo: ;
+--darkaccent1color: #fff;
+--lightaccent1color: #fff;
+--accent2: #43aa8b;
+--accent3: #f9c74f;
+--accent4: #90be6d;
+--accent5: #f8961e;
+--accent6: #577590;
+--lighttitletextcolor: #fff;
+--darktitletextcolor: #fff;
+--lightbodytextcolor: #fff;
+--darkbodytextcolor: #fff;
+--lightbackgroundcolor: transparent;
+--darkbackgroundcolor: transparent;
+--bodyfont: Inter;
+--titlefont: Inter;
+--lightframecolor: #000000;
+--darkframecolor: #000000;
+} 
+
+</style>
+</head>
+<body class="responsive">
+<div class="reveal">
+<div class="slides">
+<section class="variable-size-headings light v-split-container responsive present has-dark-background fitted" data-background-color="#00a8ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.859rem;">
+        <div style=""><h1 id="🤖aiineducation–week4">🤖 AI in Education – Week 4</h1>
+
+<h2 id="equityandethicsinai">Equity and Ethics in AI</h2></div>
+        <div style=""><p><strong>Big Idea:</strong><br>
+AI systems can act as distorted mirrors that reflect and often magnify existing educational inequalities.</p>
+
+<p><strong>Essential Question:</strong><br>
+How does AI reflect bias—and how can we design for equity?</p></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present has-dark-background fitted" data-background-color="#1c63ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.813rem;">
+        <div style=""><h1 id="🎯today’slearninggoals">🎯 Today’s Learning Goals</h1>
+
+<ul>
+<li>Identify sources of bias in AI systems</li>
+<li>Analyze AI’s impact on educational equity</li>
+<li>Apply ethical frameworks to real examples</li>
+<li>Develop recommendations for more equitable AI</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light v-split-container responsive present has-dark-background fitted" data-background-color="#382cff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 1rem;">
+        <div style=""><h1 id="🔍openinghook10min">🔍 Opening Hook (10 min)</h1></div>
+        <div style=""><p>📺 Watch: <a href="https://www.youtube.com/watch?v=og67qeTZPYs">"How algorithms become biased"</a></p></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present has-dark-background fitted" data-background-color="#5307ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 1rem;">
+        <div style=""><h1 id="🗣️debrief:">🗣️ Debrief:</h1>
+
+<ul>
+<li>What stood out?</li>
+<li>How could this impact education?</li>
+<li>Who should be responsible for fixing these issues?</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present has-dark-background fitted" data-background-color="#6d00ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.859rem;">
+        <div style=""><h1 id="🧠coreconcepts">🧠 Core Concepts</h1>
+
+<p><strong>Sources of Bias</strong> </p>
+
+<ul>
+<li>📂 Data</li>
+<li>⚙️ Model Design</li>
+<li>🛠️ Implementation</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-dark-background fitted" data-background-color="#8a00ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h1 id="📂sourceofbias:data">📂 Source of Bias: Data</h1>
+
+<ul>
+<li>AI learns from <strong>historical data</strong> — if the past is biased, so is the model</li>
+<li>Missing or underrepresented groups = inaccurate predictions</li>
+<li>Labels may reflect human prejudice (e.g., test scores, behavior reports)</li>
+<li>Data collection often lacks transparency or consent</li>
+<li>Garbage in = garbage out (even with a great model)</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-dark-background fitted" data-background-color="#ad00ff" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.625rem;">
+        <div style=""><h1 id="⚙️sourceofbias:modeldesign">⚙️ Source of Bias: Model Design</h1>
+
+<ul>
+<li>Algorithms <strong>prioritize some variables over others</strong> — who decides what matters?</li>
+<li>Weighting, thresholds, and defaults affect outcomes</li>
+<li>“Neutral” models can still amplify disparities</li>
+<li>Lack of transparency (black-box models) makes it hard to spot bias</li>
+<li>Designers often don't reflect the communities their tools affect</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-dark-background fitted" data-background-color="#cb00f2" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.672rem;">
+        <div style=""><h1 id="🛠️sourceofbias:implementation">🛠️ Source of Bias: Implementation</h1>
+
+<ul>
+<li>AI can work fine <em>technically</em> but still harm in practice</li>
+<li>Unequal rollout across schools (who gets the tool?)</li>
+<li>Lack of teacher training or student input leads to misuse</li>
+<li>Systems may be used in ways not originally intended</li>
+<li>Ethical gaps in oversight, consent, and accountability</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-dark-background fitted" data-background-color="#e600de" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.719rem;">
+        <div style=""><h1 id="🧭fourcornersactivity">🧭 Four Corners Activity</h1>
+
+<p>👉 Who holds the most responsibility for fixing AI bias?</p>
+
+<ul>
+<li>🔧 Developers</li>
+<li>👩‍🏫 Educators</li>
+<li>🏛️ Policymakers</li>
+<li>👨‍👩‍👧‍👦 Students/Families</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light v-split-container responsive present has-dark-background fitted" data-background-color="#f505b7" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.953rem;">
+        <div style=""><h1 id="💬think-pair-share">💬 Think-Pair-Share</h1>
+
+<p>🧠 Have you ever seen tech or data being used in a biased or unfair way in education?</p></div>
+        <div style=""><ul>
+<li>Reflect individually</li>
+<li>Share with a partner</li>
+<li>Discuss as a group</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-dark-background fitted" data-background-color="#ff148d" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.719rem;">
+        <div style=""><h1 id="🧪buzzgroups:ethicalframeworks">🧪 Buzz Groups: Ethical Frameworks</h1>
+
+<p>Small group challenge:<br>
+📝 Apply an ethical framework (e.g., Microsoft, EU, FATML) to a mini AI-in-education scenario.</p>
+
+<ul>
+<li>What does the framework emphasize?</li>
+<li>What actions would it suggest?</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light cover-container responsive present has-dark-background fitted" data-background-color="#ff325b" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-cover" style="width: 100%; font-size: 1rem;">
+        <div style=""><h1 id="☕breaktime10min">☕ Break Time (10 min)</h1></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light grid-container responsive present fit-warning has-dark-background fitted" data-background-color="#ff4935" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-grid grid-items-3 " style="width: 100%; font-size: 0.766rem;">
+        <div style=""><h1 id="🧩appliedlearningproject">🧩 Applied Learning Project</h1>
+
+<h2 id="casestudyanalysis65min">Case Study Analysis (65 min)</h2></div><div style=""><h3 id="step1:analyzeacase">Step 1: Analyze a Case</h3>
+
+<p>🗂️ Choose a real-world AI bias case: </p>
+
+<ul>
+<li>Amazon hiring tool (📂 data)</li>
+<li>Scotland facial recognition (🛠️ implementation)</li>
+<li>Apple Card credit limits (⚙️ design)</li>
+</ul></div><div style=""><p>🔍 Use the framework to assess: </p>
+
+<ul>
+<li>Type of AI</li>
+<li>Bias source(s)</li>
+<li>Who was affected</li>
+<li>How bias was discovered/addressed</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light v-split-container responsive present has-light-background fitted" data-background-color="#ff5f15" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-v-split" style="width: 100%; font-size: 0.953rem;">
+        <div style=""><h3 id="step2:stakeholderroleplay">Step 2: Stakeholder Role Play</h3>
+
+<p>👥 Take on a role: </p>
+
+<ul>
+<li>Student</li>
+<li>Teacher</li>
+<li>Administrator</li>
+<li>Parent</li>
+<li>Developer</li>
+</ul></div>
+        <div style=""><p>🎙️ From your role: </p>
+
+<ul>
+<li>How are you affected?</li>
+<li>What are your concerns?</li>
+<li>What would you want changed?</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+</section><section class="variable-size-headings light default-container responsive present has-light-background fitted" data-background-color="#ff7806" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.953rem;">
+        <div style=""><h3 id="step3:policyredesign">Step 3: Policy &amp; Redesign</h3>
+
+<p>🛠️ With your group, develop:</p>
+
+<ul>
+<li>1–2 policy recommendations</li>
+<li>A redesign proposal</li>
+<li>A fair implementation plan</li>
+</ul>
+
+<p>📣 Be ready to share one key takeaway!</p></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light default-container responsive present fit-warning has-light-background fitted" data-background-color="#ff9b00" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-default" style="width: 100%; font-size: 0.578rem;">
+        <div style=""><h1 id="📋formativeassessment">📋 Formative Assessment</h1>
+
+<h2 id="stakeholderstatements10min">Stakeholder Statements (10 min)</h2>
+
+<p>✍️ Write a short reflection (100–150 words) from your stakeholder role.</p>
+
+<p>In your group, discuss:</p>
+
+<ul>
+<li>Common concerns</li>
+<li>Whose voice gets prioritized</li>
+<li>How to center equity in decisions</li>
+</ul></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section><section class="variable-size-headings light cover-container responsive present has-light-background fitted" data-background-color="#ffc400" data-updated="true" style="display: grid;">
+
+      <div class="header"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      <div class="layout-cover" style="width: 100%; font-size: 1rem;">
+        <div style=""><h1 id="🧘‍♀️closingreflection">🧘‍♀️ Closing Reflection</h1>
+
+<p>💬 What concerns you most about AI bias in education?<br>
+💡 What’s one action you can take in your role to support equity?</p></div>
+      </div>
+      <div class="footnotes"></div>
+      <div class="footer"><div class="leading"></div><div class="middle"></div><div class="trailing"></div></div>
+      
+</section></div>
+</div>
+<script src="engine/index.js"></script>
+<script src="engine/pptxgen.min.js"></script>
+<script src="engine/pfill.js"></script>
+<script src="engine/published.js"></script>
+<script>
+Reveal.configure({
+progress:true,
+progress:true,
+dependencies: [
+  {
+    src: "engine/highlight.js",
+    sync: true,
+    callback: function () {
+      hljs.initHighlightingOnLoad();
+    },
+  },
+],
+});
+</script>
+</body>
+</html>
