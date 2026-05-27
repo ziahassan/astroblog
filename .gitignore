@@ -23,5 +23,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Readwise raw exports (filenames too long for Linux)
+readwise-temp/
+
 # jetbrains setting folder
 .idea/
