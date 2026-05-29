@@ -352,10 +352,10 @@ const { Content: NowContent } = nowEntry ? await render(nowEntry) : { Content: n
     color: #3b0764;
   }
 
-  .currently-content p {
+  .currently-content :global(p) {
     margin-bottom: 0.75rem;
   }
-  .currently-content p:last-child {
+  .currently-content :global(p:last-child) {
     margin-bottom: 0;
   }
 </style>

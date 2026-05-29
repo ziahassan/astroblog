@@ -2,8 +2,10 @@
 title: Currently
 ---
 
-Finishing my dissertation proposal on AI personas and their effect on student learning and engagement.
+Working for the summer examining why institutions make procurement decision around AI technology.
 
-Teaching at community college and thinking through what responsible AI use looks like in the classroom.
+Prepping for teaching the upcoming AI in Education course at JHU.
 
-Reading about perspective-taking, climate education, and the philosophy of technology.
+Working on a number of other AI projects, including social experiments that involve online synchronous chat methods.
+
+Teaching coaching and human growth and development classes as per usual.

@@ -30,7 +30,16 @@
       "Bash(rsync -av --delete \"/Volumes/MacMiniExternal/notes2024/Zettelkasten/AtomicNotes/\" \"/Users/ziahassan/Documents/GitHub/astroblog/src/content/notes/\")",
       "Bash(grep -n \"sync-site\\\\|astroblog\" ~/.zshrc 2>/dev/null | head -10)",
       "Read(//Users/ziahassan/**)",
-      "Bash(cat >> *)"
+      "Bash(cat >> *)",
+      "Bash(gh run *)",
+      "Bash(awk 'length > 200')",
+      "Bash(git -C /Users/ziahassan/Documents/GitHub/astroblog rm -r --cached readwise-temp/)",
+      "Bash(dig ziahassan.space A +short)",
+      "Bash(dig www.ziahassan.space CNAME +short)",
+      "Bash(dig ziahassan.space CAA +short)",
+      "Bash(dig ziahassan.space TXT +short)",
+      "Bash(dig _github-pages-challenge-ziahassan.ziahassan.space TXT +short)",
+      "Bash(git diff *)"
     ],
     "additionalDirectories": [
       "/Users/ziahassan/Documents/GitHub/astroblog/src/content/teaching",
