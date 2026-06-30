@@ -1,0 +1,1 @@
+The collective generation and transmission of meaning - how knowledge is transferred over time.

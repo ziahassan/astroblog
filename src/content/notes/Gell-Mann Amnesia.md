@@ -1,0 +1,1 @@
+Reading articles or videos or [[content]] about things you know a lot about and have an [[expertise]] in, and being critical of them and thinking the author doesn't get it, while afterward assuming that the stuff you _don't_ know about actually has merit.

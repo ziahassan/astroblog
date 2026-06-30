@@ -1,0 +1,1 @@
+The idea is that tools don't matter as much as the artistry. But I think both can be true.

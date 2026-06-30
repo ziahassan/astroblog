@@ -1,0 +1,1 @@
+With excessive [[AI]] use, doctors (and probably many others are starting to get a competence penalty. I think this will only become more and more as  time goes on and we will start to develop [[genAI sensitivity]]

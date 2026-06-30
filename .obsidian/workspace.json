@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "2024-11-26-morning-magick"
             }
+          },
+          {
+            "id": "b1f82991b5123e83",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.13.0"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.13.0"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -41,7 +54,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -184,8 +199,34 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "f9e32e3ba13a7cad",
+  "active": "b1f82991b5123e83",
   "lastOpenFiles": [
+    "src/content/notes/Dr. Jung.md",
+    "src/content/notes/Dezi.md",
+    "src/content/notes/Dan Baum.md",
+    "src/content/notes/Bill Sadera.md",
+    "src/content/notes/Benjamin Bloom.md",
+    "src/content/notes/Andy.md",
+    "src/content/notes/Andrew Huberman.md",
+    "src/content/notes/Alex Jordan.md",
+    "src/content/notes/Alan Watts.md",
+    "src/content/notes/Adam Mastroianni.md",
+    "src/content/notes/Cognitive Tools.md",
+    "src/content/notes/Classroom Management.md",
+    "src/content/notes/Coaching and finding your right path removed the fear of death..md",
+    "src/content/notes/Coach Pony session on offer.md",
+    "src/content/notes/Cleaning your workspace is part of being high performance..md",
+    "src/content/notes/Childhood is important. If we understand what happened in childhood we can uncover how we are now.md",
+    "src/content/notes/Calendar is the directory of your day, to-do list is the details of your day, journaling is the story.md",
+    "src/content/notes/Cal Newport on Ann patchett.md",
+    "src/content/notes/Broad and narrow mindsets in career  change.md",
+    "src/content/notes/Brian Eno School of Song Class.md",
+    "src/content/notes/Book lice vs book scorpions.md",
+    "src/content/notes/Blaming others for your relational issues isn't useful to spur actual change.md",
+    "src/content/notes/Better grooming and better outfits creates a better environment for success enter line break.md",
+    "src/content/notes/Bert is an order muppet, ernie is a chaos muppet.md",
+    "src/content/notes/Belief is different than a wish. Belief drives people toward great success..md",
+    "src/content/notes/Become good at hearing people's story. Underneath what they're saying. So you can call it out..md",
     "dist/index.html",
     "dist/teaching/index.html",
     "dist/teaching",
@@ -194,36 +235,10 @@
     "dist/reading/index.html",
     "dist/reading/zhang-et-al-2024-do-you-have-ai-dependency-the-rol/index.html",
     "dist/reading/zhang-et-al-2024-do-you-have-ai-dependency-the-rol",
-    "dist/reading/your-personality-as-explained-on-twitter-by-one-ex/index.html",
-    "dist/reading/your-personality-as-explained-on-twitter-by-one-ex",
     "dist/reading/youth-spies-and-curious-elders/index.html",
+    "dist/reading/youth-spies-and-curious-elders",
     "dist/images/blog/test.jpg",
     "dist/images/blog/morning.jpg",
-    "src/content/notes/habits can control you or you can control your habits.md",
-    "src/content/notes/getting out of bed isn't an accomplishment.md",
-    "src/content/pages/now.md",
-    "src/content/notes/zettelkasten and PKM is mise en place for creatives.md",
-    "src/content/notes/your client is the star of the show and you are the guide.md",
-    "src/content/notes/you're only an asshole to some.md",
-    "src/content/notes/you can't renegotiate the terms of life.md",
-    "src/content/notes/you can either be motivated by curiosity or by shame and guilt.md",
-    "src/content/notes/you can either be motivated by curiosity or by shame and guilt and the choice is really yours.md",
-    "src/content/notes/you are indeed the traffic you complain about.md",
-    "src/content/notes/writing is more important than ever despite AI influence.md",
-    "src/content/notes/wishing harm on others damages yourself since you are part of the universal consciousness.md",
-    "src/content/notes/when an old media type goes out of fashion its worst quality becomes its selling point.md",
-    "src/content/notes/what we watch is both what we like and what we don’t.md",
-    "src/content/notes/we're bad at being considerate to our future self.md",
-    "src/content/notes/we want to feel like the creator of our own work.md",
-    "src/content/notes/we underestimate how much others enjoy talking to us and how much we'll enjoy those conversations.md",
-    "src/content/notes/we think our problems are big and that our peers problems are small and vice versa.md",
-    "src/content/notes/we stay chained to the present unless we have an attractive future.md",
-    "src/content/notes/we should not center AI in education.md",
-    "src/content/notes/we only learn lessons when we've experienced the consequences of our actions.md",
-    "src/content/notes/we need less advice and more curiosity.md",
-    "src/content/notes/we naturally anthropomorphize as humans to our detriment and to our benefit.md",
-    "src/content/notes/we may be more inclined these days to take recommendations from algorithm over a person.md",
-    "src/content/notes/we crave the 90s because we crave certainty and the 90s are over so they are certain.md",
     "public/images/blog/morning.jpg",
     "public/images/blog/test.jpg",
     "dist/presentations/aiworkshop/theme/image4.jpg",

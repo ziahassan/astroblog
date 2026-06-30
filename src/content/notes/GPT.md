@@ -1,0 +1,9 @@
+1. **GPT Basics**: GPT stands for Generative Pretrained Transformer, which is a type of AI that generates text. It's pretrained on a massive dataset and can be fine-tuned for specific tasks. The core technology is the transformer, a neural network that sparked the recent AI boom.
+
+2. **Transformer Functionality**: Transformers can perform a range of tasks, like converting audio to text or text to synthetic speech, and creating images from text descriptions. The first transformer was designed for language translation. GPT variants, like ChatGPT, predict text sequences based on input text, possibly with accompanying images or sound.
+
+3. **Text Generation Process**: Text generation in GPT involves predicting the next word or text chunk based on a probability distribution and repeatedly appending these predictions to generate coherent text. Larger models like GPT-3 produce more sensible stories compared to smaller versions like GPT-2.
+
+4. **Data Processing in Transformers**: Input data (text, images, sound) is broken into tokens (words, parts of words, etc.) and represented as vectors in high-dimensional space. The meaning of these vectors is contextually updated through attention blocks and multi-layer perceptrons, involving complex matrix operations.
+
+5. **Transformer Architecture and Training**: The transformer architecture consists of embedding layers, attention blocks, multi-layer perceptrons, and softmax functions. It uses matrices of tunable parameters to process input data, with the final goal to convert the input into a probability distribution over possible text chunks for prediction. The GPT-3 model, for example, comprises 175 billion parameters.

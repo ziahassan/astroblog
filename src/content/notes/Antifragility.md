@@ -1,0 +1,1 @@
+The more you suffer, the stronger you get. It’s not about happiness. 

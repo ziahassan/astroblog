@@ -13,6 +13,7 @@ const notes = defineCollection({
       return val;
     }),
     status: z.string().optional(),
+    private: z.union([z.boolean(), z.string()]).optional().transform(v => v === true || v === 'true'),
     publishDate: z.date().optional(),
     created: z.date().optional(),
   }),

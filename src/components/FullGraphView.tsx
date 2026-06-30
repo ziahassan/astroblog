@@ -77,22 +77,17 @@ export default function FullGraphView({ data }: { data: GraphData }) {
       .attr('stroke-width', 1.5)
       .attr('cursor', 'pointer')
       .on('click', (_, d) => { window.location.href = `/notes/${d.id}`; })
-      .on('mouseover', function(event, d) {
+      .on('mouseover', function(_, d) {
         d3.select(this).attr('fill', '#0f766e').attr('r', r(d) + 2);
-        tooltip
-          .style('opacity', 1)
+        hoverLabel
+          .attr('x', d.x ?? 0)
+          .attr('y', (d.y ?? 0) - r(d) - 8)
           .text(d.title)
-          .style('left', `${event.offsetX + 12}px`)
-          .style('top', `${event.offsetY - 8}px`);
-      })
-      .on('mousemove', function(event) {
-        tooltip
-          .style('left', `${event.offsetX + 12}px`)
-          .style('top', `${event.offsetY - 8}px`);
+          .style('opacity', 1);
       })
       .on('mouseout', function(_, d) {
         d3.select(this).attr('fill', d.connections > 0 ? '#2dd4bf' : '#cbd5e1').attr('r', r(d));
-        tooltip.style('opacity', 0);
+        hoverLabel.style('opacity', 0);
       })
       .call(
         d3.drag<SVGCircleElement, GraphNode>()
@@ -107,6 +102,18 @@ export default function FullGraphView({ data }: { data: GraphData }) {
           })
       );
 
+    // Hover label — single text element that moves to the hovered node
+    const hoverLabel = g.append('text')
+      .attr('font-size', 11)
+      .attr('fill', '#134e4a')
+      .attr('font-weight', '600')
+      .attr('text-anchor', 'middle')
+      .style('pointer-events', 'none')
+      .style('opacity', 0)
+      .style('paint-order', 'stroke')
+      .style('stroke', '#f0fdfa')
+      .style('stroke-width', '3px');
+
     // Always-visible labels for highly connected nodes
     const label = g.append('g')
       .selectAll('text')
@@ -120,20 +127,6 @@ export default function FullGraphView({ data }: { data: GraphData }) {
       .attr('dy', d => -(r(d) + 5))
       .style('pointer-events', 'none');
 
-    // Tooltip
-    const container = ref.current.parentElement!;
-    const tooltip = d3.select(container)
-      .append('div')
-      .style('position', 'absolute')
-      .style('background', '#134e4a')
-      .style('color', '#ccfbf1')
-      .style('font-size', '0.75rem')
-      .style('padding', '4px 8px')
-      .style('border-radius', '4px')
-      .style('pointer-events', 'none')
-      .style('opacity', 0)
-      .style('white-space', 'nowrap')
-      .style('z-index', '10');
 
     simulation.on('tick', () => {
       link
@@ -149,12 +142,10 @@ export default function FullGraphView({ data }: { data: GraphData }) {
       label
         .attr('x', (d: any) => d.x)
         .attr('y', (d: any) => d.y);
+
     });
 
-    return () => {
-      simulation.stop();
-      tooltip.remove();
-    };
+    return () => { simulation.stop(); };
   }, [data]);
 
   return (

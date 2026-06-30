@@ -1,0 +1,4 @@
+Blogger/writer
+
+#thinker
+

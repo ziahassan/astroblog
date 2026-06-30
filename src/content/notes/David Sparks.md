@@ -1,0 +1,1 @@
+Creator of MacSparky and host of some amazing podcasts such as [[Mac Power Users]] and [[Focused]].

@@ -1,0 +1,1 @@
+There's a process for everything. Including how to think about something. #idea #podcast #book

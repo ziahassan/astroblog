@@ -1,0 +1,1 @@
+Comparing the survival curves of different groups (aka, how many people die or have an event based on time). 

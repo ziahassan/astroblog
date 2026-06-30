@@ -7,7 +7,8 @@
     "build": "astro build && pagefind --site dist --output-path public/pagefind",
     "preview": "astro preview",
     "astro": "astro",
-    "sync-presentations": "node scripts/sync-presentations.js"
+    "sync-presentations": "node scripts/sync-presentations.js",
+    "sync-vault": "node scripts/sync-vault.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

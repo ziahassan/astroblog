@@ -1,0 +1,2 @@
+I would _love_ to make a plugin for Obsidian that, in a list, tags the NEXT item with next action. 
+And if you use dataview to create customized lists... you could check it off there and it would still give you a next action. Not sure if that will work. #idea

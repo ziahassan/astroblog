@@ -1,0 +1,1 @@
+Cognition fallacy is a mistaken belief that is based on an unsound argument or misunderstanding of how the mind works. This can include cognitive biases, where the mind relies on simple mental shortcuts that can lead to errors in judgment, or logical fallacies, where an argument relies on faulty reasoning.

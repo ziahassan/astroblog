@@ -42,10 +42,16 @@ for (const n of allNotes) {
   if (!body) continue;
 
   const titlePattern = data?.title ? `[[${data.title}]]` : null;
+  const filePattern = !data?.title ? `[[${displayTitle}]]` : null;
   const slugPattern = `[[${slug}]]`;
 
-  if ((titlePattern && body.includes(titlePattern)) || body.includes(slugPattern)) {
-    const pattern = titlePattern && body.includes(titlePattern) ? titlePattern : slugPattern;
+  const matchedPattern =
+    (titlePattern && body.includes(titlePattern)) ? titlePattern :
+    (filePattern && body.includes(filePattern)) ? filePattern :
+    body.includes(slugPattern) ? slugPattern : null;
+
+  if (matchedPattern) {
+    const pattern = matchedPattern;
     const index = body.indexOf(pattern);
     const start = Math.max(0, index - 80);
     const end = Math.min(body.length, index + pattern.length + 80);

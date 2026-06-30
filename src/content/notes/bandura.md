@@ -1,0 +1,3 @@
+Bandura is a theorist who 
+
+is best known for his work in social learning theory (later renamed social cognitive theory). Albert Bandura, a Canadian-American psychologist, also developed the concept of self-efficacy, which is an individual's belief in their capacity to execute behaviors necessary to produce specific performance attainments. His work emphasizes the role of observational learning and modeling in behavior change, which has had a profound influence on fields such as education, communication, psychology and public health.

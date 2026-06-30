@@ -1,0 +1,1 @@
+Personalized assessments, in one sentence, can be defined as customized evaluations designed to meet individual learning needs and abilities.

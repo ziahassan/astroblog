@@ -39,7 +39,10 @@
       "Bash(dig ziahassan.space CAA +short)",
       "Bash(dig ziahassan.space TXT +short)",
       "Bash(dig _github-pages-challenge-ziahassan.ziahassan.space TXT +short)",
-      "Bash(git diff *)"
+      "Bash(git diff *)",
+      "Bash(chmod +x scripts/sync-vault.sh)",
+      "Bash(bash scripts/sync-vault.sh)",
+      "Bash(node scripts/sync-vault.mjs)"
     ],
     "additionalDirectories": [
       "/Users/ziahassan/Documents/GitHub/astroblog/src/content/teaching",

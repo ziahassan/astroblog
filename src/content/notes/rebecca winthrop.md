@@ -1,0 +1,1 @@
+Research that looks into [[AI in Education]]. I find her to be one of the more sane resistors out there. I think I found her through an [[The Ezra Klein Show]] interview, along with [[Audrey Watters]].

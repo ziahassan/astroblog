@@ -1,0 +1,3 @@
+- many papers don’t tell you how to replicate and so you guess
+- challenges the [[publish or perish mindset]]
+- [[Zettelkasten/Cards/Concepts/JHU]] early to the movement 

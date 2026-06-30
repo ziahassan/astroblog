@@ -1,0 +1,1 @@
+Big question - How to express myself creatively without overexerting effort?

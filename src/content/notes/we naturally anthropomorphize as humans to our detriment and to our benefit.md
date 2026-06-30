@@ -8,4 +8,4 @@ But it's also to our detriment - especially with the rise of [[AI]].
 
 Becuase now we see a statistical prediction machine as a human and we even say it "learns" instead of "its algorithm is accumulating more refinements and its dataset is expanding".
 
-[[Why human–AI relationships need socioaffective alignment]], [[The word  smart  should never used to describe anyone.]]
+[[Why human–AI relationships need socioaffective alignment]], [[smart is a choice]]

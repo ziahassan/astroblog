@@ -1,0 +1,3 @@
+> Not just physical whiplash, but _spiritual_ whiplash — when we feel the jolts of being whipped back and forth by life. “Sharp, sudden movements can cause your brain to smack against the inside of your skull.” How does one recover? In the short term, there’s no way to treat it directly: You have to be still, deal with the pain, and let the injury heal before you figure out what further action is needed and how to get up and moving again…
+
+[[Zettelkasten/People/Austin Kleon|Austin Kleon]]

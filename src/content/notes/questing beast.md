@@ -1,0 +1,1 @@
+The mind in its attempt to solve problems and focus in one what it feels is most important.

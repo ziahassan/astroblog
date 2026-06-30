@@ -1,0 +1,1 @@
+[[Zettelkasten/Cards/Concepts/Obsidian]] has taught me to value tasks just as much as ideas. Or maybe even to value ideas more. #idea

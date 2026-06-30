@@ -1,0 +1,1 @@
+It's so interesting to think how my daily schedule changes so gradually over time. I drop one thing, add another, drop another, add another... until I have a completely different life. #insight #idea 
