@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.hashtag-link {
+  color: #0d9488;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.hashtag-link:hover {
+  text-decoration: underline;
+}
+
 body {
     font-family: sans-serif;
     background-color: #fff;

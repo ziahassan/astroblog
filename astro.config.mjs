@@ -3,12 +3,14 @@ import { defineConfig } from 'astro/config';
 import remarkWikiLink from 'remark-wiki-link';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import rehypeHashtags from './src/plugins/rehype-hashtags.js';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ziahassan.space',
   integrations: [react(), 
                 tailwind()],
     markdown: {
+        rehypePlugins: [rehypeHashtags],
         remarkPlugins: [
           [remarkWikiLink, {
             pageResolver: (name) => {

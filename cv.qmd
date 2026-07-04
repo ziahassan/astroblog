@@ -387,6 +387,19 @@ My research explores the transformative impact of generative AI on educational e
 
 ## Academic Service & Leadership
 
+### Advisory Committees
+
+<div class="entry">
+<div class="entry-header">Anne Arundel Community College – AI Advisory Committee</div>
+<div class="entry-role">Advisory Committee Member, April 2026–Present</div>
+<div class="entry-body">
+- Inaugural member of AACC's first AI advisory committee
+- Specialization focus: learning and instruction
+</div>
+</div>
+
+### Service & Leadership
+
 <div class="entry">
 <div class="entry-header">Grant Reviewer, Aspen Institute – Stevens Initiative</div>
 <div class="entry-role">November 2020–Present</div>

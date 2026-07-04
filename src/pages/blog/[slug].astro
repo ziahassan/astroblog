@@ -61,9 +61,9 @@ const { data } = post;
         {data.tags && data.tags.length > 0 && (
           <div class="flex flex-wrap gap-1.5">
             {data.tags.map(tag => (
-              <span class="px-2 py-0.5 bg-violet-50 text-violet-500 border border-violet-100 text-xs rounded">
+              <a href={`/tags/${tag}`} class="px-2 py-0.5 bg-violet-50 text-violet-500 border border-violet-100 text-xs rounded hover:bg-violet-100 hover:border-violet-300 transition-colors">
                 {tag}
-              </span>
+              </a>
             ))}
           </div>
         )}

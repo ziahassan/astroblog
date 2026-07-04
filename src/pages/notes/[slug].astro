@@ -177,9 +177,9 @@ for (const sourceNote of allNotes) {
         {data.tags && data.tags.length > 0 && (
           <div class="flex flex-wrap gap-1.5">
             {data.tags.map(tag => (
-              <span class="px-2 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded">
+              <a href={`/tags/${tag}`} class="px-2 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded hover:bg-teal-100 hover:border-teal-300 transition-colors">
                 {tag}
-              </span>
+              </a>
             ))}
           </div>
         )}

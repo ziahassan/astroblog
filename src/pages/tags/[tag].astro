@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const [notes, blog, research, teaching] = await Promise.all([
+    getCollection('notes'),
+    getCollection('blog', ({ data }) => data.draft !== true),
+    getCollection('research'),
+    getCollection('teaching'),
+  ]);
+
+  const tagSet = new Set<string>();
+  const addTags = (items: any[]) =>
+    items.forEach(item => (item.data.tags || []).forEach((t: string) => tagSet.add(t)));
+
+  addTags(notes); addTags(blog); addTags(research); addTags(teaching);
+
+  // Also collect inline #hashtags from note and blog bodies
+  const bodyHashtagRe = /#([a-zA-Z][a-zA-Z0-9_-]*)/g;
+  for (const item of [...notes, ...blog]) {
+    const body = typeof item.body === 'string' ? item.body : '';
+    for (const match of body.matchAll(bodyHashtagRe)) {
+      tagSet.add(match[1]);
+    }
+  }
+
+  return [...tagSet].map(tag => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const [notes, blog, research, teaching] = await Promise.all([
+  getCollection('notes'),
+  getCollection('blog', ({ data }) => data.draft !== true),
+  getCollection('research'),
+  getCollection('teaching'),
+]);
+
+const hasTag = (item: any) => (item.data.tags || []).includes(tag);
+const bodyHasTag = (item: any) => {
+  const body = typeof item.body === 'string' ? item.body : '';
+  const re = new RegExp(`#${tag}(?![a-zA-Z0-9_-])`, '');
+  return re.test(body);
+};
+
+const matchedNotes = notes.filter(n => hasTag(n) || bodyHasTag(n));
+const matchedBlog  = blog.filter(n => hasTag(n) || bodyHasTag(n));
+const matchedResearch = research.filter(hasTag);
+const matchedTeaching = teaching.filter(hasTag);
+
+const total = matchedNotes.length + matchedBlog.length + matchedResearch.length + matchedTeaching.length;
+
+function noteTitle(note: any) {
+  return note.data.title || note.id.replace(/\.mdx?$/, '').replace(/^\d{4}-\d{2}-\d{2}-?/, '').trim();
+}
+---
+
+<Layout title={`#${tag}`}>
+  <div class="max-w-3xl mx-auto px-4 py-10">
+
+    <header class="pb-8 border-b border-gray-200">
+      <a href="/notes" class="text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide font-medium transition-colors">← Notes</a>
+      <div class="flex items-baseline gap-3 mt-4">
+        <h1 class="text-3xl font-light text-gray-800">#{tag}</h1>
+        <span class="text-sm text-gray-400">{total} item{total !== 1 ? 's' : ''}</span>
+      </div>
+    </header>
+
+    {matchedNotes.length > 0 && (
+      <section class="py-6 border-b border-gray-100">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Notes</h2>
+        <div class="space-y-1">
+          {matchedNotes.map(note => (
+            <a
+              href={`/notes/${note.slug}`}
+              class="flex items-baseline gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors group"
+            >
+              <span class="flex-1 text-gray-800 group-hover:text-teal-700 font-medium transition-colors">
+                {noteTitle(note)}
+              </span>
+              {(note.data.publishDate || note.data.created) && (
+                <time class="text-xs text-gray-400 font-mono flex-shrink-0">
+                  {new Date(note.data.publishDate ?? note.data.created).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                </time>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {matchedBlog.length > 0 && (
+      <section class="py-6 border-b border-gray-100">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Blog</h2>
+        <div class="space-y-1">
+          {matchedBlog.map(post => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="flex items-baseline gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-violet-50 transition-colors group"
+            >
+              <span class="flex-1 text-gray-800 group-hover:text-violet-700 font-medium transition-colors">
+                {post.data.title}
+              </span>
+              <time class="text-xs text-gray-400 font-mono flex-shrink-0">
+                {new Date(post.data.publishDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              </time>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {matchedResearch.length > 0 && (
+      <section class="py-6 border-b border-gray-100">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Research</h2>
+        <div class="space-y-1">
+          {matchedResearch.map(paper => (
+            <a
+              href={`/articles/${paper.slug}`}
+              class="flex items-baseline gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors group"
+            >
+              <span class="flex-1 text-gray-800 group-hover:text-blue-700 font-medium transition-colors">
+                {paper.data.title}
+              </span>
+              <span class="text-xs text-gray-400 font-mono flex-shrink-0">{paper.data.year}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {matchedTeaching.length > 0 && (
+      <section class="py-6">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Teaching</h2>
+        <div class="space-y-1">
+          {matchedTeaching.map(item => (
+            <a
+              href={item.data.presentationPath ? `/presentations/${item.data.presentationPath}/index.html` : (item.data.url || '#')}
+              target={item.data.url ? '_blank' : '_self'}
+              rel="noopener noreferrer"
+              class="flex items-baseline gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50 transition-colors group"
+            >
+              <span class="flex-1 text-gray-800 group-hover:text-gray-600 font-medium transition-colors">
+                {item.data.title}
+              </span>
+              <time class="text-xs text-gray-400 font-mono flex-shrink-0">
+                {new Date(item.data.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              </time>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {total === 0 && (
+      <div class="py-16 text-center text-gray-400">
+        <p>No content tagged #{tag}.</p>
+      </div>
+    )}
+
+  </div>
+</Layout>

@@ -234,7 +234,10 @@ const graphData = { nodes: graphNodes, links: graphLinks };
                 <div class="mt-3 flex items-end justify-between gap-1">
                   <div class="flex flex-wrap gap-1">
                     {tags.slice(0, 2).map((tag: string) => (
-                      <span class="px-1.5 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded leading-none">
+                      <span
+                        class="tag-chip px-1.5 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 text-xs rounded leading-none hover:bg-teal-100 hover:border-teal-300 transition-colors cursor-pointer"
+                        data-tag={tag}
+                      >
                         {tag}
                       </span>
                     ))}
@@ -274,6 +277,15 @@ const graphData = { nodes: graphNodes, links: graphLinks };
 
 <script define:vars={{ notes, backlinkCounts }}>
   document.addEventListener('DOMContentLoaded', () => {
+    // Tag chips inside cards — navigate to tag page, don't follow card link
+    document.querySelectorAll('.tag-chip').forEach(chip => {
+      chip.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = `/tags/${chip.dataset.tag}`;
+      });
+    });
+
     const searchInput = document.getElementById('search');
     const searchResults = document.getElementById('search-results');
     const resultsList = document.getElementById('results-list');
@@ -294,9 +306,18 @@ const graphData = { nodes: graphNodes, links: graphLinks };
 
     let activeTag = 'all';
 
-    // Show all button
+    // Show all button — reveal hidden notes and reset any active tag filter
     document.getElementById('show-all-btn')?.addEventListener('click', (e) => {
       document.querySelectorAll('.beyond-fifty').forEach(el => el.classList.remove('beyond-fifty'));
+      // Reset tag filter to All
+      noteItems.forEach(item => item.classList.remove('hidden'));
+      tagFilters.forEach(b => {
+        b.classList.remove('active', 'bg-teal-600', 'text-white');
+        b.classList.add('bg-teal-50', 'text-teal-700');
+      });
+      document.querySelector('.tag-filter[data-tag="all"]')?.classList.add('active', 'bg-teal-600', 'text-white');
+      document.querySelector('.tag-filter[data-tag="all"]')?.classList.remove('bg-teal-50', 'text-teal-700');
+      activeTag = 'all';
       e.target.closest('div')?.remove();
     });
 
